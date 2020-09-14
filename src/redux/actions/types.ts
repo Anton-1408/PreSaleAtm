@@ -1,0 +1,9 @@
+export const SET_PROJECT_KEY = 'SET_PROJECT_KEY';
+export const SET_TODO_KEY = 'SET_TODO_KEY';
+export const SET_DEVICE_KEY = 'SET_DEVICE_KEY';
+export const SET_STEP_KEY = 'SET_STEP_KEY';
+export const SET_ACTION_KEY = 'SET_ACTION_KEY';
+export const SET_MODE_WORK = 'SET_MODE_WORK';
+export const SET_ID_USER = 'SET_ID_USER';
+export const SET_RESULT_CHECK_LIST = 'SET_RESULT_CHECK_LIST';
+export const SET_HASHCODE_PROJECTS = 'SET_HASHCODE_PROJECTS';
