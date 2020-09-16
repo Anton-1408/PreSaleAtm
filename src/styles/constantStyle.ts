@@ -1,1 +1,1 @@
-export const color: string = "";
+export const desingColor: string = '#3F51B5';

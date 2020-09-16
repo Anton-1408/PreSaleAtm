@@ -6,7 +6,10 @@ import { StatusBar } from 'react-native';
 import store from '../redux/store';
 import Stack from "./stackNavigation";
 
-import App from "../app";
+import Setting from "../Setting";
+import ContainerOrder from './ContainerOrder';
+import { ButtonSetting } from '../components/ButtonSetting';
+import { desingColor } from '../styles/constantStyle';
 
 const ContainerNavigation: React.FC = () => {
     return(
@@ -14,30 +17,39 @@ const ContainerNavigation: React.FC = () => {
             <NavigationContainer>
                 <StatusBar backgroundColor="#3F51B5"/>
                 <Stack.Navigator
-                    initialRouteName="Orders"
+                    initialRouteName="Order"
                     screenOptions={{
                         headerTintColor: "#fff",
                         headerStyle:{
-                            backgroundColor: "#3F51B5"
+                            backgroundColor: desingColor,
+                            elevation: 0,
                         },
                         headerTitleStyle:{
                             fontSize: 20,
                         }
                     }}
+                    
                 >
                     <Stack.Screen
-                        name="Settings"
-                        component={App}
+                        name="Setting"
+                        component={Setting}
                         options={{
-                            title: "Настройки"
+                            title: "Настройки",
                         }}
                     />
                     <Stack.Screen
-                        name="Orders"
-                        component={App}
-                        options={{
-                            title: "Заявки"
-                        }}
+                        name="Order"
+                        component={ContainerOrder}
+                        options={({navigation, route}) => ({
+                            title: "Заявки",
+                            headerRight: () => {
+                                return(
+                                    <ButtonSetting
+                                        navigation={navigation}
+                                    />     
+                                );
+                            }
+                        })}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

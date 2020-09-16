@@ -1,10 +1,16 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 
 export type rootStackParams={
-    Orders: undefined,
-    Settings: undefined,
+    Order: undefined,
+    Setting: undefined,
 };
 
-export type profileScreenNavigationPropProjects = StackNavigationProp<rootStackParams, 'Orders'>; 
+export type rootParamsOrder={
+    OrderAll: undefined,
+    OrderInWork: undefined,
+    OrederDone: undefined,
+};
 
-export type profileScreenNavigationPropSettings = StackNavigationProp<rootStackParams, 'Settings'>; 
+export type profileScreenNavigationPropProjects = StackNavigationProp<rootStackParams, 'Order'>; 
+
+export type profileScreenNavigationPropSettings = StackNavigationProp<rootStackParams, 'Setting'>; 
