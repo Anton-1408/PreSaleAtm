@@ -7,18 +7,13 @@ const options: typeDbOptions={
     createFromLocation: 1,
 }
 
-const successCb = (): void => {
-    console.warn("success");
-    
-};
+const successCb = (): void => { };
 
-const errorCb = (err: SQLite.SQLError): void => {
-    console.warn(err);
-};
+const errorCb = (err: SQLite.SQLError): void => { };
 
 const DataBase = SQLite.openDatabase(options, successCb, errorCb);
 
-export function dbHelper(query: string, params: typeDbParams, callBack: SQLite.TransactionCallback): void {
+export function dbHelper(query: string, params: typeDbParams, callBack: SQLite.StatementCallback): void {
     DataBase.transaction((transaction: SQLite.Transaction) => {
         transaction.executeSql(query, params, callBack);
     });

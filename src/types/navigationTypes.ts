@@ -1,4 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
 export type rootStackParams={
     Order: undefined,
@@ -11,6 +12,9 @@ export type rootParamsOrder={
     OrederDone: undefined,
 };
 
-export type profileScreenNavigationPropProjects = StackNavigationProp<rootStackParams, 'Order'>; 
+export type profileScreenNavigationPropOrder = StackNavigationProp<rootStackParams, 'Order'>;
+export type profileScreenRoutePropOrder = RouteProp<rootStackParams, 'Order'>;
 
-export type profileScreenNavigationPropSettings = StackNavigationProp<rootStackParams, 'Setting'>; 
+
+export type profileScreenNavigationPropSetting = StackNavigationProp<rootStackParams, 'Setting'>; 
+export type profileScreenRoutePropSetting = RouteProp<rootStackParams, 'Setting'>;

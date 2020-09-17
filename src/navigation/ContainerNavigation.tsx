@@ -6,7 +6,7 @@ import { StatusBar } from 'react-native';
 import store from '../redux/store';
 import Stack from "./stackNavigation";
 
-import Setting from "../Setting";
+import Setting from "../pages/Setting";
 import ContainerOrder from './ContainerOrder';
 import { ButtonSetting } from '../components/ButtonSetting';
 import { desingColor } from '../styles/constantStyle';
@@ -15,7 +15,7 @@ const ContainerNavigation: React.FC = () => {
     return(
         <Provider store={store}>
             <NavigationContainer>
-                <StatusBar backgroundColor="#3F51B5"/>
+                <StatusBar backgroundColor="#3F51B5" barStyle="light-content"/>
                 <Stack.Navigator
                     initialRouteName="Order"
                     screenOptions={{
@@ -26,6 +26,7 @@ const ContainerNavigation: React.FC = () => {
                         },
                         headerTitleStyle:{
                             fontSize: 20,
+                            fontFamily: "OpenSans-SemiBold"
                         }
                     }}
                     

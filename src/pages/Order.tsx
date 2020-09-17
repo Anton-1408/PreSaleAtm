@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import { dbHelper } from './dataBase/dbHelper';
 
 export const Order: React.FC = () => {
     return(
         <View>
-            <Text>Order</Text>
+            <Text style={{
+                fontSize: 20, 
+                fontFamily: "OpenSans-SemiBold"
+            }}>Order</Text>
         </View>
     );
 };
