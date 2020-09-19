@@ -52,7 +52,8 @@ export interface iResultCheckList{
 
 export interface iHashcodeProjects{
     type: typeof SET_HASHCODE_PROJECTS,
-    listHashcodeProjects: Array<Object>
+    projectHash: Array<Object>,
+    resultHash:  Array<Object>,
 };
 
 export interface iHolderKeysReducerState{
@@ -65,9 +66,10 @@ export interface iHolderKeysReducerState{
 };
 
 export interface iSyncDataReducer{
-    listResultsCheckList: Array<Object>,
-    listHashcodeProjects: Array<Object>,
     idUser: string,
+    projectHash: any,
+    resultHash: any,
+    listResultsCheckList: any,
 };
 
 export type typeHolderKeysReducer = iProjectKey | iTodoKey | iModeWork | iDeviceKey | iStepKey | iActionKey;

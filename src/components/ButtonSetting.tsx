@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Pressable } from 'react-native';
-import {profileScreenNavigationPropProjects} from '../types/navigationTypes';
+import { profileScreenNavigationPropOrder } from '../types/navigationTypes';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
-    navigation: profileScreenNavigationPropProjects
+    navigation: profileScreenNavigationPropOrder
 };
 
 export const ButtonSetting: React.FC<iProps> = ({navigation}) => {

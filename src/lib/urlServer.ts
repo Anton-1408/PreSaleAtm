@@ -1,0 +1,1 @@
+export const urlServer: string = 'https://sd.atm24.ru/';

@@ -1,3 +1,12 @@
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import SQLite from 'react-native-sqlite-storage';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { typeDbParams } from '../../types/dbTypes';
+import { dbHelper } from '../../lib/dbHelper';
+import { iRootReducers } from '../../types/reduxTypes';
+import { setOrdersToDB } from '../../lib/setDataTodb';
+import { urlServer } from '../../lib/urlServer'
 import {
     SET_ACTION_KEY,
     SET_DEVICE_KEY,
@@ -21,25 +30,113 @@ import {
     iHashcodeProjects,
 } from "../../types/reduxTypes";
 
-export function setIdUser(value: string): iUserId{
-    return{
-        type: SET_ID_USER,
-        idUser: value,
-    }
+
+export function setIdUser(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+    return async (dispatch) => {
+        return new Promise((resolve, reject) => {
+            const query: string = 'select sid from settings';
+            const params: typeDbParams = [];
+            const callBack: SQLite.StatementCallback = (transaction, result) => {
+                const len: number = result.rows.length;
+                if(len){
+                    const listRow: SQLite.ResultSetRowList = result.rows;
+                    const idIser: iUserId = {
+                        type: SET_ID_USER, 
+                        idUser: listRow.item(0).sid
+                    };
+                    dispatch(idIser);
+                }
+                resolve("idUserDone");
+            };
+            dbHelper(query, params, callBack);
+        });
+    };
 };
 
-export function setResultChecklist(value: Array<Object>): iResultCheckList{
-    return{
-        type: SET_RESULT_CHECK_LIST,
-        listResultsCheckList: value
-    }
+export function setResultChecklist(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+    return async (dispatch) => {
+        return new Promise((resolve, reject) => {
+            const query: string = `select r.id, r.id_device, r.id_action, r.value, r.date, r.fio, 
+                                        (select max(stoped) from results where id_device = r.id_device) as stoped from results r
+                                    where r.value is not null`;
+            const params: typeDbParams = [];
+            const callBack: SQLite.StatementCallback = (transaction, result) => {
+                const len: number = result.rows.length;
+                const results: Array<Object> = [];
+                const listRows: SQLite.ResultSetRowList = result.rows;
+                for(let i = 0; i < len; i++){
+                    const row: any = listRows.item(i);
+                    const resParams: Object = {
+                        idRecord: row.id, idDevice: row.id_device,
+                        idAction: row.id_action, dt: row.date, 
+                        value: row.value, stoped: row.stoped
+                    };
+                    results.push(resParams);
+                }
+
+                const resultValue: iResultCheckList={
+                    type: SET_RESULT_CHECK_LIST,
+                    listResultsCheckList: results,
+                };
+
+                dispatch(resultValue);
+                resolve("resultsDone")
+            };
+            dbHelper(query, params, callBack);
+        });
+    }; 
 };
 
-export function setHashCodeProjects(value: Array<Object>): iHashcodeProjects{
-    return{
-        type: SET_HASHCODE_PROJECTS,
-        listHashcodeProjects: value
-    }
+export function setHashCodeProjects(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+    return async (dispatch) => {
+        return new Promise((resolve, reject) => {
+            const query: string = 'select id, order_hash, result_hash from orders';
+            const params: typeDbParams = [];
+            const callBack: SQLite.StatementCallback = (transaction, result) =>{
+                const len: number = result.rows.length;
+                const listRow: SQLite.ResultSetRowList = result.rows;
+                const projectHash: any = {}
+                const resultHash: any = {};
+
+                for(let i = 0; i < len; i++){
+                    const row = listRow.item(i);
+                    projectHash[row.id] = row.order_hash;
+                    resultHash[row.id] = row.result_hash;
+                }
+
+                const value: iHashcodeProjects =  {
+                    type: SET_HASHCODE_PROJECTS,
+                    projectHash: projectHash,
+                    resultHash: resultHash,
+                };
+
+                dispatch(value);
+                resolve("hashCodesDone");
+            };
+            dbHelper(query, params, callBack);
+        })
+    };
+};
+
+export function setOrders(): ThunkAction<Promise<any>, iRootReducers, unknown, Action<Object>>{
+    return async (dispatch, getState) => {
+        return await axios.post(urlServer + 'mobile/api001.php', {
+            sid: getState().syncDataReducer.idUser, 
+            action: 'syncProjects', 
+            results: getState().syncDataReducer.listResultsCheckList, 
+            projectHash: getState().syncDataReducer.projectHash, 
+            resultHashs: getState().syncDataReducer.resultHash
+        })
+        .then((res: AxiosResponse) => {
+            if('projects' in res.data){
+                const orders: Array<JSON> = res.data.projects;
+                setOrdersToDB(orders);
+            }
+        })
+        .catch((err: AxiosError) => {
+
+        });
+    };
 };
 
 export function setModeWork(value: string): iModeWork{

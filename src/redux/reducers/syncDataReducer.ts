@@ -10,9 +10,10 @@ import {
 
 
 const initialState={
-    listResultsCheckList: [],
-    listHashcodeProjects: [],
     idUser: "",
+    resultHash: {},
+    projectHash: {},
+    listResultsCheckList: {},
 };
 
 export function syncDataReducer(state: iSyncDataReducer = initialState, action: typeSyncDataReducer){
@@ -30,8 +31,9 @@ export function syncDataReducer(state: iSyncDataReducer = initialState, action: 
         case SET_HASHCODE_PROJECTS:
             return{
                 ...state,
-                listHashcodeProjects: action.listHashcodeProjects
-            };
+                projectHash: action.projectHash,
+                resultHash: action.resultHash,
+            }; 
         default:
             return state;        
     }

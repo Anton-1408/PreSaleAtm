@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
-import {profileScreenNavigationPropSetting, profileScreenRoutePropSetting} from '../types/navigationTypes';
-import { style } from '../styles/style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { profileScreenNavigationPropSetting, profileScreenRoutePropSetting } from '../types/navigationTypes';
+import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
 import { iconSize } from '../styles/constantStyle';
 import { saveSetting, getSetting } from '../lib/dbSetting';
@@ -12,8 +12,9 @@ interface iProps{
   route: profileScreenRoutePropSetting,
 };
 
-const Setting: React.FC<iProps> = (props) => {
+const Setting: React.FC<iProps> = ({navigation}) => {
   const [userId, setUserId] = useState("");
+  
   useEffect(() => {
     getSetting(setUserId);
   }, []);
@@ -38,7 +39,7 @@ const Setting: React.FC<iProps> = (props) => {
       <Pressable 
           style={style.button}
           onPress={() => {
-            saveSetting(userId);
+            saveSetting(userId, navigation);
           }}
       >
         <Icon name="content-save-cog-outline" size={iconSize} color="#ffffff"/>
