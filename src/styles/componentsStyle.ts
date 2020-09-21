@@ -23,5 +23,6 @@ export const componentsStyle =  StyleSheet.create({
         fontSize: 20,
         fontFamily: 'OpenSans-Regular',
         color: '#5E35B1',
-    }
+        marginLeft: 5
+    },
 });

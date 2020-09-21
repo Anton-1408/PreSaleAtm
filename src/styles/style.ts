@@ -15,5 +15,37 @@ export const style = StyleSheet.create({
         right: "5%",
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    containerData:{
+        width: '100%',
+        paddingHorizontal: '5%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingTop: 10,
+        justifyContent: 'space-between',
+        borderBottomWidth: 1,
+        borderBottomColor: '#BDBDBD',
+        paddingBottom: 10,
+    },
+    containerText:{
+        width: '85%',
+    },
+    containerPercent:{
+       // marginLeft: 10
+    },
+    title: {
+        fontSize: 18,
+        fontFamily: 'OpenSans-SemiBold',
+        color: '#F57C00',
+    },
+    comment:{
+        fontSize: 15,
+        marginLeft: 5,
+        fontFamily: 'OpenSans-Light',
+    },
+    percent:{
+        fontSize: 18,
+        fontFamily: 'OpenSans-ExtraBold',
+        color: '#43A047',
     }
 });

@@ -1,4 +1,4 @@
-export const SET_PROJECT_KEY = 'SET_PROJECT_KEY';
+export const SET_ORDER_KEY = 'SET_ORDER_KEY';
 export const SET_TODO_KEY = 'SET_TODO_KEY';
 export const SET_DEVICE_KEY = 'SET_DEVICE_KEY';
 export const SET_STEP_KEY = 'SET_STEP_KEY';

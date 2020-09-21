@@ -9,11 +9,16 @@ export type rootStackParams={
 export type rootParamsOrder={
     OrderAll: undefined,
     OrderInWork: undefined,
-    OrederDone: undefined,
+    OrderDone: undefined,
 };
 
-export type profileScreenNavigationPropOrder = StackNavigationProp<rootStackParams, 'Order'>;
-export type profileScreenRoutePropOrder = RouteProp<rootStackParams, 'Order'>;
+export type profileScreenNavigationPropOrder = StackNavigationProp<rootParamsOrder, 'OrderAll'> |
+                                                StackNavigationProp<rootParamsOrder, 'OrderInWork'> |
+                                                StackNavigationProp<rootParamsOrder, 'OrderDone'>   
+
+export type profileScreenRoutePropOrder = RouteProp<rootParamsOrder, 'OrderAll'> |
+                                            RouteProp<rootParamsOrder, 'OrderInWork'> | 
+                                            RouteProp<rootParamsOrder, 'OrderDone'>;
 
 
 export type profileScreenNavigationPropSetting = StackNavigationProp<rootStackParams, 'Setting'>; 

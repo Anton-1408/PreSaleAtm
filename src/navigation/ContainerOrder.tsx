@@ -41,7 +41,7 @@ const ContainerOrder: React.FC = () => {
                 }}
             />
             <Tab.Screen
-                name="OrederDone"
+                name="OrderDone"
                 component={Order}
                 options={{
                     title: "Завершены"

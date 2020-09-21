@@ -1,13 +1,15 @@
-import React, {Component, useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, Text, FlatList, Pressable, RefreshControl} from 'react-native';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
 import { profileScreenNavigationPropOrder, profileScreenRoutePropOrder } from '../types/navigationTypes';
 import { style } from '../styles/style';
-import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders } from '../redux/actions/actions';
+import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey } from '../redux/actions/actions';
 import { iRootReducers } from '../types/reduxTypes';
+import { getOrders } from '../lib/dbOrders';
+import { desingColor } from '../styles/constantStyle';
 
 interface iProps{
     navigation: profileScreenNavigationPropOrder,
@@ -16,6 +18,7 @@ interface iProps{
     getHashCodeProjects: Function,
     syncServer: Function,
     getResultChecklist: Function,
+    setOrderId: Function
 };
 
 const mapStateToProps = (state: iRootReducers) => {
@@ -30,32 +33,91 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
         getHashCodeProjects: () => dispatch(setHashCodeProjects()),
         syncServer: () => dispatch(setOrders()),
         getResultChecklist: () => dispatch(setResultChecklist()),
+        setOrderId: (id: number) => dispatch(setOrderKey(id)),
     };
 };
 
 const Order: React.FC<iProps> = (props) => {
     const { 
-        navigation, getIdUser, 
-        getHashCodeProjects, syncServer, 
-        getResultChecklist 
+        navigation, 
+        route, 
+        getIdUser, 
+        getHashCodeProjects, 
+        syncServer, 
+        getResultChecklist,
+        setOrderId
     } : iProps = props;
 
-    useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-            getIdUser().then(() => {
-                getHashCodeProjects().then(() => {
-                    getResultChecklist().then(() => {
-                        syncServer()
-                    })
+    const [orders, setOrders] = useState([]);
+    const [refresh, setRefresh] = useState(false);
+
+    const getDataFromServer = (): void => {
+        setRefresh(true);
+        getIdUser().then(() => {
+            getHashCodeProjects().then(() => {
+                getResultChecklist().then(() => {
+                    syncServer().then(() => {
+                        getOrders(setOrders, route.name).then(() => {
+                            setRefresh(false);
+                        })
+                    });
                 });
-            })
+            });
+        });
+    };
+
+    useEffect(() => { 
+        const unsubscribe = navigation.addListener('focus', () => {
+            if(route.name === 'OrderInWork'){
+                getDataFromServer();
+            }
+            else{
+                getOrders(setOrders, route.name);
+            }
         });
         return unsubscribe;
     }, [navigation]);
 
+    
     return(
         <View style={style.container}>
-
+            <FlatList
+                data={orders}
+                keyExtractor={(item: any) => (item.id).toString()}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refresh}
+                        onRefresh={() => {
+                            getDataFromServer();
+                        }}
+                        progressBackgroundColor={desingColor}
+                        colors={["#fff"]}
+                    />
+                }
+                renderItem={({item}) => (
+                    <Pressable
+                        style={({ pressed }) => [
+                            {
+                            backgroundColor: pressed
+                                ? '#EEEEEE'
+                                : '#FFFFFF'
+                            },
+                            style.containerData
+                        ]}
+                        onPress={() => {
+                            setOrderId(item.id)
+                        }}
+                    >
+                        <View style={style.containerText}>
+                            <Text style={style.title}>{item.name}</Text>
+                            <Text style={style.comment}>{item.comment}</Text>
+                        </View>
+                        <View style={style.containerPercent}>
+                            <Text style={style.percent}>{item.percent + "%"}</Text>
+                        </View>
+                    </Pressable>
+                )}
+            />
         </View>
     );
 };

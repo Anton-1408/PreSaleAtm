@@ -2,7 +2,7 @@ import { iHolderKeysReducerState, typeHolderKeysReducer } from "../../types/redu
 import {
     SET_ACTION_KEY,
     SET_DEVICE_KEY,
-    SET_PROJECT_KEY,
+    SET_ORDER_KEY,
     SET_MODE_WORK,
     SET_TODO_KEY,
     SET_STEP_KEY,
@@ -14,7 +14,7 @@ const initialState={
     stepKey: 0,
     deviceKey: 0,
     todoKey: 0,
-    projectKey: 0,
+    orderKey: 0,
     modeWork: "",
 };
 
@@ -30,10 +30,10 @@ export function holderKeysReducer(state: iHolderKeysReducerState = initialState,
                 ...state,
                 deviceKey: action.deviceKey
             };
-        case SET_PROJECT_KEY:
+        case SET_ORDER_KEY:
             return{
                 ...state,
-                projectKey: action.projectKey
+                orderKey: action.orderKey
             };
         case SET_TODO_KEY:
             return{

@@ -17,7 +17,6 @@ export const setOrdersToDB = (orders: any): void => {
             orders[id].resultHash
         ];
         dbHelper(query, params, callBack);
-
         if('hws' in orders[id])
             setDevices(orders[id].id, orders[id].hws);
         if('todos' in orders[id])    
@@ -37,8 +36,7 @@ const setDevices = (idOrder: string, devices: any): void => {
 
 const setResults = (results: any): void => {
     results.forEach((item: any) => {
-        const query: string = `replace into results (id_action, id_device, value, date, fio, stoped) 
-                                VALUES (?,?,?,?,?,?)`;
+        const query: string = `replace into results (id_action, id_device, value, date, fio, stoped) VALUES (?,?,?,?,?,?)`;
         const params: typeDbParams = [
             item.idAction, 
             item.idDevice,
@@ -56,7 +54,6 @@ const setTodos = (idOrder: string, todos: any): void => {
         const query: string = 'replace into todos (id, name, comment, id_order) VALUES (?,?,?,?)';
         const params: typeDbParams = [todos[id].id, todos[id].name, todos[id].comment, idOrder];
         dbHelper(query, params, callBack);
-
         if('steps' in todos[id])
             setSteps(todos[id].id, todos[id].steps);
     });
@@ -64,8 +61,7 @@ const setTodos = (idOrder: string, todos: any): void => {
 
 const setSteps = (idTodo: string, steps: any): void => {
     const keyStep = Object.keys(steps).forEach((id) => {
-        const query: string = `replace into steps (id, id_todo, name, comment, is_required, is_important) 
-                                    VALUES (?,?,?,?,?,?)`;
+        const query: string = `replace into steps (id, id_todo, name, comment, is_required, is_important) VALUES (?,?,?,?,?,?)`;
         const params: typeDbParams = [
             steps[id].id, 
             idTodo, 
@@ -75,7 +71,6 @@ const setSteps = (idTodo: string, steps: any): void => {
             steps[id].isImportant
         ];
         dbHelper(query, params, callBack);
-
         if('actions' in steps[id])
             setActions(steps[id].id, steps[id].actions);
     });
@@ -124,8 +119,7 @@ const setExstraParams = (idAction: string, extraParams: any) => {
 const downLoadsFile = (idAction: string, files: any) => {
     const dirs = RNFetchBlob.fs.dirs;
     const name = files.id + files.filename;
-    RNFetchBlob
-    .config({
+    RNFetchBlob.config({
         fileCache: true,
         path : dirs.DocumentDir + '/' + name
     })

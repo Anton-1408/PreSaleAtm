@@ -5,13 +5,13 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { typeDbParams } from '../../types/dbTypes';
 import { dbHelper } from '../../lib/dbHelper';
 import { iRootReducers } from '../../types/reduxTypes';
-import { setOrdersToDB } from '../../lib/setDataTodb';
+import { setOrdersToDB } from '../../lib/setOrdersToDB';
 import { urlServer } from '../../lib/urlServer'
 import {
     SET_ACTION_KEY,
     SET_DEVICE_KEY,
     SET_HASHCODE_PROJECTS,
-    SET_PROJECT_KEY,
+    SET_ORDER_KEY,
     SET_MODE_WORK,
     SET_ID_USER,
     SET_RESULT_CHECK_LIST,
@@ -19,7 +19,7 @@ import {
     SET_STEP_KEY,
 } from "./types";
 import {
-    iProjectKey,
+    iOrdertKey,
     iTodoKey,
     iDeviceKey,
     iStepKey,
@@ -99,7 +99,7 @@ export function setHashCodeProjects(): ThunkAction<Promise<string>, iRootReducer
                 const resultHash: any = {};
 
                 for(let i = 0; i < len; i++){
-                    const row = listRow.item(i);
+                    const row: any = listRow.item(i);
                     projectHash[row.id] = row.order_hash;
                     resultHash[row.id] = row.result_hash;
                 }
@@ -153,10 +153,10 @@ export function setActionKey(value: number): iActionKey{
     };
 };
 
-export function setProjectKey(value: number): iProjectKey{
+export function setOrderKey(value: number): iOrdertKey{
     return{
-        type: SET_PROJECT_KEY,
-        projectKey: value
+        type: SET_ORDER_KEY,
+        orderKey: value
     };
 };
 

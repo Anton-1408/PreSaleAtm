@@ -2,7 +2,7 @@ import {
     SET_ACTION_KEY,
     SET_DEVICE_KEY,
     SET_HASHCODE_PROJECTS,
-    SET_PROJECT_KEY,
+    SET_ORDER_KEY,
     SET_MODE_WORK,
     SET_ID_USER,
     SET_RESULT_CHECK_LIST,
@@ -10,9 +10,9 @@ import {
     SET_STEP_KEY,
 } from "../redux/actions/types";
 
-export interface iProjectKey{
-    type: typeof SET_PROJECT_KEY,
-    projectKey: number,
+export interface iOrdertKey{
+    type: typeof SET_ORDER_KEY,
+    orderKey: number,
 };
 
 export interface iTodoKey{
@@ -62,7 +62,7 @@ export interface iHolderKeysReducerState{
     stepKey: number,
     deviceKey: number,
     todoKey: number,
-    projectKey: number,
+    orderKey: number,
 };
 
 export interface iSyncDataReducer{
@@ -72,7 +72,7 @@ export interface iSyncDataReducer{
     listResultsCheckList: any,
 };
 
-export type typeHolderKeysReducer = iProjectKey | iTodoKey | iModeWork | iDeviceKey | iStepKey | iActionKey;
+export type typeHolderKeysReducer = iOrdertKey | iTodoKey | iModeWork | iDeviceKey | iStepKey | iActionKey;
 
 export type typeSyncDataReducer = iHashcodeProjects | iResultCheckList | iUserId;
 
