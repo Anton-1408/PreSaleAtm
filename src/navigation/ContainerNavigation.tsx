@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { Component } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
@@ -8,7 +8,9 @@ import Stack from "./stackNavigation";
 
 import Setting from "../pages/Setting";
 import ContainerOrder from './ContainerOrder';
+import ContainerModeWork from './ContainerModeWork';
 import { ButtonSetting } from '../components/ButtonSetting';
+import { ButtonHome } from '../components/ButtonHome';
 import { desingColor } from '../styles/constantStyle';
 
 const ContainerNavigation: React.FC = () => {
@@ -29,7 +31,6 @@ const ContainerNavigation: React.FC = () => {
                             fontFamily: "OpenSans-SemiBold"
                         }
                     }}
-                    
                 >
                     <Stack.Screen
                         name="Setting"
@@ -47,7 +48,21 @@ const ContainerNavigation: React.FC = () => {
                                 return(
                                     <ButtonSetting
                                         navigation={navigation}
-                                    />     
+                                    />
+                                );
+                            }
+                        })}
+                    />
+                    <Stack.Screen
+                        name="ModeWork"
+                        component={ContainerModeWork}
+                        options={({navigation, route}) => ({
+                            title: "Режим работы",
+                            headerRight: () => {
+                                return(
+                                    <ButtonHome
+                                        navigation={navigation}
+                                    />
                                 );
                             }
                         })}

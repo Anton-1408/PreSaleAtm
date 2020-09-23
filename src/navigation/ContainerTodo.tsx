@@ -1,12 +1,12 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Order from '../pages/Order';
-import { rootParamsOrder } from "../types/navigationTypes";
+import Todo from '../pages/Todo';
+import { rootParamsTodo } from "../types/navigationTypes";
 import { desingColor } from '../styles/constantStyle';
 
-const Tab = createMaterialTopTabNavigator<rootParamsOrder>();
+const Tab = createMaterialTopTabNavigator<rootParamsTodo>();
 
-const ContainerOrder: React.FC = () => {
+const ContainerTodo: React.FC = () => {
     return(
         <Tab.Navigator
             tabBarOptions={{
@@ -24,25 +24,25 @@ const ContainerOrder: React.FC = () => {
                     fontFamily: "OpenSans-Regular"
                 }
             }}
-            initialRouteName="OrderInWork"
+            initialRouteName="TodoInWork"
         >
             <Tab.Screen
-                name="OrderAll"
-                component={Order}
+                name="TodoAll"
+                component={Todo}
                 options={{
                     title: "Все"
                 }}
             />
             <Tab.Screen
-                name="OrderInWork"
-                component={Order}
+                name="TodoInWork"
+                component={Todo}
                 options={{
                     title: "В работе"
                 }}
             />
             <Tab.Screen
-                name="OrderDone"
-                component={Order}
+                name="TodoDone"
+                component={Todo}
                 options={{
                     title: "Завершены"
                 }}
@@ -51,4 +51,4 @@ const ContainerOrder: React.FC = () => {
     );
 };
 
-export default ContainerOrder;
+export default ContainerTodo;

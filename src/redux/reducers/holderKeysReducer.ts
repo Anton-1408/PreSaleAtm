@@ -15,7 +15,7 @@ const initialState={
     deviceKey: 0,
     todoKey: 0,
     orderKey: 0,
-    modeWork: "",
+    modeWork: "todoMode",
 };
 
 export function holderKeysReducer(state: iHolderKeysReducerState = initialState, action: typeHolderKeysReducer){
@@ -51,6 +51,6 @@ export function holderKeysReducer(state: iHolderKeysReducerState = initialState,
                 modeWork: action.modeWork
             };
         default:
-            return state;                    
+            return state;
     }
 };

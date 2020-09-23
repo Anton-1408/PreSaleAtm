@@ -9,19 +9,13 @@ const callBack: SQLite.StatementCallback = (transaction, result) => { };
 export const setOrdersToDB = (orders: any): void => {
     const keyOrder = Object.keys(orders).forEach((id) => {
         const query: string = 'replace into orders (id, name, comment, order_hash, result_hash) VALUES (?,?,?,?,?)';
-        const params: typeDbParams = [
-            orders[id].id, 
-            orders[id].name, 
-            orders[id].comment, 
-            orders[id].projectHash, 
-            orders[id].resultHash
-        ];
+        const params: typeDbParams = [orders[id].id, orders[id].name, orders[id].comment, orders[id].projectHash, orders[id].resultHash];
         dbHelper(query, params, callBack);
         if('hws' in orders[id])
             setDevices(orders[id].id, orders[id].hws);
-        if('todos' in orders[id])    
+        if('todos' in orders[id])
             setTodos(orders[id].id, orders[id].todos);
-        if('results' in orders[id])    
+        if('results' in orders[id])
             setResults(orders[id].results);
     });
 };
@@ -37,14 +31,7 @@ const setDevices = (idOrder: string, devices: any): void => {
 const setResults = (results: any): void => {
     results.forEach((item: any) => {
         const query: string = `replace into results (id_action, id_device, value, date, fio, stoped) VALUES (?,?,?,?,?,?)`;
-        const params: typeDbParams = [
-            item.idAction, 
-            item.idDevice,
-            item.value, 
-            item.dt,
-            item.fio,
-            item.stoped
-        ];
+        const params: typeDbParams = [item.idAction, item.idDevice, item.value, item.dt, item.fio, item.stoped];
         dbHelper(query, params, callBack);
     });
 };
@@ -62,14 +49,7 @@ const setTodos = (idOrder: string, todos: any): void => {
 const setSteps = (idTodo: string, steps: any): void => {
     const keyStep = Object.keys(steps).forEach((id) => {
         const query: string = `replace into steps (id, id_todo, name, comment, is_required, is_important) VALUES (?,?,?,?,?,?)`;
-        const params: typeDbParams = [
-            steps[id].id, 
-            idTodo, 
-            steps[id].name, 
-            steps[id].comment, 
-            steps[id].isRequired,
-            steps[id].isImportant
-        ];
+        const params: typeDbParams = [steps[id].id, idTodo, steps[id].name, steps[id].comment, steps[id].isRequired, steps[id].isImportant];
         dbHelper(query, params, callBack);
         if('actions' in steps[id])
             setActions(steps[id].id, steps[id].actions);
@@ -83,14 +63,14 @@ const setActions = (idStep: string, actios: any): void => {
         dbHelper(query, params, callBack);
         if('extra' in actios[id])
             setExstraParams(actios[id].id, actios[id].extra);
-        if('files' in actios[id])    
+        if('files' in actios[id])
             setExtraFiles(actios[id].id, actios[id].files);
     });
 };
 
 const setExtraFiles = (idAction: string, files: any) => {
     const keyFile = Object.keys(files).forEach((id) => {
-        downLoadsFile(idAction, files[id]);  
+        downLoadsFile(idAction, files[id]);
     });
 };
 

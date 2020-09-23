@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { profileScreenNavigationPropSetting, profileScreenRoutePropSetting } from '../types/navigationTypes';
+import { profileScreenNavigationPropStack, profileScreenRoutePropSetting } from '../types/navigationTypes';
 import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
 import { iconSize } from '../styles/constantStyle';
 import { saveSetting, getSetting } from '../lib/dbSetting';
 
 interface iProps{
-  navigation: profileScreenNavigationPropSetting,
+  navigation: profileScreenNavigationPropStack,
   route: profileScreenRoutePropSetting,
 };
 
 const Setting: React.FC<iProps> = ({navigation}) => {
   const [userId, setUserId] = useState("");
-  
+
   useEffect(() => {
     getSetting(setUserId);
   }, []);
@@ -36,10 +36,12 @@ const Setting: React.FC<iProps> = ({navigation}) => {
         <Icon name="cellphone-information" size={iconSize} color="#5E35B1"/>
         <Text style={componentsStyle.settingText}>Версия: 1.0.0</Text>
       </View>
-      <Pressable 
+      <Pressable
           style={style.button}
           onPress={() => {
-            saveSetting(userId, navigation);
+            saveSetting(userId).then(() => {
+              navigation.goBack()
+            })
           }}
       >
         <Icon name="content-save-cog-outline" size={iconSize} color="#ffffff"/>

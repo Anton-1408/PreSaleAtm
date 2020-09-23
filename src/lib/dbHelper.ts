@@ -2,7 +2,7 @@ import { typeDbParams, typeDbOptions } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
 
 const options: typeDbOptions={
-    name: 'DataBase.db', 
+    name: 'DataBase.db',
     location: "default",
     createFromLocation: 1,
 }

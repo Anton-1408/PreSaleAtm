@@ -9,14 +9,14 @@ interface iProps{
     navigation: profileScreenNavigationPropStack
 };
 
-export const ButtonSetting: React.FC<iProps> = ({navigation}) => {
+export const ButtonHome: React.FC<iProps> = ({navigation}) => {
     return(
         <Pressable
             onPress={() => {
-                navigation.navigate("Setting");
+                navigation.popToTop();
             }}
         >
-            <Icon name="md-settings-sharp" style={componentsStyle.buttonSetting} size={iconSizeBar}/>
+            <Icon name="home" style={componentsStyle.buttonSetting} size={iconSizeBar}/>
         </Pressable>
     )
 };

@@ -41,7 +41,7 @@ export function setIdUser(): ThunkAction<Promise<string>, iRootReducers, unknown
                 if(len){
                     const listRow: SQLite.ResultSetRowList = result.rows;
                     const idIser: iUserId = {
-                        type: SET_ID_USER, 
+                        type: SET_ID_USER,
                         idUser: listRow.item(0).sid
                     };
                     dispatch(idIser);
@@ -68,7 +68,7 @@ export function setResultChecklist(): ThunkAction<Promise<string>, iRootReducers
                     const row: any = listRows.item(i);
                     const resParams: Object = {
                         idRecord: row.id, idDevice: row.id_device,
-                        idAction: row.id_action, dt: row.date, 
+                        idAction: row.id_action, dt: row.date,
                         value: row.value, stoped: row.stoped
                     };
                     results.push(resParams);
@@ -84,7 +84,7 @@ export function setResultChecklist(): ThunkAction<Promise<string>, iRootReducers
             };
             dbHelper(query, params, callBack);
         });
-    }; 
+    };
 };
 
 export function setHashCodeProjects(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
@@ -121,10 +121,10 @@ export function setHashCodeProjects(): ThunkAction<Promise<string>, iRootReducer
 export function setOrders(): ThunkAction<Promise<any>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch, getState) => {
         return await axios.post(urlServer + 'mobile/api001.php', {
-            sid: getState().syncDataReducer.idUser, 
-            action: 'syncProjects', 
-            results: getState().syncDataReducer.listResultsCheckList, 
-            projectHash: getState().syncDataReducer.projectHash, 
+            sid: getState().syncDataReducer.idUser,
+            action: 'syncProjects',
+            results: getState().syncDataReducer.listResultsCheckList,
+            projectHash: getState().syncDataReducer.projectHash,
             resultHashs: getState().syncDataReducer.resultHash
         })
         .then((res: AxiosResponse) => {

@@ -1,4 +1,3 @@
-
 export const filterByInWork = (list: Array<Object>): Array<Object> => {
     const newList = list.filter((item: any) => {
         return item.percent < 100;

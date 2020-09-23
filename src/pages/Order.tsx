@@ -3,28 +3,21 @@ import {View, Text, FlatList, Pressable, RefreshControl} from 'react-native';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-
-import { profileScreenNavigationPropOrder, profileScreenRoutePropOrder } from '../types/navigationTypes';
+import { profileScreenNavigationPropStack, profileScreenRoutePropOrder } from '../types/navigationTypes';
 import { style } from '../styles/style';
 import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey } from '../redux/actions/actions';
 import { iRootReducers } from '../types/reduxTypes';
 import { getOrders } from '../lib/dbOrders';
-import { desingColor } from '../styles/constantStyle';
+import { desingColor, colorPress } from '../styles/constantStyle';
 
 interface iProps{
-    navigation: profileScreenNavigationPropOrder,
+    navigation: profileScreenNavigationPropStack,
     route: profileScreenRoutePropOrder,
     getIdUser: Function,
     getHashCodeProjects: Function,
     syncServer: Function,
     getResultChecklist: Function,
     setOrderId: Function
-};
-
-const mapStateToProps = (state: iRootReducers) => {
-    return{
-    
-    };
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
@@ -38,12 +31,12 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 };
 
 const Order: React.FC<iProps> = (props) => {
-    const { 
-        navigation, 
-        route, 
-        getIdUser, 
-        getHashCodeProjects, 
-        syncServer, 
+    const {
+        navigation,
+        route,
+        getIdUser,
+        getHashCodeProjects,
+        syncServer,
         getResultChecklist,
         setOrderId
     } : iProps = props;
@@ -66,7 +59,7 @@ const Order: React.FC<iProps> = (props) => {
         });
     };
 
-    useEffect(() => { 
+    useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             if(route.name === 'OrderInWork'){
                 getDataFromServer();
@@ -78,7 +71,6 @@ const Order: React.FC<iProps> = (props) => {
         return unsubscribe;
     }, [navigation]);
 
-    
     return(
         <View style={style.container}>
             <FlatList
@@ -91,21 +83,15 @@ const Order: React.FC<iProps> = (props) => {
                             getDataFromServer();
                         }}
                         progressBackgroundColor={desingColor}
-                        colors={["#fff"]}
+                        colors={["#FFFFFF"]}
                     />
                 }
                 renderItem={({item}) => (
                     <Pressable
-                        style={({ pressed }) => [
-                            {
-                            backgroundColor: pressed
-                                ? '#EEEEEE'
-                                : '#FFFFFF'
-                            },
-                            style.containerData
-                        ]}
+                        style={({ pressed }) => [colorPress(pressed), style.containerData]}
                         onPress={() => {
                             setOrderId(item.id)
+                            navigation.navigate('ModeWork')
                         }}
                     >
                         <View style={style.containerText}>
@@ -122,4 +108,4 @@ const Order: React.FC<iProps> = (props) => {
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Order);
+export default connect(null, mapDispatchToProps)(Order);

@@ -6,4 +6,4 @@ import { iRootReducers } from "../../types/reduxTypes";
 export default combineReducers<iRootReducers>({
     holderKeysReducer,
     syncDataReducer,
-});  
+});

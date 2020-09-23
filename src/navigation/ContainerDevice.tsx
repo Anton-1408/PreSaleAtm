@@ -1,12 +1,12 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Order from '../pages/Order';
-import { rootParamsOrder } from "../types/navigationTypes";
+import Device from '../pages/Device';
+import { rootParamsDevice } from "../types/navigationTypes";
 import { desingColor } from '../styles/constantStyle';
 
-const Tab = createMaterialTopTabNavigator<rootParamsOrder>();
+const Tab = createMaterialTopTabNavigator<rootParamsDevice>();
 
-const ContainerOrder: React.FC = () => {
+const ContainerDevice: React.FC = () => {
     return(
         <Tab.Navigator
             tabBarOptions={{
@@ -17,32 +17,32 @@ const ContainerOrder: React.FC = () => {
                     borderBottomWidth: 3,
                     borderRadius: 2,
                 },
-                style: { 
-                    backgroundColor: desingColor, 
+                style: {
+                    backgroundColor: desingColor,
                 },
                 labelStyle:{
                     fontFamily: "OpenSans-Regular"
                 }
             }}
-            initialRouteName="OrderInWork"
+            initialRouteName="DevicesInWork"
         >
             <Tab.Screen
-                name="OrderAll"
-                component={Order}
-                options={{
-                    title: "Все"
-                }}
-            />
-            <Tab.Screen
-                name="OrderInWork"
-                component={Order}
+                name="DevicesInWork"
+                component={Device}
                 options={{
                     title: "В работе"
                 }}
             />
             <Tab.Screen
-                name="OrderDone"
-                component={Order}
+                name="DevicesStop"
+                component={Device}
+                options={{
+                    title: "Остановлены"
+                }}
+            />
+            <Tab.Screen
+                name="DevicesDone"
+                component={Device}
                 options={{
                     title: "Завершены"
                 }}
@@ -51,4 +51,4 @@ const ContainerOrder: React.FC = () => {
     );
 };
 
-export default ContainerOrder;
+export default ContainerDevice;

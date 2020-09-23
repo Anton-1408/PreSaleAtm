@@ -12,17 +12,17 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<string>
                                         SELECT count(a.id) 'actions', s.id_todo, done.result from steps s
                                             LEFT JOIN actions a
                                                 on a.id_step = s.id
-                                            LEFT JOIN ( 
-                                                select count(r.id) result, ac.id_step from actions ac 
+                                            LEFT JOIN (
+                                                select count(r.id) result, ac.id_step from actions ac
                                                     LEFT JOIN results r
-                                                        on r.id_action = ac.id 
+                                                        on r.id_action = ac.id
                                             ) done
                                                 on done.id_step = s.id
-                                    ) a	
+                                    ) a
                                         on a.id_todo = t.id
                                     LEFT JOIN (
                                         SELECT id_order, count(id) device from devices GROUP by id_order
-                                    ) d	
+                                    ) d
                                         on d.id_order = o.id
                                 GROUP by o.id`;
         const params: typeDbParams = [];
@@ -40,7 +40,7 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<string>
             }
 
             setOrder(orderFilter(listOrder, namePage));
-            resolve('OrderDone');
+            resolve('OrderGetDone');
         };
         dbHelper(query, params, callBack);
     });
@@ -48,13 +48,13 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<string>
 
 const orderFilter = (listOrder: Array<Object>, namePage: string): Array<Object> => {
     switch(namePage){
-        case 'OrderAll': 
+        case 'OrderAll':
             return filterByAll(listOrder);
         case 'OrderInWork':
             return filterByInWork(listOrder);
         case 'OrderDone':
             return filterByDone(listOrder);
         default:
-            return [];                   
+            return [];
     }
 };

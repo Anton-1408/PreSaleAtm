@@ -4,7 +4,7 @@ import {
     SET_HASHCODE_PROJECTS,
 } from "../actions/types";
 import {
-    iSyncDataReducer, 
+    iSyncDataReducer,
     typeSyncDataReducer
 } from "../../types/reduxTypes";
 
@@ -26,15 +26,15 @@ export function syncDataReducer(state: iSyncDataReducer = initialState, action: 
         case SET_RESULT_CHECK_LIST:
             return{
                 ...state,
-                listResultsCheckList: action.listResultsCheckList 
+                listResultsCheckList: action.listResultsCheckList
             };
         case SET_HASHCODE_PROJECTS:
             return{
                 ...state,
                 projectHash: action.projectHash,
                 resultHash: action.resultHash,
-            }; 
+            };
         default:
-            return state;        
+            return state;
     }
 };
