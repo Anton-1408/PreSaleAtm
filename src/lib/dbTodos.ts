@@ -1,9 +1,9 @@
 import { typeDbParams } from "../types/dbTypes";
 import SQLite from 'react-native-sqlite-storage';
-import { filterByInWork, filterByDone, filterByAll } from './filterListDataPage';
+import { filterByInWork, filterByDone, filterByAll, calculationPercent } from './filterListDataPage';
 import { dbHelper } from './dbHelper';
 
-export const getTodos = (idOrder: number, useTodos: Function) => {
+export const getTodos = (idOrder: number, useTodos: Function, namePage: string) => {
     const query = `SELECT t.id, t.name, t.comment, count(ac.action) * d.device total, sum(ac.res) result from todos t
                         LEFT JOIN (
                             SELECT s.id_todo, a.id action, count(r.id) res from actions a
@@ -28,8 +28,15 @@ export const getTodos = (idOrder: number, useTodos: Function) => {
         const listTodos: Array<Object> = [];
         for(let i = 0; i < len; i++){
             const row: any = listRow.item(i);
-            
+            const item: any = {
+                id: row.id,
+                name: row.name,
+                comment: row.comment,
+                percent: calculationPercent(row.total, row.result),
+            };
+            listTodos.push(item);
         }
+        useTodos(todosFilter(listTodos, namePage))
     };
     dbHelper(query, params, callBack);
 };

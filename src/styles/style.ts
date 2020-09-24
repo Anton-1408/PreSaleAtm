@@ -47,5 +47,10 @@ export const style = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'OpenSans-ExtraBold',
         color: '#43A047',
+    },
+    headerTitle:{
+        fontSize: 20,
+        fontFamily: "OpenSans-SemiBold",
+        color: '#ffffff'
     }
 });

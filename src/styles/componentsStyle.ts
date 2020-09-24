@@ -25,4 +25,18 @@ export const componentsStyle =  StyleSheet.create({
         color: '#5E35B1',
         marginLeft: 5
     },
+    searchContainer:{
+        backgroundColor: '#ffffff',
+        width: '100%',
+        height: 40,
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: '2%'
+    },
+    searchInput:{
+        width: '80%',
+        fontSize: 15,
+        fontFamily: 'OpenSans-BoldItalic',
+    }
 });

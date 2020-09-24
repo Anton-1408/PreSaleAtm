@@ -5,13 +5,13 @@ import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import store from '../redux/store';
 import Stack from "./stackNavigation";
-
 import Setting from "../pages/Setting";
 import ContainerOrder from './ContainerOrder';
 import ContainerModeWork from './ContainerModeWork';
 import { ButtonSetting } from '../components/ButtonSetting';
 import { ButtonHome } from '../components/ButtonHome';
 import { desingColor } from '../styles/constantStyle';
+import HeaderModeWork from '../components/HeaderModeWork';
 
 const ContainerNavigation: React.FC = () => {
     return(
@@ -21,7 +21,7 @@ const ContainerNavigation: React.FC = () => {
                 <Stack.Navigator
                     initialRouteName="Order"
                     screenOptions={{
-                        headerTintColor: "#fff",
+                        headerTintColor: "#ffffff",
                         headerStyle:{
                             backgroundColor: desingColor,
                             elevation: 0,
@@ -61,6 +61,13 @@ const ContainerNavigation: React.FC = () => {
                             headerRight: () => {
                                 return(
                                     <ButtonHome
+                                        navigation={navigation}
+                                    />
+                                );
+                            },
+                            headerTitle: () => {
+                                return(
+                                    <HeaderModeWork
                                         navigation={navigation}
                                     />
                                 );

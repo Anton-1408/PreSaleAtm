@@ -46,7 +46,8 @@ export type profileScreenRoutePropTodo= RouteProp<rootParamsTodo, 'TodoAll'>
 
 export type profileScreenRoutePropSetting = RouteProp<rootStackParams, 'Setting'>;
 
-export type profileScreenRoutePropModeWork= RouteProp<rootStackParams, 'ModeWork'>;
+export type profileScreenRoutePropModeWork = RouteProp<rootParamsModeWork, 'DeviceMode'>
+                                                | RouteProp<rootParamsModeWork, 'TodoMode'>
 
 export type profileScreenNavigationPropStack = StackNavigationProp<rootStackParams>;
 

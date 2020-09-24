@@ -1,3 +1,13 @@
+export const calculationPercent = (total: number, result: number): number => {
+    if(total){
+        const percent = (result/total) * 100;
+        return ~~percent;
+    }
+    else{
+        return 0;
+    }
+};
+
 export const filterByInWork = (list: Array<Object>): Array<Object> => {
     const newList = list.filter((item: any) => {
         return item.percent < 100;

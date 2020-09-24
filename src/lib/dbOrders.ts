@@ -1,7 +1,7 @@
 import { typeDbParams } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
 import { dbHelper } from './dbHelper';
-import { filterByInWork, filterByDone, filterByAll } from './filterListDataPage';
+import { filterByInWork, filterByDone, filterByAll, calculationPercent } from './filterListDataPage';
 
 export const getOrders = (setOrder: Function, namePage: string): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -34,8 +34,12 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<string>
 
             for(let i = 0; i < len; i++){
                 const row: any = rowList.item(i);
-                const percent = row.total ? (row.result/row.total) * 100 : 0;
-                const item: typeRow = {id: row.id, name: row.name, comment: row.comment, percent: ~~percent};
+                const item: typeRow = {
+                    id: row.id,
+                    name: row.name,
+                    comment: row.comment,
+                    percent: calculationPercent(row.total, row.result)
+                };
                 listOrder.push(item);
             }
 
