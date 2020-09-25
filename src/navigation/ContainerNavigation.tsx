@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import store from '../redux/store';
-import Stack from "./stackNavigation";
+import { Stack } from "./stackNavigation";
 import Setting from "../pages/Setting";
 import ContainerOrder from './ContainerOrder';
 import ContainerModeWork from './ContainerModeWork';
@@ -46,9 +46,7 @@ const ContainerNavigation: React.FC = () => {
                             title: "Заявки",
                             headerRight: () => {
                                 return(
-                                    <ButtonSetting
-                                        navigation={navigation}
-                                    />
+                                    <ButtonSetting/>
                                 );
                             }
                         })}
@@ -60,16 +58,12 @@ const ContainerNavigation: React.FC = () => {
                             title: "Режим работы",
                             headerRight: () => {
                                 return(
-                                    <ButtonHome
-                                        navigation={navigation}
-                                    />
+                                    <ButtonHome/>
                                 );
                             },
                             headerTitle: () => {
                                 return(
-                                    <HeaderModeWork
-                                        navigation={navigation}
-                                    />
+                                    <HeaderModeWork/>
                                 );
                             }
                         })}

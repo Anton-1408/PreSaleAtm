@@ -4,12 +4,14 @@ import { Pressable } from 'react-native';
 import { profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { componentsStyle } from '../styles/componentsStyle';
 import { iconSizeBar } from '../styles/constantStyle';
+import { useNavigation } from '@react-navigation/native';
 
 interface iProps{
-    navigation: profileScreenNavigationPropStack
+
 };
 
-export const ButtonSetting: React.FC<iProps> = ({navigation}) => {
+export const ButtonSetting: React.FC<iProps> = ({}) => {
+    const navigation: profileScreenNavigationPropStack = useNavigation();
     return(
         <Pressable
             onPress={() => {

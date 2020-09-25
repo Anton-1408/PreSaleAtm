@@ -17,8 +17,8 @@ const ContainerTodo: React.FC = () => {
                     borderBottomWidth: 3,
                     borderRadius: 2,
                 },
-                style: { 
-                    backgroundColor: desingColor, 
+                style: {
+                    backgroundColor: desingColor,
                 },
                 labelStyle:{
                     fontFamily: "OpenSans-Regular"

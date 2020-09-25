@@ -1,3 +1,4 @@
+import { modeWork } from './../../types/modeWork';
 import { iHolderKeysReducerState, typeHolderKeysReducer } from "../../types/reduxTypes";
 import {
     SET_ACTION_KEY,
@@ -8,14 +9,13 @@ import {
     SET_STEP_KEY,
 } from "../actions/types";
 
-
 const initialState={
     actionKey: 0,
     stepKey: 0,
     deviceKey: 0,
     todoKey: 0,
     orderKey: 0,
-    modeWork: "todoMode",
+    modeWork: modeWork.todo,
 };
 
 export function holderKeysReducer(state: iHolderKeysReducerState = initialState, action: typeHolderKeysReducer){

@@ -6,15 +6,21 @@ import { componentsStyle } from '../styles/componentsStyle';
 import { profileScreenNavigationPropStack } from '../types/navigationTypes';
 
 interface iProps{
-    navigation: profileScreenNavigationPropStack,
+
 };
 
-export const SearchInput: React.FC<iProps> = ({navigation}) => {
+export const SearchInput: React.FC<iProps> = ({}) => {
     return(
         <View style={componentsStyle.searchContainer}>
             <IconF name='search' color='#616161' size={20}/>
             <TextInput
                 style={componentsStyle.searchInput}
+                placeholder="Серийный номер"
+                keyboardType={"numeric"}
+                onChangeText={(text) => {
+                    console.warn(text);
+
+                }}
             />
             <Pressable>
                 <IconM name='barcode-scan' color='#616161' size={22}/>

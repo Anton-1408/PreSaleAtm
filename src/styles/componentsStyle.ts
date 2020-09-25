@@ -38,5 +38,35 @@ export const componentsStyle =  StyleSheet.create({
         width: '80%',
         fontSize: 15,
         fontFamily: 'OpenSans-BoldItalic',
+    },
+    deviceContainer:{
+        width: '70%',
+    },
+    deviceContainerId:{
+        height: 70,
+        width: 70,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    deviceId:{
+        color: '#FFFFFF',
+        fontSize: 15,
+        fontFamily: 'OpenSans-Bold',
+    },
+    deviceInformationContainer:{
+        paddingLeft: 10,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    deviceName:{
+        color: '#424242',
+        fontSize: 14,
+        fontFamily: 'OpenSans-Bold',
+    },
+    deviceInformation:{
+        marginLeft: 5,
+        fontSize: 15,
+        fontFamily: 'OpenSans-Italic',
     }
 });

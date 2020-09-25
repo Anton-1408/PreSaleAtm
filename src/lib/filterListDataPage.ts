@@ -10,14 +10,14 @@ export const calculationPercent = (total: number, result: number): number => {
 
 export const filterByInWork = (list: Array<Object>): Array<Object> => {
     const newList = list.filter((item: any) => {
-        return item.percent < 100;
+        return 'stoped' in item ? item.percent < 100 && !item.stoped : item.percent < 100;
     });
     return newList;
 };
 
 export const filterByDone = (list: Array<Object>): Array<Object> => {
     const newList = list.filter((item: any) => {
-        return item.percent === 100;
+        return 'stoped' in item ? item.percent === 100 && !item.stoped : item.percent === 100;
     });
     return newList;
 };
@@ -26,5 +26,12 @@ export const filterByAll = (list: Array<Object>): Array<Object> => {
     const newList = list.filter((item: any) => {
         return item.percent <= 100;
     });
+    return newList;
+};
+
+export const filterByStopped = (list: Array<Object>): Array<Object> => {
+    const newList = list.filter((item: any) => {
+        return item.stoped;
+    })
     return newList;
 };

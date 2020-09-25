@@ -4,24 +4,22 @@ import { profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { iRootReducers } from '../types/reduxTypes';
 import { HeaderTitle } from './HeaderTitle';
 import { SearchInput } from './SearchInput';
+import { modeWork } from '../types/modeWork';
 
 interface iProps{
-    navigation: profileScreenNavigationPropStack,
-    modeWork?: string,
+    getModeWork?: string,
 };
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        modeWork: state.holderKeysReducer.modeWork
+        getModeWork: state.holderKeysReducer.modeWork
     }
 };
 
-const HeaderModeWork: React.FC<iProps> = ({navigation, modeWork}) => {
-    if(modeWork === 'deviceMode'){
+const HeaderModeWork: React.FC<iProps> = ({getModeWork}) => {
+    if(getModeWork === modeWork.device){
         return(
-            <SearchInput
-                navigation={navigation}
-            />
+            <SearchInput/>
         )
     }
     else{

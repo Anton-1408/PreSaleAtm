@@ -1,9 +1,9 @@
 import { typeDbParams } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
 import { dbHelper } from './dbHelper';
-import { filterByInWork, filterByDone, filterByAll } from './filterListDataPage';
+import { filterByInWork, filterByDone, filterByStopped, calculationPercent } from './filterListDataPage';
 
-export const getDevices = (idOrder: number, namePage: string) => {
+export const getDevices = (idOrder: number, namePage: string, setDevices: Function) => {
     const query : string = `select d.id, d.model, d.serial_number, count(r.id) result, act.actions, max(r.stoped) stoped from devices d
                                 LEFT join results r
                                     on r.id_device = d.id
@@ -28,7 +28,16 @@ export const getDevices = (idOrder: number, namePage: string) => {
         const deviceList: Array<Object> = [];
         for(let i = 0; i < len; i++){
             const row: any = listRow.item(i);
+            const item: any = {
+                id: row.id,
+                serialNumber: row.serial_number,
+                model: row.model,
+                stoped: row.stoped,
+                percent: calculationPercent(row.actions, row.result)
+            };
+            deviceList.push(item);
         };
+        setDevices(deviceFilter(deviceList, namePage))
     };
     dbHelper(query, params, callBack);
 };
@@ -40,7 +49,7 @@ const deviceFilter = (listOrder: Array<Object>, namePage: string): Array<Object>
         case 'DevicesInWork':
             return filterByInWork(listOrder);
         case 'DevicesStop':
-            return [];
+            return filterByStopped(listOrder);
         default:
             return [];
     }

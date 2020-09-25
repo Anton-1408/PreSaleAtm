@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { useFocusEffect } from '@react-navigation/native';
 import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenRoutePropTodo, profileScreenNavigationPropStack } from '../types/navigationTypes'
 import { setTodoKey } from '../redux/actions/actions';
 import { style } from '../styles/style';
 import { getTodos } from '../lib/dbTodos';
-import {  colorPress } from '../styles/constantStyle';
+import { colorPress } from '../styles/constantStyle';
 
 interface iProps{
 	navigation: profileScreenNavigationPropStack,
