@@ -32,7 +32,8 @@ export const componentsStyle =  StyleSheet.create({
         borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: '2%'
+        paddingHorizontal: '2%',
+        justifyContent: 'space-between',
     },
     searchInput:{
         width: '80%',
@@ -89,6 +90,7 @@ export const componentsStyle =  StyleSheet.create({
     stepStatusText:{
         fontSize: 15,
         fontFamily: 'OpenSans-Bold',
+        color: '#37474F'
     },
     stepStatusTitle:{
         fontSize: 15,

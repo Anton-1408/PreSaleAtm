@@ -1,7 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { CompositeNavigationProp } from '@react-navigation/native'
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 export type rootStackParams={
     Setting: undefined,
@@ -11,6 +9,10 @@ export type rootStackParams={
     Step: {
         title: '',
     },
+    Todo: {
+        title: 'Чек-Листы'
+    },
+    Device: undefined,
 };
 
 export type rootParamsOrder={

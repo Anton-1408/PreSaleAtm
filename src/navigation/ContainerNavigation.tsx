@@ -14,6 +14,9 @@ import { desingColor } from '../styles/constantStyle';
 import HeaderModeWork from '../components/HeaderModeWork';
 import ScanBarCode from '../pages/ScanBarCode';
 import Step from '../pages/Step';
+import ContainerTodo from './ContainerTodo';
+import ContainerDevice from './ContainerDevice';
+import SearchInput from '../components/SearchInput';
 
 const ContainerNavigation: React.FC = () => {
     return(
@@ -78,6 +81,35 @@ const ContainerNavigation: React.FC = () => {
                             headerRight: () => {
                                 return(
                                     <ButtonHome/>
+                                );
+                            }
+                        })}
+                    />
+                    <Stack.Screen
+                        name="Todo"
+                        component={ContainerTodo}
+                        options={({navigation, route}) => ({
+                            title: route.params.title,
+                            headerRight: () => {
+                                return(
+                                    <ButtonHome/>
+                                );
+                            }
+                        })}
+                    />
+                    <Stack.Screen
+                        name="Device"
+                        component={ContainerDevice}
+                        options={({navigation, route}) => ({
+                            title: "Режим работы",
+                            headerRight: () => {
+                                return(
+                                    <ButtonHome/>
+                                );
+                            },
+                            headerTitle: () => {
+                                return(
+                                    <SearchInput/>
                                 );
                             }
                         })}

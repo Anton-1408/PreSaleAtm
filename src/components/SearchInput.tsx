@@ -2,28 +2,45 @@ import React from 'react';
 import { View, TextInput, Pressable } from 'react-native';
 import IconF from 'react-native-vector-icons/FontAwesome5';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
+import { useNavigation } from '@react-navigation/native';
+import { iRootReducers } from '../types/reduxTypes';
+import { colorIconSearch } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 import { profileScreenNavigationPropStack } from '../types/navigationTypes';
-import { useNavigation } from '@react-navigation/native';
 import { colorPress } from '../styles/constantStyle';
+import { setSerialNumberDevice } from '../redux/actions/actions';
 
 interface iProps{
-    placeholder: string,
-    setText: any,
-    value: string | undefined
+    serealNumber?: string,
+    setSerialNumber?: any
 };
 
-export const SearchInput: React.FC<iProps> = ({placeholder, setText, value}) => {
+const mapStateToProps = (state: iRootReducers) => {
+    return{
+        serealNumber: state.appStateReducer.serialNumber,
+    }
+};
+
+const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+    return {
+        setSerialNumber: (serialNumber: string) => dispatch(setSerialNumberDevice(serialNumber))
+    };
+};
+
+const SearchInput: React.FC<iProps> = ({serealNumber, setSerialNumber}) => {
     const navigation: profileScreenNavigationPropStack = useNavigation();
     return(
         <View style={componentsStyle.searchContainer}>
-            <IconF name='search' color='#616161' size={20}/>
+            <IconF name='search' color={colorIconSearch} size={20}/>
             <TextInput
-                value={value}
-                placeholder={placeholder}
+                value={serealNumber}
+                placeholder='Серийный номер'
                 keyboardType={'numeric'}
                 onChangeText={(text) => {
-                    setText(text)
+                    setSerialNumber(text)
                 }}
                 style={componentsStyle.searchInput}
             />
@@ -33,8 +50,10 @@ export const SearchInput: React.FC<iProps> = ({placeholder, setText, value}) => 
                     navigation.navigate('ScanBarCode');
                 }}
             >
-                <IconM name='barcode-scan' color='#616161' size={22}/>
+                <IconM name='barcode-scan' color={colorIconSearch} size={22}/>
             </Pressable>
         </View>
     );
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)

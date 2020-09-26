@@ -9,21 +9,27 @@ import { colorPress, bcolorDone, colorDone, colorComment, colorTitle } from '../
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
 import { setStepKey } from '../redux/actions/actions';
-import { getSteps } from '../lib/dbSteps';
+import { getSteps, setParams, setQuery } from '../lib/dbSteps';
 import { componentsStyle } from '../styles/componentsStyle';
 import { StepStatus } from '../components/StepStatus';
+import { modeWork } from '../types/modeWork';
 
 interface iProps{
     navigation: profileScreenNavigationPropStack,
     route: profileScreenRoutePropScanStep,
     todoKey: number,
-    orderKey: number
+    orderKey: number,
+    deviceKey: number,
+    typeWork: string,
+    setStepId: Function,
 }
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
         todoKey: state.holderKeysReducer.todoKey,
-        orderKey: state.holderKeysReducer.orderKey
+        orderKey: state.holderKeysReducer.orderKey,
+        deviceKey: state.holderKeysReducer.deviceKey,
+        typeWork: state.appStateReducer.modeWork
     }
 };
 
@@ -34,12 +40,14 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 };
 
 const Step: React.FC<iProps> = (props) => {
-    const { navigation, todoKey, orderKey } = props;
+    const { navigation, todoKey, orderKey, typeWork,  deviceKey, setStepId } = props;
     const [steps, setSteps] = useState([]);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
-            getSteps(orderKey, todoKey, setSteps);
+            const query = setQuery(typeWork);
+            const params = setParams(typeWork, orderKey, deviceKey, todoKey);
+            getSteps(query, params, setSteps);
         });
         return unsubscribe;
     }, [navigation]);
@@ -58,7 +66,10 @@ const Step: React.FC<iProps> = (props) => {
                             }
                         ]}
                         onPress={() => {
-
+                            setStepId(item.id)
+                            if(typeWork === modeWork.todo){
+                                navigation.navigate('Device')
+                            }
 						}}
                     >
                         <View style={componentsStyle.stepDataInformation}>

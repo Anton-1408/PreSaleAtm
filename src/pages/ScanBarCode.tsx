@@ -9,6 +9,7 @@ import { profileScreenRoutePropScanBarCode, profileScreenNavigationPropStack } f
 import { iRootReducers } from '../types/reduxTypes';
 import { setDeviceKey, setSerialNumberDevice } from '../redux/actions/actions';
 import { getPermissions, getDevicesList, searchDevice } from '../lib/devicesScanCode';
+import { modeWork } from '../types/modeWork';
 
 
 interface iProps{
@@ -16,7 +17,8 @@ interface iProps{
     navigation: profileScreenNavigationPropStack,
     setDeviceId: Function,
     setSerialNumber: Function,
-    orderKey: number
+    orderKey: number,
+    typeWork: string,
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
@@ -28,13 +30,14 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-		orderKey: state.holderKeysReducer.orderKey
+        orderKey: state.holderKeysReducer.orderKey,
+        typeWork: state.appStateReducer.modeWork,
     };
 };
 
 const ScanBarCode: React.FC<iProps> = (props) => {
     const [devices, setDevices] = useState([]);
-    const { navigation, setDeviceId, setSerialNumber, orderKey } = props;
+    const { navigation, setDeviceId, setSerialNumber, orderKey, typeWork } = props;
 
     useEffect(() => {
         getPermissions();
@@ -51,9 +54,14 @@ const ScanBarCode: React.FC<iProps> = (props) => {
                 onReadCode={((event: any) => {
                     const serialNumb: string = event.nativeEvent.codeStringValue;
                     const device: any = searchDevice(devices, serialNumb);
-                    setDeviceId(device.id);
-                    setSerialNumber(device.serialNumber);
                     navigation.navigate('ModeWork');
+                    if(device){
+                        setDeviceId(device.id);
+                        setSerialNumber(device.serialNumber);
+                        if(typeWork === modeWork.device){
+                            navigation.navigate('Todo');
+                        }
+                    }
                 })}
                 hideControls={false}
                 showFrame={true}

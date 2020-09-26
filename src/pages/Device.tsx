@@ -9,7 +9,8 @@ import { setDeviceKey } from '../redux/actions/actions';
 import { componentsStyle } from '../styles/componentsStyle';
 import { colorPress, colorIsStop, colorIsDone, colorIsWork } from '../styles/constantStyle';
 import { style } from '../styles/style';
-import { getDevices } from '../lib/dbDevices';
+import { getDevices, setQuery, setParams } from '../lib/dbDevices';
+import { modeWork } from '../types/modeWork';
 
 interface iProps{
     navigation: profileScreenNavigationPropStack,
@@ -17,6 +18,8 @@ interface iProps{
     orderKey: number,
     setDiviceId: Function,
     serialNumberDevice: string,
+    typeWork: string,
+    stepKey: number,
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
@@ -28,18 +31,30 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 const mapStateToProps = (state: iRootReducers) => {
     return{
         orderKey: state.holderKeysReducer.orderKey,
-        serialNumberDevice: state.appStateReducer.serialNumber
+        serialNumberDevice: state.appStateReducer.serialNumber,
+        typeWork: state.appStateReducer.modeWork,
+        stepKey: state.holderKeysReducer.stepKey,
     };
 };
 
 const Device: React.FC<iProps> = (props) => {
-    const { navigation, orderKey, route, setDiviceId, serialNumberDevice } = props;
+    const {
+        navigation,
+        orderKey,
+        route,
+        setDiviceId,
+        serialNumberDevice,
+        typeWork,
+        stepKey
+    } = props;
 
     const [devices, setDevices] = useState([]);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
-            getDevices(orderKey, route.name, setDevices)
+            const query = setQuery(typeWork);
+            const params = setParams(typeWork, orderKey, stepKey);
+            getDevices(query, params, route.name, setDevices)
         });
         return unsubscribe;
     }, [navigation]);
@@ -59,6 +74,15 @@ const Device: React.FC<iProps> = (props) => {
                         style={({ pressed }) => [colorPress(pressed), style.containerData]}
                         onPress={() => {
                             setDiviceId(item.id)
+                            if(typeWork === modeWork.device){
+                                const titleTodo: any = '#' + item.serialNumber;
+                                navigation.navigate('Todo', {
+                                    title: titleTodo
+                                })
+                            }
+                            else{
+
+                            }
                         }}
                     >
                         <View

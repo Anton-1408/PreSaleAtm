@@ -7,14 +7,16 @@ import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenRoutePropTodo, profileScreenNavigationPropStack } from '../types/navigationTypes'
 import { setTodoKey } from '../redux/actions/actions';
 import { style } from '../styles/style';
-import { getTodos } from '../lib/dbTodos';
+import { getTodos, setQuery, setParams } from '../lib/dbTodos';
 import { colorPress } from '../styles/constantStyle';
 
 interface iProps{
 	navigation: profileScreenNavigationPropStack,
 	route: profileScreenRoutePropTodo,
 	orderKey: number,
+	deviceKey: number,
 	setTodoId: Function,
+	typeWork: string
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
@@ -25,17 +27,21 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-		orderKey: state.holderKeysReducer.orderKey
+		orderKey: state.holderKeysReducer.orderKey,
+		deviceKey: state.holderKeysReducer.deviceKey,
+		typeWork: state.appStateReducer.modeWork,
     };
 };
 
 const Todo: React.FC<iProps> = (props) => {
-	const { navigation, setTodoId, orderKey, route } = props;
+	const { navigation, setTodoId, orderKey, deviceKey, typeWork, route } = props;
 	const [ todos, useTodos ] = useState([]);
 
 	useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
-			getTodos(orderKey, useTodos, route.name);
+			const query = setQuery(typeWork);
+			const params = setParams(typeWork, orderKey, deviceKey);
+			getTodos(query, params, useTodos, route.name);
         });
         return unsubscribe;
     }, [navigation]);
