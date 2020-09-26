@@ -11,20 +11,23 @@ import { rootParamsModeWork } from '../types/navigationTypes';
 import { iconSizeBar } from '../styles/constantStyle';
 import { iRootReducers } from '../types/reduxTypes';
 import { setModeWork } from '../redux/actions/actions';
+import { setSerialNumberDevice } from '../redux/actions/actions';
 
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 
 interface iProps{
     setTypeWork: Function,
+    setSerialNumber: Function
 }
 
 const mapDispatchToProps = (dispatch:  ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
     return{
-        setTypeWork: (typeWork: string) => dispatch(setModeWork(typeWork))
+        setTypeWork: (typeWork: string) => dispatch(setModeWork(typeWork)),
+        setSerialNumber: (serialNumber: string) => dispatch(setSerialNumberDevice(serialNumber))
     };
 };
 
-const ContainerModeWork: React.FC<iProps> = ({setTypeWork}) => {
+const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => {
     return (
         <Tab.Navigator
             initialRouteName="TodoMode"
@@ -55,6 +58,9 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork}) => {
                         setTypeWork('todoMode');
                         navigation.navigate('TodoMode');
                     },
+                    beforeRemove: e => {
+                        setTypeWork('todoMode');
+                    },
                 })}
             />
             <Tab.Screen
@@ -71,6 +77,9 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork}) => {
                         e.preventDefault();
                         setTypeWork('deviceMode');
                         navigation.navigate('DeviceMode');
+                    },
+                    beforeRemove: e => {
+                        setSerialNumber('')
                     },
                 })}
             />

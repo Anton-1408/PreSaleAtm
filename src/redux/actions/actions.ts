@@ -17,6 +17,7 @@ import {
     SET_RESULT_CHECK_LIST,
     SET_TODO_KEY,
     SET_STEP_KEY,
+    SET_SERIAL_NUMBER_DEVICE
 } from "./types";
 import {
     iOrdertKey,
@@ -28,6 +29,7 @@ import {
     iUserId,
     iResultCheckList,
     iHashcodeProjects,
+    iSetSerialNumberDevice,
 } from "../../types/reduxTypes";
 
 
@@ -180,3 +182,10 @@ export function setStepKey(value: number): iStepKey{
         stepKey: value
     };
 };
+
+export function setSerialNumberDevice(value: string): iSetSerialNumberDevice{
+    return{
+        type: SET_SERIAL_NUMBER_DEVICE,
+        serialNumber: value,
+    };
+}

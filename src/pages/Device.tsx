@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
@@ -17,6 +17,7 @@ interface iProps{
     route: profileScreenRoutePropDevice,
     orderKey: number,
     setDiviceId: Function,
+    serialNumberDevice: string,
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
@@ -27,12 +28,13 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        orderKey: state.holderKeysReducer.orderKey
+        orderKey: state.holderKeysReducer.orderKey,
+        serialNumberDevice: state.appStateReducer.serialNumber
     };
 };
 
 const Device: React.FC<iProps> = (props) => {
-    const { navigation, orderKey, route, setDiviceId } = props;
+    const { navigation, orderKey, route, setDiviceId, serialNumberDevice } = props;
 
     const [devices, setDevices] = useState([]);
 
@@ -46,7 +48,12 @@ const Device: React.FC<iProps> = (props) => {
     return(
         <View style={style.container}>
             <FlatList
-                data={devices}
+                data={devices.filter((item: any) => {
+                    const itemSerialNumb = item.serialNumber.toUpperCase()
+                    const serialNumbSerch = serialNumberDevice.toUpperCase();
+                    const result = itemSerialNumb.indexOf(serialNumbSerch);
+                    return result > -1
+                })}
                 keyExtractor={(item: any) => (item.id).toString()}
                 renderItem={({item}) => (
                     <Pressable

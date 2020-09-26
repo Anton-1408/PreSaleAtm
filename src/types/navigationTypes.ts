@@ -7,6 +7,7 @@ export type rootStackParams={
     Setting: undefined,
     Order: undefined,
     ModeWork: undefined,
+    ScanBarCode: undefined,
 };
 
 export type rootParamsOrder={
@@ -51,10 +52,6 @@ export type profileScreenRoutePropModeWork = RouteProp<rootParamsModeWork, 'Devi
 
 export type profileScreenNavigationPropStack = StackNavigationProp<rootStackParams>;
 
-// type navigationPropModeWork =  BottomTabNavigationProp<rootParamsModeWork, 'TodoMode'>;// |  BottomTabNavigationProp<rootParamsModeWork, 'DeviceMode'>;
+export type profileScreenRoutePropScanBarCode = RouteProp<rootStackParams, 'ScanBarCode'>;
 
-//export type profileScreenNavigationPropModeWork = //CompositeNavigationProp<
-                                                      //  navigationPropModeWork
-                                                    //    profileScreenNavigationPropStack
-                                                    //>;
 

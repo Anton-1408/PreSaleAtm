@@ -12,6 +12,7 @@ import { ButtonSetting } from '../components/ButtonSetting';
 import { ButtonHome } from '../components/ButtonHome';
 import { desingColor } from '../styles/constantStyle';
 import HeaderModeWork from '../components/HeaderModeWork';
+import ScanBarCode from '../pages/ScanBarCode';
 
 const ContainerNavigation: React.FC = () => {
     return(
@@ -66,6 +67,16 @@ const ContainerNavigation: React.FC = () => {
                                     <HeaderModeWork/>
                                 );
                             }
+                        })}
+                    />
+                    <Stack.Screen
+                        name="ScanBarCode"
+                        component={ScanBarCode}
+                        options={({navigation, route}) => ({
+                            title: "",
+                            headerStyle:{
+                                backgroundColor: '#000000'
+                            },
                         })}
                     />
                 </Stack.Navigator>
