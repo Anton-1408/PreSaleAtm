@@ -3,7 +3,6 @@ import {View, Text, FlatList, Pressable, RefreshControl} from 'react-native';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { useFocusEffect } from '@react-navigation/native';
 import { profileScreenNavigationPropStack, profileScreenRoutePropOrder } from '../types/navigationTypes';
 import { style } from '../styles/style';
 import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey } from '../redux/actions/actions';

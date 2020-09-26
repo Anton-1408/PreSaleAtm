@@ -8,6 +8,9 @@ export type rootStackParams={
     Order: undefined,
     ModeWork: undefined,
     ScanBarCode: undefined,
+    Step: {
+        title: '',
+    },
 };
 
 export type rootParamsOrder={
@@ -53,5 +56,7 @@ export type profileScreenRoutePropModeWork = RouteProp<rootParamsModeWork, 'Devi
 export type profileScreenNavigationPropStack = StackNavigationProp<rootStackParams>;
 
 export type profileScreenRoutePropScanBarCode = RouteProp<rootStackParams, 'ScanBarCode'>;
+
+export type profileScreenRoutePropScanStep = RouteProp<rootStackParams, 'Step'>;
 
 

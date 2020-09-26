@@ -1,9 +1,10 @@
-import { typeDbParams } from './../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
+import { typeDbParams } from './../types/dbTypes';
 import { dbHelper } from './dbHelper';
 
-export const getSteps = (idOrder: number, idTodo: number) => {
-    const query = `SELECT s.id, count(a.id) * (SELECT count(id) from devices where id_order = ?) total,
+export const getSteps = (idOrder: number, idTodo: number, setSteps: Function) => {
+    const query = `SELECT s.id, s.name, s.comment, s.is_required, s.is_important,
+                    count(a.id) * (SELECT count(id) from devices where id_order = ?) total,
                     sum(r.result) result from steps s
                         LEFT JOIN actions a
                             on a.id_step = s.id
@@ -18,9 +19,20 @@ export const getSteps = (idOrder: number, idTodo: number) => {
     const callBack: SQLite.StatementCallback = (transaction, result) => {
         const len: number = result.rows.length;
         const rowList: SQLite.ResultSetRowList = result.rows;
+        const listSteps: Array<Object> = [];
         for(let i = 0; i < len; i++){
-
+            const row = rowList.item(i);
+            const item: any = {
+                id: row.id,
+                name: row.name,
+                comment: row.comment,
+                isRequired: row.is_required,
+                isImportant: row.is_important,
+                isDone: row.total === result,
+            };
+            listSteps.push(item);
         }
+        setSteps(listSteps);
     };
     dbHelper(query, params, callBack);
 };

@@ -21,17 +21,16 @@ export const style = StyleSheet.create({
         paddingHorizontal: '5%',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 10,
+        paddingVertical: 10,
         justifyContent: 'space-between',
         borderBottomWidth: 1,
         borderBottomColor: '#BDBDBD',
-        paddingBottom: 10,
     },
     containerText:{
         width: '85%',
     },
     containerPercent:{
-       // marginLeft: 10
+
     },
     title: {
         fontSize: 18,

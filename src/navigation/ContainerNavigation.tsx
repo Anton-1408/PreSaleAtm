@@ -13,6 +13,7 @@ import { ButtonHome } from '../components/ButtonHome';
 import { desingColor } from '../styles/constantStyle';
 import HeaderModeWork from '../components/HeaderModeWork';
 import ScanBarCode from '../pages/ScanBarCode';
+import Step from '../pages/Step';
 
 const ContainerNavigation: React.FC = () => {
     return(
@@ -65,6 +66,18 @@ const ContainerNavigation: React.FC = () => {
                             headerTitle: () => {
                                 return(
                                     <HeaderModeWork/>
+                                );
+                            }
+                        })}
+                    />
+                    <Stack.Screen
+                        name="Step"
+                        component={Step}
+                        options={({navigation, route}) => ({
+                            title: route.params.title,
+                            headerRight: () => {
+                                return(
+                                    <ButtonHome/>
                                 );
                             }
                         })}

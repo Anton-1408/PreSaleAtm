@@ -68,5 +68,36 @@ export const componentsStyle =  StyleSheet.create({
         marginLeft: 5,
         fontSize: 15,
         fontFamily: 'OpenSans-Italic',
-    }
+    },
+    stepDataContainer:{
+        width: '100%',
+        paddingHorizontal: '5%',
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#BDBDBD',
+    },
+    stepDataInformation:{
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    stepStatusContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    stepStatusText:{
+        fontSize: 15,
+        fontFamily: 'OpenSans-Bold',
+    },
+    stepStatusTitle:{
+        fontSize: 15,
+        fontFamily: 'OpenSans-BoldItalic',
+    },
+    stepStatusRequired:{
+        color: '#7B1FA2'
+    },
+    stepStatusImportant:{
+        color: '#DD2C00'
+    },
 });

@@ -1,7 +1,7 @@
+import SQLite from 'react-native-sqlite-storage';
 import { CameraKitCamera } from 'react-native-camera-kit';
 import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
-import SQLite from 'react-native-sqlite-storage';
 
 export const getPermissions = async () => {
     const isUserAuthorizedCamera = await CameraKitCamera.requestDeviceCameraAuthorization();
@@ -14,12 +14,14 @@ export const getDevicesList = (idOrder: number, setDevices: Function) => {
         const len: number = result.rows.length;
         const rowList: SQLite.ResultSetRowList = result.rows;
         const listDevices: Array<Object> = [];
+
         for(let i = 0; i < len; i++){
             const row: any = rowList.item(i);
             const item: any = {id: row.id, serialNumber: row.serial_number };
             listDevices.push(item)
         }
-        listDevices.push({id: 13, serialNumber: '5012345678900'})
+
+        listDevices.push({id: 13, serialNumber: '5012345678900'}) //!!!!!!!!!!!!!!!
         setDevices(listDevices);
     };
     dbHelper(query, params, callBack)

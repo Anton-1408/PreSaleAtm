@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, StatusBar } from 'react-native';
+import { CameraKitCameraScreen } from 'react-native-camera-kit';
 import { Action } from 'redux';
-import { CameraKitCameraScreen } from "react-native-camera-kit";
 import { ThunkDispatch } from 'redux-thunk';
+import { connect } from 'react-redux';
 import { style } from '../styles/style';
 import { profileScreenRoutePropScanBarCode, profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { iRootReducers } from '../types/reduxTypes';
 import { setDeviceKey, setSerialNumberDevice } from '../redux/actions/actions';
-import { connect } from 'react-redux';
 import { getPermissions, getDevicesList, searchDevice } from '../lib/devicesScanCode';
 
 

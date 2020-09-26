@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { useFocusEffect } from '@react-navigation/native';
 import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenRoutePropTodo, profileScreenNavigationPropStack } from '../types/navigationTypes'
 import { setTodoKey } from '../redux/actions/actions';
@@ -51,6 +50,9 @@ const Todo: React.FC<iProps> = (props) => {
 						style={({ pressed }) => [colorPress(pressed), style.containerData]}
 						onPress={() => {
 							setTodoId(item.id)
+							navigation.navigate('Step', {
+								title: item.name
+							});
 						}}
 					>
 						<View style={style.containerText}>

@@ -4,11 +4,10 @@ import { View, Text, FlatList, Pressable } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { useFocusEffect } from '@react-navigation/native';
 import { profileScreenRoutePropDevice, profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { setDeviceKey } from '../redux/actions/actions';
 import { componentsStyle } from '../styles/componentsStyle';
-import { colorPress } from '../styles/constantStyle';
+import { colorPress, colorIsStop, colorIsDone, colorIsWork } from '../styles/constantStyle';
 import { style } from '../styles/style';
 import { getDevices } from '../lib/dbDevices';
 
@@ -65,7 +64,9 @@ const Device: React.FC<iProps> = (props) => {
                         <View
                             style={[
                                 componentsStyle.deviceContainerId, {
-                                    backgroundColor: item.stoped ? '#C62828' : (item.percent < 100 ? '#64B5F6' : '#388E3C')
+                                    backgroundColor: item.isStoped ? colorIsStop : (
+                                        item.percent < 100 ? colorIsWork : colorIsDone
+                                    )
                                 }
                             ]}
                         >

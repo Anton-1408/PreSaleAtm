@@ -32,7 +32,7 @@ export const getDevices = (idOrder: number, namePage: string, setDevices: Functi
                 id: row.id,
                 serialNumber: row.serial_number,
                 model: row.model,
-                stoped: row.stoped,
+                isStoped: row.stoped,
                 percent: calculationPercent(row.actions, row.result)
             };
             deviceList.push(item);
