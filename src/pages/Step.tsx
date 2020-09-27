@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { profileScreenRoutePropScanStep, profileScreenNavigationPropStack } from '../types/navigationTypes';
+import { profileScreenRoutePropStep, profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { colorPress, bcolorDone, colorDone, colorComment, colorTitle } from '../styles/constantStyle';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
@@ -16,7 +16,7 @@ import { modeWork } from '../types/modeWork';
 
 interface iProps{
     navigation: profileScreenNavigationPropStack,
-    route: profileScreenRoutePropScanStep,
+    route: profileScreenRoutePropStep,
     todoKey: number,
     orderKey: number,
     deviceKey: number,
@@ -69,6 +69,11 @@ const Step: React.FC<iProps> = (props) => {
                             setStepId(item.id)
                             if(typeWork === modeWork.todo){
                                 navigation.navigate('Device')
+                            }
+                            else{
+                                navigation.navigate('ListActions', {
+                                    title: item.name
+                                })
                             }
 						}}
                     >

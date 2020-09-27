@@ -9,6 +9,7 @@ export const colorIsPress: string = '#EEEEEE';
 export const colorIsWork: string = '#64B5F6';
 export const colorComment: string = '#000000';
 export const colorIconSearch: string = '#616161';
+export const sizeButtonAction: number = 40;
 
 export const colorPress: any = (pressed: boolean) => {
     return{
@@ -22,4 +23,8 @@ export const bcolorDone: any = (isDone: boolean) => {
 
 export const colorDone: any = (isDone: boolean, colorText: string) => {
     return  isDone ? colorWhite : colorText;
+};
+
+export const titlePage: any = (title) => {
+    return '#' + title;
 };

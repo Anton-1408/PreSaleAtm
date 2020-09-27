@@ -10,6 +10,7 @@ import { iRootReducers } from '../types/reduxTypes';
 import { setDeviceKey, setSerialNumberDevice } from '../redux/actions/actions';
 import { getPermissions, getDevicesList, searchDevice } from '../lib/devicesScanCode';
 import { modeWork } from '../types/modeWork';
+import { titlePage } from '../styles/constantStyle';
 
 
 interface iProps{
@@ -59,7 +60,14 @@ const ScanBarCode: React.FC<iProps> = (props) => {
                         setDeviceId(device.id);
                         setSerialNumber(device.serialNumber);
                         if(typeWork === modeWork.device){
-                            navigation.navigate('Todo');
+                            navigation.navigate('Todo', {
+                                title: titlePage(serialNumb)
+                            });
+                        }
+                        else{
+                            navigation.navigate('ListActions', {
+                                title: titlePage(serialNumb)
+                            });
                         }
                     }
                 })}

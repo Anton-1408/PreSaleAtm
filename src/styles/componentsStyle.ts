@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
+import { colorWhite } from './constantStyle';
 
 export const componentsStyle =  StyleSheet.create({
-    buttonSetting:{
-        color: '#ffffff',
+    buttonBarContainer:{
         marginRight: 15,
     },
     settingContainer:{
@@ -26,7 +26,7 @@ export const componentsStyle =  StyleSheet.create({
         marginLeft: 5
     },
     searchContainer:{
-        backgroundColor: '#ffffff',
+        backgroundColor: colorWhite,
         width: '100%',
         height: 40,
         borderRadius: 10,
@@ -51,7 +51,7 @@ export const componentsStyle =  StyleSheet.create({
         alignItems: 'center'
     },
     deviceId:{
-        color: '#FFFFFF',
+        color: colorWhite,
         fontSize: 15,
         fontFamily: 'OpenSans-Bold',
     },
@@ -101,5 +101,39 @@ export const componentsStyle =  StyleSheet.create({
     },
     stepStatusImportant:{
         color: '#DD2C00'
+    },
+    actionContainerComment:{
+        backgroundColor: '#EDE7F6',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: 60,
+    },
+    conteinerContentPanel: {
+        paddingHorizontal: 10
+    },
+    containerFilesContent:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap'
+    },
+    inputTypeStyle:{
+        fontSize: 20,
+        fontFamily: 'OpenSans-Regular',
+    },
+    containerStyleCheckBox:{
+        backgroundColor: colorWhite,
+        borderColor: colorWhite
+    },
+    textBoxStyle:{
+        width: "80%",
+        fontSize: 15,
+        fontFamily: 'OpenSans-Regular'
+    },
+    checkBoxStyle:{
+        backgroundColor: colorWhite,
+        alignSelf: 'center',
+        marginTop: '50%'
     },
 });

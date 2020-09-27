@@ -7,7 +7,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { profileScreenRoutePropDevice, profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { setDeviceKey } from '../redux/actions/actions';
 import { componentsStyle } from '../styles/componentsStyle';
-import { colorPress, colorIsStop, colorIsDone, colorIsWork } from '../styles/constantStyle';
+import { colorPress, colorIsStop, colorIsDone, colorIsWork, titlePage } from '../styles/constantStyle';
 import { style } from '../styles/style';
 import { getDevices, setQuery, setParams } from '../lib/dbDevices';
 import { modeWork } from '../types/modeWork';
@@ -75,13 +75,14 @@ const Device: React.FC<iProps> = (props) => {
                         onPress={() => {
                             setDiviceId(item.id)
                             if(typeWork === modeWork.device){
-                                const titleTodo: any = '#' + item.serialNumber;
                                 navigation.navigate('Todo', {
-                                    title: titleTodo
-                                })
+                                    title: titlePage(item.serialNumber)
+                                });
                             }
                             else{
-
+                                navigation.navigate('ListActions', {
+                                    title: titlePage(item.serialNumber)
+                                });
                             }
                         }}
                     >

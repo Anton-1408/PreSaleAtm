@@ -13,6 +13,15 @@ export type rootStackParams={
         title: 'Чек-Листы'
     },
     Device: undefined,
+    ListActions: {
+        title: '',
+    },
+    Action:{
+        title: '',
+        comment: '',
+        type: '',
+        stoped: 0
+    }
 };
 
 export type rootParamsOrder={
@@ -59,6 +68,10 @@ export type profileScreenNavigationPropStack = StackNavigationProp<rootStackPara
 
 export type profileScreenRoutePropScanBarCode = RouteProp<rootStackParams, 'ScanBarCode'>;
 
-export type profileScreenRoutePropScanStep = RouteProp<rootStackParams, 'Step'>;
+export type profileScreenRoutePropStep = RouteProp<rootStackParams, 'Step'>;
+
+export type profileScreenRoutePropListActions = RouteProp<rootStackParams, 'ListActions'>;
+
+export type profileScreenRoutePropAction = RouteProp<rootStackParams, 'Action'>;
 
 

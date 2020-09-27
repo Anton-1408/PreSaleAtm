@@ -17,16 +17,20 @@ import Step from '../pages/Step';
 import ContainerTodo from './ContainerTodo';
 import ContainerDevice from './ContainerDevice';
 import SearchInput from '../components/SearchInput';
+import { colorWhite } from '../styles/constantStyle';
+import ListActions from '../pages/ListActions';
+import Action from '../pages/Action';
+import { ButtonAction } from '../components/Action/ButtonAction';
 
 const ContainerNavigation: React.FC = () => {
     return(
         <Provider store={store}>
             <NavigationContainer>
-                <StatusBar backgroundColor="#3F51B5" barStyle="light-content"/>
+                <StatusBar backgroundColor={desingColor} barStyle="light-content"/>
                 <Stack.Navigator
                     initialRouteName="Order"
                     screenOptions={{
-                        headerTintColor: "#ffffff",
+                        headerTintColor: colorWhite,
                         headerStyle:{
                             backgroundColor: desingColor,
                             elevation: 0,
@@ -110,6 +114,32 @@ const ContainerNavigation: React.FC = () => {
                             headerTitle: () => {
                                 return(
                                     <SearchInput/>
+                                );
+                            }
+                        })}
+                    />
+                    <Stack.Screen
+                        name="ListActions"
+                        component={ListActions}
+                        options={({navigation, route}) => ({
+                            title: route.params.title,
+                            headerRight: () => {
+                                return(
+                                    <ButtonHome/>
+                                );
+                            }
+                        })}
+                    />
+                    <Stack.Screen
+                        name="Action"
+                        component={Action}
+                        options={({navigation, route}) => ({
+                            title: route.params.title,
+                            headerRight: () => {
+                                return(
+                                    <ButtonAction
+                                        stoped={route.params.stoped}
+                                    />
                                 );
                             }
                         })}

@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { colorTitle, colorWhite } from './constantStyle';
 
 export const style = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: "#ffffff",
+        backgroundColor: colorWhite,
     },
     button:{
         position: 'absolute',
@@ -18,7 +19,7 @@ export const style = StyleSheet.create({
     },
     containerData:{
         width: '100%',
-        paddingHorizontal: '5%',
+        paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 10,
@@ -35,7 +36,7 @@ export const style = StyleSheet.create({
     title: {
         fontSize: 18,
         fontFamily: 'OpenSans-SemiBold',
-        color: '#F57C00',
+        color: colorTitle,
     },
     comment:{
         fontSize: 15,
@@ -43,13 +44,17 @@ export const style = StyleSheet.create({
         fontFamily: 'OpenSans-Light',
     },
     percent:{
-        fontSize: 18,
+        fontSize: 17,
         fontFamily: 'OpenSans-ExtraBold',
         color: '#43A047',
     },
     headerTitle:{
         fontSize: 20,
         fontFamily: "OpenSans-SemiBold",
-        color: '#ffffff'
+        color: colorWhite
+    },
+    imageStyle:{
+        width: 110,
+        height: 110
     }
 });
