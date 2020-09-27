@@ -3,7 +3,7 @@ import SQLite from 'react-native-sqlite-storage';
 import { dbHelper } from './dbHelper';
 
 export const getListActions = (idDevice: number, idStep: number, setListActions: Function) => {
-    const query: string = `select a.id, a.name, a.comment, a.type, s.stoped,
+    const query: string = `select a.id, a.name, a.comment, a.type, r.fio, r.date, s.stoped,
                                 CASE WHEN r.id IS NOT NULL THEN 1 ELSE 0 END AS isDone from actions a
                                 left JOIN results r
                                     on r.id_action = a.id

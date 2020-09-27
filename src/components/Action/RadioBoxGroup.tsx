@@ -1,21 +1,44 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { CheckBox } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { FlatList } from 'react-native';
 import { ActionContext } from '../../lib/actionHelper';
 import { componentsStyle } from '../../styles/componentsStyle';
+import { iRootReducers } from '../../types/reduxTypes';
+import { setResultAction } from '../../redux/actions/actions';
 
 interface iProps{
-
+    setResult?: any
 }
 
-export const RadioBoxGroup: React.FC<iProps> = () => {
-    const context = useContext(ActionContext);
+const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+    return{
+        setResult: (value: any) => dispatch(setResultAction(value)),
+    }
+};
+
+const RadioBoxGroup: React.FC<iProps> = ({setResult}) => {
+//    const context = useContext(ActionContext);
     const [radioBoxes, setRadioBoxes] = useState([]);
 
+    // useEffect(() => {
+    //     const listBoxes = context.resultAction ? context.extraParams.map((item: any) => {
+    //         return context.resultAction === item.title ? {...item, value: true} : item;
+    //     }) : context.extraParams;
+    //     setRadioBoxes(listBoxes);
+    // }, [context]);
+
     useEffect(() => {
-        setRadioBoxes(context.extraParams);
-    }, [context]);
+        let result = '';
+        radioBoxes.forEach((item: any) => {
+            if(item.value)
+                result = item.title;
+        });
+        setResult(result);
+    }, [radioBoxes]);
 
     return(
         <FlatList
@@ -44,3 +67,5 @@ export const RadioBoxGroup: React.FC<iProps> = () => {
         />
     )
 };
+
+export default connect(null, mapDispatchToProps)(RadioBoxGroup)

@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropAction } from '../types/navigationTypes';
-import { iconSize } from '../styles/constantStyle';
+import { iconSize, colorWhite } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
-import { ActionContext, getExtraFiles, getExtraParams } from '../lib/actionHelper';
+import { ActionContext, getExtraFiles, getExtraParams, getResult } from '../lib/actionHelper';
 import { SwipperPanel } from '../components/Action/SwipperPanel'
 import { ActionType } from '../components/Action/ActionType';
 import { colorIsWork } from '../styles/constantStyle';
@@ -16,27 +16,31 @@ interface iProps{
     navigation: profileScreenNavigationPropStack,
     route: profileScreenRoutePropAction,
     deviceKey: number,
-    actionKey: number
+    actionKey: number,
+    actionResult: any
 };
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
         deviceKey: state.holderKeysReducer.deviceKey,
         actionKey: state.holderKeysReducer.actionKey,
+        actionResult: state.appStateReducer.resultAction
     }
 };
 
 const Action: React.FC<iProps> = (props) => {
-    const { navigation, route, actionKey } = props;
+    const { navigation, route, actionKey, deviceKey, actionResult } = props;
 
     const [extraFiles, setExtraFile] = useState([]);
+    //const [extraParams, setExtraParams] = useState([]);
+    //const [resultAction, setResultAction] = useState(undefined);
     const [statePanel, setStatePanel] = useState(false);
-    const [extraParams, setExtraParams] = useState([]);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             getExtraFiles(actionKey, setExtraFile)
-            getExtraParams(actionKey, setExtraParams);
+           // getExtraParams(actionKey, setExtraParams);
+            //getResult(actionKey, deviceKey, setResultAction);
         });
         return unsubscribe;
     }, [navigation]);
@@ -45,8 +49,9 @@ const Action: React.FC<iProps> = (props) => {
         <ActionContext.Provider
             value={{
                 files: extraFiles,
-                extraParams: extraParams,
-                comment: route.params.comment
+                //extraParams: extraParams,
+                comment: route.params.comment,
+                //resultAction: resultAction,
             }}
         >
             <View style={style.container}>
@@ -72,6 +77,14 @@ const Action: React.FC<iProps> = (props) => {
                         setStatePanel(false)
                     }}
                 />
+                <Pressable
+                    style={style.button}
+                    onPress={() => {
+                        console.warn(actionResult);
+                    }}
+                >
+                    <Icon name='check' size={iconSize} color={colorWhite}/>
+                </Pressable>
             </View>
         </ActionContext.Provider>
     );

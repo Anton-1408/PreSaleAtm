@@ -8,7 +8,8 @@ import {
     SET_RESULT_CHECK_LIST,
     SET_TODO_KEY,
     SET_STEP_KEY,
-    SET_SERIAL_NUMBER_DEVICE
+    SET_SERIAL_NUMBER_DEVICE,
+    SET_RESULT_ACTION
 } from "../redux/actions/types";
 
 export interface iOrdertKey{
@@ -62,6 +63,11 @@ export interface iSetSerialNumberDevice{
     serialNumber: string,
 };
 
+export interface iSetResultAction{
+    type: typeof SET_RESULT_ACTION,
+    resultAction: any
+};
+
 export interface iHolderKeysReducerState{
     actionKey: number,
     stepKey: number,
@@ -80,13 +86,14 @@ export interface iSyncDataReducer{
 export interface iAppStateReducer{
     serialNumber: string,
     modeWork: string,
+    resultAction: any
 }
 
 export type typeHolderKeysReducer = iOrdertKey | iTodoKey | iDeviceKey | iStepKey | iActionKey;
 
 export type typeSyncDataReducer = iHashcodeProjects | iResultCheckList | iUserId;
 
-export type typeAppStateReducer = iSetSerialNumberDevice | iModeWork;
+export type typeAppStateReducer = iSetSerialNumberDevice | iModeWork | iSetResultAction;
 
 export interface iRootReducers{
     holderKeysReducer: iHolderKeysReducerState,

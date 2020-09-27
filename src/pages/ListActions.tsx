@@ -9,7 +9,7 @@ import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropListActions } from '../types/navigationTypes';
 import { setActionKey } from '../redux/actions/actions';
 import { getListActions } from '../lib/listActionsHelper';
-import { colorPress, bcolorDone, colorDone, colorTitle } from '../styles/constantStyle';
+import { colorPress, bcolorDone, colorDone, colorTitle, colorComment } from '../styles/constantStyle';
 
 interface iProps{
     navigation: profileScreenNavigationPropStack,
@@ -68,6 +68,11 @@ const ListActions: React.FC<iProps> = (props) => {
                     >
                         <View style={style.containerText}>
                             <Text style={[style.title, { color: colorDone(item.isDone, colorTitle) }]}>{item.name}</Text>
+                            <Text
+                                style={[style.comment, { color: colorDone(item.isDone, colorComment)}]}
+                            >
+                                {item.fio} {item.date}
+                            </Text>
                         </View>
                         <View style={style.containerPercent}>
                             <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={25}/>

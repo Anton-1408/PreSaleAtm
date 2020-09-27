@@ -1,21 +1,68 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { FlatList } from 'react-native';
-import { ActionContext } from '../../lib/actionHelper';
 import { componentsStyle } from '../../styles/componentsStyle';
+import { iRootReducers } from '../../types/reduxTypes';
+import { setResultAction } from '../../redux/actions/actions';
+import { getExtraParams, getResult } from '../../lib/actionHelper';
 
 interface iProps{
-
+    setResult?: any,
+    deviceKey?: any,
+    actionKey?: any,
+    type: string,
 }
 
-export const CheckBoxGroup: React.FC<iProps> = () => {
-    const context = useContext(ActionContext);
+const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+    return{
+        setResult: (value: any) => dispatch(setResultAction(value)),
+    }
+};
+
+const mapStateToProps = (state: iRootReducers) => {
+    return{
+        deviceKey: state.holderKeysReducer.deviceKey,
+        actionKey: state.holderKeysReducer.actionKey,
+    }
+};
+
+const CheckBoxGroup: React.FC<iProps> = ({setResult, deviceKey, actionKey, type}) => {
     const [chechBoxes, setCheckBoxes] = useState([]);
+    const [resultAction, setReultCheck] = useState([]);
 
     useEffect(() => {
-        setCheckBoxes(context.extraParams);
-    }, [context]);
+        getExtraParams(actionKey, setCheckBoxes);
+        getResult(actionKey, deviceKey, type, setReultCheck)
+    }, []);
+
+    useEffect(() => {
+        const listChecked = chechBoxes;
+        resultAction.forEach((el: string) => {
+            listChecked.forEach((item: any) => {
+                if(el === item.title)
+                    item.value = true
+            });
+        });
+       // setCheckBoxes(listChecked);
+    }, [resultAction])
+
+    useEffect(() => {
+        // const result: Array<string> = [];
+        // chechBoxes.forEach((item: any) => {
+        //     if(item.value){
+        //         result.push(item.title);
+        //     }
+        // });
+        // console.warn(result);
+        
+        // setResult(JSON.stringify(result))
+        console.warn('checked');
+        
+    }, [chechBoxes]);
 
     return(
         <FlatList
@@ -42,3 +89,5 @@ export const CheckBoxGroup: React.FC<iProps> = () => {
         />
     )
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckBoxGroup)

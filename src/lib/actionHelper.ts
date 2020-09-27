@@ -5,14 +5,16 @@ import React from 'react';
 
 interface iContext{
     files: Array<Object>,
-    extraParams: any,
+    //extraParams: any,
     comment: string,
+    //resultAction: any,
 };
 
 export const ActionContext = React.createContext<iContext>({
     files: [],
-    extraParams: [],
+    //extraParams: [],
     comment: '',
+    //resultAction: undefined,
 });
 
 export const getExtraFiles = (idAction: number, setExtraFiles: Function) => {
@@ -44,6 +46,32 @@ export const getExtraParams = (idAction: number, setExtraParams: Function) => {
             listFiles.push(item);
         }
         setExtraParams(listFiles)
+    };
+    dbHelper(query, params, callBack);
+};
+
+export const getResult = (idAction: number, idDevice: number, type: string, setResult: Function)=> {
+    const query: string = 'SELECT value from results WHERE id_action = ? and id_device = ?';
+    const params: typeDbParams = [idAction, idDevice];
+    const callBack: SQLite.StatementCallback = (transaction, result) => {
+        const len: number = result.rows.length;
+        const rowList: SQLite.ResultSetRowList = result.rows;
+        if(len > 0){
+            const row: any = rowList.item(0);
+            let result: any = null;
+            switch(type){
+                case 'checkbox':
+                        result = row.value ? true : false;
+                    break;
+                case 'textInput' || 'numberInput':
+                        result = row.value;
+                    break;
+                case 'checkboxGroup':
+                        result = JSON.parse(row.value);
+                    break
+            };
+            setResult(result);
+        }
     };
     dbHelper(query, params, callBack);
 };
