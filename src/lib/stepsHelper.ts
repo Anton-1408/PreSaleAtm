@@ -1,5 +1,5 @@
 import SQLite from 'react-native-sqlite-storage';
-import { typeDbParams } from './../types/dbTypes';
+import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 import { modeWork } from '../types/modeWork';
 

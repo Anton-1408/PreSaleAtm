@@ -8,7 +8,7 @@ import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropListActions } from '../types/navigationTypes';
 import { setActionKey } from '../redux/actions/actions';
-import { getListActions } from '../lib/dbListActions';
+import { getListActions } from '../lib/listActionsHelper';
 import { colorPress, bcolorDone, colorDone, colorTitle } from '../styles/constantStyle';
 
 interface iProps{

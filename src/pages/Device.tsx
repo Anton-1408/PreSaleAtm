@@ -9,7 +9,7 @@ import { setDeviceKey } from '../redux/actions/actions';
 import { componentsStyle } from '../styles/componentsStyle';
 import { colorPress, colorIsStop, colorIsDone, colorIsWork, titlePage } from '../styles/constantStyle';
 import { style } from '../styles/style';
-import { getDevices, setQuery, setParams } from '../lib/dbDevices';
+import { getDevices, setQuery, setParams } from '../lib/devicesHelper';
 import { modeWork } from '../types/modeWork';
 
 interface iProps{

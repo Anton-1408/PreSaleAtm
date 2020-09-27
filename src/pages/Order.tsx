@@ -7,7 +7,7 @@ import { profileScreenNavigationPropStack, profileScreenRoutePropOrder } from '.
 import { style } from '../styles/style';
 import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey } from '../redux/actions/actions';
 import { iRootReducers } from '../types/reduxTypes';
-import { getOrders } from '../lib/dbOrders';
+import { getOrders } from '../lib/ordersHelper';
 import { desingColor, colorPress } from '../styles/constantStyle';
 
 interface iProps{

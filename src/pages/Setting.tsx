@@ -5,7 +5,7 @@ import { profileScreenNavigationPropStack, profileScreenRoutePropSetting } from 
 import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
 import { iconSize } from '../styles/constantStyle';
-import { saveSetting, getSetting } from '../lib/dbSetting';
+import { saveSetting, getSetting } from '../lib/settingHelper';
 
 interface iProps{
   navigation: profileScreenNavigationPropStack,

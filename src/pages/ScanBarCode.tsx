@@ -8,7 +8,7 @@ import { style } from '../styles/style';
 import { profileScreenRoutePropScanBarCode, profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { iRootReducers } from '../types/reduxTypes';
 import { setDeviceKey, setSerialNumberDevice } from '../redux/actions/actions';
-import { getPermissions, getDevicesList, searchDevice } from '../lib/devicesScanCode';
+import { getPermissions, getDevicesList, searchDevice } from '../lib/scanCodeHelper';
 import { modeWork } from '../types/modeWork';
 import { titlePage } from '../styles/constantStyle';
 

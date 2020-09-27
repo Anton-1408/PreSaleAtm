@@ -9,7 +9,7 @@ import { colorPress, bcolorDone, colorDone, colorComment, colorTitle } from '../
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
 import { setStepKey } from '../redux/actions/actions';
-import { getSteps, setParams, setQuery } from '../lib/dbSteps';
+import { getSteps, setParams, setQuery } from '../lib/stepsHelper';
 import { componentsStyle } from '../styles/componentsStyle';
 import { StepStatus } from '../components/StepStatus';
 import { modeWork } from '../types/modeWork';
