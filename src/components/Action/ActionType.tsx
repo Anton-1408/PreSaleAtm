@@ -3,6 +3,7 @@ import CheckBoxType from './CheckBoxType';
 import InputType from './InputType';
 import CheckBoxGroup from './CheckBoxGroup';
 import RadioBoxGroup from './RadioBoxGroup';
+import { typeAction } from '../../types/typeAction';
 
 interface iProps{
     type: string,
@@ -10,38 +11,38 @@ interface iProps{
 
 export const ActionType: React.FC<iProps> = ({type}) => {
     switch(type){
-        case 'checkbox':
+        case typeAction.checkbox:
             return(
                 <CheckBoxType
                     type={type}
                 />
             );
-        case 'photo':
+        case typeAction.photo:
             return(
                 <Fragment>
                 </Fragment>
             );
-        case 'textInput':
+        case typeAction.textInput:
             return(
                 <InputType
                     typeKeyBoard='default'
                     type={type}
                 />
             );
-        case 'numberInput':
+        case typeAction.numberInput:
             return(
                 <InputType
                     typeKeyBoard='numeric'
                     type={type}
                 />
             );
-        case 'radioGroup':
+        case typeAction.radioGroup:
             return(
                 <RadioBoxGroup
                     //type='radioGroup'
                 />
             );
-        case 'checkboxGroup':
+        case typeAction.checkboxGroup:
             return(
                 <CheckBoxGroup
                     type='checkboxGroup'

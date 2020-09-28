@@ -32,14 +32,14 @@ const Action: React.FC<iProps> = (props) => {
     const { navigation, route, actionKey, deviceKey, actionResult } = props;
 
     const [extraFiles, setExtraFile] = useState([]);
-    //const [extraParams, setExtraParams] = useState([]);
+    const [extraParams, setExtraParams] = useState([]);
     //const [resultAction, setResultAction] = useState(undefined);
     const [statePanel, setStatePanel] = useState(false);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
+            getExtraParams(actionKey, setExtraParams);
             getExtraFiles(actionKey, setExtraFile)
-           // getExtraParams(actionKey, setExtraParams);
             //getResult(actionKey, deviceKey, setResultAction);
         });
         return unsubscribe;
@@ -49,8 +49,8 @@ const Action: React.FC<iProps> = (props) => {
         <ActionContext.Provider
             value={{
                 files: extraFiles,
-                //extraParams: extraParams,
-                comment: route.params.comment,
+                extraParams: extraParams,
+                //comment: route.params.comment,
                 //resultAction: resultAction,
             }}
         >

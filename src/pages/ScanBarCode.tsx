@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, Alert } from 'react-native';
 import { CameraKitCameraScreen } from 'react-native-camera-kit';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -69,6 +69,9 @@ const ScanBarCode: React.FC<iProps> = (props) => {
                                 title: titlePage(serialNumb)
                             });
                         }
+                    }
+                    else{
+                        Alert.alert('Поиск устройства', 'устройство не найдено');
                     }
                 })}
                 hideControls={false}

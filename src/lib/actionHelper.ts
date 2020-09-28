@@ -2,18 +2,17 @@ import { typeDbParams } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
 import { dbHelper } from './dbHelper';
 import React from 'react';
+import { typeAction } from '../types/typeAction';
 
 interface iContext{
     files: Array<Object>,
-    //extraParams: any,
-    comment: string,
+    extraParams: any,
     //resultAction: any,
 };
 
 export const ActionContext = React.createContext<iContext>({
     files: [],
-    //extraParams: [],
-    comment: '',
+    extraParams: [],
     //resultAction: undefined,
 });
 
@@ -60,13 +59,13 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
             const row: any = rowList.item(0);
             let result: any = null;
             switch(type){
-                case 'checkbox':
+                case typeAction.checkbox:
                         result = row.value ? true : false;
                     break;
-                case 'textInput' || 'numberInput':
+                case typeAction.numberInput || typeAction.textInput:
                         result = row.value;
                     break;
-                case 'checkboxGroup':
+                case typeAction.checkboxGroup:
                         result = JSON.parse(row.value);
                     break
             };

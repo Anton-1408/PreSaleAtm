@@ -8,7 +8,7 @@ import { FlatList } from 'react-native';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { iRootReducers } from '../../types/reduxTypes';
 import { setResultAction } from '../../redux/actions/actions';
-import { getExtraParams, getResult } from '../../lib/actionHelper';
+import { getExtraParams, getResult, ActionContext } from '../../lib/actionHelper';
 
 interface iProps{
     setResult?: any,
@@ -33,24 +33,30 @@ const mapStateToProps = (state: iRootReducers) => {
 const CheckBoxGroup: React.FC<iProps> = ({setResult, deviceKey, actionKey, type}) => {
     const [chechBoxes, setCheckBoxes] = useState([]);
     const [resultAction, setReultCheck] = useState([]);
+    const context = useContext(ActionContext);
 
     useEffect(() => {
-        getExtraParams(actionKey, setCheckBoxes);
-        getResult(actionKey, deviceKey, type, setReultCheck)
-    }, []);
+        const listCheckBoxes = context.extraParams;
+        setCheckBoxes(listCheckBoxes);
+        console.warn('context');
+    }, [context]);
 
-    useEffect(() => {
-        const listChecked = chechBoxes;
-        resultAction.forEach((el: string) => {
-            listChecked.forEach((item: any) => {
-                if(el === item.title)
-                    item.value = true
-            });
-        });
-       // setCheckBoxes(listChecked);
-    }, [resultAction])
+    // useEffect(() => {
+    //     getResult(actionKey, deviceKey, type, setReultCheck)
+    // }, [])
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     const listChecked = chechBoxes;
+    //     resultAction.forEach((el: string) => {
+    //         listChecked.forEach((item: any) => {
+    //             if(el === item.title)
+    //                 item.value = true
+    //         });
+    //     });
+    //    // setCheckBoxes(listChecked);
+    // }, [resultAction])
+
+    //useEffect(() => {
         // const result: Array<string> = [];
         // chechBoxes.forEach((item: any) => {
         //     if(item.value){
@@ -58,11 +64,8 @@ const CheckBoxGroup: React.FC<iProps> = ({setResult, deviceKey, actionKey, type}
         //     }
         // });
         // console.warn(result);
-        
         // setResult(JSON.stringify(result))
-        console.warn('checked');
-        
-    }, [chechBoxes]);
+    //}, [chechBoxes]);
 
     return(
         <FlatList
