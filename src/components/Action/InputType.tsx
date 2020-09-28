@@ -1,44 +1,25 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { TextInput } from 'react-native';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
 import { componentsStyle } from '../../styles/componentsStyle';
-import { iRootReducers } from '../../types/reduxTypes';
-import { setResultAction } from '../../redux/actions/actions';
-import { getResult } from '../../lib/actionHelper';
 
 interface iProps{
     typeKeyBoard: any,
-    setResult?: any,
-    type: string,
-    deviceKey?: any,
-    actionKey?: any,
+    setResult: Function,
+    initialState: string
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
-    return{
-        setResult: (value: any) => dispatch(setResultAction(value)),
-    }
-};
-
-const mapStateToProps = (state: iRootReducers) => {
-    return{
-        deviceKey: state.holderKeysReducer.deviceKey,
-        actionKey: state.holderKeysReducer.actionKey,
-    }
-};
-
-const InputType: React.FC<iProps> = ({typeKeyBoard, setResult, type, deviceKey, actionKey}) => {
+export const InputType: React.FC<iProps> = ({typeKeyBoard, setResult, initialState}) => {
     const [text, setText] = useState('');
 
     useEffect(() => {
-        getResult(actionKey, deviceKey, type, setText)
-    }, []);
+        setText(initialState)
+        setResult(initialState)
+    }, [initialState]);
 
-    useEffect(() => {
+    const chahgeText = useCallback((text) => {
+        setText(text);
         setResult(text)
-    }, [text]);
+    }, [])
 
     return(
         <TextInput
@@ -47,12 +28,8 @@ const InputType: React.FC<iProps> = ({typeKeyBoard, setResult, type, deviceKey, 
             autoFocus={true}
             blurOnSubmit={true}
             style={componentsStyle.inputTypeStyle}
-            onChangeText={(text) => {
-                setText(text);
-            }}
+            onChangeText={chahgeText}
             keyboardType={typeKeyBoard}
         />
     );
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputType)

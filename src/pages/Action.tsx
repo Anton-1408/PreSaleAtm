@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
@@ -7,9 +7,9 @@ import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropAction } from '../types/navigationTypes';
 import { iconSize, colorWhite } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
-import { ActionContext, getExtraFiles, getExtraParams, getResult } from '../lib/actionHelper';
+import { ActionContext, getExtraFiles, getExtraParams, saveResult } from '../lib/actionHelper';
 import { SwipperPanel } from '../components/Action/SwipperPanel'
-import { ActionType } from '../components/Action/ActionType';
+import ActionType from '../components/Action/ActionType';
 import { colorIsWork } from '../styles/constantStyle';
 
 interface iProps{
@@ -29,18 +29,16 @@ const mapStateToProps = (state: iRootReducers) => {
 };
 
 const Action: React.FC<iProps> = (props) => {
-    const { navigation, route, actionKey, deviceKey, actionResult } = props;
+    const { navigation, actionKey, deviceKey, actionResult } = props;
 
     const [extraFiles, setExtraFile] = useState([]);
     const [extraParams, setExtraParams] = useState([]);
-    //const [resultAction, setResultAction] = useState(undefined);
     const [statePanel, setStatePanel] = useState(false);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             getExtraParams(actionKey, setExtraParams);
             getExtraFiles(actionKey, setExtraFile)
-            //getResult(actionKey, deviceKey, setResultAction);
         });
         return unsubscribe;
     }, [navigation]);
@@ -50,8 +48,6 @@ const Action: React.FC<iProps> = (props) => {
             value={{
                 files: extraFiles,
                 extraParams: extraParams,
-                //comment: route.params.comment,
-                //resultAction: resultAction,
             }}
         >
             <View style={style.container}>
@@ -66,9 +62,10 @@ const Action: React.FC<iProps> = (props) => {
                     <Text style={style.title}>Комментарий</Text>
                     <Icon name='gesture-tap' size={iconSize} color={colorIsWork}/>
                 </Pressable>
-                <View style={{backgroundColor: '#fff'}}>
+                <View style={componentsStyle.actionTypeContainer}>
                     <ActionType
-                        type={route.params.type}
+                        actionKey={actionKey}
+                        deviceKey={deviceKey}
                     />
                 </View>
                 <SwipperPanel
@@ -81,6 +78,7 @@ const Action: React.FC<iProps> = (props) => {
                     style={style.button}
                     onPress={() => {
                         console.warn(actionResult);
+                        saveResult(actionKey, deviceKey, actionResult);
                     }}
                 >
                     <Icon name='check' size={iconSize} color={colorWhite}/>

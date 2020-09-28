@@ -136,4 +136,7 @@ export const componentsStyle =  StyleSheet.create({
         alignSelf: 'center',
         marginTop: '50%'
     },
+    actionTypeContainer: {
+        backgroundColor: colorWhite
+    }
 });

@@ -7,7 +7,7 @@ interface iProps{
 }
 
 export const ButtonAction: React.FC<iProps> = ({stoped}) => {
-    if(stoped){
+    if(!stoped){
         return(
             <ButtonStopDevice/>
         )

@@ -1,71 +1,44 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
 import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { FlatList } from 'react-native';
 import { componentsStyle } from '../../styles/componentsStyle';
-import { iRootReducers } from '../../types/reduxTypes';
-import { setResultAction } from '../../redux/actions/actions';
-import { getExtraParams, getResult, ActionContext } from '../../lib/actionHelper';
+import { ActionContext } from '../../lib/actionHelper';
 
 interface iProps{
-    setResult?: any,
-    deviceKey?: any,
-    actionKey?: any,
-    type: string,
+    setResult: Function,
+    initialState: Array<string>
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
-    return{
-        setResult: (value: any) => dispatch(setResultAction(value)),
-    }
-};
-
-const mapStateToProps = (state: iRootReducers) => {
-    return{
-        deviceKey: state.holderKeysReducer.deviceKey,
-        actionKey: state.holderKeysReducer.actionKey,
-    }
-};
-
-const CheckBoxGroup: React.FC<iProps> = ({setResult, deviceKey, actionKey, type}) => {
+export const CheckBoxGroup: React.FC<iProps> = ({setResult, initialState}) => {
     const [chechBoxes, setCheckBoxes] = useState([]);
-    const [resultAction, setReultCheck] = useState([]);
+    const [initialFlag, setInitialFlag] = useState(true);
     const context = useContext(ActionContext);
 
     useEffect(() => {
-        const listCheckBoxes = context.extraParams;
-        setCheckBoxes(listCheckBoxes);
-        console.warn('context');
-    }, [context]);
+        if(initialFlag){
+            const arrChecked = context.extraParams;
+            initialState.forEach((el: string) => {
+                arrChecked.forEach((item: any) => {
+                    if(el === item.title)
+                        item.value = true
+                    });
+            });
+            arrChecked.length > 0 ? setInitialFlag(false) : setInitialFlag(true)
+            setCheckBoxes(arrChecked);
+        }
 
-    // useEffect(() => {
-    //     getResult(actionKey, deviceKey, type, setReultCheck)
-    // }, [])
+    }, [initialState, context]);
 
-    // useEffect(() => {
-    //     const listChecked = chechBoxes;
-    //     resultAction.forEach((el: string) => {
-    //         listChecked.forEach((item: any) => {
-    //             if(el === item.title)
-    //                 item.value = true
-    //         });
-    //     });
-    //    // setCheckBoxes(listChecked);
-    // }, [resultAction])
-
-    //useEffect(() => {
-        // const result: Array<string> = [];
-        // chechBoxes.forEach((item: any) => {
-        //     if(item.value){
-        //         result.push(item.title);
-        //     }
-        // });
-        // console.warn(result);
-        // setResult(JSON.stringify(result))
-    //}, [chechBoxes]);
+    useEffect(() => {
+        const result: Array<string> = [];
+        chechBoxes.forEach((item: any) => {
+            if(item.value){
+                result.push(item.title)
+            }
+        });
+        setResult(JSON.stringify(result));
+    }, [chechBoxes]);
 
     return(
         <FlatList
@@ -78,7 +51,8 @@ const CheckBoxGroup: React.FC<iProps> = ({setResult, deviceKey, actionKey, type}
                     onPress={() => {
                         setCheckBoxes((prev: any) => {
                             return prev.map((next: any) => {
-                                return next.id === item.id ? {...next, value: !next.value} : next;
+                                return next.id === item.id ?
+                                    {...next, value: !next.value} : next;
                             })
                         });
                     }}
@@ -92,5 +66,3 @@ const CheckBoxGroup: React.FC<iProps> = ({setResult, deviceKey, actionKey, type}
         />
     )
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(CheckBoxGroup)

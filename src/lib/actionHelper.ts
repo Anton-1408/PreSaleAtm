@@ -7,13 +7,11 @@ import { typeAction } from '../types/typeAction';
 interface iContext{
     files: Array<Object>,
     extraParams: any,
-    //resultAction: any,
 };
 
 export const ActionContext = React.createContext<iContext>({
     files: [],
     extraParams: [],
-    //resultAction: undefined,
 });
 
 export const getExtraFiles = (idAction: number, setExtraFiles: Function) => {
@@ -58,19 +56,63 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
         if(len > 0){
             const row: any = rowList.item(0);
             let result: any = null;
+
             switch(type){
                 case typeAction.checkbox:
-                        result = row.value ? true : false;
+                        result = Boolean(row.value);
                     break;
-                case typeAction.numberInput || typeAction.textInput:
+                case typeAction.numberInput && typeAction.textInput:
                         result = row.value;
                     break;
                 case typeAction.checkboxGroup:
                         result = JSON.parse(row.value);
                     break
+                case typeAction.radioGroup:
+                        result = row.value;
+                    break;
             };
             setResult(result);
         }
     };
     dbHelper(query, params, callBack);
 };
+
+export const initialState = (type: string) => {
+    let state: any;
+    switch(type){
+        case typeAction.checkbox:
+                state = false;
+            break;
+        case typeAction.numberInput || typeAction.textInput:
+                state = '';
+            break;
+        case typeAction.checkboxGroup:
+                state = [];
+            break
+        case typeAction.radioGroup:
+                state=''
+            break;
+    };
+    return state;
+};
+
+export const saveResult = (idAction: number, idDevice: number, value: any) => {
+    const query: string = 'replace into results (id_action, id_device, value) VALUES (?, ?, ?)';
+    const params: typeDbParams = [idAction, idDevice, value];
+    const callBack: SQLite.StatementCallback = (transaction, result) => {
+        console.warn('csc');
+    };
+    dbHelper(query, params, callBack);
+};
+
+// const nowDate = () => {
+//     const date: Date = new Date();
+//     let year = now.getFullYear();
+//     let month = now.getMonth() + 1;
+//     let day = now.getDate();
+
+//     month = month < 10 ? "0" + month : month;
+//     day = day < 10 ? "0" + day : day;
+//     const date = year + "-" + month + "-" + day;
+//     return '';
+// };
