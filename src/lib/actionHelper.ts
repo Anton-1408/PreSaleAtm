@@ -59,7 +59,7 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
 
             switch(type){
                 case typeAction.checkbox:
-                        result = Boolean(row.value);
+                        result = row.value == 1 ? true : false;
                     break;
                 case typeAction.numberInput && typeAction.textInput:
                         result = row.value;
@@ -97,22 +97,36 @@ export const initialState = (type: string) => {
 };
 
 export const saveResult = (idAction: number, idDevice: number, value: any) => {
-    const query: string = 'replace into results (id_action, id_device, value) VALUES (?, ?, ?)';
-    const params: typeDbParams = [idAction, idDevice, value];
-    const callBack: SQLite.StatementCallback = (transaction, result) => {
-        console.warn('csc');
-    };
+    const query: string = 'replace into results (id_action, id_device, date, value) VALUES (?, ?, ?, ?)';
+    const params: typeDbParams = [idAction, idDevice, nowDate(), value];
+    const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
 };
 
-// const nowDate = () => {
-//     const date: Date = new Date();
-//     let year = now.getFullYear();
-//     let month = now.getMonth() + 1;
-//     let day = now.getDate();
+const nowDate = (): string => {
+    const dateTime: Date = new Date();
+    let year = dateTime.getFullYear();
+    let month: any = dateTime.getMonth() + 1;
+    let day: any = dateTime.getDate();
 
-//     month = month < 10 ? "0" + month : month;
-//     day = day < 10 ? "0" + day : day;
-//     const date = year + "-" + month + "-" + day;
-//     return '';
-// };
+    month = month < 10 ? "0" + month : month;
+    day = day < 10 ? "0" + day : day;
+    const date = year + "-" + month + "-" + day;
+
+    let hour: any = dateTime.getHours();
+    let minut: any = dateTime.getMinutes();
+
+    minut = minut < 10 ? "0" + minut : minut;
+    hour = hour < 10 ? "0" + hour : hour;
+    const time = hour + ":" + minut;
+    return date + ' ' + time;
+};
+
+export const setStopedDevice = (deviceKey: number, stopped: number) => {
+    const query = `update results set stoped = ? where id_device = ?`
+    const params: typeDbParams = [stopped, deviceKey];
+    const callBack: SQLite.StatementCallback = (transaction, result) => {
+
+    };
+    dbHelper(query, params, callBack);
+};

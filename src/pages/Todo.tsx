@@ -7,7 +7,7 @@ import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenRoutePropTodo, profileScreenNavigationPropStack } from '../types/navigationTypes'
 import { setTodoKey } from '../redux/actions/actions';
 import { style } from '../styles/style';
-import { getTodos, setQuery, setParams } from '../lib/dbTodos';
+import { getTodos, setQuery, setParams } from '../lib/todosHelper';
 import { colorPress } from '../styles/constantStyle';
 
 interface iProps{

@@ -77,8 +77,8 @@ const Action: React.FC<iProps> = (props) => {
                 <Pressable
                     style={style.button}
                     onPress={() => {
-                        console.warn(actionResult);
                         saveResult(actionKey, deviceKey, actionResult);
+                        navigation.goBack();
                     }}
                 >
                     <Icon name='check' size={iconSize} color={colorWhite}/>

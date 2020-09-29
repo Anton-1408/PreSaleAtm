@@ -1,20 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { ButtonStopDevice } from './ButtonStopDevice';
 import { ButtonReplayDevice } from './ButtonReplayDevice';
+import { iRootReducers } from '../../types/reduxTypes';
 
 interface iProps{
-    stoped: number
+    stoped: number,
+    deviceKey?: any,
 }
 
-export const ButtonAction: React.FC<iProps> = ({stoped}) => {
+const mapStateToProps = (state: iRootReducers) => {
+    return{
+        deviceKey: state.holderKeysReducer.deviceKey,
+    }
+};
+
+const ButtonAction: React.FC<iProps> = ({stoped, deviceKey}) => {
     if(!stoped){
         return(
-            <ButtonStopDevice/>
+            <ButtonStopDevice
+                deviceKey={deviceKey}
+            />
         )
     }
     else{
         return(
-            <ButtonReplayDevice/>
+            <ButtonReplayDevice
+                deviceKey={deviceKey}
+            />
         )
     }
 };
+
+export default connect(mapStateToProps, null)(ButtonAction);

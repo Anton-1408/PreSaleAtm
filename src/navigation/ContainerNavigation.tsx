@@ -20,7 +20,7 @@ import SearchInput from '../components/SearchInput';
 import { colorWhite } from '../styles/constantStyle';
 import ListActions from '../pages/ListActions';
 import Action from '../pages/Action';
-import { ButtonAction } from '../components/Action/ButtonAction';
+import ButtonAction from '../components/Action/ButtonAction';
 
 const ContainerNavigation: React.FC = () => {
     return(
