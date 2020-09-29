@@ -7,7 +7,9 @@ export const colorIsDone: string = '#388E3C';
 export const colorIsStop: string = '#C62828';
 export const colorIsPress: string = '#EEEEEE';
 export const colorIsWork: string = '#64B5F6';
-export const colorComment: string = '#000000';
+export const colorInActiveButton: string = '#BDBDBD';
+export const borderColorTabBar: string = '#F3E5F5';
+export const colorBlack: string = '#000000';
 export const colorIconSearch: string = '#616161';
 export const sizeButtonAction: number = 40;
 

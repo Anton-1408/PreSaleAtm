@@ -5,7 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { profileScreenRoutePropStep, profileScreenNavigationPropStack } from '../types/navigationTypes';
-import { colorPress, bcolorDone, colorDone, colorComment, colorTitle } from '../styles/constantStyle';
+import { colorPress, bcolorDone, colorDone, colorBlack, colorTitle } from '../styles/constantStyle';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
 import { setStepKey } from '../redux/actions/actions';
@@ -80,7 +80,7 @@ const Step: React.FC<iProps> = (props) => {
                         <View style={componentsStyle.stepDataInformation}>
                             <View style={style.containerText}>
                                 <Text style={[style.title, { color: colorDone(item.isDone, colorTitle) }]}>{item.name}</Text>
-                                <Text style={[style.comment, { color: colorDone(item.isDone, colorComment) }]}>{item.comment}</Text>
+                                <Text style={[style.comment, { color: colorDone(item.isDone, colorBlack) }]}>{item.comment}</Text>
                             </View>
                             <View style={style.containerPercent}>
                                 <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={25}/>

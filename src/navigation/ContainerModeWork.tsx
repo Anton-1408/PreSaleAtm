@@ -6,12 +6,13 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ContainerDevice from './ContainerDevice';
 import ContainerTodo from './ContainerTodo';
-import { desingColor } from '../styles/constantStyle';
+import { desingColor, colorWhite, colorInActiveButton } from '../styles/constantStyle';
 import { rootParamsModeWork } from '../types/navigationTypes';
 import { iconSizeBar } from '../styles/constantStyle';
 import { iRootReducers } from '../types/reduxTypes';
 import { setModeWork } from '../redux/actions/actions';
 import { setSerialNumberDevice } from '../redux/actions/actions';
+import { modeWork } from '../types/modeWork';
 
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 
@@ -32,8 +33,8 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => 
         <Tab.Navigator
             initialRouteName="TodoMode"
             tabBarOptions={{
-                activeTintColor: '#ffffff',
-                inactiveTintColor: '#BDBDBD',
+                activeTintColor: colorWhite,
+                inactiveTintColor: colorInActiveButton,
                 style: {
                     backgroundColor: desingColor,
                 },
@@ -44,38 +45,38 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => 
             }}
         >
             <Tab.Screen
-                name="TodoMode"
+                name='TodoMode'
                 component={ContainerTodo}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Icon name="playlist-check" color={color} size={iconSizeBar}/>
+                        <Icon name='playlist-check' color={color} size={iconSizeBar}/>
                     ),
-                    tabBarLabel: "Чек-листы"
+                    tabBarLabel: 'Чек-листы'
                 }}
                 listeners={({ navigation, route }) => ({
                     tabPress: e => {
                         e.preventDefault();
-                        setTypeWork('todoMode');
+                        setTypeWork(modeWork.todo);
                         navigation.navigate('TodoMode');
                     },
                     beforeRemove: e => {
-                        setTypeWork('todoMode');
+                        setTypeWork(modeWork.todo);
                     },
                 })}
             />
             <Tab.Screen
-                name="DeviceMode"
+                name='DeviceMode'
                 component={ContainerDevice}
                 options={{
                     tabBarIcon: ({color, size}) => (
-                        <Icon name="atm" color={color} size={iconSizeBar}/>
+                        <Icon name='atm' color={color} size={iconSizeBar}/>
                     ),
-                    tabBarLabel: "Устройства"
+                    tabBarLabel: 'Устройства'
                 }}
                 listeners={({ navigation, route }) => ({
                     tabPress: e => {
                         e.preventDefault();
-                        setTypeWork('deviceMode');
+                        setTypeWork(modeWork.device);
                         navigation.navigate('DeviceMode');
                     },
                     beforeRemove: e => {

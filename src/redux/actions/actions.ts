@@ -18,7 +18,8 @@ import {
     SET_TODO_KEY,
     SET_STEP_KEY,
     SET_SERIAL_NUMBER_DEVICE,
-    SET_RESULT_ACTION
+    SET_RESULT_ACTION,
+    SET_ACTION_PHOTOS,
 } from "./types";
 import {
     iOrdertKey,
@@ -31,7 +32,8 @@ import {
     iResultCheckList,
     iHashcodeProjects,
     iSetSerialNumberDevice,
-    iSetResultAction
+    iSetResultAction,
+    iSetPhotosAction
 } from "../../types/reduxTypes";
 
 
@@ -198,3 +200,10 @@ export function setResultAction(value: any): iSetResultAction{
         resultAction: value
     };
 };
+
+export function setPhotosAction(value: Array<string> | string): iSetPhotosAction{
+    return{
+        type: SET_ACTION_PHOTOS,
+        photoAction: value,
+    }
+}

@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { profileScreenNavigationPropStack, profileScreenRoutePropSetting } from '../types/navigationTypes';
 import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
-import { iconSize } from '../styles/constantStyle';
+import { iconSize, colorWhite } from '../styles/constantStyle';
 import { saveSetting, getSetting } from '../lib/settingHelper';
 
 interface iProps{
@@ -44,7 +44,7 @@ const Setting: React.FC<iProps> = ({navigation}) => {
             })
           }}
       >
-        <Icon name="content-save-cog-outline" size={iconSize} color="#ffffff"/>
+        <Icon name="content-save-cog-outline" size={iconSize} color={colorWhite}/>
       </Pressable>
     </View>
   )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StatusBar, Alert } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { CameraKitCameraScreen } from 'react-native-camera-kit';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -10,7 +10,7 @@ import { iRootReducers } from '../types/reduxTypes';
 import { setDeviceKey, setSerialNumberDevice } from '../redux/actions/actions';
 import { getPermissions, getDevicesList, searchDevice } from '../lib/scanCodeHelper';
 import { modeWork } from '../types/modeWork';
-import { titlePage } from '../styles/constantStyle';
+import { titlePage, colorBlack } from '../styles/constantStyle';
 
 
 interface iProps{
@@ -47,7 +47,7 @@ const ScanBarCode: React.FC<iProps> = (props) => {
 
     return(
         <View style={style.container}>
-            <StatusBar backgroundColor='#000000'/>
+            <StatusBar backgroundColor={colorBlack}/>
             <CameraKitCameraScreen
                 scanBarcode={true}
                 laserColor={"blue"}

@@ -13,19 +13,19 @@ export const style = StyleSheet.create({
         borderRadius: 40,
         backgroundColor: "#4527A0",
         bottom: 40,
-        right: "5%",
+        right: '5%',
         alignItems: 'center',
         justifyContent: 'center',
     },
     containerData:{
         width: '100%',
-        paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10,
         justifyContent: 'space-between',
+        borderBottomColor: '#9E9E9E',
         borderBottomWidth: 1,
-        borderBottomColor: '#BDBDBD',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
     },
     containerText:{
         width: '85%',
@@ -50,7 +50,7 @@ export const style = StyleSheet.create({
     },
     headerTitle:{
         fontSize: 20,
-        fontFamily: "OpenSans-SemiBold",
+        fontFamily: 'OpenSans-SemiBold',
         color: colorWhite
     },
     imageStyle:{

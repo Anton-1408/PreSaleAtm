@@ -7,6 +7,7 @@ import { CheckBoxType } from './CheckBoxType';
 import { InputType } from './InputType';
 import { CheckBoxGroup } from './CheckBoxGroup';
 import { RadioBoxGroup } from './RadioBoxGroup';
+import { PhotoType } from './PhotoType';
 import { typeAction } from '../../types/typeAction';
 import { getResult, initialState } from '../../lib/actionHelper';
 import { iRootReducers } from '../../types/reduxTypes';
@@ -43,8 +44,10 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult}) => {
             );
         case typeAction.photo:
             return(
-                <Fragment>
-                </Fragment>
+                <PhotoType
+                    initialState={[]}
+                    setResult={setResult}
+                />
             );
         case typeAction.textInput:
             return(

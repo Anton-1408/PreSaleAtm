@@ -2,7 +2,7 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Todo from '../pages/Todo';
 import { rootParamsTodo } from "../types/navigationTypes";
-import { desingColor } from '../styles/constantStyle';
+import { desingColor, colorWhite, colorInActiveButton, borderColorTabBar } from '../styles/constantStyle';
 
 const Tab = createMaterialTopTabNavigator<rootParamsTodo>();
 
@@ -10,10 +10,10 @@ const ContainerTodo: React.FC = () => {
     return(
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: '#ffffff',
-                inactiveTintColor: '#BDBDBD',
+                activeTintColor: colorWhite,
+                inactiveTintColor: colorInActiveButton,
                 indicatorStyle:{
-                    borderBottomColor: '#F3E5F5',
+                    borderBottomColor: borderColorTabBar,
                     borderBottomWidth: 3,
                     borderRadius: 2,
                 },
@@ -21,30 +21,30 @@ const ContainerTodo: React.FC = () => {
                     backgroundColor: desingColor,
                 },
                 labelStyle:{
-                    fontFamily: "OpenSans-Regular"
+                    fontFamily: 'OpenSans-Regular'
                 }
             }}
-            initialRouteName="TodoInWork"
+            initialRouteName='TodoInWork'
         >
             <Tab.Screen
-                name="TodoAll"
+                name='TodoAll'
                 component={Todo}
                 options={{
-                    title: "Все"
+                    title: 'Все'
                 }}
             />
             <Tab.Screen
-                name="TodoInWork"
+                name='TodoInWork'
                 component={Todo}
                 options={{
-                    title: "В работе"
+                    title: 'В работе'
                 }}
             />
             <Tab.Screen
-                name="TodoDone"
+                name='TodoDone'
                 component={Todo}
                 options={{
-                    title: "Завершены"
+                    title: 'Завершены'
                 }}
             />
         </Tab.Navigator>

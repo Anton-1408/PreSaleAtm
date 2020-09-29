@@ -2,7 +2,7 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Device from '../pages/Device';
 import { rootParamsDevice } from "../types/navigationTypes";
-import { desingColor } from '../styles/constantStyle';
+import { desingColor, colorWhite, colorInActiveButton, borderColorTabBar } from '../styles/constantStyle';
 
 const Tab = createMaterialTopTabNavigator<rootParamsDevice>();
 
@@ -10,10 +10,10 @@ const ContainerDevice: React.FC = () => {
     return(
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: '#ffffff',
-                inactiveTintColor: '#BDBDBD',
+                activeTintColor: colorWhite,
+                inactiveTintColor: colorInActiveButton,
                 indicatorStyle:{
-                    borderBottomColor: '#F3E5F5',
+                    borderBottomColor: borderColorTabBar,
                     borderBottomWidth: 3,
                     borderRadius: 2,
                 },
@@ -21,30 +21,30 @@ const ContainerDevice: React.FC = () => {
                     backgroundColor: desingColor,
                 },
                 labelStyle:{
-                    fontFamily: "OpenSans-Regular"
+                    fontFamily: 'OpenSans-Regular'
                 }
             }}
-            initialRouteName="DevicesInWork"
+            initialRouteName='DevicesInWork'
         >
             <Tab.Screen
-                name="DevicesInWork"
+                name='DevicesInWork'
                 component={Device}
                 options={{
-                    title: "В работе"
+                    title: 'В работе'
                 }}
             />
             <Tab.Screen
                 name="DevicesStop"
                 component={Device}
                 options={{
-                    title: "Остановлены"
+                    title: 'Остановлены'
                 }}
             />
             <Tab.Screen
                 name="DevicesDone"
                 component={Device}
                 options={{
-                    title: "Завершены"
+                    title: 'Завершены'
                 }}
             />
         </Tab.Navigator>

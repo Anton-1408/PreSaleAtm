@@ -10,7 +10,7 @@ import ContainerOrder from './ContainerOrder';
 import ContainerModeWork from './ContainerModeWork';
 import { ButtonSetting } from '../components/ButtonSetting';
 import { ButtonHome } from '../components/ButtonHome';
-import { desingColor } from '../styles/constantStyle';
+import { desingColor, colorBlack } from '../styles/constantStyle';
 import HeaderModeWork from '../components/HeaderModeWork';
 import ScanBarCode from '../pages/ScanBarCode';
 import Step from '../pages/Step';
@@ -21,6 +21,8 @@ import { colorWhite } from '../styles/constantStyle';
 import ListActions from '../pages/ListActions';
 import Action from '../pages/Action';
 import ButtonAction from '../components/Action/ButtonAction';
+import Gallery from '../pages/Gallery';
+import Camera from '../pages/Camera';
 
 const ContainerNavigation: React.FC = () => {
     return(
@@ -28,7 +30,7 @@ const ContainerNavigation: React.FC = () => {
             <NavigationContainer>
                 <StatusBar backgroundColor={desingColor} barStyle="light-content"/>
                 <Stack.Navigator
-                    initialRouteName="Order"
+                    initialRouteName='Order'
                     screenOptions={{
                         headerTintColor: colorWhite,
                         headerStyle:{
@@ -37,22 +39,22 @@ const ContainerNavigation: React.FC = () => {
                         },
                         headerTitleStyle:{
                             fontSize: 20,
-                            fontFamily: "OpenSans-SemiBold"
+                            fontFamily: 'OpenSans-SemiBold'
                         }
                     }}
                 >
                     <Stack.Screen
-                        name="Setting"
+                        name='Setting'
                         component={Setting}
                         options={{
-                            title: "Настройки",
+                            title: 'Настройки',
                         }}
                     />
                     <Stack.Screen
-                        name="Order"
+                        name='Order'
                         component={ContainerOrder}
                         options={({navigation, route}) => ({
-                            title: "Заявки",
+                            title: 'Заявки',
                             headerRight: () => {
                                 return(
                                     <ButtonSetting/>
@@ -61,10 +63,10 @@ const ContainerNavigation: React.FC = () => {
                         })}
                     />
                     <Stack.Screen
-                        name="ModeWork"
+                        name='ModeWork'
                         component={ContainerModeWork}
                         options={({navigation, route}) => ({
-                            title: "Режим работы",
+                            title: 'Режим работы',
                             headerRight: () => {
                                 return(
                                     <ButtonHome/>
@@ -78,7 +80,7 @@ const ContainerNavigation: React.FC = () => {
                         })}
                     />
                     <Stack.Screen
-                        name="Step"
+                        name='Step'
                         component={Step}
                         options={({navigation, route}) => ({
                             title: route.params.title,
@@ -90,7 +92,7 @@ const ContainerNavigation: React.FC = () => {
                         })}
                     />
                     <Stack.Screen
-                        name="Todo"
+                        name='Todo'
                         component={ContainerTodo}
                         options={({navigation, route}) => ({
                             title: route.params.title,
@@ -102,10 +104,10 @@ const ContainerNavigation: React.FC = () => {
                         })}
                     />
                     <Stack.Screen
-                        name="Device"
+                        name='Device'
                         component={ContainerDevice}
                         options={({navigation, route}) => ({
-                            title: "Режим работы",
+                            title: 'Режим работы',
                             headerRight: () => {
                                 return(
                                     <ButtonHome/>
@@ -119,7 +121,7 @@ const ContainerNavigation: React.FC = () => {
                         })}
                     />
                     <Stack.Screen
-                        name="ListActions"
+                        name='ListActions'
                         component={ListActions}
                         options={({navigation, route}) => ({
                             title: route.params.title,
@@ -131,7 +133,7 @@ const ContainerNavigation: React.FC = () => {
                         })}
                     />
                     <Stack.Screen
-                        name="Action"
+                        name='Action'
                         component={Action}
                         options={({navigation, route}) => ({
                             title: route.params.title,
@@ -145,12 +147,32 @@ const ContainerNavigation: React.FC = () => {
                         })}
                     />
                     <Stack.Screen
-                        name="ScanBarCode"
+                        name='ScanBarCode'
                         component={ScanBarCode}
                         options={({navigation, route}) => ({
-                            title: "",
+                            title: '',
                             headerStyle:{
-                                backgroundColor: '#000000'
+                                backgroundColor: colorBlack
+                            },
+                        })}
+                    />
+                    <Stack.Screen
+                        name='Gallery'
+                        component={Gallery}
+                        options={({navigation, route}) => ({
+                            title: 'Галерея',
+                            headerStyle:{
+                                backgroundColor: colorBlack
+                            },
+                        })}
+                    />
+                    <Stack.Screen
+                        name='Camera'
+                        component={Camera}
+                        options={({navigation, route}) => ({
+                            title: '',
+                            headerStyle:{
+                                backgroundColor: colorBlack
                             },
                         })}
                     />

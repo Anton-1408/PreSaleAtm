@@ -6,6 +6,8 @@ export type rootStackParams={
     Order: undefined,
     ModeWork: undefined,
     ScanBarCode: undefined,
+    Gallery: undefined,
+    Camera: undefined,
     Step: {
         title: '',
     },
@@ -73,5 +75,9 @@ export type profileScreenRoutePropStep = RouteProp<rootStackParams, 'Step'>;
 export type profileScreenRoutePropListActions = RouteProp<rootStackParams, 'ListActions'>;
 
 export type profileScreenRoutePropAction = RouteProp<rootStackParams, 'Action'>;
+
+export type profileScreenRoutePropGallery = RouteProp<rootStackParams, 'Gallery'>;
+
+export type profileScreenRoutePropCamera = RouteProp<rootStackParams, 'Camera'>;
 
 

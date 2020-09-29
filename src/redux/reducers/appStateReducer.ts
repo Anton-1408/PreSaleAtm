@@ -2,7 +2,8 @@ import { modeWork } from './../../types/modeWork';
 import {
     SET_SERIAL_NUMBER_DEVICE,
     SET_MODE_WORK,
-    SET_RESULT_ACTION
+    SET_RESULT_ACTION,
+    SET_ACTION_PHOTOS,
 } from "../actions/types";
 import {
     iAppStateReducer,
@@ -14,6 +15,7 @@ const initialState={
     serialNumber: '',
     modeWork: modeWork.todo,
     resultAction: undefined,
+    photoAction: '',
 };
 
 export function appStateReducer(state: iAppStateReducer = initialState, action: typeAppStateReducer){
@@ -32,6 +34,11 @@ export function appStateReducer(state: iAppStateReducer = initialState, action: 
             return{
                 ...state,
                 resultAction: action.resultAction
+            };
+        case SET_ACTION_PHOTOS:
+            return{
+                ...state,
+                photoAction: action.photoAction
             };
         default:
             return state;
