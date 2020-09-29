@@ -9,12 +9,7 @@ interface iProps{
 export const ImportantStatus: React.FC<iProps> = ({isImportant}) => {
     if(isImportant){
         return(
-            <Text
-                style={[
-                    componentsStyle.stepStatusTitle,
-                    componentsStyle.stepStatusImportant
-                ]}
-            >
+            <Text style={[componentsStyle.stepStatusTitle,componentsStyle.stepStatusImportant]}>
                 Важно
             </Text>
         );

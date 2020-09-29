@@ -1,7 +1,6 @@
 import SQLite from 'react-native-sqlite-storage';
 import { dbHelper } from './dbHelper';
 import { typeDbParams } from '../types/dbTypes';
-import { profileScreenNavigationPropStack } from '../types/navigationTypes';
 
 export function saveSetting(sid: string): Promise<string>{
     return new Promise((resolve, reject) => {

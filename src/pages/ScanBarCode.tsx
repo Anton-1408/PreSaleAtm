@@ -55,7 +55,6 @@ const ScanBarCode: React.FC<iProps> = (props) => {
                 onReadCode={((event: any) => {
                     const serialNumb: string = event.nativeEvent.codeStringValue;
                     const device: any = searchDevice(devices, serialNumb);
-                    navigation.navigate('ModeWork');
                     if(device){
                         setDeviceId(device.id);
                         setSerialNumber(device.serialNumber);
@@ -70,9 +69,7 @@ const ScanBarCode: React.FC<iProps> = (props) => {
                             });
                         }
                     }
-                    else{
-                        Alert.alert('Поиск устройства', 'устройство не найдено');
-                    }
+                    navigation.navigate('ModeWork');
                 })}
                 hideControls={false}
                 showFrame={true}

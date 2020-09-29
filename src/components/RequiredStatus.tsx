@@ -9,12 +9,7 @@ interface iProps{
 export const RequiredStatus: React.FC<iProps> = ({isRequired}) => {
     if(isRequired){
         return(
-            <Text
-                style={[
-                    componentsStyle.stepStatusTitle,
-                    componentsStyle.stepStatusRequired
-                ]}
-            >
+            <Text style={[componentsStyle.stepStatusTitle,componentsStyle.stepStatusRequired]}>
                 Обязательно
             </Text>
         );

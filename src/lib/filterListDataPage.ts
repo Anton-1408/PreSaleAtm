@@ -1,6 +1,6 @@
 export const calculationPercent = (total: number, result: number): number => {
     if(total){
-        const percent = (result/total) * 100;
+        const percent = (result / total) * 100;
         return ~~percent;
     }
     else{

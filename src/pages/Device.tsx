@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
-import { Action } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { profileScreenRoutePropDevice, profileScreenNavigationPropStack } from '../types/navigationTypes';
 import { setDeviceKey } from '../redux/actions/actions';
 import { componentsStyle } from '../styles/componentsStyle';
