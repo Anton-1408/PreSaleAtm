@@ -13,7 +13,6 @@ import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
 import { CheckPhoto } from '../components/CheckPhoto';
 
-
 interface iProps{
     navigation: profileScreenNavigationPropStack,
     route: profileScreenRoutePropGallery,
@@ -22,7 +21,7 @@ interface iProps{
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
     return{
-        setPhotos: (paths: Array<string>) => dispatch(setPhotosAction(paths))
+        setPhotos: (paths: Array<Object>) => dispatch(setPhotosAction(paths))
     };
 };
 
@@ -46,7 +45,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
         });
         setPhotos(photos);
         navigation.goBack();
-    }, []);
+    }, [images]);
 
     return(
         <View style={[style.container, {backgroundColor: colorBlack}]}>

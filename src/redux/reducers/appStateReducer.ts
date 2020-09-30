@@ -15,7 +15,7 @@ const initialState={
     serialNumber: '',
     modeWork: modeWork.todo,
     resultAction: undefined,
-    photoAction: '',
+    photoAction: [],
 };
 
 export function appStateReducer(state: iAppStateReducer = initialState, action: typeAppStateReducer){

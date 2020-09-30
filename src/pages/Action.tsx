@@ -13,11 +13,11 @@ import ActionType from '../components/Action/ActionType';
 import { colorIsWork } from '../styles/constantStyle';
 
 interface iProps{
+    readonly deviceKey: number,
+    readonly actionKey: number,
+    readonly actionResult: any
     navigation: profileScreenNavigationPropStack,
     route: profileScreenRoutePropAction,
-    deviceKey: number,
-    actionKey: number,
-    actionResult: any
 };
 
 const mapStateToProps = (state: iRootReducers) => {

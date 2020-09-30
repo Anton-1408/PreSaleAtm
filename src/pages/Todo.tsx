@@ -11,12 +11,12 @@ import { getTodos, setQuery, setParams } from '../lib/todosHelper';
 import { colorPress } from '../styles/constantStyle';
 
 interface iProps{
+	readonly orderKey: number,
+	readonly deviceKey: number,
+	readonly typeWork: string
 	navigation: profileScreenNavigationPropStack,
 	route: profileScreenRoutePropTodo,
-	orderKey: number,
-	deviceKey: number,
 	setTodoId: Function,
-	typeWork: string
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

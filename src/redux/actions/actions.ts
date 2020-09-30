@@ -201,7 +201,7 @@ export function setResultAction(value: any): iSetResultAction{
     };
 };
 
-export function setPhotosAction(value: Array<string> | string): iSetPhotosAction{
+export function setPhotosAction(value: Array<Object> | Object): iSetPhotosAction{
     return{
         type: SET_ACTION_PHOTOS,
         photoAction: value,

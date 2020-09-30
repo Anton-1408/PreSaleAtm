@@ -12,11 +12,11 @@ import { getListActions } from '../lib/listActionsHelper';
 import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack } from '../styles/constantStyle';
 
 interface iProps{
+    readonly stepKey: number,
+    readonly deviceKey: number,
     navigation: profileScreenNavigationPropStack,
     route: profileScreenRoutePropListActions,
     setActionId: Function,
-    stepKey: number,
-    deviceKey: number,
 };
 
 const mapStateToProps = (state: iRootReducers) => {

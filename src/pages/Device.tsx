@@ -13,13 +13,13 @@ import { getDevices, setQuery, setParams } from '../lib/devicesHelper';
 import { modeWork } from '../types/modeWork';
 
 interface iProps{
+    readonly orderKey: number,
+    readonly serialNumberDevice: string,
+    readonly typeWork: string,
+    readonly stepKey: number,
     navigation: profileScreenNavigationPropStack,
     route: profileScreenRoutePropDevice,
-    orderKey: number,
     setDiviceId: Function,
-    serialNumberDevice: string,
-    typeWork: string,
-    stepKey: number,
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

@@ -20,7 +20,7 @@ interface iProps{
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
     return{
-        setPhoto: (path: string) => dispatch(setPhotosAction(path))
+        setPhoto: (path: Object) => dispatch(setPhotosAction(path))
     };
 };
 

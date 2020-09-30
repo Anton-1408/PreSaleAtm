@@ -14,12 +14,12 @@ import { titlePage, colorBlack } from '../styles/constantStyle';
 
 
 interface iProps{
+    readonly orderKey: number,
+    readonly typeWork: string,
     route: profileScreenRoutePropScanBarCode,
+    setSerialNumber: Function,
     navigation: profileScreenNavigationPropStack,
     setDeviceId: Function,
-    setSerialNumber: Function,
-    orderKey: number,
-    typeWork: string,
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

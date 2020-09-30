@@ -71,7 +71,7 @@ export interface iSetResultAction{
 
 export interface iSetPhotosAction{
     type: typeof SET_ACTION_PHOTOS,
-    photoAction: Array<string> | string
+    photoAction: Array<Object> | Object
 }
 
 export interface iHolderKeysReducerState{
@@ -93,7 +93,7 @@ export interface iAppStateReducer{
     serialNumber: string,
     modeWork: string,
     resultAction: any,
-    photoAction: Array<string> | string,
+    photoAction: Array<Object> | Object,
 }
 
 export type typeHolderKeysReducer = iOrdertKey | iTodoKey | iDeviceKey | iStepKey | iActionKey;

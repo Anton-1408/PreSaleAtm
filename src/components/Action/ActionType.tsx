@@ -7,7 +7,7 @@ import { CheckBoxType } from './CheckBoxType';
 import { InputType } from './InputType';
 import { CheckBoxGroup } from './CheckBoxGroup';
 import { RadioBoxGroup } from './RadioBoxGroup';
-import { PhotoType } from './PhotoType';
+import  PhotoType from './PhotoType';
 import { typeAction } from '../../types/typeAction';
 import { getResult, initialState } from '../../lib/actionHelper';
 import { iRootReducers } from '../../types/reduxTypes';
@@ -17,6 +17,7 @@ interface iProps{
     actionKey: number,
     deviceKey: number,
     setResult?: any,
+    photoAction?: any
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
@@ -25,7 +26,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
     }
 };
 
-const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult}) => {
+const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, photoAction}) => {
     const route: any = useRoute();
     const type = route.params.type;
     const [state, setInitialState] = useState(initialState(type));
@@ -47,6 +48,7 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult}) => {
                 <PhotoType
                     initialState={[]}
                     setResult={setResult}
+                    photoAction={[]}
                 />
             );
         case typeAction.textInput:
