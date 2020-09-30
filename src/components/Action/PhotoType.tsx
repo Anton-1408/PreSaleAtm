@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Pressable } from 'react-native';
 import { style } from '../../styles/style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colorWhite, iconSize } from '../../styles/constantStyle';
 import { useNavigation } from '@react-navigation/native';
-import { ActionContext } from '../../lib/actionHelper';
 import { iRootReducers } from '../../types/reduxTypes';
 import { connect } from 'react-redux';
+import { componentsStyle } from '../../styles/componentsStyle';
 
 interface iProps{
     initialState: Array<string>,
@@ -22,21 +22,23 @@ const mapStateToProps = (state: iRootReducers) => {
 
 const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => {
     const navigation = useNavigation();
-    const context = useContext(ActionContext)
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        setImages((prev) => {
-            const newState: any = [...prev, ...photoAction];
-            return newState;
-        })
+        // setImages((prev) => {
+        //     if(prev.length > 0){
+        //         const newState: any = [...prev, ...photoAction];
+        //         return newState;
+        //     }
+        // })
+        console.warn(images);
     }, [photoAction])
 
 
     return(
-        <View style={{height: '100%', width: '100%'}}>
+        <View style={componentsStyle.photoTypeContainer}>
             <Pressable
-                style={[style.button, { bottom: 200}]}
+                style={[style.button, componentsStyle.buttonCamera]}
                 onPress={() => {
                     navigation.navigate('Camera')
                 }}
@@ -44,7 +46,7 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
                 <Icon name='camera-enhance' size={iconSize} color={colorWhite}/>
             </Pressable>
             <Pressable
-                style={[style.button, { bottom: 300}]}
+                style={[style.button, componentsStyle.buttonGallery]}
                 onPress={() => {
                     navigation.navigate('Gallery')
                 }}

@@ -155,5 +155,15 @@ export const componentsStyle =  StyleSheet.create({
     cameraStyle:{
         flex: 1,
         backgroundColor: colorBlack
-    }
+    },
+    photoTypeContainer:{
+        height: '100%',
+        width: '100%'
+    },
+    buttonGallery:{
+        bottom: 300,
+    },
+    buttonCamera:{
+        bottom: 200
+    },
 });
