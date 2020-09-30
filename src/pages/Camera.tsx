@@ -4,7 +4,7 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CameraKitCamera } from "react-native-camera-kit";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Pressable, View, StatusBar} from 'react-native';
+import { Pressable, View, StatusBar, Platform } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropCamera } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
@@ -26,10 +26,11 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
     const ref: any = useRef(null);
+    const src = Platform.OS === 'ios' ? "ph://" : "file://";
 
     const makePhoto = useCallback(async () => {
         const image = await ref.current.capture(true)
-        const data = {name: image.name, uri: image.uri, type: 'image/jpeg'}
+        const data = {name: image.name, uri: src + image.uri, type: 'image/jpeg'}
         setPhoto(data);
         navigation.goBack();
     }, []);

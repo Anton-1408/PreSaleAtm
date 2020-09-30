@@ -12,28 +12,36 @@ import { typeAction } from '../../types/typeAction';
 import { getResult, initialState } from '../../lib/actionHelper';
 import { iRootReducers } from '../../types/reduxTypes';
 import { setResultAction } from '../../redux/actions/actions';
+import { setPhotosAction } from '../../redux/actions/actions';
 
 interface iProps{
     actionKey: number,
     deviceKey: number,
     setResult?: any,
-    photoAction?: any
+    setPhotos?: any,
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
     return{
         setResult: (value: number) => dispatch(setResultAction(value)),
+        setPhotos: (paths: Array<Object>) => dispatch(setPhotosAction(paths))
     }
 };
 
-const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, photoAction}) => {
+const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhotos}) => {
     const route: any = useRoute();
     const type = route.params.type;
     const [state, setInitialState] = useState(initialState(type));
 
+    const removePhotosFromStore = () => {
+        setPhotos([]);
+    }
+
     useEffect(() => {
         getResult(actionKey, deviceKey, type, setInitialState);
+        return removePhotosFromStore;
     }, []);
+
 
     switch(type){
         case typeAction.checkbox:

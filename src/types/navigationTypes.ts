@@ -24,6 +24,10 @@ export type rootStackParams={
         type: '',
         stoped: 0
     }
+    ViewPhoto:{
+        index: 0,
+        array: [],
+    }
 };
 
 export type rootParamsOrder={
@@ -79,5 +83,7 @@ export type profileScreenRoutePropAction = RouteProp<rootStackParams, 'Action'>;
 export type profileScreenRoutePropGallery = RouteProp<rootStackParams, 'Gallery'>;
 
 export type profileScreenRoutePropCamera = RouteProp<rootStackParams, 'Camera'>;
+
+export type profileScreenRoutePropViewPhoto = RouteProp<rootStackParams, 'ViewPhoto'>;
 
 

@@ -23,6 +23,7 @@ import Action from '../pages/Action';
 import ButtonAction from '../components/Action/ButtonAction';
 import Gallery from '../pages/Gallery';
 import Camera from '../pages/Camera';
+import ViewPhoto from '../pages/ViewPhoto';
 
 const ContainerNavigation: React.FC = () => {
     return(
@@ -169,6 +170,16 @@ const ContainerNavigation: React.FC = () => {
                     <Stack.Screen
                         name='Camera'
                         component={Camera}
+                        options={({navigation, route}) => ({
+                            title: '',
+                            headerStyle:{
+                                backgroundColor: colorBlack
+                            },
+                        })}
+                    />
+                    <Stack.Screen
+                        name='ViewPhoto'
+                        component={ViewPhoto}
                         options={({navigation, route}) => ({
                             title: '',
                             headerStyle:{

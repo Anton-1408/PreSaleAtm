@@ -13,6 +13,7 @@ export const countImageRow = () =>{
     const countImage = Math.floor(screenWidth / imegeWidth);
     return countImage;
 };
+
 export const getPhotos = (setPhoto: Function) => {
     CameraRoll.getPhotos({
         first: 50,
