@@ -1,7 +1,7 @@
+import React from 'react';
 import { typeDbParams } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
 import { dbHelper } from './dbHelper';
-import React from 'react';
 import { typeAction } from '../types/typeAction';
 
 interface iContext{

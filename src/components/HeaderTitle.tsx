@@ -1,6 +1,6 @@
 import React from 'react';
-import { style } from '../styles/style';
 import { Text, View } from "react-native"
+import { style } from '../styles/style';
 
 interface iProps{
     title: string

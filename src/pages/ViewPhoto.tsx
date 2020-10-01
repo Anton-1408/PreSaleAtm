@@ -5,12 +5,12 @@ import { ThunkDispatch } from 'redux-thunk';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pressable, View, StatusBar } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
-import PhotoBrowser from 'react-native-photo-browser';
 import { profileScreenNavigationPropStack, profileScreenRoutePropViewPhoto } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
 import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
+import GallerySwiper from "react-native-gallery-swiper";
 
 interface iProps{
     navigation: profileScreenNavigationPropStack,
@@ -25,41 +25,36 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 };
 
 const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
-    const [images, setImages]: any = useState({});
+    const [images, setImages] = useState([]);
     const [initialIndex, setInitialIndex] = useState(0);
 
     useEffect(() => {
-        const imgs = route.params.array.map((item: any) => {
-            return {photo: item.uri}
-        });
-        const index = route.params.array.findIndex((item: any) => {
+        const imgs: any = route.params.array;
+        const index: number = route.params.array.findIndex((item: any) => {
             return item.name === route.params.name
         });
-        setImages(imgs);
+
         setInitialIndex(index);
-    }, [route]);
+        setImages(imgs);
+    }, []);
 
     return(
         <View style={style.container}>
             <StatusBar backgroundColor={colorBlack}/>
-            <PhotoBrowser
-                mediaList={images}
-                initialIndex={initialIndex}
-                //displayNavArrows={displayNavArrows}
-                //displaySelectionButtons={displaySelectionButtons}
-                //displayActionButton={displayActionButton}
-                //startOnGrid={startOnGrid}
-                //enableGrid={enableGrid}
-                useCircleProgress
-                //onSelectionChanged={this.onSelectionChanged}
-                //onActionButton={this.onActionButton}
-                //alwaysDisplayStatusBar={alwaysDisplayStatusBar}
-                //customTitle={(index, rowCount) => `${index} sur ${rowCount}`}
+            <GallerySwiper
+                images={images}
+                initialPage={initialIndex}
+                onPageSelected={(i) => {
+                    setInitialIndex(i)
+                }}
             />
             <Pressable
                 style={[style.button, componentsStyle.imageGalleryButton, {right: "36%"}]}
                 onPress={() => {
-
+                    setPhoto(images[initialIndex]);
+                    console.warn(images[initialIndex]);
+                    
+                    navigation.goBack();
                 }}
             >
                 <Icon name="delete" size={iconSize} color={colorWhite}/>

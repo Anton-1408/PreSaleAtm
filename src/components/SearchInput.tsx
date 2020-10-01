@@ -56,4 +56,4 @@ const SearchInput: React.FC<iProps> = ({serealNumber, setSerialNumber}) => {
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);

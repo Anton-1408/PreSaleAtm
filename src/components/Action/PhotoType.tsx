@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Pressable, FlatList, Image } from 'react-native';
-import { style } from '../../styles/style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { style } from '../../styles/style';
 import { colorWhite, iconSize } from '../../styles/constantStyle';
 import { useNavigation } from '@react-navigation/native';
 import { iRootReducers } from '../../types/reduxTypes';
@@ -32,8 +32,9 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
                 return newState;
             }
             else{
-                prev.push(photoAction);
-                return prev;
+                const arr = []
+                arr.push(photoAction)
+                return [...prev, ...arr];
             }
         })
     }, [photoAction])

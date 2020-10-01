@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { iconSize, colorWhite } from '../styles/constantStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { iconSize, colorWhite } from '../styles/constantStyle';
 
 interface iProps{
     check: boolean
