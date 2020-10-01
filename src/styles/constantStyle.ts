@@ -13,17 +13,17 @@ export const colorBlack: string = '#000000';
 export const colorIconSearch: string = '#616161';
 export const sizeButtonAction: number = 40;
 
-export const colorPress: any = (pressed: boolean) => {
+export const colorPress: any = (pressed: boolean): Object => {
     return{
         backgroundColor: pressed ? colorIsPress: colorWhite
     };
 };
 
-export const bcolorDone: any = (isDone: boolean) => {
+export const bcolorDone: any = (isDone: boolean): string => {
     return  isDone ? colorIsDone : colorWhite;
 };
 
-export const colorDone: any = (isDone: boolean, colorText: string) => {
+export const colorDone: any = (isDone: boolean, colorText: string): string => {
     return  isDone ? colorWhite : colorText;
 };
 
