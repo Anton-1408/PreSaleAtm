@@ -14,7 +14,7 @@ export const ActionContext = React.createContext<iContext>({
     extraParams: [],
 });
 
-export const getExtraFiles = (idAction: number, setExtraFiles: Function) => {
+export const getExtraFiles = (idAction: number, setExtraFiles: Function): void => {
     const query: string = 'SELECT id, path, name from extra_files where id_action = ?';
     const params: typeDbParams = [idAction];
     const callBack: SQLite.StatementCallback = (transaction, result) => {
@@ -30,7 +30,7 @@ export const getExtraFiles = (idAction: number, setExtraFiles: Function) => {
     dbHelper(query, params, callBack);
 };
 
-export const getExtraParams = (idAction: number, setExtraParams: Function) => {
+export const getExtraParams = (idAction: number, setExtraParams: Function): void => {
     const query: string = 'SELECT id, extra_params from extra_params where id_action = ?';
     const params: typeDbParams = [idAction];
     const callBack: SQLite.StatementCallback = (transaction, result) => {
@@ -47,7 +47,7 @@ export const getExtraParams = (idAction: number, setExtraParams: Function) => {
     dbHelper(query, params, callBack);
 };
 
-export const getResult = (idAction: number, idDevice: number, type: string, setResult: Function)=> {
+export const getResult = (idAction: number, idDevice: number, type: string, setResult: Function): void => {
     const query: string = 'SELECT value from results WHERE id_action = ? and id_device = ?';
     const params: typeDbParams = [idAction, idDevice];
     const callBack: SQLite.StatementCallback = (transaction, result) => {
@@ -77,7 +77,7 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
     dbHelper(query, params, callBack);
 };
 
-export const initialState = (type: string) => {
+export const initialState = (type: string): any => {
     let state: any;
     switch(type){
         case typeAction.checkbox:
@@ -96,11 +96,20 @@ export const initialState = (type: string) => {
     return state;
 };
 
-export const saveResult = (idAction: number, idDevice: number, value: any) => {
+export const saveResult = (idAction: number, idDevice: number, value: any): void => {
     const query: string = 'replace into results (id_action, id_device, date, value) VALUES (?, ?, ?, ?)';
     const params: typeDbParams = [idAction, idDevice, nowDate(), value];
     const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
+};
+
+export const savePhotoAction = (idAction: number, files: Array<Object>): void => {
+    const query: string = 'replace into photos (id_action, name, uri, type) VALUES (?,?,?,?)';
+    const callBack : SQLite.StatementCallback = (transaction, result) => { };
+    files.forEach((item: any) => {
+        const params: typeDbParams = [idAction, item.name, item.uri, item.type];
+        dbHelper(query, params, callBack);
+    });
 };
 
 const nowDate = (): string => {
@@ -119,14 +128,13 @@ const nowDate = (): string => {
     minut = minut < 10 ? "0" + minut : minut;
     hour = hour < 10 ? "0" + hour : hour;
     const time = hour + ":" + minut;
+
     return date + ' ' + time;
 };
 
-export const setStopedDevice = (deviceKey: number, stopped: number) => {
+export const setStopedDevice = (deviceKey: number, stopped: number): void => {
     const query = `update results set stoped = ? where id_device = ?`
     const params: typeDbParams = [stopped, deviceKey];
-    const callBack: SQLite.StatementCallback = (transaction, result) => {
-
-    };
+    const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
 };

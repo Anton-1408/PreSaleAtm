@@ -2,7 +2,7 @@ import SQLite from 'react-native-sqlite-storage';
 import { dbHelper } from './dbHelper';
 import { typeDbParams } from '../types/dbTypes';
 
-export function saveSetting(sid: string): Promise<string>{
+export const saveSetting = (sid: string): Promise<string> => {
     return new Promise((resolve, reject) => {
         const query: string = "replace into settings (id, sid) VALUES (?, ?)";
         const params: typeDbParams = [1, sid];
@@ -13,7 +13,7 @@ export function saveSetting(sid: string): Promise<string>{
     })
 };
 
-export function getSetting(setUserId: Function): void{
+export const getSetting = (setUserId: Function): void => {
     const query: string = "select sid from settings";
     const params: typeDbParams = [];
     const callBack: SQLite.StatementCallback = (transaction, result) => {

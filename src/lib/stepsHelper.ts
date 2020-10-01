@@ -48,7 +48,7 @@ export const setParams = (typeWork: string, idOrder: number, idDevice: number, i
     return params;
 };
 
-export const getSteps= (query: string, params: typeDbParams, setSteps: Function) => {
+export const getSteps= (query: string, params: typeDbParams, setSteps: Function): void => {
     const callBack: SQLite.StatementCallback = (transaction, result) => {
         const len: number = result.rows.length;
         const rowList: SQLite.ResultSetRowList = result.rows;

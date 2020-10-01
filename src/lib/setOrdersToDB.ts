@@ -68,13 +68,13 @@ const setActions = (idStep: string, actios: any): void => {
     });
 };
 
-const setExtraFiles = (idAction: string, files: any) => {
+const setExtraFiles = (idAction: string, files: any): void => {
     const keyFile = Object.keys(files).forEach((id) => {
         downLoadsFile(idAction, files[id]);
     });
 };
 
-const setExstraParams = (idAction: string, extraParams: any) => {
+const setExstraParams = (idAction: string, extraParams: any): void => {
     const keyExtraParams = Object.keys(extraParams).forEach((id) => {
         const query: string = 'replace into extra_params (id_action, extra_params) VALUES(?,?)';
         if(id === 'item'){
@@ -96,7 +96,7 @@ const setExstraParams = (idAction: string, extraParams: any) => {
     });
 };
 
-const downLoadsFile = (idAction: string, files: any) => {
+const downLoadsFile = (idAction: string, files: any): void => {
     const dirs = RNFetchBlob.fs.dirs;
     const name = files.id + files.filename;
     RNFetchBlob.config({
