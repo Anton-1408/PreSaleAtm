@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import SmartGallery from "react-native-smart-gallery";
 import { Pressable, View, StatusBar } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
+import PhotoBrowser from 'react-native-photo-browser';
 import { profileScreenNavigationPropStack, profileScreenRoutePropViewPhoto } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
@@ -25,32 +25,45 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 };
 
 const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
-    const [images, setImages]: any = useState([]);
-    const [index, setIndex] = useState(0);
+    const [images, setImages]: any = useState({});
+    const [initialIndex, setInitialIndex] = useState(0);
 
     useEffect(() => {
         const imgs = route.params.array.map((item: any) => {
-            return {uri: item.uri}
+            return {photo: item.uri}
+        });
+        const index = route.params.array.findIndex((item: any) => {
+            return item.name === route.params.name
         });
         setImages(imgs);
-        setIndex(route.params.index);
-    }, []);
-    console.warn(images);
+        setInitialIndex(index);
+    }, [route]);
 
     return(
         <View style={style.container}>
             <StatusBar backgroundColor={colorBlack}/>
-            <SmartGallery
-                images={images}
-                loadMinimal={true}
-                loadMinimalSize={2}
-                //sensitiveScroll={false}
-                index={index}
-                renderIndicator={() => null}
-                onChange={(i: number) => {
-                    setIndex(i)
-                }}
+            <PhotoBrowser
+                mediaList={images}
+                initialIndex={initialIndex}
+                //displayNavArrows={displayNavArrows}
+                //displaySelectionButtons={displaySelectionButtons}
+                //displayActionButton={displayActionButton}
+                //startOnGrid={startOnGrid}
+                //enableGrid={enableGrid}
+                useCircleProgress
+                //onSelectionChanged={this.onSelectionChanged}
+                //onActionButton={this.onActionButton}
+                //alwaysDisplayStatusBar={alwaysDisplayStatusBar}
+                //customTitle={(index, rowCount) => `${index} sur ${rowCount}`}
             />
+            <Pressable
+                style={[style.button, componentsStyle.imageGalleryButton, {right: "36%"}]}
+                onPress={() => {
+
+                }}
+            >
+                <Icon name="delete" size={iconSize} color={colorWhite}/>
+            </Pressable>
         </View>
     );
 };

@@ -47,12 +47,12 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
                 keyExtractor={ (item: any) => item.name }
                 numColumns={countImageRow()}
                 columnWrapperStyle={componentsStyle.imagesContainer}
-                renderItem={({item, index}) => (
+                renderItem={({item}) => (
                     <Pressable
                         style={componentsStyle.imageGalleryContainer}
                         onPress={() => {
                             navigation.navigate('ViewPhoto', {
-                                index: index,
+                                name: item.name,
                                 array: images,
                             })
                         }}

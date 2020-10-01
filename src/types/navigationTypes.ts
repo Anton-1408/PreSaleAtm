@@ -25,7 +25,7 @@ export type rootStackParams={
         stoped: 0
     }
     ViewPhoto:{
-        index: 0,
+        name: '',
         array: [],
     }
 };
