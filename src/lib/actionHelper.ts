@@ -103,11 +103,11 @@ export const saveResult = (idAction: number, idDevice: number, value: any): void
     dbHelper(query, params, callBack);
 };
 
-export const savePhotoAction = (idAction: number, files: Array<Object>): void => {
-    const query: string = 'replace into photos (id_action, name, uri, type) VALUES (?,?,?,?)';
+export const savePhotoAction = (idAction: number, idDevice: number, files: Array<Object>): void => {
+    const query: string = 'replace into photos (id_action, id_device, name, uri, type) VALUES (?,?,?,?,?)';
     const callBack : SQLite.StatementCallback = (transaction, result) => { };
     files.forEach((item: any) => {
-        const params: typeDbParams = [idAction, item.name, item.uri, item.type];
+        const params: typeDbParams = [idAction, idDevice, item.name, item.uri, item.type];
         dbHelper(query, params, callBack);
     });
 };
@@ -135,6 +135,13 @@ const nowDate = (): string => {
 export const setStopedDevice = (deviceKey: number, stopped: number): void => {
     const query = `update results set stoped = ? where id_device = ?`
     const params: typeDbParams = [stopped, deviceKey];
+    const callBack: SQLite.StatementCallback = (transaction, result) => { };
+    dbHelper(query, params, callBack);
+};
+
+export const deletePhoto = (idAction: number, idDevice: number) => {
+    const query: string = 'delete from photos where id_action = ? and id_device = ?';
+    const params: typeDbParams = [idAction, idDevice];
     const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
 };

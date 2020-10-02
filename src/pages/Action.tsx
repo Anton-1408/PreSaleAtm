@@ -7,10 +7,11 @@ import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropAction } from '../types/navigationTypes';
 import { iconSize, colorWhite } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
-import { ActionContext, getExtraFiles, getExtraParams, saveResult } from '../lib/actionHelper';
+import { ActionContext, getExtraFiles, getExtraParams, saveResult, deletePhoto, savePhotoAction } from '../lib/actionHelper';
 import { SwipperPanel } from '../components/Action/SwipperPanel'
 import ActionType from '../components/Action/ActionType';
 import { colorIsWork } from '../styles/constantStyle';
+import { typeAction } from '../types/typeAction';
 
 interface iProps{
     readonly deviceKey: number,
@@ -29,7 +30,7 @@ const mapStateToProps = (state: iRootReducers) => {
 };
 
 const Action: React.FC<iProps> = (props) => {
-    const { navigation, actionKey, deviceKey, actionResult } = props;
+    const { navigation, actionKey, deviceKey, actionResult, route } = props;
 
     const [extraFiles, setExtraFile] = useState([]);
     const [extraParams, setExtraParams] = useState([]);
@@ -42,6 +43,19 @@ const Action: React.FC<iProps> = (props) => {
         });
         return unsubscribe;
     }, [navigation]);
+
+    const setResult = useCallback(() => {
+        const type = route.params.type;
+        if(type === typeAction.photo){
+            saveResult(actionKey, deviceKey, actionResult);
+        }
+        else{
+            deletePhoto(actionKey, deviceKey);
+            saveResult(actionKey, deviceKey, actionResult.length);
+            savePhotoAction(actionKey, deviceKey, actionResult);
+        }
+        navigation.goBack();
+    }, []);
 
     return(
         <ActionContext.Provider
@@ -56,7 +70,7 @@ const Action: React.FC<iProps> = (props) => {
                         componentsStyle.actionContainerComment
                     ]}
                     onPress={() => {
-                        setStatePanel(true)
+                        setStatePanel(true);
                     }}
                 >
                     <Text style={style.title}>Комментарий</Text>
@@ -71,15 +85,12 @@ const Action: React.FC<iProps> = (props) => {
                 <SwipperPanel
                     statePanel={statePanel}
                     closePanel={() => {
-                        setStatePanel(false)
+                        setStatePanel(false);
                     }}
                 />
                 <Pressable
                     style={style.button}
-                    onPress={() => {
-                        saveResult(actionKey, deviceKey, actionResult);
-                        navigation.goBack();
-                    }}
+                    onPress={setResult}
                 >
                     <Icon name='check' size={iconSize} color={colorWhite}/>
                 </Pressable>

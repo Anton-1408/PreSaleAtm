@@ -9,24 +9,24 @@ export type rootStackParams={
     Gallery: undefined,
     Camera: undefined,
     Step: {
-        title: '',
+        title: string,
     },
     Todo: {
         title: 'Чек-Листы'
     },
     Device: undefined,
     ListActions: {
-        title: '',
+        title: string,
     },
     Action:{
-        title: '',
-        comment: '',
-        type: '',
-        stoped: 0
+        title: string,
+        comment: string,
+        type: any,
+        stoped: number
     }
     ViewPhoto:{
-        name: '',
-        array: [],
+        name: string,
+        array: Array<Object>,
     }
 };
 
