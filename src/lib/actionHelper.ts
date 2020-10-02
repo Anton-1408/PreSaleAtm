@@ -37,7 +37,7 @@ export const getExtraParams = (idAction: number, setExtraParams: Function): void
         const len: number = result.rows.length;
         const rowList: SQLite.ResultSetRowList = result.rows;
         const listFiles: Array<Object> = [];
-        for(let i = 0; i< len; i++){
+        for(let i = 0; i < len; i++){
             const row: any = rowList.item(i);
             const item: any = {id: row.id, value: false, title: row.extra_params}
             listFiles.push(item);
@@ -83,14 +83,17 @@ export const initialState = (type: string): any => {
         case typeAction.checkbox:
                 state = false;
             break;
-        case typeAction.numberInput || typeAction.textInput:
+        case typeAction.numberInput && typeAction.textInput:
                 state = '';
             break;
         case typeAction.checkboxGroup:
                 state = [];
             break
         case typeAction.radioGroup:
-                state=''
+                state='';
+            break;
+        case typeAction.photo:
+                state = [];
             break;
     };
     return state;
@@ -114,7 +117,7 @@ export const savePhotoAction = (idAction: number, idDevice: number, files: Array
 
 const nowDate = (): string => {
     const dateTime: Date = new Date();
-    let year = dateTime.getFullYear();
+    let year: any = dateTime.getFullYear();
     let month: any = dateTime.getMonth() + 1;
     let day: any = dateTime.getDate();
 
@@ -132,16 +135,33 @@ const nowDate = (): string => {
     return date + ' ' + time;
 };
 
-export const setStopedDevice = (deviceKey: number, stopped: number): void => {
+export const setStopedDevice = (idDevice: number, stopped: number): void => {
     const query = `update results set stoped = ? where id_device = ?`
-    const params: typeDbParams = [stopped, deviceKey];
+    const params: typeDbParams = [stopped, idDevice];
     const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
 };
 
-export const deletePhoto = (idAction: number, idDevice: number) => {
+export const deletePhoto = (idAction: number, idDevice: number): void => {
     const query: string = 'delete from photos where id_action = ? and id_device = ?';
     const params: typeDbParams = [idAction, idDevice];
     const callBack: SQLite.StatementCallback = (transaction, result) => { };
+    dbHelper(query, params, callBack);
+};
+
+export const getPhoto = (idAction: number, idDevice: number, setResult: Function): void => {
+    const query: string = 'select * from photos where id_action = ? and id_device = ?';
+    const params: typeDbParams = [idAction, idDevice];
+    const callBack: SQLite.StatementCallback = (transaction, result) => {
+        const len: number = result.rows.length;
+        const rowList: SQLite.ResultSetRowList = result.rows;
+        const listPhotos: Array<Object> = [];
+
+        for(let i = 0; i < len; i++){
+            const row: any = rowList.item(i);
+            listPhotos.push(row);
+        }
+        setResult(listPhotos);
+    };
     dbHelper(query, params, callBack);
 };

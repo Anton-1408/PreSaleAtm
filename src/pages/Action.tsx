@@ -47,12 +47,12 @@ const Action: React.FC<iProps> = (props) => {
     const setResult = useCallback(() => {
         const type = route.params.type;
         if(type === typeAction.photo){
-            saveResult(actionKey, deviceKey, actionResult);
-        }
-        else{
             deletePhoto(actionKey, deviceKey);
             saveResult(actionKey, deviceKey, actionResult.length);
             savePhotoAction(actionKey, deviceKey, actionResult);
+        }
+        else{
+            saveResult(actionKey, deviceKey, actionResult);
         }
         navigation.goBack();
     }, []);

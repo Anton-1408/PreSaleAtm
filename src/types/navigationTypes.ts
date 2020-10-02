@@ -21,7 +21,7 @@ export type rootStackParams={
     Action:{
         title: string,
         comment: string,
-        type: any,
+        type: string,
         stoped: number
     }
     ViewPhoto:{

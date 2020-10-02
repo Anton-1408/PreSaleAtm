@@ -4,13 +4,13 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pressable, View, StatusBar } from 'react-native';
+import ImageView from "react-native-image-viewing";
 import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropViewPhoto } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
 import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
-import GallerySwiper from "react-native-gallery-swiper";
 
 interface iProps{
     navigation: profileScreenNavigationPropStack,
@@ -33,7 +33,6 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
         const index: number = route.params.array.findIndex((item: any) => {
             return item.name === route.params.name
         });
-
         setInitialIndex(index);
         setImages(imgs);
     }, []);
@@ -41,24 +40,27 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
     return(
         <View style={style.container}>
             <StatusBar backgroundColor={colorBlack}/>
-            <GallerySwiper
+            <ImageView
                 images={images}
-                initialPage={initialIndex}
-                onPageSelected={(i) => {
-                    setInitialIndex(i)
+                imageIndex={initialIndex}
+                visible={true}
+                presentationStyle="fullScreen"
+                swipeToCloseEnabled={false}
+                onRequestClose={() => {
+                    navigation.goBack()
                 }}
+                FooterComponent={(index) => (
+                    <Pressable
+                        style={componentsStyle.buttonDeletePhoto}
+                        onPress={() => {
+                            setPhoto(images[index.imageIndex]);
+                            navigation.goBack();
+                        }}
+                    >
+                        <Icon name="delete" size={iconSize} color={colorWhite}/>
+                    </Pressable>
+                )}
             />
-            <Pressable
-                style={[style.button, componentsStyle.imageGalleryButton, {right: "36%"}]}
-                onPress={() => {
-                    setPhoto(images[initialIndex]);
-                    console.warn(images[initialIndex]);
-                    
-                    navigation.goBack();
-                }}
-            >
-                <Icon name="delete" size={iconSize} color={colorWhite}/>
-            </Pressable>
         </View>
     );
 };

@@ -166,4 +166,8 @@ export const componentsStyle =  StyleSheet.create({
     buttonCamera:{
         bottom: 200
     },
+    buttonDeletePhoto:{
+        alignSelf: 'center',
+        marginBottom: 40
+    }
 });
