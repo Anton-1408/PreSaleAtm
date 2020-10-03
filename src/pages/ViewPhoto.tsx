@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Pressable, View, StatusBar } from 'react-native';
+import { Pressable, View, StatusBar, Text } from 'react-native';
 import ImageView from "react-native-image-viewing";
 import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropViewPhoto } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
-import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
+import { colorBlack, colorWhite, iconSize, colorInActiveButton, iconSizeBar } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 };
 
 const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
-    const [images, setImages] = useState([]);
+    const [images, setImages]: any = useState([]);
     const [initialIndex, setInitialIndex] = useState(0);
 
     useEffect(() => {
@@ -49,6 +49,21 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                 onRequestClose={() => {
                     navigation.goBack()
                 }}
+                HeaderComponent={(index) => (
+                    <View style={componentsStyle.photoViewHeader}>
+                        <Text style={componentsStyle.photoViewTitle}>
+                            {images.length > 0 ? images[index.imageIndex].name : ''}
+                        </Text>
+                        <Pressable
+                            style={componentsStyle.photoViewButtonClose}
+                            onPress={() => {
+                                navigation.goBack()
+                            }}
+                        >
+                            <Icon name='close' size={iconSizeBar} color={colorWhite}/>
+                        </Pressable>
+                    </View>
+                )}
                 FooterComponent={(index) => (
                     <Pressable
                         style={componentsStyle.buttonDeletePhoto}

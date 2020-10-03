@@ -169,5 +169,20 @@ export const componentsStyle =  StyleSheet.create({
     buttonDeletePhoto:{
         alignSelf: 'center',
         marginBottom: 40
+    },
+    photoViewHeader:{
+        width: '100%',
+        flexDirection: 'row',
+        paddingTop: 40,
+        justifyContent: 'space-around',
+    },
+    photoViewTitle:{
+        color: colorWhite,
+        fontSize: 20,
+        fontFamily: 'OpenSans-BoldItalic'
+    },
+    photoViewButtonClose:{
+        backgroundColor: '#616161',
+        borderRadius: 15,
     }
 });
