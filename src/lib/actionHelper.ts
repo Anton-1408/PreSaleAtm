@@ -150,13 +150,12 @@ export const deletePhoto = (idAction: number, idDevice: number): void => {
 };
 
 export const getPhoto = (idAction: number, idDevice: number, setResult: Function): void => {
-    const query: string = 'select * from photos where id_action = ? and id_device = ?';
+    const query: string = 'select name, uri from photos where id_action = ? and id_device = ?';
     const params: typeDbParams = [idAction, idDevice];
     const callBack: SQLite.StatementCallback = (transaction, result) => {
         const len: number = result.rows.length;
         const rowList: SQLite.ResultSetRowList = result.rows;
         const listPhotos: Array<Object> = [];
-
         for(let i = 0; i < len; i++){
             const row: any = rowList.item(i);
             listPhotos.push(row);

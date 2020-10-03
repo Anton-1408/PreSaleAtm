@@ -55,7 +55,7 @@ const Action: React.FC<iProps> = (props) => {
             saveResult(actionKey, deviceKey, actionResult);
         }
         navigation.goBack();
-    }, []);
+    }, [actionResult]);
 
     return(
         <ActionContext.Provider

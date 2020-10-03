@@ -10,9 +10,9 @@ import { componentsStyle } from '../../styles/componentsStyle';
 import { countImageRow } from '../../lib/galleryHelper';
 
 interface iProps{
-    initialState: Array<string>,
+    initialState: any,
     setResult: Function,
-    readonly photoAction: Array<Object>
+    readonly photoAction: any
 };
 
 const mapStateToProps = (state: iRootReducers) => {
@@ -32,13 +32,26 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
                 return newState;
             }
             else{
-                const arr = []
-                arr.push(photoAction)
-                return [...prev, ...arr];
+                const arrImg: any = prev.map((item: any) => item);
+                const findeImg = arrImg.findIndex((item: any) => {
+                    return item.name === photoAction.name;
+                });
+                if(findeImg < 0)
+                    arrImg.push(photoAction);
+                else
+                    arrImg.splice(findeImg, 1);
+                return arrImg;
             }
-        })
+        });
     }, [photoAction])
 
+    useEffect(() => {
+        setResult(images);
+    }, [images]);
+
+    useEffect(() => {
+        setImages(initialState);
+    }, [initialState])
 
     return(
         <View style={componentsStyle.photoTypeContainer}>

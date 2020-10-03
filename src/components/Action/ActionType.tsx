@@ -9,7 +9,7 @@ import { CheckBoxGroup } from './CheckBoxGroup';
 import { RadioBoxGroup } from './RadioBoxGroup';
 import  PhotoType from './PhotoType';
 import { typeAction } from '../../types/typeAction';
-import { getResult, initialState } from '../../lib/actionHelper';
+import { getResult, initialState, getPhoto } from '../../lib/actionHelper';
 import { iRootReducers } from '../../types/reduxTypes';
 import { setResultAction } from '../../redux/actions/actions';
 import { setPhotosAction } from '../../redux/actions/actions';
@@ -35,13 +35,17 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhoto
 
     const removePhotosFromStore = () => {
         setPhotos([]);
-    }
+    };
 
     useEffect(() => {
-        getResult(actionKey, deviceKey, type, setInitialState);
-        return removePhotosFromStore;
+        if(route.params.type === typeAction.photo){
+            getPhoto(actionKey, deviceKey,  setInitialState)
+            return removePhotosFromStore;
+        }
+        else{
+            getResult(actionKey, deviceKey, type, setInitialState);
+        }
     }, []);
-
 
     switch(type){
         case typeAction.checkbox:
@@ -54,7 +58,7 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhoto
         case typeAction.photo:
             return(
                 <PhotoType
-                    initialState={[]}
+                    initialState={state}
                     setResult={setResult}
                     photoAction={[]}
                 />

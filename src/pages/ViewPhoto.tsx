@@ -9,7 +9,7 @@ import { iRootReducers } from '../types/reduxTypes';
 import { profileScreenNavigationPropStack, profileScreenRoutePropViewPhoto } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
-import { colorBlack, colorWhite, iconSize, colorInActiveButton, iconSizeBar } from '../styles/constantStyle';
+import { colorBlack, colorWhite, iconSize, colorDone, iconSizeBar } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{

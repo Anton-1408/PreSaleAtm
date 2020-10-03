@@ -39,8 +39,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
     const chosePhoto = useCallback(() => {
         const photos = images.filter((item: any) => {
             if(item.check){
-                const data = {name: item.name, uri: item.uri, type: item.type}
-                return data;
+                return  delete item.check;
             }
         });
         setPhotos(photos);
