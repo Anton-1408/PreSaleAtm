@@ -3,7 +3,7 @@ import { Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colorIsDone, sizeButtonAction, colorPress } from '../../styles/constantStyle';
 import { componentsStyle } from '../../styles/componentsStyle';
-import { setStopedDevice } from '../../lib/actionHelper';
+import { setReplayDevice } from '../../lib/actionHelper';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -19,7 +19,7 @@ export const ButtonReplayDevice: React.FC<iProps> = ({deviceKey}) => {
                 componentsStyle.buttonBarContainer
             ]}
             onPress={() => {
-                setStopedDevice(deviceKey, 0);
+                setReplayDevice(deviceKey);
                 navigation.goBack();
             }}
         >

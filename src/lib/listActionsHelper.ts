@@ -8,6 +8,7 @@ export const getListActions = (idDevice: number, idStep: number, setListActions:
                                 left JOIN results r
                                     on r.id_action = a.id
                                     and r.id_device = ?
+                                    and r.value is not null
                                 left join (
                                     select id_device, max(stoped) stoped from results
                                         GROUP by id_device

@@ -12,6 +12,7 @@ export const setQuery = (typeWork: string): string => {
                         SELECT s.id_todo, a.id action, count(r.id) res from actions a
                             left join results r
                                 on r.id_action = a.id
+                                and r.value is not null
                             LEFT JOIN steps s
                                 on s.id = a.id_step
                         GROUP by a.id
@@ -32,6 +33,7 @@ export const setQuery = (typeWork: string): string => {
                             left join results r
                                 on r.id_action = a.id
                                 and r.id_device = ?
+                                and r.value is not null
                             LEFT JOIN steps s
                                 on s.id = a.id_step
                         GROUP by a.id

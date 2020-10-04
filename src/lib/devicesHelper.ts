@@ -7,9 +7,14 @@ import { modeWork } from '../types/modeWork';
 export const setQuery = (typeWork: string): string => {
     let query = '';
     if(typeWork === modeWork.device){
-        query = `select d.id, d.model, d.serial_number, count(r.id) result, act.actions total, max(r.stoped) stoped from devices d
+        query = `select d.id, d.model, d.serial_number, count(r.id) result, act.actions total, max(s.stoped) stoped from devices d
                     LEFT join results r
                         on r.id_device = d.id
+                        and r.value is not null
+                    LEFT join (
+                        select stoped, id_device from results group by id_device
+                    ) s
+                        on s.id_device = d.id
                     LEFT join (
                         SELECT t.id, t.id_order, sum(ac.total) actions  from todos t
                             LEFT JOIN (
@@ -44,6 +49,7 @@ export const setQuery = (typeWork: string): string => {
                     LEFT join results r
                         on r.id_action = act.id
                         and r.id_device = d.id
+                        and r.value is not null
                     left join (
                         select id_device, stoped stoped from results
                     ) s

@@ -15,8 +15,8 @@ export const setOrdersToDB = (orders: any): void => {
             setDevices(orders[id].id, orders[id].hws);
         if('todos' in orders[id])
             setTodos(orders[id].id, orders[id].todos);
-        if('results' in orders[id])
-            setResults(orders[id].results);
+        // if('results' in orders[id])
+        //     setResults(orders[id].results);
     });
 };
 

@@ -7,19 +7,22 @@ import { iRootReducers } from '../../types/reduxTypes';
 interface iProps{
     stoped: number,
     deviceKey?: any,
+    actionKey?: any
 }
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
         deviceKey: state.holderKeysReducer.deviceKey,
+        actionKey: state.holderKeysReducer.actionKey,
     }
 };
 
-const ButtonAction: React.FC<iProps> = ({stoped, deviceKey}) => {
+const ButtonAction: React.FC<iProps> = ({stoped, deviceKey, actionKey}) => {
     if(!stoped){
         return(
             <ButtonStopDevice
                 deviceKey={deviceKey}
+                actionKey={actionKey}
             />
         )
     }

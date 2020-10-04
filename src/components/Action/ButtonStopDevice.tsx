@@ -3,14 +3,15 @@ import { Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colorIsStop, sizeButtonAction, colorPress } from '../../styles/constantStyle';
 import { componentsStyle } from '../../styles/componentsStyle';
-import { setStopedDevice } from '../../lib/actionHelper';
+import { setStopDevice } from '../../lib/actionHelper';
 import { useNavigation } from '@react-navigation/native';
 
 interface iProps{
     deviceKey: number
+    actionKey: number,
 };
 
-export const ButtonStopDevice: React.FC<iProps> = ({deviceKey}) => {
+export const ButtonStopDevice: React.FC<iProps> = ({deviceKey, actionKey}) => {
     const navigation = useNavigation();
     return(
         <Pressable
@@ -18,7 +19,7 @@ export const ButtonStopDevice: React.FC<iProps> = ({deviceKey}) => {
                 componentsStyle.buttonBarContainer
             ]}
             onPress={() => {
-                setStopedDevice(deviceKey, 1);
+                setStopDevice(actionKey, deviceKey);
                 navigation.goBack();
             }}
         >

@@ -12,7 +12,8 @@ export const setQuery = (typeWork: string): string => {
                             on a.id_step = s.id
                         LEFT JOIN (
                             SELECT r.id_action, count(r.id) result from results r
-                                GROUP by r.id_action
+                                where r.value is not null
+                            GROUP by r.id_action
                         ) r
                             on r.id_action = a.id
                         WHERE s.id_todo = ?
@@ -25,7 +26,7 @@ export const setQuery = (typeWork: string): string => {
                             on a.id_step = s.id
                         LEFT JOIN (
                             SELECT r.id_action, count(r.id) result from results r
-                                where r.id_device = ?
+                                where r.id_device = ? and r.value is not null
                             GROUP by r.id_action
                         ) r
                             on r.id_action = a.id

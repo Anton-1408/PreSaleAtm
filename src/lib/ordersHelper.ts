@@ -16,6 +16,7 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<string>
                                                 select count(r.id) result, ac.id_step from actions ac
                                                     LEFT JOIN results r
                                                         on r.id_action = ac.id
+                                                        and r.value is not null
                                             ) done
                                                 on done.id_step = s.id
                                     ) a

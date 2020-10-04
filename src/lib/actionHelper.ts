@@ -102,7 +102,7 @@ export const initialState = (type: string): any => {
 export const saveResult = (idAction: number, idDevice: number, value: any): void => {
     const query: string = 'replace into results (id_action, id_device, date, value) VALUES (?, ?, ?, ?)';
     const params: typeDbParams = [idAction, idDevice, nowDate(), value];
-    const callBack: SQLite.StatementCallback = (transaction, result) => { };
+    const callBack: SQLite.StatementCallback = (transaction, result) => { console.warn(value) };
     dbHelper(query, params, callBack);
 };
 
@@ -135,9 +135,16 @@ const nowDate = (): string => {
     return date + ' ' + time;
 };
 
-export const setStopedDevice = (idDevice: number, stopped: number): void => {
+export const setReplayDevice = (idDevice: number): void => {
     const query = `update results set stoped = ? where id_device = ?`
-    const params: typeDbParams = [stopped, idDevice];
+    const params: typeDbParams = [0, idDevice];
+    const callBack: SQLite.StatementCallback = (transaction, result) => { };
+    dbHelper(query, params, callBack);
+};
+
+export const setStopDevice = (idAction: number, idDevice: number): void => {
+    const query = `replace into results (id_action, id_device, date, stoped) VALUES (?,?,?,?)`;
+    const params: typeDbParams = [idAction, idDevice, nowDate(), 1];
     const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
 };
