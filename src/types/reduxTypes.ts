@@ -10,7 +10,8 @@ import {
     SET_STEP_KEY,
     SET_SERIAL_NUMBER_DEVICE,
     SET_RESULT_ACTION,
-    SET_ACTION_PHOTOS
+    SET_ACTION_PHOTOS,
+    SET_ACTION_FILES
 } from "../redux/actions/types";
 
 export interface iOrdertKey{

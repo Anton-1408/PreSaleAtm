@@ -74,7 +74,7 @@ const ListActions: React.FC<iProps> = (props) => {
                                 {item.fio} {item.date}
                             </Text>
                         </View>
-                        <View style={style.containerPercent}>
+                        <View>
                             <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={25}/>
                         </View>
                     </Pressable>

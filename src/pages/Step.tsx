@@ -82,7 +82,7 @@ const Step: React.FC<iProps> = (props) => {
                                 <Text style={[style.title, { color: colorDone(item.isDone, colorTitle) }]}>{item.name}</Text>
                                 <Text style={[style.comment, { color: colorDone(item.isDone, colorBlack) }]}>{item.comment}</Text>
                             </View>
-                            <View style={style.containerPercent}>
+                            <View>
                                 <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={25}/>
                             </View>
                         </View>

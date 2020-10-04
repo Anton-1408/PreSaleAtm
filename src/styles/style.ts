@@ -30,9 +30,6 @@ export const style = StyleSheet.create({
     containerText:{
         width: '85%',
     },
-    containerPercent:{
-
-    },
     title: {
         fontSize: 18,
         fontFamily: 'OpenSans-SemiBold',
@@ -53,7 +50,11 @@ export const style = StyleSheet.create({
         color: colorWhite
     },
     imageStyle:{
-        width: 115,
-        height: 115
+        width: 110,
+        height: 110
+    },
+    imageContainer:{
+        marginVertical: 4,
+        marginHorizontal: 4,
     }
 });

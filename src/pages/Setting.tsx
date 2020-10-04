@@ -6,6 +6,7 @@ import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
 import { iconSize, colorWhite } from '../styles/constantStyle';
 import { saveSetting, getSetting } from '../lib/settingHelper';
+import { getVersion } from 'react-native-device-info';
 
 interface iProps{
   navigation: profileScreenNavigationPropStack,
@@ -34,7 +35,7 @@ const Setting: React.FC<iProps> = ({navigation}) => {
       </View>
       <View style={componentsStyle.settingContainer}>
         <Icon name="cellphone-information" size={iconSize} color="#5E35B1"/>
-        <Text style={componentsStyle.settingText}>Версия: 1.0.0</Text>
+        <Text style={componentsStyle.settingText}>{getVersion()}</Text>
       </View>
       <Pressable
           style={style.button}

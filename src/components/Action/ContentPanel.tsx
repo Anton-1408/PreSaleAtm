@@ -11,13 +11,16 @@ export const ContentPanel: React.FC = () => {
     const route: any = useRoute();
 
     return(
-        <View style={componentsStyle.conteinerContentPanel}>
-            <Text style={style.comment}>{route.params.comment}</Text>
+        <View>
+            <Text style={[style.comment, componentsStyle.contentPanelComment]}>
+                {route.params.comment}
+            </Text>
             <ExtraParamsPhoto/>
             <View style={componentsStyle.containerFilesContent}>
                 {context.files.map((item: any) => (
                     <Pressable
                         key={item.id}
+                        style={style.imageContainer}
                     >
                         <Image
                             source={{uri: item.path}}

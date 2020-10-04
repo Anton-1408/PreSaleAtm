@@ -70,6 +70,9 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
                 case typeAction.radioGroup:
                         result = row.value;
                     break;
+                case typeAction.noAction:
+                        result = row.value;
+                    break;
             };
             setResult(result);
         }
@@ -95,6 +98,9 @@ export const initialState = (type: string): any => {
         case typeAction.photo:
                 state = [];
             break;
+        case typeAction.noAction:
+                state = 1;
+            break;
     };
     return state;
 };
@@ -102,7 +108,7 @@ export const initialState = (type: string): any => {
 export const saveResult = (idAction: number, idDevice: number, value: any): void => {
     const query: string = 'replace into results (id_action, id_device, date, value) VALUES (?, ?, ?, ?)';
     const params: typeDbParams = [idAction, idDevice, nowDate(), value];
-    const callBack: SQLite.StatementCallback = (transaction, result) => { console.warn(value) };
+    const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
 };
 

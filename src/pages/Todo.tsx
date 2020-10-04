@@ -65,7 +65,7 @@ const Todo: React.FC<iProps> = (props) => {
 							<Text style={style.title}>{item.name}</Text>
 							<Text style={style.comment}>{item.comment}</Text>
 						</View>
-						<View style={style.containerPercent}>
+						<View>
 							<Text style={style.percent}>{item.percent + "%"}</Text>
 						</View>
 					</Pressable>

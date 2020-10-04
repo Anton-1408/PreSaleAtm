@@ -3,16 +3,17 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { connect } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
-import { CheckBoxType } from './CheckBoxType';
-import { InputType } from './InputType';
-import { CheckBoxGroup } from './CheckBoxGroup';
-import { RadioBoxGroup } from './RadioBoxGroup';
-import  PhotoType from './PhotoType';
 import { typeAction } from '../../types/typeAction';
 import { getResult, initialState, getPhoto } from '../../lib/actionHelper';
 import { iRootReducers } from '../../types/reduxTypes';
 import { setResultAction } from '../../redux/actions/actions';
 import { setPhotosAction } from '../../redux/actions/actions';
+import { CheckBoxType } from './CheckBoxType';
+import { InputType } from './InputType';
+import { CheckBoxGroup } from './CheckBoxGroup';
+import { RadioBoxGroup } from './RadioBoxGroup';
+import  PhotoType from './PhotoType';
+import { NoActionType } from './NoActionType';
 
 interface iProps{
     actionKey: number,
@@ -89,6 +90,13 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhoto
         case typeAction.checkboxGroup:
             return(
                 <CheckBoxGroup
+                    initialState={state}
+                    setResult={setResult}
+                />
+            );
+        case typeAction.noAction:
+            return(
+                <NoActionType
                     initialState={state}
                     setResult={setResult}
                 />

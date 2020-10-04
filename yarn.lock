@@ -5866,6 +5866,11 @@ react-native-camera-kit@^8.0.4:
   dependencies:
     lodash "^4.14.2"
 
+react-native-device-info@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-6.1.0.tgz#0d1858e584fdfdddb016d0d7bc762c0ac240792f"
+  integrity sha512-IYvHMTVjQi3O8IX8hSK2oAzD2OCF/s/iXg5c9Ur0bcvqeqlrw/+5ucCPZ2vD5st2E8GqyJpzCZhbtP+sVLYppQ==
+
 react-native-elements@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-2.3.2.tgz#f6b974127a3484bb46ebd98fbc012fb2208decd7"

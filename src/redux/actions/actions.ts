@@ -20,6 +20,7 @@ import {
     SET_SERIAL_NUMBER_DEVICE,
     SET_RESULT_ACTION,
     SET_ACTION_PHOTOS,
+    SET_ACTION_FILES,
 } from "./types";
 import {
     iOrdertKey,

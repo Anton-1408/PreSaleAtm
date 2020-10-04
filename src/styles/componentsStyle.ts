@@ -110,13 +110,12 @@ export const componentsStyle =  StyleSheet.create({
         width: '100%',
         height: 60,
     },
-    conteinerContentPanel: {
-        paddingHorizontal: 10
-    },
     containerFilesContent:{
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+    },
+    contentPanelComment:{
+        marginHorizontal: 10
     },
     inputTypeStyle:{
         fontSize: 20,
@@ -142,12 +141,6 @@ export const componentsStyle =  StyleSheet.create({
     imageGallery:{
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    imagesContainer:{
-        justifyContent: 'space-between'
-    },
-    imageGalleryContainer:{
-        paddingVertical: 4
     },
     imageGalleryButton:{
         backgroundColor: colorBlack
@@ -189,5 +182,14 @@ export const componentsStyle =  StyleSheet.create({
         width: 40,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    noActionContainer:{
+        alignSelf: 'center',
+        marginTop: '50%'
+    },
+    noActionText:{
+        fontSize: 20,
+        fontFamily: 'OpenSans-BoldItalic',
+        color: '#9E9E9E'
+    },
 });

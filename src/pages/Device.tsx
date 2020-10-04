@@ -87,8 +87,7 @@ const Device: React.FC<iProps> = (props) => {
                         }}
                     >
                         <View
-                            style={[
-                                componentsStyle.deviceContainerId, {
+                            style={[componentsStyle.deviceContainerId, {
                                     backgroundColor: item.isStoped ? colorIsStop : (
                                         item.percent < 100 ? colorIsWork : colorIsDone
                                     )
@@ -107,7 +106,7 @@ const Device: React.FC<iProps> = (props) => {
                                 <Text style={[style.title, componentsStyle.deviceInformation]}>{item.serialNumber}</Text>
                             </View>
                         </View>
-                        <View style={style.containerPercent}>
+                        <View>
                             <Text style={style.percent}>{item.percent + "%"}</Text>
                         </View>
                     </Pressable>

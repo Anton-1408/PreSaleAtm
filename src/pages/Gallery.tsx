@@ -54,10 +54,9 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
                 horizontal={false}
                 keyExtractor={ (item: any) => item.name }
                 numColumns={countImageRow()}
-                columnWrapperStyle={componentsStyle.imagesContainer}
                 renderItem={({item}) => (
                     <Pressable
-                        style={componentsStyle.imageGalleryContainer}
+                        style={style.imageContainer}
                         onPress={() => {
                             setImages((prev: any) => {
                                 return prev.map((next: any) => {
