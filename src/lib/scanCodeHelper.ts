@@ -16,7 +16,7 @@ export const getDevicesList = (idOrder: number, setDevices: Function): void => {
         const listDevices: Array<Object> = [];
         for(let i = 0; i < len; i++){
             const row: any = rowList.item(i);
-            const item: any = {id: row.id, serialNumber: row.serial_number };
+            const item: Object = {id: row.id, serialNumber: row.serial_number };
             listDevices.push(item)
         }
         setDevices(listDevices);

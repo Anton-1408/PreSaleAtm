@@ -14,13 +14,13 @@ import { colorPress } from '../styles/constantStyle';
 import { setSerialNumberDevice } from '../redux/actions/actions';
 
 interface iProps{
-    serealNumber?: string,
-    setSerialNumber?: any
+    readonly setSerialNumber?: any
+    readonly serialNumber?: string,
 };
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        serealNumber: state.appStateReducer.serialNumber,
+        serialNumber: state.appStateReducer.serialNumber,
     }
 };
 
@@ -30,13 +30,13 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
     };
 };
 
-const SearchInput: React.FC<iProps> = ({serealNumber, setSerialNumber}) => {
+const SearchInput: React.FC<iProps> = ({serialNumber, setSerialNumber}) => {
     const navigation: profileScreenNavigationPropStack = useNavigation();
     return(
         <View style={componentsStyle.searchContainer}>
             <IconF name='search' color={colorIconSearch} size={20}/>
             <TextInput
-                value={serealNumber}
+                value={serialNumber}
                 placeholder='Серийный номер'
                 keyboardType={'numeric'}
                 onChangeText={(text) => {

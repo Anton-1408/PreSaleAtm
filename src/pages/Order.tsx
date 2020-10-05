@@ -11,13 +11,13 @@ import { getOrders } from '../lib/ordersHelper';
 import { desingColor, colorPress, colorWhite } from '../styles/constantStyle';
 
 interface iProps{
-    navigation: profileScreenNavigationPropStack,
-    route: profileScreenRoutePropOrder,
-    getIdUser: Function,
-    getHashCodeProjects: Function,
-    syncServer: Function,
-    getResultChecklist: Function,
-    setOrderId: Function
+    readonly route: profileScreenRoutePropOrder,
+    readonly navigation: profileScreenNavigationPropStack,
+    readonly getIdUser: Function,
+    readonly getHashCodeProjects: Function,
+    readonly syncServer: Function,
+    readonly getResultChecklist: Function,
+    readonly setOrderId: Function
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

@@ -7,8 +7,8 @@ import { setStopDevice } from '../../lib/actionHelper';
 import { useNavigation } from '@react-navigation/native';
 
 interface iProps{
-    deviceKey: number
-    actionKey: number,
+    readonly deviceKey: number
+    readonly actionKey: number,
 };
 
 export const ButtonStopDevice: React.FC<iProps> = ({deviceKey, actionKey}) => {

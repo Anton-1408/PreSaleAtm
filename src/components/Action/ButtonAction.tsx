@@ -5,9 +5,9 @@ import { ButtonReplayDevice } from './ButtonReplayDevice';
 import { iRootReducers } from '../../types/reduxTypes';
 
 interface iProps{
-    stoped: number,
-    deviceKey?: any,
-    actionKey?: any
+    readonly stoped: number,
+    readonly deviceKey?: any,
+    readonly actionKey?: any
 }
 
 const mapStateToProps = (state: iRootReducers) => {

@@ -10,7 +10,6 @@ import {
     typeAppStateReducer
 } from "../../types/reduxTypes";
 
-
 const initialState={
     serialNumber: '',
     modeWork: modeWork.todo,

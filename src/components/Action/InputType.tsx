@@ -3,9 +3,9 @@ import { TextInput } from 'react-native';
 import { componentsStyle } from '../../styles/componentsStyle';
 
 interface iProps{
-    typeKeyBoard: any,
-    setResult: Function,
-    initialState: string
+    readonly typeKeyBoard: any,
+    readonly setResult: Function,
+    readonly initialState: string
 }
 
 export const InputType: React.FC<iProps> = ({typeKeyBoard, setResult, initialState}) => {

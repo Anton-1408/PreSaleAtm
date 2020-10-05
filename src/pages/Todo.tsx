@@ -14,9 +14,9 @@ interface iProps{
 	readonly orderKey: number,
 	readonly deviceKey: number,
 	readonly typeWork: string
-	navigation: profileScreenNavigationPropStack,
-	route: profileScreenRoutePropTodo,
-	setTodoId: Function,
+	readonly route: profileScreenRoutePropTodo,
+	readonly navigation: profileScreenNavigationPropStack,
+	readonly setTodoId: Function,
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

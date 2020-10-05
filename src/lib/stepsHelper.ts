@@ -55,8 +55,8 @@ export const getSteps= (query: string, params: typeDbParams, setSteps: Function)
         const rowList: SQLite.ResultSetRowList = result.rows;
         const listSteps: Array<Object> = [];
         for(let i = 0; i < len; i++){
-            const row = rowList.item(i);
-            const item: any = {
+            const row: any = rowList.item(i);
+            const item: Object = {
                 id: row.id,
                 name: row.name,
                 comment: row.comment,

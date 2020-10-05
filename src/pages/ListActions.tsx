@@ -14,9 +14,9 @@ import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack } from '../st
 interface iProps{
     readonly stepKey: number,
     readonly deviceKey: number,
-    navigation: profileScreenNavigationPropStack,
-    route: profileScreenRoutePropListActions,
-    setActionId: Function,
+    readonly route: profileScreenRoutePropListActions,
+    readonly navigation: profileScreenNavigationPropStack,
+    readonly setActionId: Function,
 };
 
 const mapStateToProps = (state: iRootReducers) => {

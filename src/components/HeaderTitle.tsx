@@ -3,7 +3,7 @@ import { Text, View } from "react-native"
 import { style } from '../styles/style';
 
 interface iProps{
-    title: string
+    readonly title: string
 }
 
 export const HeaderTitle: React.FC<iProps> = ({title}) => {

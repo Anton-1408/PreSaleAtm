@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { FlatList } from 'react-native';
+import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { ActionContext } from '../../lib/actionHelper';
 import { componentsStyle } from '../../styles/componentsStyle';
 
 interface iProps{
-    setResult: Function,
-    initialState: string,
+    readonly setResult: Function,
+    readonly initialState: string,
 }
 
 export const RadioBoxGroup: React.FC<iProps> = ({initialState, setResult}) => {

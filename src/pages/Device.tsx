@@ -17,9 +17,9 @@ interface iProps{
     readonly serialNumberDevice: string,
     readonly typeWork: string,
     readonly stepKey: number,
-    navigation: profileScreenNavigationPropStack,
-    route: profileScreenRoutePropDevice,
-    setDiviceId: Function,
+    readonly route: profileScreenRoutePropDevice,
+    readonly navigation: profileScreenNavigationPropStack,
+    readonly setDiviceId: Function,
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { FlatList } from 'react-native';
+import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { ActionContext } from '../../lib/actionHelper';
 
 interface iProps{
-    setResult: Function,
-    initialState: Array<string>
+    readonly setResult: Function,
+    readonly initialState: Array<string>
 }
 
 export const CheckBoxGroup: React.FC<iProps> = ({setResult, initialState}) => {

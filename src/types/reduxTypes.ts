@@ -11,7 +11,7 @@ import {
     SET_SERIAL_NUMBER_DEVICE,
     SET_RESULT_ACTION,
     SET_ACTION_PHOTOS,
-    SET_ACTION_FILES
+    SET_SEND_FILES,
 } from "../redux/actions/types";
 
 export interface iOrdertKey{
@@ -75,6 +75,11 @@ export interface iSetPhotosAction{
     photoAction: Array<Object> | Object
 }
 
+export interface iSetSendFiles{
+    type: typeof SET_SEND_FILES,
+    actionFiles: FormData
+};
+
 export interface iHolderKeysReducerState{
     actionKey: number,
     stepKey: number,
@@ -85,9 +90,10 @@ export interface iHolderKeysReducerState{
 
 export interface iSyncDataReducer{
     idUser: string,
-    projectHash: any,
-    resultHash: any,
-    listResultsCheckList: any,
+    resultHash: Object,
+    projectHash: Object,
+    actionFiles: FormData,
+    listResultsCheckList: Array<Object>,
 };
 
 export interface iAppStateReducer{
@@ -97,11 +103,15 @@ export interface iAppStateReducer{
     photoAction: Array<Object> | Object,
 }
 
-export type typeHolderKeysReducer = iOrdertKey | iTodoKey | iDeviceKey | iStepKey | iActionKey;
+export type typeHolderKeysReducer = iOrdertKey | iTodoKey |
+                                    iDeviceKey | iStepKey |
+                                    iActionKey;
 
-export type typeSyncDataReducer = iHashcodeProjects | iResultCheckList | iUserId;
+export type typeSyncDataReducer = iHashcodeProjects | iResultCheckList |
+                                    iUserId | iSetSendFiles;
 
-export type typeAppStateReducer = iSetSerialNumberDevice | iModeWork | iSetResultAction | iSetPhotosAction;
+export type typeAppStateReducer = iSetSerialNumberDevice | iModeWork |
+                                    iSetResultAction | iSetPhotosAction;
 
 export interface iRootReducers{
     holderKeysReducer: iHolderKeysReducerState,

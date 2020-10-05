@@ -14,9 +14,9 @@ import { componentsStyle } from '../styles/componentsStyle';
 import { CheckPhoto } from '../components/CheckPhoto';
 
 interface iProps{
-    navigation: profileScreenNavigationPropStack,
-    route: profileScreenRoutePropGallery,
-    setPhotos: Function
+    readonly route: profileScreenRoutePropGallery,
+    readonly navigation: profileScreenNavigationPropStack,
+    readonly setPhotos: Function
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

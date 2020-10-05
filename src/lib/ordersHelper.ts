@@ -28,14 +28,13 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<string>
                                 GROUP by o.id`;
         const params: typeDbParams = [];
         const callBack: SQLite.StatementCallback = (transaction, result) => {
-            type typeRow = {id: number, name: string, percent: number, comment: string};
             const len: number = result.rows.length;
             const rowList: SQLite.ResultSetRowList = result.rows;
             const listOrder: Array<Object> = [];
 
             for(let i = 0; i < len; i++){
                 const row: any = rowList.item(i);
-                const item: typeRow = {
+                const item: Object = {
                     id: row.id,
                     name: row.name,
                     comment: row.comment,

@@ -2,18 +2,19 @@ import {
     SET_ID_USER,
     SET_RESULT_CHECK_LIST,
     SET_HASHCODE_PROJECTS,
+    SET_SEND_FILES
 } from "../actions/types";
 import {
     iSyncDataReducer,
     typeSyncDataReducer
 } from "../../types/reduxTypes";
 
-
 const initialState={
     idUser: "",
     resultHash: {},
     projectHash: {},
-    listResultsCheckList: {},
+    listResultsCheckList: [],
+    actionFiles: new FormData(),
 };
 
 export function syncDataReducer(state: iSyncDataReducer = initialState, action: typeSyncDataReducer){
@@ -33,6 +34,11 @@ export function syncDataReducer(state: iSyncDataReducer = initialState, action: 
                 ...state,
                 projectHash: action.projectHash,
                 resultHash: action.resultHash,
+            };
+        case SET_SEND_FILES:
+            return{
+                ...state,
+                actionFiles: action.actionFiles,
             };
         default:
             return state;

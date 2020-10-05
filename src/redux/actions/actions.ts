@@ -20,7 +20,7 @@ import {
     SET_SERIAL_NUMBER_DEVICE,
     SET_RESULT_ACTION,
     SET_ACTION_PHOTOS,
-    SET_ACTION_FILES,
+    SET_SEND_FILES,
 } from "./types";
 import {
     iOrdertKey,
@@ -34,9 +34,9 @@ import {
     iHashcodeProjects,
     iSetSerialNumberDevice,
     iSetResultAction,
-    iSetPhotosAction
+    iSetPhotosAction,
+    iSetSendFiles
 } from "../../types/reduxTypes";
-
 
 export function setIdUser(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch) => {
@@ -60,12 +60,50 @@ export function setIdUser(): ThunkAction<Promise<string>, iRootReducers, unknown
     };
 };
 
+export function setActionFiles(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+    return async (dispatch, getState) => {
+        return new Promise((resolve, reject) => {
+            const query: string = 'select name, type, id_action, id_device, uri from photos';
+            const params: typeDbParams = [];
+            const callBack: SQLite.StatementCallback = (transaction, result) => {
+                const len: number = result.rows.length;
+                const listRow: SQLite.ResultSetRowList = result.rows;
+                const sid = getState().syncDataReducer.idUser;
+                const listFiles: Array<Object> = [];
+                const listData: FormData = new FormData();
+                for(let i = 0; i < len; i++){
+                    const row: any = listRow.item(i);
+                    const item: Object = {
+                        name: row.name,
+                        type: row.type,
+                        idAction: row.id_action,
+                        idDevice: row.id_device,
+                        uri: row.uri,
+                    };
+                    listFiles.push(item);
+                }
+
+                listData.append('sid', sid);
+                listData.append('action', 'uploadProjectsFile');
+                listData.append("file", listData);
+                const resultValue: iSetSendFiles = {
+                    type: SET_SEND_FILES,
+                    actionFiles: listData,
+                }
+
+                dispatch(resultValue);
+                resolve("ActionFilesDone");
+            }
+            dbHelper(query, params, callBack);
+        });
+    }
+};
+
 export function setResultChecklist(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch) => {
         return new Promise((resolve, reject) => {
-            const query: string = `select r.id, r.id_device, r.id_action, r.value, r.date, r.fio, 
-                                        (select max(stoped) from results where id_device = r.id_device) as stoped from results r
-                                    where r.value is not null`;
+            const query: string = `select r.id, r.id_device, r.id_action, r.value, r.date, r.fio, (select max(stoped)
+                                        from results where id_device = r.id_device) as stoped from results r where r.value is not null`;
             const params: typeDbParams = [];
             const callBack: SQLite.StatementCallback = (transaction, result) => {
                 const len: number = result.rows.length;
@@ -74,9 +112,12 @@ export function setResultChecklist(): ThunkAction<Promise<string>, iRootReducers
                 for(let i = 0; i < len; i++){
                     const row: any = listRows.item(i);
                     const resParams: Object = {
-                        idRecord: row.id, idDevice: row.id_device,
-                        idAction: row.id_action, dt: row.date,
-                        value: row.value, stoped: row.stoped
+                        idRecord: row.id,
+                        idDevice: row.id_device,
+                        idAction: row.id_action,
+                        dt: row.date,
+                        value: row.value,
+                        stoped: row.stoped
                     };
                     results.push(resParams);
                 }
@@ -143,6 +184,19 @@ export function setOrders(): ThunkAction<Promise<any>, iRootReducers, unknown, A
         .catch((err: AxiosError) => {
 
         });
+    };
+};
+
+export function sendFiles(): ThunkAction<Promise<any>, iRootReducers, unknown, Action<Object>>{
+    return async (dispatch, getState) => {
+        const params: FormData = getState().syncDataReducer.actionFiles;
+        return await axios.post(urlServer + 'mobile/api001.php', params)
+        .then((res: AxiosResponse) => {
+
+        })
+        .catch((err: AxiosError) => {
+
+        })
     };
 };
 

@@ -6,7 +6,7 @@ import  SearchInput from './SearchInput';
 import { modeWork } from '../types/modeWork';
 
 interface iProps{
-    getModeWork?: string,
+    readonly getModeWork?: string,
 };
 
 const mapStateToProps = (state: iRootReducers) => {

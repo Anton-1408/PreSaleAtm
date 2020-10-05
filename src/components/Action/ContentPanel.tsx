@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Pressable, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { ActionContext } from '../../lib/actionHelper';

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { View, Pressable, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 import { style } from '../../styles/style';
 import { colorWhite, iconSize } from '../../styles/constantStyle';
-import { useNavigation } from '@react-navigation/native';
 import { iRootReducers } from '../../types/reduxTypes';
 import { connect } from 'react-redux';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { countImageRow } from '../../lib/galleryHelper';
 
 interface iProps{
-    initialState: any,
-    setResult: Function,
+    readonly initialState: any,
+    readonly setResult: Function,
     readonly photoAction: any
 };
 

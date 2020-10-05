@@ -9,8 +9,8 @@ import { saveSetting, getSetting } from '../lib/settingHelper';
 import { getVersion } from 'react-native-device-info';
 
 interface iProps{
-  navigation: profileScreenNavigationPropStack,
-  route: profileScreenRoutePropSetting,
+  readonly route: profileScreenRoutePropSetting,
+  readonly navigation: profileScreenNavigationPropStack,
 };
 
 const Setting: React.FC<iProps> = ({navigation}) => {

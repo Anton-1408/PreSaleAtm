@@ -15,13 +15,13 @@ import { StepStatus } from '../components/StepStatus';
 import { modeWork } from '../types/modeWork';
 
 interface iProps{
-    navigation: profileScreenNavigationPropStack,
-    route: profileScreenRoutePropStep,
-    todoKey: number,
-    orderKey: number,
-    deviceKey: number,
-    typeWork: string,
-    setStepId: Function,
+    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: profileScreenRoutePropStep,
+    readonly todoKey: number,
+    readonly orderKey: number,
+    readonly deviceKey: number,
+    readonly typeWork: string,
+    readonly setStepId: Function,
 }
 
 const mapStateToProps = (state: iRootReducers) => {

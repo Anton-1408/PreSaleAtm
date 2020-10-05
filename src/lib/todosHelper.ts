@@ -64,7 +64,7 @@ export const getTodos = (query: string, params: typeDbParams, useTodos: Function
         const listTodos: Array<Object> = [];
         for(let i = 0; i < len; i++){
             const row: any = listRow.item(i);
-            const item: any = {
+            const item: Object = {
                 id: row.id,
                 name: row.name,
                 comment: row.comment,

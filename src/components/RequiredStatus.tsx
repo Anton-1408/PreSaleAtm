@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
-    isRequired: number
+    readonly isRequired: number
 };
 
 export const RequiredStatus: React.FC<iProps> = ({isRequired}) => {

@@ -13,9 +13,9 @@ import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
-    navigation: profileScreenNavigationPropStack,
-    route: profileScreenRoutePropCamera,
-    setPhoto: Function
+    readonly route: profileScreenRoutePropCamera,
+    readonly navigation: profileScreenNavigationPropStack,
+    readonly setPhoto: Function
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

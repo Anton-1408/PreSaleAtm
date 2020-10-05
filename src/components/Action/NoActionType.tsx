@@ -3,8 +3,8 @@ import { Text, View } from 'react-native';
 import { componentsStyle } from '../../styles/componentsStyle';
 
 interface iProps{
-    initialState: number,
-    setResult: Function
+    readonly initialState: number,
+    readonly setResult: Function
 };
 
 export const NoActionType: React.FC<iProps> = ({initialState, setResult}) => {

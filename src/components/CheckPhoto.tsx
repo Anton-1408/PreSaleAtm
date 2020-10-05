@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { iconSize, colorWhite, colorIsDone } from '../styles/constantStyle';
 
 interface iProps{
-    check: boolean
+    readonly check: boolean
 }
 
 export const CheckPhoto: React.FC<iProps> = ({check}) => {

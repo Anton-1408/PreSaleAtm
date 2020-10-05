@@ -16,10 +16,10 @@ import { titlePage, colorBlack } from '../styles/constantStyle';
 interface iProps{
     readonly orderKey: number,
     readonly typeWork: string,
-    route: profileScreenRoutePropScanBarCode,
-    setSerialNumber: Function,
-    navigation: profileScreenNavigationPropStack,
-    setDeviceId: Function,
+    readonly route: profileScreenRoutePropScanBarCode,
+    readonly setSerialNumber: Function,
+    readonly navigation: profileScreenNavigationPropStack,
+    readonly setDeviceId: Function,
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

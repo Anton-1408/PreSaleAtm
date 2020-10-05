@@ -4,8 +4,8 @@ import { colorIsWork } from '../../styles/constantStyle';
 import { componentsStyle } from '../../styles/componentsStyle';
 
 interface iProps{
-  setResult: Function,
-  initialState: boolean,
+  readonly setResult: Function,
+  readonly initialState: boolean,
 }
 
 export const CheckBoxType: React.FC<iProps> = ({setResult, initialState}) => {

@@ -16,10 +16,10 @@ import  PhotoType from './PhotoType';
 import { NoActionType } from './NoActionType';
 
 interface iProps{
-    actionKey: number,
-    deviceKey: number,
-    setResult?: any,
-    setPhotos?: any,
+    readonly actionKey: number,
+    readonly deviceKey: number,
+    readonly setResult?: any,
+    readonly setPhotos?: any,
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {

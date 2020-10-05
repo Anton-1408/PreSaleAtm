@@ -1407,6 +1407,13 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/rn-swipeable-panel@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@types/rn-swipeable-panel/-/rn-swipeable-panel-1.2.1.tgz#8ba101836d57492a26a6bffe78d15188d32dc16d"
+  integrity sha512-Ps98M3FQzaeYrBBUQ738fYoe1/DWy309r54UsG6Z5J9OZyLt4DACrBRW9ZclWQBhW+Cx+XPPT5pTTK0BieVapQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"

@@ -1,9 +1,10 @@
 import React from 'react';
-import { typeDbParams } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
+import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 import { typeAction } from '../types/typeAction';
 
+type tDataTime = string | number;
 interface iContext{
     files: Array<Object>,
     extraParams: any,
@@ -39,7 +40,7 @@ export const getExtraParams = (idAction: number, setExtraParams: Function): void
         const listFiles: Array<Object> = [];
         for(let i = 0; i < len; i++){
             const row: any = rowList.item(i);
-            const item: any = {id: row.id, value: false, title: row.extra_params}
+            const item: Object = {id: row.id, value: false, title: row.extra_params}
             listFiles.push(item);
         }
         setExtraParams(listFiles)
@@ -56,7 +57,6 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
         if(len > 0){
             const row: any = rowList.item(0);
             let result: any = null;
-
             switch(type){
                 case typeAction.checkbox:
                         result = row.value == 1 ? true : false;
@@ -106,14 +106,16 @@ export const initialState = (type: string): any => {
 };
 
 export const saveResult = (idAction: number, idDevice: number, value: any): void => {
-    const query: string = 'replace into results (id_action, id_device, date, value) VALUES (?, ?, ?, ?)';
+    const query: string = `replace into results (id_action, id_device, date, value)
+                            VALUES (?, ?, ?, ?)`;
     const params: typeDbParams = [idAction, idDevice, nowDate(), value];
     const callBack: SQLite.StatementCallback = (transaction, result) => { };
     dbHelper(query, params, callBack);
 };
 
 export const savePhotoAction = (idAction: number, idDevice: number, files: Array<Object>): void => {
-    const query: string = 'replace into photos (id_action, id_device, name, uri, type) VALUES (?,?,?,?,?)';
+    const query: string = `replace into photos (id_action, id_device, name, uri, type)
+                            VALUES (?,?,?,?,?)`;
     const callBack : SQLite.StatementCallback = (transaction, result) => { };
     files.forEach((item: any) => {
         const params: typeDbParams = [idAction, idDevice, item.name, item.uri, item.type];
@@ -123,21 +125,20 @@ export const savePhotoAction = (idAction: number, idDevice: number, files: Array
 
 const nowDate = (): string => {
     const dateTime: Date = new Date();
-    let year: any = dateTime.getFullYear();
+
+    let year: number = dateTime.getFullYear();
     let month: any = dateTime.getMonth() + 1;
-    let day: any = dateTime.getDate();
+    let day: tDataTime = dateTime.getDate();
+    let hour: tDataTime = dateTime.getHours();
+    let minut: tDataTime = dateTime.getMinutes();
 
     month = month < 10 ? "0" + month : month;
     day = day < 10 ? "0" + day : day;
-    const date = year + "-" + month + "-" + day;
-
-    let hour: any = dateTime.getHours();
-    let minut: any = dateTime.getMinutes();
-
     minut = minut < 10 ? "0" + minut : minut;
     hour = hour < 10 ? "0" + hour : hour;
-    const time = hour + ":" + minut;
 
+    const time: string = hour + ":" + minut;
+    const date: string = year + "-" + month + "-" + day;
     return date + ' ' + time;
 };
 

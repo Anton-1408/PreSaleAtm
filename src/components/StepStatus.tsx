@@ -5,8 +5,8 @@ import { ImportantStatus } from './ImportantStatus';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
-    isImportant: number,
-    isRequired: number
+    readonly isImportant: number,
+    readonly isRequired: number
 }
 
 export const StepStatus: React.FC<iProps> = ({isImportant, isRequired}) => {

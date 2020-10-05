@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
-    isImportant: number,
+    readonly isImportant: number,
 }
 
 export const ImportantStatus: React.FC<iProps> = ({isImportant}) => {
