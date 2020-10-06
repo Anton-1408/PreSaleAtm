@@ -3,7 +3,7 @@ import {View, Text, FlatList, Pressable, RefreshControl} from 'react-native';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { profileScreenNavigationPropStack, profileScreenRoutePropOrder } from '../types/navigationTypes';
+import { tNavigationProp, tRoutePropOrder } from '../types/navigationTypes';
 import { style } from '../styles/style';
 import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey } from '../redux/actions/actions';
 import { iRootReducers } from '../types/reduxTypes';
@@ -11,8 +11,8 @@ import { getOrders } from '../lib/ordersHelper';
 import { desingColor, colorPress, colorWhite } from '../styles/constantStyle';
 
 interface iProps{
-    readonly route: profileScreenRoutePropOrder,
-    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: tRoutePropOrder,
+    readonly navigation: tNavigationProp,
     readonly getIdUser: Function,
     readonly getHashCodeProjects: Function,
     readonly syncServer: Function,

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
 import { colorIsWork, iconSize } from '../../styles/constantStyle';
-import { ActionContext } from '../../lib/actionHelper';
+import { ActionContext, iContext } from '../../lib/actionHelper';
 import { componentsStyle } from '../../styles/componentsStyle';
 
 interface iProps{
@@ -11,7 +11,7 @@ interface iProps{
 }
 
 export const RadioBoxGroup: React.FC<iProps> = ({initialState, setResult}) => {
-    const context = useContext(ActionContext);
+    const context: iContext = useContext(ActionContext);
     const [radioBoxes, setRadioBoxes] = useState([]);
     const [initialFlag, setInitialFlag] = useState(true);
 

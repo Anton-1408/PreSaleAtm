@@ -6,7 +6,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
-import { profileScreenNavigationPropStack, profileScreenRoutePropListActions } from '../types/navigationTypes';
+import { tNavigationProp, tRoutePropListActions } from '../types/navigationTypes';
 import { setActionKey } from '../redux/actions/actions';
 import { getListActions } from '../lib/listActionsHelper';
 import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack } from '../styles/constantStyle';
@@ -14,8 +14,8 @@ import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack } from '../st
 interface iProps{
     readonly stepKey: number,
     readonly deviceKey: number,
-    readonly route: profileScreenRoutePropListActions,
-    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: tRoutePropListActions,
+    readonly navigation: tNavigationProp,
     readonly setActionId: Function,
 };
 

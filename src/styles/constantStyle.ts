@@ -5,7 +5,7 @@ export const colorWhite: string = '#FFFFFF';
 export const colorTitle: string = '#F57C00';
 export const colorIsDone: string = '#388E3C';
 export const colorIsStop: string = '#C62828';
-export const colorIsPress: string = '#EEEEEE';
+export const colorIsPress: string = '#B0BEC5';
 export const colorIsWork: string = '#64B5F6';
 export const colorInActiveButton: string = '#BDBDBD';
 export const borderColorTabBar: string = '#F3E5F5';
@@ -15,7 +15,7 @@ export const sizeButtonAction: number = 40;
 
 export const colorPress: any = (pressed: boolean): Object => {
     return{
-        backgroundColor: pressed ? colorIsPress: colorWhite
+        backgroundColor: pressed ? colorIsPress: 'transparent'
     };
 };
 

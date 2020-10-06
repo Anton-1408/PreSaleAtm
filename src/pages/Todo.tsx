@@ -4,7 +4,7 @@ import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { iRootReducers } from '../types/reduxTypes';
-import { profileScreenRoutePropTodo, profileScreenNavigationPropStack } from '../types/navigationTypes'
+import { tRoutePropTodo, tNavigationProp } from '../types/navigationTypes'
 import { setTodoKey } from '../redux/actions/actions';
 import { style } from '../styles/style';
 import { getTodos, setQuery, setParams } from '../lib/todosHelper';
@@ -14,8 +14,8 @@ interface iProps{
 	readonly orderKey: number,
 	readonly deviceKey: number,
 	readonly typeWork: string
-	readonly route: profileScreenRoutePropTodo,
-	readonly navigation: profileScreenNavigationPropStack,
+	readonly route: tRoutePropTodo,
+	readonly navigation: tNavigationProp,
 	readonly setTodoId: Function,
 }
 

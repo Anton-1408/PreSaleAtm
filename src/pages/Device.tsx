@@ -4,7 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
-import { profileScreenRoutePropDevice, profileScreenNavigationPropStack } from '../types/navigationTypes';
+import { tRoutePropDevice, tNavigationProp } from '../types/navigationTypes';
 import { setDeviceKey } from '../redux/actions/actions';
 import { componentsStyle } from '../styles/componentsStyle';
 import { colorPress, colorIsStop, colorIsDone, colorIsWork, titlePage } from '../styles/constantStyle';
@@ -17,8 +17,8 @@ interface iProps{
     readonly serialNumberDevice: string,
     readonly typeWork: string,
     readonly stepKey: number,
-    readonly route: profileScreenRoutePropDevice,
-    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: tRoutePropDevice,
+    readonly navigation: tNavigationProp,
     readonly setDiviceId: Function,
 }
 

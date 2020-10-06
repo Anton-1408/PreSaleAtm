@@ -192,4 +192,7 @@ export const componentsStyle =  StyleSheet.create({
         fontFamily: 'OpenSans-BoldItalic',
         color: '#9E9E9E'
     },
+    extraPhotoText:{
+        marginLeft: 10
+    }
 });

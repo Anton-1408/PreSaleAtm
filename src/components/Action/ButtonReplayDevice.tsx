@@ -5,13 +5,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colorIsDone, sizeButtonAction, colorPress } from '../../styles/constantStyle';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { setReplayDevice } from '../../lib/actionHelper';
+import { tNavigationProp } from '../../types/navigationTypes';
 
 interface iProps{
     readonly deviceKey: number
 };
 
 export const ButtonReplayDevice: React.FC<iProps> = ({deviceKey}) => {
-    const navigation = useNavigation();
+    const navigation: tNavigationProp = useNavigation();
     return(
         <Pressable
             style={({ pressed }) => [

@@ -6,15 +6,15 @@ import { CameraKitCamera } from "react-native-camera-kit";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pressable, View, StatusBar, Platform } from 'react-native';
 import { iRootReducers } from '../types/reduxTypes';
-import { profileScreenNavigationPropStack, profileScreenRoutePropCamera } from '../types/navigationTypes';
+import { tNavigationProp,tRoutePropCamera } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
 import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
-    readonly route: profileScreenRoutePropCamera,
-    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: tRoutePropCamera,
+    readonly navigation: tNavigationProp,
     readonly setPhoto: Function
 }
 

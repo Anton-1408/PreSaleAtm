@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
-import { profileScreenNavigationPropStack, profileScreenRoutePropAction } from '../types/navigationTypes';
+import { tNavigationProp,tRoutePropAction } from '../types/navigationTypes';
 import { iconSize, colorWhite } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 import { ActionContext, getExtraFiles, getExtraParams, saveResult, deletePhoto, savePhotoAction } from '../lib/actionHelper';
@@ -17,8 +17,8 @@ interface iProps{
     readonly deviceKey: number,
     readonly actionKey: number,
     readonly actionResult: any
-    readonly route: profileScreenRoutePropAction,
-    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: tRoutePropAction,
+    readonly navigation: tNavigationProp,
 };
 
 const mapStateToProps = (state: iRootReducers) => {

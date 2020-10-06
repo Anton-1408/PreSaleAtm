@@ -3,17 +3,17 @@ import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
 import { colorIsWork, iconSize } from '../../styles/constantStyle';
 import { componentsStyle } from '../../styles/componentsStyle';
-import { ActionContext } from '../../lib/actionHelper';
+import { ActionContext, iContext } from '../../lib/actionHelper';
 
 interface iProps{
     readonly setResult: Function,
-    readonly initialState: Array<string>
+    readonly initialState: Array<string>,
 }
 
 export const CheckBoxGroup: React.FC<iProps> = ({setResult, initialState}) => {
     const [chechBoxes, setCheckBoxes] = useState([]);
     const [initialFlag, setInitialFlag] = useState(true);
-    const context = useContext(ActionContext);
+    const context: iContext = useContext(ActionContext);
 
     useEffect(() => {
         if(initialFlag){

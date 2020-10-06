@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { profileScreenNavigationPropStack, profileScreenRoutePropSetting } from '../types/navigationTypes';
+import { tNavigationProp, tRoutePropSetting } from '../types/navigationTypes';
 import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
 import { iconSize, colorWhite } from '../styles/constantStyle';
@@ -9,8 +9,8 @@ import { saveSetting, getSetting } from '../lib/settingHelper';
 import { getVersion } from 'react-native-device-info';
 
 interface iProps{
-  readonly route: profileScreenRoutePropSetting,
-  readonly navigation: profileScreenNavigationPropStack,
+  readonly route: tRoutePropSetting,
+  readonly navigation: tNavigationProp,
 };
 
 const Setting: React.FC<iProps> = ({navigation}) => {

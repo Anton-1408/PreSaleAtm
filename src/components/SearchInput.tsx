@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { iRootReducers } from '../types/reduxTypes';
 import { colorIconSearch } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
-import { profileScreenNavigationPropStack } from '../types/navigationTypes';
+import { tNavigationProp } from '../types/navigationTypes';
 import { colorPress } from '../styles/constantStyle';
 import { setSerialNumberDevice } from '../redux/actions/actions';
 
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 };
 
 const SearchInput: React.FC<iProps> = ({serialNumber, setSerialNumber}) => {
-    const navigation: profileScreenNavigationPropStack = useNavigation();
+    const navigation: tNavigationProp = useNavigation();
     return(
         <View style={componentsStyle.searchContainer}>
             <IconF name='search' color={colorIconSearch} size={20}/>

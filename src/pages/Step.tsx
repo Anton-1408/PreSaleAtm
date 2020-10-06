@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { profileScreenRoutePropStep, profileScreenNavigationPropStack } from '../types/navigationTypes';
+import { tRoutePropStep, tNavigationProp } from '../types/navigationTypes';
 import { colorPress, bcolorDone, colorDone, colorBlack, colorTitle } from '../styles/constantStyle';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
@@ -15,8 +15,8 @@ import { StepStatus } from '../components/StepStatus';
 import { modeWork } from '../types/modeWork';
 
 interface iProps{
-    readonly navigation: profileScreenNavigationPropStack,
-    readonly route: profileScreenRoutePropStep,
+    readonly navigation: tNavigationProp,
+    readonly route: tRoutePropStep,
     readonly todoKey: number,
     readonly orderKey: number,
     readonly deviceKey: number,

@@ -8,6 +8,7 @@ import { iRootReducers } from '../../types/reduxTypes';
 import { connect } from 'react-redux';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { countImageRow } from '../../lib/galleryHelper';
+import { tNavigationProp } from '../../types/navigationTypes';
 
 interface iProps{
     readonly initialState: any,
@@ -22,7 +23,7 @@ const mapStateToProps = (state: iRootReducers) => {
 };
 
 const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => {
-    const navigation = useNavigation();
+    const navigation: tNavigationProp = useNavigation();
     const [images, setImages] = useState([]);
 
     useEffect(() => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { PermissionsAndroid,Dimensions } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
 

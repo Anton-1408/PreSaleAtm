@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { View, Text, Pressable, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { ActionContext } from '../../lib/actionHelper';
+import { ActionContext, iContext } from '../../lib/actionHelper';
 import { style } from '../../styles/style';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { ExtraParamsPhoto } from './ExtraParamsPhoto';
+import { tRoutePropAction } from '../../types/navigationTypes';
 
 export const ContentPanel: React.FC = () => {
-    const context = useContext(ActionContext);
-    const route: any = useRoute();
+    const context: iContext = useContext(ActionContext);
+    const route: tRoutePropAction = useRoute();
 
     return(
         <View>

@@ -53,37 +53,34 @@ export type rootParamsModeWork={
     TodoMode: undefined,
 };
 
-export type profileScreenRoutePropOrder = RouteProp<rootParamsOrder, 'OrderAll'>
-                                            | RouteProp<rootParamsOrder, 'OrderInWork'>
-                                            | RouteProp<rootParamsOrder, 'OrderDone'>;
+export type tRoutePropOrder = RouteProp<rootParamsOrder, 'OrderAll'>
+                                | RouteProp<rootParamsOrder, 'OrderInWork'>
+                                | RouteProp<rootParamsOrder, 'OrderDone'>;
 
-export type profileScreenRoutePropDevice = RouteProp<rootParamsDevice, 'DevicesInWork'>
-                                            | RouteProp<rootParamsDevice, 'DevicesStop'>
-                                            | RouteProp<rootParamsDevice, 'DevicesDone'>;
+export type tRoutePropDevice = RouteProp<rootParamsDevice, 'DevicesInWork'>
+                                | RouteProp<rootParamsDevice, 'DevicesStop'>
+                                | RouteProp<rootParamsDevice, 'DevicesDone'>;
 
-export type profileScreenRoutePropTodo= RouteProp<rootParamsTodo, 'TodoAll'>
+export type tRoutePropTodo = RouteProp<rootParamsTodo, 'TodoAll'>
                                             | RouteProp<rootParamsTodo, 'TodoInWork'>
                                             | RouteProp<rootParamsTodo, 'TodoDone'>;
 
-export type profileScreenRoutePropSetting = RouteProp<rootStackParams, 'Setting'>;
+export type tRoutePropSetting = RouteProp<rootStackParams, 'Setting'>;
 
-export type profileScreenRoutePropModeWork = RouteProp<rootParamsModeWork, 'DeviceMode'>
-                                                | RouteProp<rootParamsModeWork, 'TodoMode'>
+export type tNavigationProp = StackNavigationProp<rootStackParams>;
 
-export type profileScreenNavigationPropStack = StackNavigationProp<rootStackParams>;
+export type tRoutePropScanBarCode = RouteProp<rootStackParams, 'ScanBarCode'>;
 
-export type profileScreenRoutePropScanBarCode = RouteProp<rootStackParams, 'ScanBarCode'>;
+export type tRoutePropStep = RouteProp<rootStackParams, 'Step'>;
 
-export type profileScreenRoutePropStep = RouteProp<rootStackParams, 'Step'>;
+export type tRoutePropListActions = RouteProp<rootStackParams, 'ListActions'>;
 
-export type profileScreenRoutePropListActions = RouteProp<rootStackParams, 'ListActions'>;
+export type tRoutePropAction = RouteProp<rootStackParams, 'Action'>;
 
-export type profileScreenRoutePropAction = RouteProp<rootStackParams, 'Action'>;
+export type tRoutePropGallery = RouteProp<rootStackParams, 'Gallery'>;
 
-export type profileScreenRoutePropGallery = RouteProp<rootStackParams, 'Gallery'>;
+export type tRoutePropCamera = RouteProp<rootStackParams, 'Camera'>;
 
-export type profileScreenRoutePropCamera = RouteProp<rootStackParams, 'Camera'>;
-
-export type profileScreenRoutePropViewPhoto = RouteProp<rootStackParams, 'ViewPhoto'>;
+export type tRoutePropViewPhoto = RouteProp<rootStackParams, 'ViewPhoto'>;
 
 

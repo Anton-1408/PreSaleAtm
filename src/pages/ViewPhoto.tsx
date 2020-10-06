@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -6,15 +6,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pressable, View, StatusBar, Text } from 'react-native';
 import ImageView from "react-native-image-viewing";
 import { iRootReducers } from '../types/reduxTypes';
-import { profileScreenNavigationPropStack, profileScreenRoutePropViewPhoto } from '../types/navigationTypes';
+import { tNavigationProp, tRoutePropViewPhoto } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
-import { colorBlack, colorWhite, iconSize, colorDone, iconSizeBar } from '../styles/constantStyle';
+import { colorBlack, colorWhite, iconSize, iconSizeBar } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 
 interface iProps{
-    readonly route: profileScreenRoutePropViewPhoto,
-    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: tRoutePropViewPhoto,
+    readonly navigation: tNavigationProp,
     readonly setPhoto: Function
 }
 

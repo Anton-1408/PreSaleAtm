@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { iRootReducers } from '../types/reduxTypes';
-import { profileScreenNavigationPropStack, profileScreenRoutePropGallery } from '../types/navigationTypes';
+import { tNavigationProp, tRoutePropGallery } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
 import { getPhotos, getAccessGallery, countImageRow } from '../lib/galleryHelper';
@@ -14,8 +14,8 @@ import { componentsStyle } from '../styles/componentsStyle';
 import { CheckPhoto } from '../components/CheckPhoto';
 
 interface iProps{
-    readonly route: profileScreenRoutePropGallery,
-    readonly navigation: profileScreenNavigationPropStack,
+    readonly route: tRoutePropGallery,
+    readonly navigation: tNavigationProp,
     readonly setPhotos: Function
 };
 

@@ -14,6 +14,7 @@ import { CheckBoxGroup } from './CheckBoxGroup';
 import { RadioBoxGroup } from './RadioBoxGroup';
 import  PhotoType from './PhotoType';
 import { NoActionType } from './NoActionType';
+import { tRoutePropAction } from '../../types/navigationTypes';
 
 interface iProps{
     readonly actionKey: number,
@@ -30,8 +31,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 };
 
 const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhotos}) => {
-    const route: any = useRoute();
-    const type = route.params.type;
+    const route: tRoutePropAction = useRoute();
+    const type: string = route.params.type;
     const [state, setInitialState] = useState(initialState(type));
 
     const removePhotosFromStore = () => {
@@ -39,7 +40,7 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhoto
     };
 
     useEffect(() => {
-        if(route.params.type === typeAction.photo){
+        if(type === typeAction.photo){
             getPhoto(actionKey, deviceKey,  setInitialState)
             return removePhotosFromStore;
         }
