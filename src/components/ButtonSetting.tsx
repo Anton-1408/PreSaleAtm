@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native';
 import { tNavigationProp } from '../types/navigationTypes';
 import { componentsStyle } from '../styles/componentsStyle';
-import { iconSizeBar, colorWhite, colorPress } from '../styles/constantStyle';
+import { iconSizeBar, colorWhite } from '../styles/constantStyle';
 
 export const ButtonSetting: React.FC = ({}) => {
     const navigation: tNavigationProp = useNavigation();

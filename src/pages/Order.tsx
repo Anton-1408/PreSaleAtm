@@ -46,16 +46,19 @@ const Order: React.FC<iProps> = (props) => {
 
     const getDataFromServer = (): void => {
         setRefresh(true);
-        getIdUser().then(() => {
-            getHashCodeProjects().then(() => {
-                getResultChecklist().then(() => {
-                    syncServer().then(() => {
-                        getOrders(setOrders, route.name).then(() => {
-                            setRefresh(false);
-                        })
-                    });
-                });
-            });
+        Promise.all([
+            getIdUser(),
+            getHashCodeProjects(),
+            getResultChecklist(),
+        ])
+        .then(() => {
+            syncServer()
+            .then(() => {
+                getOrders(setOrders, route.name)
+                .then(() => {
+                    setRefresh(false);
+                })
+            })
         });
     };
 

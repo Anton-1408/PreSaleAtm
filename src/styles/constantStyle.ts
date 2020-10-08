@@ -27,6 +27,6 @@ export const colorDone: any = (isDone: boolean, colorText: string): string => {
     return  isDone ? colorWhite : colorText;
 };
 
-export const titlePage: any = (title: string) => {
+export const titlePage: any = (title: string): string => {
     return '#' + title;
 };

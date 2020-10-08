@@ -46,9 +46,7 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                 visible={true}
                 presentationStyle="fullScreen"
                 swipeToCloseEnabled={false}
-                onRequestClose={() => {
-                    navigation.goBack()
-                }}
+                onRequestClose={() => { }}
                 HeaderComponent={(index) => (
                     <View style={componentsStyle.photoViewHeader}>
                         <Text style={componentsStyle.photoViewTitle}>

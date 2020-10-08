@@ -38,7 +38,7 @@ import {
     iSetSendFiles
 } from "../../types/reduxTypes";
 
-export function setIdUser(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+export function setIdUser(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch) => {
         return new Promise((resolve, reject) => {
             const query: string = 'select sid from settings';
@@ -53,14 +53,14 @@ export function setIdUser(): ThunkAction<Promise<string>, iRootReducers, unknown
                     };
                     dispatch(idIser);
                 }
-                resolve("idUserDone");
+                resolve();
             };
             dbHelper(query, params, callBack);
         });
     };
 };
 
-export function setActionFiles(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+export function setActionFiles(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch, getState) => {
         return new Promise((resolve, reject) => {
             const query: string = 'select name, type, id_action, id_device, uri from photos';
@@ -92,14 +92,14 @@ export function setActionFiles(): ThunkAction<Promise<string>, iRootReducers, un
                 }
 
                 dispatch(resultValue);
-                resolve("ActionFilesDone");
+                resolve();
             }
             dbHelper(query, params, callBack);
         });
     }
 };
 
-export function setResultChecklist(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+export function setResultChecklist(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch) => {
         return new Promise((resolve, reject) => {
             const query: string = `select r.id, r.id_device, r.id_action, r.value, r.date, r.fio, (select max(stoped)
@@ -128,14 +128,14 @@ export function setResultChecklist(): ThunkAction<Promise<string>, iRootReducers
                 };
 
                 dispatch(resultValue);
-                resolve("resultsDone")
+                resolve()
             };
             dbHelper(query, params, callBack);
         });
     };
 };
 
-export function setHashCodeProjects(): ThunkAction<Promise<string>, iRootReducers, unknown, Action<Object>>{
+export function setHashCodeProjects(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch) => {
         return new Promise((resolve, reject) => {
             const query: string = 'select id, order_hash, result_hash from orders';
@@ -159,14 +159,14 @@ export function setHashCodeProjects(): ThunkAction<Promise<string>, iRootReducer
                 };
 
                 dispatch(value);
-                resolve("hashCodesDone");
+                resolve();
             };
             dbHelper(query, params, callBack);
         })
     };
 };
 
-export function setOrders(): ThunkAction<Promise<any>, iRootReducers, unknown, Action<Object>>{
+export function setOrders(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch, getState) => {
         return await axios.post(urlServer + 'mobile/api001.php', {
             sid: getState().syncDataReducer.idUser,
@@ -187,7 +187,7 @@ export function setOrders(): ThunkAction<Promise<any>, iRootReducers, unknown, A
     };
 };
 
-export function sendFiles(): ThunkAction<Promise<any>, iRootReducers, unknown, Action<Object>>{
+export function sendFiles(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch, getState) => {
         const params: FormData = getState().syncDataReducer.actionFiles;
         return await axios.post(urlServer + 'mobile/api001.php', params)

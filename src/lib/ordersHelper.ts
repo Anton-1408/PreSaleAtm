@@ -3,7 +3,7 @@ import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 import { filterByInWork, filterByDone, filterByAll, calculationPercent } from './filterListDataPage';
 
-export const getOrders = (setOrder: Function, namePage: string): Promise<string> => {
+export const getOrders = (setOrder: Function, namePage: string): Promise<void> => {
     return new Promise((resolve, reject) => {
         const query: string = `select o.id, o.name, o.comment, a.actions * d.device total, a.result  from orders o
                                     LEFT JOIN todos t
@@ -44,7 +44,7 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<string>
             }
 
             setOrder(orderFilter(listOrder, namePage));
-            resolve('OrderGetDone');
+            resolve();
         };
         dbHelper(query, params, callBack);
     });

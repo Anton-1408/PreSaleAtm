@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { colorIsStop, sizeButtonAction, colorPress } from '../../styles/constantStyle';
+import { colorIsStop, sizeButtonAction } from '../../styles/constantStyle';
 import { tNavigationProp } from '../../types/navigationTypes';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { setStopDevice } from '../../lib/actionHelper';
