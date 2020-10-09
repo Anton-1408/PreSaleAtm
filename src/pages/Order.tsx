@@ -51,14 +51,13 @@ const Order: React.FC<iProps> = (props) => {
             getHashCodeProjects(),
             getResultChecklist(),
         ])
-        .then(() => {
-            syncServer()
-            .then(() => {
-                getOrders(setOrders, route.name)
-                .then(() => {
-                    setRefresh(false);
-                })
-            })
+        .then(async () => {
+            try{
+                await syncServer();
+                await getOrders(setOrders, route.name);
+                setRefresh(false);
+            }
+            catch(e){}
         });
     };
 

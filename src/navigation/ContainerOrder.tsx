@@ -2,7 +2,7 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Order from '../pages/Order';
 import { rootParamsOrder } from "../types/navigationTypes";
-import { desingColor } from '../styles/constantStyle';
+import { desingColor, colorWhite, colorInActiveButton, borderColorTabBar } from '../styles/constantStyle';
 
 const Tab = createMaterialTopTabNavigator<rootParamsOrder>();
 
@@ -10,10 +10,10 @@ const ContainerOrder: React.FC = () => {
     return(
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: '#ffffff',
-                inactiveTintColor: '#BDBDBD',
+                activeTintColor: colorWhite,
+                inactiveTintColor: colorInActiveButton,
                 indicatorStyle:{
-                    borderBottomColor: '#F3E5F5',
+                    borderBottomColor: borderColorTabBar,
                     borderBottomWidth: 3,
                     borderRadius: 2,
                 },

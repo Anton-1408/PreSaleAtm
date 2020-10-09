@@ -25,7 +25,7 @@ interface iProps{
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
     return{
-        setResult: (value: number) => dispatch(setResultAction(value)),
+        setResult: (value: any) => dispatch(setResultAction(value)),
         setPhotos: (paths: Array<Object>) => dispatch(setPhotosAction(paths))
     }
 };
