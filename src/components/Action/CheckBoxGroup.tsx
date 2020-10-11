@@ -17,7 +17,7 @@ export const CheckBoxGroup: React.FC<iProps> = ({setResult, initialState}) => {
 
     useEffect(() => {
         if(initialFlag){
-            const arrChecked = context.extraParams;
+            const arrChecked: any = [...context.extraParams];
             initialState.forEach((el: string) => {
                 arrChecked.forEach((item: any) => {
                     if(el === item.title)
@@ -27,7 +27,6 @@ export const CheckBoxGroup: React.FC<iProps> = ({setResult, initialState}) => {
             arrChecked.length > 0 ? setInitialFlag(false) : setInitialFlag(true)
             setCheckBoxes(arrChecked);
         }
-
     }, [initialState, context]);
 
     useEffect(() => {
@@ -51,8 +50,10 @@ export const CheckBoxGroup: React.FC<iProps> = ({setResult, initialState}) => {
                     onPress={() => {
                         setCheckBoxes((prev: any) => {
                             return prev.map((next: any) => {
-                                return next.id === item.id ?
-                                    {...next, value: !next.value} : next;
+                                return next.id === item.id ? {
+                                    ...next,
+                                    value: !next.value
+                                } : next;
                             })
                         });
                     }}

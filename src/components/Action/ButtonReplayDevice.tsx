@@ -15,9 +15,7 @@ export const ButtonReplayDevice: React.FC<iProps> = ({deviceKey}) => {
     const navigation: tNavigationProp = useNavigation();
     return(
         <Pressable
-            style={({ pressed }) => [
-                componentsStyle.buttonBarContainer
-            ]}
+            style={componentsStyle.buttonBarContainer}
             onPress={() => {
                 setReplayDevice(deviceKey);
                 navigation.goBack();

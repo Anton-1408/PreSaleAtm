@@ -16,9 +16,7 @@ export const ButtonStopDevice: React.FC<iProps> = ({deviceKey, actionKey}) => {
     const navigation: tNavigationProp = useNavigation();
     return(
         <Pressable
-            style={({ pressed }) => [
-                componentsStyle.buttonBarContainer
-            ]}
+            style={componentsStyle.buttonBarContainer}
             onPress={() => {
                 setStopDevice(actionKey, deviceKey);
                 navigation.goBack();

@@ -67,7 +67,11 @@ const ListActions: React.FC<iProps> = (props) => {
                         }}
                     >
                         <View style={style.containerText}>
-                            <Text style={[style.title, { color: colorDone(item.isDone, colorTitle) }]}>{item.name}</Text>
+                            <Text
+                                style={[style.title, { color: colorDone(item.isDone, colorTitle) }]}
+                            >
+                                {item.name}
+                            </Text>
                             <Text
                                 style={[style.comment, { color: colorDone(item.isDone, colorBlack)}]}
                             >

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { tNavigationProp, tRoutePropSetting } from '../types/navigationTypes';
 import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
 import { iconSize, colorWhite } from '../styles/constantStyle';
 import { saveSetting, getSetting } from '../lib/settingHelper';
 import { getVersion } from 'react-native-device-info';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface iProps{
   readonly route: tRoutePropSetting,

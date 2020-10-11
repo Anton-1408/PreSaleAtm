@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Pressable, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -13,7 +13,7 @@ import { tNavigationProp } from '../../types/navigationTypes';
 interface iProps{
     readonly initialState: any,
     readonly setResult: Function,
-    readonly photoAction: any
+    readonly photoAction?: any
 };
 
 const mapStateToProps = (state: iRootReducers) => {
@@ -33,7 +33,7 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
                 return newState;
             }
             else{
-                const arrImg: any = prev.map((item: any) => item);
+                const arrImg: any = [...prev];
                 const findeImg = arrImg.findIndex((item: any) => {
                     return item.name === photoAction.name;
                 });

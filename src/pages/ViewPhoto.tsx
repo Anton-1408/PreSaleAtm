@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pressable, View, StatusBar, Text } from 'react-native';
-import ImageView from "react-native-image-viewing";
 import { iRootReducers } from '../types/reduxTypes';
 import { tNavigationProp, tRoutePropViewPhoto } from '../types/navigationTypes';
 import { setPhotosAction } from '../redux/actions/actions';
 import { style } from '../styles/style';
 import { colorBlack, colorWhite, iconSize, iconSizeBar } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ImageView from "react-native-image-viewing";
 
 interface iProps{
     readonly route: tRoutePropViewPhoto,

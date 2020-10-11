@@ -57,7 +57,7 @@ const Order: React.FC<iProps> = (props) => {
                 await getOrders(setOrders, route.name);
                 setRefresh(false);
             }
-            catch(e){}
+            catch(e){ }
         });
     };
 

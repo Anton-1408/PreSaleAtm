@@ -9,9 +9,9 @@ import { iconSize, colorWhite } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
 import { ActionContext, getExtraFiles, getExtraParams, saveResult, deletePhoto, savePhotoAction } from '../lib/actionHelper';
 import { SwipperPanel } from '../components/Action/SwipperPanel'
-import ActionType from '../components/Action/ActionType';
 import { colorIsWork } from '../styles/constantStyle';
 import { typeAction } from '../types/typeAction';
+import ActionType from '../components/Action/ActionType';
 
 interface iProps{
     readonly deviceKey: number,
@@ -66,9 +66,7 @@ const Action: React.FC<iProps> = (props) => {
         >
             <View style={style.container}>
                 <Pressable
-                    style={({ pressed }) => [
-                        componentsStyle.actionContainerComment
-                    ]}
+                    style={componentsStyle.actionContainerComment}
                     onPress={() => {
                         setStatePanel(true);
                     }}

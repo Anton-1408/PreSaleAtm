@@ -30,7 +30,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
 
     useEffect(() => {
         getAccessGallery().then((granted) => {
-            if( granted === PermissionsAndroid.RESULTS.GRANTED ){
+            if(granted === PermissionsAndroid.RESULTS.GRANTED){
                 getPhotos(setImages)
             }
         });

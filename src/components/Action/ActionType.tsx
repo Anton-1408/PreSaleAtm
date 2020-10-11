@@ -62,7 +62,6 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhoto
                 <PhotoType
                     initialState={state}
                     setResult={setResult}
-                    photoAction={[]}
                 />
             );
         case typeAction.textInput:
@@ -106,7 +105,7 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhoto
             return(
                 <Fragment>
                 </Fragment>
-            )
+            );
     };
 };
 

@@ -47,11 +47,7 @@ export function setIdUser(): ThunkAction<Promise<void>, iRootReducers, unknown, 
                 const len: number = result.rows.length;
                 if(len){
                     const listRow: SQLite.ResultSetRowList = result.rows;
-                    const idIser: iUserId = {
-                        type: SET_ID_USER,
-                        idUser: listRow.item(0).sid
-                    };
-                    dispatch(idIser);
+                    dispatch(setValueIdUser(listRow.item(0).sid));
                 }
                 resolve();
             };
@@ -82,16 +78,10 @@ export function setActionFiles(): ThunkAction<Promise<void>, iRootReducers, unkn
                     };
                     listFiles.push(item);
                 }
-
                 listData.append('sid', sid);
                 listData.append('action', 'uploadProjectsFile');
-                listData.append("file", listData);
-                const resultValue: iSetSendFiles = {
-                    type: SET_SEND_FILES,
-                    actionFiles: listData,
-                }
-
-                dispatch(resultValue);
+                listData.append("file", listFiles);
+                dispatch(setValueFiles(listData));
                 resolve();
             }
             dbHelper(query, params, callBack);
@@ -121,13 +111,7 @@ export function setResultChecklist(): ThunkAction<Promise<void>, iRootReducers, 
                     };
                     results.push(resParams);
                 }
-
-                const resultValue: iResultCheckList={
-                    type: SET_RESULT_CHECK_LIST,
-                    listResultsCheckList: results,
-                };
-
-                dispatch(resultValue);
+                dispatch(setValueResults(results));
                 resolve()
             };
             dbHelper(query, params, callBack);
@@ -145,20 +129,12 @@ export function setHashCodeProjects(): ThunkAction<Promise<void>, iRootReducers,
                 const listRow: SQLite.ResultSetRowList = result.rows;
                 const projectHash: any = {}
                 const resultHash: any = {};
-
                 for(let i = 0; i < len; i++){
                     const row: any = listRow.item(i);
                     projectHash[row.id] = row.order_hash;
                     resultHash[row.id] = row.result_hash;
                 }
-
-                const value: iHashcodeProjects =  {
-                    type: SET_HASHCODE_PROJECTS,
-                    projectHash: projectHash,
-                    resultHash: resultHash,
-                };
-
-                dispatch(value);
+                dispatch(setValueHashs(projectHash, resultHash));
                 resolve();
             };
             dbHelper(query, params, callBack);
@@ -198,6 +174,35 @@ export function sendFiles(): ThunkAction<Promise<void>, iRootReducers, unknown, 
 
         })
     };
+};
+
+function setValueIdUser(value: string): iUserId{
+    return{
+        type: SET_ID_USER,
+        idUser: value
+    }
+};
+
+function setValueFiles(value: FormData): iSetSendFiles{
+    return{
+        type: SET_SEND_FILES,
+        actionFiles: value,
+    }
+};
+
+function setValueResults(value: Array<Object>): iResultCheckList{
+    return{
+        type: SET_RESULT_CHECK_LIST,
+        listResultsCheckList: value,
+    }
+};
+
+function setValueHashs(projectHash: Array<Object>, resultHash: Array<Object>): iHashcodeProjects{
+    return{
+        type: SET_HASHCODE_PROJECTS,
+        projectHash: projectHash,
+        resultHash: resultHash,
+    }
 };
 
 export function setModeWork(value: string): iModeWork{

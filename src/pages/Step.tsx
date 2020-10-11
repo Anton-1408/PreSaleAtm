@@ -3,7 +3,6 @@ import { FlatList, Pressable, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { tRoutePropStep, tNavigationProp } from '../types/navigationTypes';
 import { colorPress, bcolorDone, colorDone, colorBlack, colorTitle } from '../styles/constantStyle';
 import { style } from '../styles/style';
@@ -13,6 +12,7 @@ import { getSteps, setParams, setQuery } from '../lib/stepsHelper';
 import { componentsStyle } from '../styles/componentsStyle';
 import { StepStatus } from '../components/StepStatus';
 import { modeWork } from '../types/modeWork';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface iProps{
     readonly navigation: tNavigationProp,
