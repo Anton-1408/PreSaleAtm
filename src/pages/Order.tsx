@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
     return{
         getIdUser: () => dispatch(setIdUser()),
         getHashCodeProjects: () => dispatch(setHashCodeProjects()),
-        syncServer: () => dispatch(setOrders()),
         getResultChecklist: () => dispatch(setResultChecklist()),
+        syncServer: () => dispatch(setOrders()),
         setOrderId: (id: number) => dispatch(setOrderKey(id)),
     };
 };
@@ -55,9 +55,11 @@ const Order: React.FC<iProps> = (props) => {
             try{
                 await syncServer();
                 await getOrders(setOrders, route.name);
-                setRefresh(false);
             }
             catch(e){ }
+            finally{
+                setRefresh(false);
+            }
         });
     };
 

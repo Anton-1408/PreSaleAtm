@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { ButtonStopDevice } from './ButtonStopDevice';
 import { ButtonReplayDevice } from './ButtonReplayDevice';
 import { iRootReducers } from '../../types/reduxTypes';
+import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/holderKeysSelectors';
 
 interface iProps{
     readonly stoped: number,
@@ -12,8 +13,8 @@ interface iProps{
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        deviceKey: state.holderKeysReducer.deviceKey,
-        actionKey: state.holderKeysReducer.actionKey,
+        deviceKey: selectorDeviceKey(state),
+        actionKey: selectorActionKey(state),
     }
 };
 

@@ -13,6 +13,8 @@ import { componentsStyle } from '../styles/componentsStyle';
 import { StepStatus } from '../components/StepStatus';
 import { modeWork } from '../types/modeWork';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { selectorOrderKey, selectorTodoKey, selectorDeviceKey } from '../redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from '../redux/selectors/appStateSelectors';
 
 interface iProps{
     readonly navigation: tNavigationProp,
@@ -26,10 +28,10 @@ interface iProps{
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        todoKey: state.holderKeysReducer.todoKey,
-        orderKey: state.holderKeysReducer.orderKey,
-        deviceKey: state.holderKeysReducer.deviceKey,
-        typeWork: state.appStateReducer.modeWork
+        todoKey: selectorTodoKey(state),
+        orderKey: selectorOrderKey(state),
+        deviceKey: selectorDeviceKey(state),
+        typeWork: selectorTypeWork(state)
     }
 };
 

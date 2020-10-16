@@ -12,21 +12,17 @@ interface iProps{
 
 export const CheckBoxGroup: React.FC<iProps> = ({setResult, initialState}) => {
     const [chechBoxes, setCheckBoxes] = useState([]);
-    const [initialFlag, setInitialFlag] = useState(true);
     const context: iContext = useContext(ActionContext);
 
     useEffect(() => {
-        if(initialFlag){
-            const arrChecked: any = [...context.extraParams];
-            initialState.forEach((el: string) => {
-                arrChecked.forEach((item: any) => {
-                    if(el === item.title)
-                        item.value = true
-                    });
+        const arrChecked: any = [...context.extraParams];
+        initialState.forEach((el: string) => {
+            arrChecked.forEach((item: any) => {
+                if(el === item.title)
+                    item.value = true
             });
-            arrChecked.length > 0 ? setInitialFlag(false) : setInitialFlag(true)
-            setCheckBoxes(arrChecked);
-        }
+        });
+        setCheckBoxes(arrChecked);
     }, [initialState, context]);
 
     useEffect(() => {

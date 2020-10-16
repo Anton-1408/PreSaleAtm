@@ -10,6 +10,7 @@ import { tNavigationProp, tRoutePropListActions } from '../types/navigationTypes
 import { setActionKey } from '../redux/actions/actions';
 import { getListActions } from '../lib/listActionsHelper';
 import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack } from '../styles/constantStyle';
+import { selectorStepKey, selectorDeviceKey } from '../redux/selectors/holderKeysSelectors';
 
 interface iProps{
     readonly stepKey: number,
@@ -21,8 +22,8 @@ interface iProps{
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        stepKey: state.holderKeysReducer.stepKey,
-        deviceKey: state.holderKeysReducer.deviceKey,
+        stepKey: selectorStepKey(state),
+        deviceKey: selectorDeviceKey(state),
     }
 };
 

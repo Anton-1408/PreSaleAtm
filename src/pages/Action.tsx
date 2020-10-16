@@ -1,36 +1,35 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
 import { tNavigationProp,tRoutePropAction } from '../types/navigationTypes';
-import { iconSize, colorWhite } from '../styles/constantStyle';
+import { iconSize } from '../styles/constantStyle';
 import { componentsStyle } from '../styles/componentsStyle';
-import { ActionContext, getExtraFiles, getExtraParams, saveResult, deletePhoto, savePhotoAction } from '../lib/actionHelper';
+import { ActionContext, getExtraFiles, getExtraParams } from '../lib/actionHelper';
 import { SwipperPanel } from '../components/Action/SwipperPanel'
 import { colorIsWork } from '../styles/constantStyle';
-import { typeAction } from '../types/typeAction';
 import ActionType from '../components/Action/ActionType';
+import { selectorDeviceKey, selectorActionKey } from '../redux/selectors/holderKeysSelectors';
+import SaveResult from '../components/Action/SaveResult';
 
 interface iProps{
     readonly deviceKey: number,
     readonly actionKey: number,
-    readonly actionResult: any
     readonly route: tRoutePropAction,
     readonly navigation: tNavigationProp,
 };
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        deviceKey: state.holderKeysReducer.deviceKey,
-        actionKey: state.holderKeysReducer.actionKey,
-        actionResult: state.appStateReducer.resultAction
+        deviceKey: selectorDeviceKey(state),
+        actionKey: selectorActionKey(state),
     }
 };
 
 const Action: React.FC<iProps> = (props) => {
-    const { navigation, actionKey, deviceKey, actionResult, route } = props;
+    const { navigation, actionKey, deviceKey } = props;
 
     const [extraFiles, setExtraFile] = useState([]);
     const [extraParams, setExtraParams] = useState([]);
@@ -43,19 +42,6 @@ const Action: React.FC<iProps> = (props) => {
         });
         return unsubscribe;
     }, [navigation]);
-
-    const setResult = useCallback(() => {
-        const type = route.params.type;
-        if(type === typeAction.photo){
-            deletePhoto(actionKey, deviceKey);
-            saveResult(actionKey, deviceKey, actionResult.length);
-            savePhotoAction(actionKey, deviceKey, actionResult);
-        }
-        else{
-            saveResult(actionKey, deviceKey, actionResult);
-        }
-        navigation.goBack();
-    }, [actionResult]);
 
     return(
         <ActionContext.Provider
@@ -86,12 +72,11 @@ const Action: React.FC<iProps> = (props) => {
                         setStatePanel(false);
                     }}
                 />
-                <Pressable
-                    style={style.button}
-                    onPress={setResult}
-                >
-                    <Icon name='check' size={iconSize} color={colorWhite}/>
-                </Pressable>
+                <SaveResult
+                    deviceKey={deviceKey}
+                    actionKey={actionKey}
+                />
+
             </View>
         </ActionContext.Provider>
     );

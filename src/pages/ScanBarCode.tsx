@@ -11,7 +11,8 @@ import { setDeviceKey, setSerialNumberDevice } from '../redux/actions/actions';
 import { getPermissions, getDevicesList, searchDevice } from '../lib/scanCodeHelper';
 import { modeWork } from '../types/modeWork';
 import { titlePage, colorBlack } from '../styles/constantStyle';
-
+import { selectorOrderKey } from '../redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from '../redux/selectors/appStateSelectors';
 
 interface iProps{
     readonly orderKey: number,
@@ -31,8 +32,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        orderKey: state.holderKeysReducer.orderKey,
-        typeWork: state.appStateReducer.modeWork,
+        orderKey: selectorOrderKey(state),
+        typeWork: selectorTypeWork(state),
     };
 };
 

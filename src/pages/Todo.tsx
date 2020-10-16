@@ -9,6 +9,8 @@ import { setTodoKey } from '../redux/actions/actions';
 import { style } from '../styles/style';
 import { getTodos, setQuery, setParams } from '../lib/todosHelper';
 import { colorPress } from '../styles/constantStyle';
+import { selectorOrderKey, selectorDeviceKey } from '../redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from '../redux/selectors/appStateSelectors';
 
 interface iProps{
 	readonly orderKey: number,
@@ -27,9 +29,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-		orderKey: state.holderKeysReducer.orderKey,
-		deviceKey: state.holderKeysReducer.deviceKey,
-		typeWork: state.appStateReducer.modeWork,
+		orderKey: selectorOrderKey(state),
+		deviceKey: selectorDeviceKey(state),
+		typeWork: selectorTypeWork(state),
     };
 };
 

@@ -12,6 +12,7 @@ import { componentsStyle } from '../styles/componentsStyle';
 import { tNavigationProp } from '../types/navigationTypes';
 import { colorPress } from '../styles/constantStyle';
 import { setSerialNumberDevice } from '../redux/actions/actions';
+import { selectorSerialNumbDevice } from '../redux/selectors/appStateSelectors';
 
 interface iProps{
     readonly setSerialNumber?: any
@@ -20,7 +21,7 @@ interface iProps{
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        serialNumber: state.appStateReducer.serialNumber,
+        serialNumber: selectorSerialNumbDevice(state),
     }
 };
 

@@ -13,16 +13,12 @@ interface iProps{
 export const RadioBoxGroup: React.FC<iProps> = ({initialState, setResult}) => {
     const context: iContext = useContext(ActionContext);
     const [radioBoxes, setRadioBoxes] = useState([]);
-    const [initialFlag, setInitialFlag] = useState(true);
 
     useEffect(() => {
-        if(initialFlag){
-            const listBoxes = context.extraParams.map((item: any) => {
-                return item.title === initialState ? {...item, value: true} : item;
-            })
-            setRadioBoxes(listBoxes);
-            listBoxes.length > 0 ? setInitialFlag(false) : setInitialFlag(true)
-        }
+        const listBoxes = context.extraParams.map((item: any) => {
+            return item.title === initialState ? {...item, value: true} : item;
+        });
+        setRadioBoxes(listBoxes);
     }, [context, initialState]);
 
     useEffect(() => {

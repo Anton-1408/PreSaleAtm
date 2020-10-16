@@ -1,9 +1,10 @@
 import React from 'react';
+import  SearchInput from './SearchInput';
 import { connect } from 'react-redux';
 import { iRootReducers } from '../types/reduxTypes';
 import { HeaderTitle } from './HeaderTitle';
-import  SearchInput from './SearchInput';
 import { modeWork } from '../types/modeWork';
+import { selectorTypeWork } from '../redux/selectors/appStateSelectors';
 
 interface iProps{
     readonly getModeWork?: string,
@@ -11,7 +12,7 @@ interface iProps{
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        getModeWork: state.appStateReducer.modeWork,
+        getModeWork: selectorTypeWork(state),
     }
 };
 

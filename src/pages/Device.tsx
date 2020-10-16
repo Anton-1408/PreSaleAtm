@@ -11,6 +11,8 @@ import { colorPress, colorIsStop, colorIsDone, colorIsWork, titlePage } from '..
 import { style } from '../styles/style';
 import { getDevices, setQuery, setParams } from '../lib/devicesHelper';
 import { modeWork } from '../types/modeWork';
+import { selectorOrderKey, selectorStepKey } from '../redux/selectors/holderKeysSelectors';
+import { selectorSerialNumbDevice, selectorTypeWork } from '../redux/selectors/appStateSelectors';
 
 interface iProps{
     readonly orderKey: number,
@@ -30,10 +32,10 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        orderKey: state.holderKeysReducer.orderKey,
-        serialNumberDevice: state.appStateReducer.serialNumber,
-        typeWork: state.appStateReducer.modeWork,
-        stepKey: state.holderKeysReducer.stepKey,
+        orderKey: selectorOrderKey(state),
+        stepKey: selectorStepKey(state),
+        serialNumberDevice: selectorSerialNumbDevice(state),
+        typeWork: selectorTypeWork(state),
     };
 };
 
