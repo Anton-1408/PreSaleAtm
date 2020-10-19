@@ -10,9 +10,9 @@ import { componentsStyle } from '../styles/componentsStyle';
 import { ActionContext, getExtraFiles, getExtraParams } from '../lib/actionHelper';
 import { SwipperPanel } from '../components/Action/SwipperPanel'
 import { colorIsWork } from '../styles/constantStyle';
-import ActionType from '../components/Action/ActionType';
+import { ActionType } from '../components/Action/ActionType';
 import { selectorDeviceKey, selectorActionKey } from '../redux/selectors/holderKeysSelectors';
-import SaveResult from '../components/Action/SaveResult';
+import { SaveResult } from '../components/Action/SaveResult';
 
 interface iProps{
     readonly deviceKey: number,

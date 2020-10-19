@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { ButtonStopDevice } from './ButtonStopDevice';
 import { ButtonReplayDevice } from './ButtonReplayDevice';
 import { iRootReducers } from '../../types/reduxTypes';
@@ -7,18 +7,12 @@ import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/hold
 
 interface iProps{
     readonly stoped: number,
-    readonly deviceKey?: any,
-    readonly actionKey?: any
 }
 
-const mapStateToProps = (state: iRootReducers) => {
-    return{
-        deviceKey: selectorDeviceKey(state),
-        actionKey: selectorActionKey(state),
-    }
-};
+export const ButtonAction: React.FC<iProps> = ({stoped}) => {
+    const deviceKey: number = useSelector((state: iRootReducers) => selectorDeviceKey(state));
+    const actionKey: number = useSelector((state: iRootReducers) => selectorActionKey(state));
 
-const ButtonAction: React.FC<iProps> = ({stoped, deviceKey, actionKey}) => {
     if(!stoped){
         return(
             <ButtonStopDevice
@@ -35,5 +29,3 @@ const ButtonAction: React.FC<iProps> = ({stoped, deviceKey, actionKey}) => {
         )
     }
 };
-
-export default connect(mapStateToProps, null)(ButtonAction);

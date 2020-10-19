@@ -5,26 +5,34 @@ import { useNavigation } from '@react-navigation/native';
 import { style } from '../../styles/style';
 import { colorWhite, iconSize } from '../../styles/constantStyle';
 import { iRootReducers } from '../../types/reduxTypes';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
 import { componentsStyle } from '../../styles/componentsStyle';
 import { countImageRow } from '../../lib/galleryHelper';
 import { tNavigationProp } from '../../types/navigationTypes';
+import { selectorPhotoAction } from '../../redux/selectors/appStateSelectors';
+import { setPhotosAction } from '../../redux/actions/actions';
 
 interface iProps{
     readonly initialState: any,
     readonly setResult: Function,
-    readonly photoAction?: any
 };
 
-const mapStateToProps = (state: iRootReducers) => {
-    return{
-        photoAction: state.appStateReducer.photoAction,
-    }
-};
-
-const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => {
+export const PhotoType: React.FC<iProps> = ({initialState, setResult}) => {
     const navigation: tNavigationProp = useNavigation();
     const [images, setImages] = useState([]);
+    const dispatch: Dispatch = useDispatch();
+    const photoAction: any = useSelector(
+        (state: iRootReducers) => selectorPhotoAction(state)
+    );
+
+    const removePhotosFromStore = () => {
+        dispatch(setPhotosAction([]));
+    };
+
+    useEffect(() => {
+        return removePhotosFromStore;
+    }, [])
 
     useEffect(() => {
         setImages((prev: any) => {
@@ -104,5 +112,3 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
         </View>
     );
 }
-
-export default connect(mapStateToProps, null)(PhotoType);

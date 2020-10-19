@@ -1,53 +1,41 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
-import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 import { typeAction } from '../../types/typeAction';
 import { getResult, initialState, getPhoto } from '../../lib/actionHelper';
-import { iRootReducers } from '../../types/reduxTypes';
 import { setResultAction } from '../../redux/actions/actions';
-import { setPhotosAction } from '../../redux/actions/actions';
 import { CheckBoxType } from './CheckBoxType';
 import { InputType } from './InputType';
 import { CheckBoxGroup } from './CheckBoxGroup';
 import { RadioBoxGroup } from './RadioBoxGroup';
-import  PhotoType from './PhotoType';
+import  { PhotoType } from './PhotoType';
 import { NoActionType } from './NoActionType';
 import { tRoutePropAction } from '../../types/navigationTypes';
 
 interface iProps{
     readonly actionKey: number,
     readonly deviceKey: number,
-    readonly setResult?: any,
-    readonly setPhotos?: any,
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
-    return{
-        setResult: (value: any) => dispatch(setResultAction(value)),
-        setPhotos: (paths: Array<Object>) => dispatch(setPhotosAction(paths))
-    }
-};
-
-const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhotos}) => {
+export const ActionType: React.FC<iProps> = ({actionKey, deviceKey}) => {
     const route: tRoutePropAction = useRoute();
     const type: string = route.params.type;
     const [state, setInitialState] = useState(initialState(type));
-
-    const removePhotosFromStore = () => {
-        setPhotos([]);
-    };
+    const dispatch: Dispatch = useDispatch();
 
     useEffect(() => {
         if(type === typeAction.photo){
             getPhoto(actionKey, deviceKey,  setInitialState)
-            return removePhotosFromStore;
         }
         else{
             getResult(actionKey, deviceKey, type, setInitialState);
         }
     }, []);
+
+    const setResult = (value: any) => {
+        return dispatch(setResultAction(value))
+    };
 
     switch(type){
         case typeAction.checkbox:
@@ -108,5 +96,3 @@ const ActionType: React.FC<iProps> = ({actionKey, deviceKey, setResult, setPhoto
             );
     };
 };
-
-export default connect(null, mapDispatchToProps)(ActionType)

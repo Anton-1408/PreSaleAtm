@@ -2,9 +2,8 @@ import React from 'react';
 import { View, TextInput, Pressable } from 'react-native';
 import IconF from 'react-native-vector-icons/FontAwesome5';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
+import { Dispatch } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { iRootReducers } from '../types/reduxTypes';
 import { colorIconSearch } from '../styles/constantStyle';
@@ -15,24 +14,15 @@ import { setSerialNumberDevice } from '../redux/actions/actions';
 import { selectorSerialNumbDevice } from '../redux/selectors/appStateSelectors';
 
 interface iProps{
-    readonly setSerialNumber?: any
-    readonly serialNumber?: string,
+
 };
 
-const mapStateToProps = (state: iRootReducers) => {
-    return{
-        serialNumber: selectorSerialNumbDevice(state),
-    }
-};
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
-    return {
-        setSerialNumber: (serialNumber: string) => dispatch(setSerialNumberDevice(serialNumber))
-    };
-};
-
-const SearchInput: React.FC<iProps> = ({serialNumber, setSerialNumber}) => {
+export const SearchInput: React.FC<iProps> = ({}) => {
     const navigation: tNavigationProp = useNavigation();
+    const dispatch: Dispatch = useDispatch();
+    const serialNumber: string = useSelector(
+        (state: iRootReducers) => selectorSerialNumbDevice(state)
+    );
     return(
         <View style={componentsStyle.searchContainer}>
             <IconF name='search' color={colorIconSearch} size={20}/>
@@ -41,7 +31,7 @@ const SearchInput: React.FC<iProps> = ({serialNumber, setSerialNumber}) => {
                 placeholder='Серийный номер'
                 keyboardType={'numeric'}
                 onChangeText={(text) => {
-                    setSerialNumber(text)
+                    dispatch(setSerialNumberDevice(text))
                 }}
                 style={componentsStyle.searchInput}
             />
@@ -56,5 +46,3 @@ const SearchInput: React.FC<iProps> = ({serialNumber, setSerialNumber}) => {
         </View>
     );
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
