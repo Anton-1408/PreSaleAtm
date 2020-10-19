@@ -50,11 +50,15 @@ export const style = StyleSheet.create({
         color: colorWhite
     },
     imageStyle:{
-        width: 110,
-        height: 110
+        width: 115,
+        height: 115
     },
     imageContainer:{
-        marginVertical: 4,
-        marginHorizontal: 4,
+        marginVertical: 1,
+        marginHorizontal: 1,
+    },
+    imagesList:{
+        paddingHorizontal: 5,
+        paddingVertical: 5,
     }
 });

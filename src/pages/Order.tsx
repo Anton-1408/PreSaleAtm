@@ -5,7 +5,7 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { tNavigationProp, tRoutePropOrder } from '../types/navigationTypes';
 import { style } from '../styles/style';
-import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey } from '../redux/actions/actions';
+import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey, setActionFiles } from '../redux/actions/actions';
 import { iRootReducers } from '../types/reduxTypes';
 import { getOrders } from '../lib/ordersHelper';
 import { desingColor, colorPress, colorWhite } from '../styles/constantStyle';
@@ -17,7 +17,8 @@ interface iProps{
     readonly getHashCodeProjects: Function,
     readonly syncServer: Function,
     readonly getResultChecklist: Function,
-    readonly setOrderId: Function
+    readonly setOrderId: Function,
+    readonly getFilesActions: Function
 };
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
         getIdUser: () => dispatch(setIdUser()),
         getHashCodeProjects: () => dispatch(setHashCodeProjects()),
         getResultChecklist: () => dispatch(setResultChecklist()),
+        getFilesActions: () => dispatch(setActionFiles()),
         syncServer: () => dispatch(setOrders()),
         setOrderId: (id: number) => dispatch(setOrderKey(id)),
     };
@@ -38,7 +40,8 @@ const Order: React.FC<iProps> = (props) => {
         getHashCodeProjects,
         syncServer,
         getResultChecklist,
-        setOrderId
+        setOrderId,
+        getFilesActions
     } : iProps = props;
 
     const [orders, setOrders] = useState([]);
@@ -50,6 +53,7 @@ const Order: React.FC<iProps> = (props) => {
             getIdUser(),
             getHashCodeProjects(),
             getResultChecklist(),
+            getFilesActions(),
         ])
         .then(async () => {
             try{

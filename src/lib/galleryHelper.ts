@@ -8,7 +8,7 @@ export const getAccessGallery = async (): Promise<string> => {
 
 export const countImageRow = (): number =>{
     const screenWidth: number = Dimensions.get('window').width;
-    const imegeWidth: number = 110;
+    const imegeWidth: number = 115;
     const countImage: number = Math.floor(screenWidth / imegeWidth);
     return countImage;
 };

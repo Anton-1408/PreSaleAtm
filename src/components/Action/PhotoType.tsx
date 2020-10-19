@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Pressable, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -60,6 +60,7 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
                 data={images}
                 horizontal={false}
                 keyExtractor={ (item: any) => item.name }
+                style={style.imagesList}
                 numColumns={countImageRow()}
                 renderItem={({item}) => (
                     <Pressable
@@ -78,14 +79,20 @@ const PhotoType: React.FC<iProps> = ({initialState, setResult, photoAction}) => 
                     </Pressable>
                 )}
             />
-            <Pressable
-                style={[style.button, componentsStyle.buttonCamera]}
-                onPress={() => {
-                    navigation.navigate('Camera')
-                }}
+            <View
+                style={[
+                    style.button,
+                    componentsStyle.buttonCamera,
+                ]}
             >
-                <Icon name='camera-enhance' size={iconSize} color={colorWhite}/>
-            </Pressable>
+                <Pressable
+                    onPress={() => {
+                        navigation.navigate('Camera')
+                    }}
+                >
+                    <Icon name='camera-enhance' size={iconSize} color={colorWhite}/>
+                </Pressable>
+            </View>
             <Pressable
                 style={[style.button, componentsStyle.buttonGallery]}
                 onPress={() => {

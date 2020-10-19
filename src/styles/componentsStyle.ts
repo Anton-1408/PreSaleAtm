@@ -150,14 +150,14 @@ export const componentsStyle =  StyleSheet.create({
         backgroundColor: colorBlack
     },
     photoTypeContainer:{
-        height: '100%',
-        width: '100%'
+        height: '95%',
+        width: '100%',
     },
     buttonGallery:{
-        bottom: 300,
+        bottom: 230,
     },
     buttonCamera:{
-        bottom: 200
+        bottom: 130
     },
     buttonDeletePhoto:{
         alignSelf: 'center',

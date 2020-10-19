@@ -8,6 +8,12 @@ import { iRootReducers } from '../../types/reduxTypes';
 import { setOrdersToDB } from '../../lib/setOrdersToDB';
 import { urlServer } from '../../lib/urlServer'
 import {
+    selectorIdUser,
+    selectorCheckListResults,
+    selectorResultsHash,
+    selectorProjectsHash
+} from '../selectors/syncDataSelectors';
+import {
     SET_ACTION_KEY,
     SET_DEVICE_KEY,
     SET_HASHCODE_PROJECTS,
@@ -80,7 +86,7 @@ export function setActionFiles(): ThunkAction<Promise<void>, iRootReducers, unkn
                 }
                 listData.append('sid', sid);
                 listData.append('action', 'uploadProjectsFile');
-                listData.append("file", listFiles);
+                listData.append("files", listFiles);
                 dispatch(setValueFiles(listData));
                 resolve();
             }
@@ -145,11 +151,11 @@ export function setHashCodeProjects(): ThunkAction<Promise<void>, iRootReducers,
 export function setOrders(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
     return async (dispatch, getState) => {
         return await axios.post(urlServer + 'mobile/api001.php', {
-            sid: getState().syncDataReducer.idUser,
+            sid: selectorIdUser(getState()),
             action: 'syncProjects',
-            results: getState().syncDataReducer.listResultsCheckList,
-            projectHash: getState().syncDataReducer.projectHash,
-            resultHashs: getState().syncDataReducer.resultHash
+            results: selectorCheckListResults(getState()),
+            projectHash: selectorProjectsHash(getState()),
+            resultHashs: selectorResultsHash(getState()),
         })
         .then((res: AxiosResponse) => {
             if('projects' in res.data){
@@ -160,19 +166,6 @@ export function setOrders(): ThunkAction<Promise<void>, iRootReducers, unknown, 
         .catch((err: AxiosError) => {
 
         });
-    };
-};
-
-export function sendFiles(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
-    return async (dispatch, getState) => {
-        const params: FormData = getState().syncDataReducer.actionFiles;
-        return await axios.post(urlServer + 'mobile/api001.php', params)
-        .then((res: AxiosResponse) => {
-
-        })
-        .catch((err: AxiosError) => {
-
-        })
     };
 };
 
