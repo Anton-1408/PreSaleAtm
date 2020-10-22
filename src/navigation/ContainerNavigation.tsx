@@ -3,10 +3,11 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
+import normalize from 'react-native-normalize';
 import { Stack } from "./stackNavigation";
 import { ButtonSetting } from '../components/ButtonSetting';
 import { ButtonHome } from '../components/ButtonHome';
-import { desingColor, colorBlack } from '../styles/constantStyle';
+import { desingColor, colorBlack, barLabelSize, barLabelFontFamily } from '../styles/constantStyle';
 import { HeaderModeWork } from '../components/HeaderModeWork';
 import { SearchInput } from '../components/SearchInput';
 import { colorWhite } from '../styles/constantStyle';
@@ -39,8 +40,8 @@ const ContainerNavigation: React.FC = () => {
                             elevation: 0,
                         },
                         headerTitleStyle:{
-                            fontSize: 20,
-                            fontFamily: 'OpenSans-SemiBold'
+                            fontSize: normalize(22),
+                            fontFamily: barLabelFontFamily
                         }
                     }}
                 >

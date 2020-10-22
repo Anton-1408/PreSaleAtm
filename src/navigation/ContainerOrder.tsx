@@ -2,7 +2,14 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Order from '../pages/Order';
 import { rootParamsOrder } from "../types/navigationTypes";
-import { desingColor, colorWhite, colorInActiveButton, borderColorTabBar } from '../styles/constantStyle';
+import {
+    desingColor,
+    colorWhite,
+    colorInActiveButton,
+    borderColorTabBar,
+    barLabelFontFamily,
+    barLabelSize
+} from '../styles/constantStyle';
 
 const Tab = createMaterialTopTabNavigator<rootParamsOrder>();
 
@@ -21,7 +28,8 @@ const ContainerOrder: React.FC = () => {
                     backgroundColor: desingColor,
                 },
                 labelStyle:{
-                    fontFamily: "OpenSans-Regular"
+                    fontFamily: barLabelFontFamily,
+                    fontSize: barLabelSize,
                 }
             }}
             initialRouteName="OrderInWork"

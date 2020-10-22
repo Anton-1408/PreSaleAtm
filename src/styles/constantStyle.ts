@@ -2,7 +2,7 @@ import normalize from 'react-native-normalize';
 
 export const desingColor: string = '#3F51B5';
 export const iconSize: number = normalize(50);
-export const iconSizeBar: number = normalize(26);
+export const iconSizeBar: number = normalize(30);
 export const colorWhite: string = '#FFFFFF';
 export const colorTitle: string = '#F57C00';
 export const colorIsDone: string = '#388E3C';
@@ -15,6 +15,8 @@ export const colorBlack: string = '#000000';
 export const colorIconSearch: string = '#616161';
 export const sizeButtonAction: number = normalize(40);
 export const sizeImage: number = normalize(120);
+export const barLabelSize: number = normalize(14);
+export const barLabelFontFamily: string = 'OpenSans-SemiBold';
 
 export const colorPress: any = (pressed: boolean): Object => {
     return{

@@ -27,14 +27,15 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
     const [images, setImages] = useState([]);
+    const [countImages, setCountImages] = useState(20);
 
     useEffect(() => {
         getAccessGallery().then((granted) => {
             if(granted === PermissionsAndroid.RESULTS.GRANTED){
-                getPhotos(setImages)
+                getPhotos(setImages, countImages)
             }
         });
-    }, []);
+    }, [countImages]);
 
     const chosePhoto = useCallback(() => {
         const photos = images.filter((item: any) => {
@@ -46,6 +47,12 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
         navigation.goBack();
     }, [images]);
 
+    const viewImages = useCallback(() => {
+        setCountImages((prev: number) => {
+            return prev + 20;
+        })
+    }, [countImages]);
+
     return(
         <View style={[style.container, componentsStyle.galleryContainer]}>
             <StatusBar backgroundColor={colorBlack}/>
@@ -55,6 +62,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
                 keyExtractor={(item: any) => item.name}
                 numColumns={countImageRow()}
                 style={style.imagesList}
+                onEndReached={viewImages}
                 renderItem={({item}) => (
                     <Pressable
                         style={style.imageContainer}

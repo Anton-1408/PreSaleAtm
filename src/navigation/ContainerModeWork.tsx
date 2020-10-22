@@ -1,34 +1,21 @@
 import React from 'react';
-import { Action } from 'redux';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ContainerDevice from './ContainerDevice';
 import ContainerTodo from './ContainerTodo';
-import { desingColor, colorWhite, colorInActiveButton } from '../styles/constantStyle';
+import { desingColor, colorWhite, colorInActiveButton, barLabelSize, barLabelFontFamily } from '../styles/constantStyle';
 import { rootParamsModeWork } from '../types/navigationTypes';
 import { iconSizeBar } from '../styles/constantStyle';
-import { iRootReducers } from '../types/reduxTypes';
 import { setModeWork } from '../redux/actions/actions';
 import { setSerialNumberDevice } from '../redux/actions/actions';
 import { modeWork } from '../types/modeWork';
 
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 
-interface iProps{
-    setTypeWork: Function,
-    setSerialNumber: Function
-}
-
-const mapDispatchToProps = (dispatch:  ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
-    return{
-        setTypeWork: (typeWork: string) => dispatch(setModeWork(typeWork)),
-        setSerialNumber: (serialNumber: string) => dispatch(setSerialNumberDevice(serialNumber))
-    };
-};
-
-const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => {
+const ContainerModeWork: React.FC = () => {
+    const dispatch: Dispatch = useDispatch();
     return (
         <Tab.Navigator
             initialRouteName="TodoMode"
@@ -39,8 +26,8 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => 
                     backgroundColor: desingColor,
                 },
                 labelStyle:{
-                    fontSize: 10,
-                    fontFamily: 'OpenSans-Bold'
+                    fontSize: barLabelSize,
+                    fontFamily: barLabelFontFamily
                 }
             }}
         >
@@ -56,11 +43,11 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => 
                 listeners={({ navigation, route }) => ({
                     tabPress: e => {
                         e.preventDefault();
-                        setTypeWork(modeWork.todo);
+                        dispatch(setModeWork(modeWork.todo));
                         navigation.navigate('TodoMode');
                     },
                     beforeRemove: e => {
-                        setTypeWork(modeWork.todo);
+                        dispatch(setModeWork(modeWork.todo));
                     },
                 })}
             />
@@ -76,11 +63,11 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => 
                 listeners={({ navigation, route }) => ({
                     tabPress: e => {
                         e.preventDefault();
-                        setTypeWork(modeWork.device);
+                        dispatch(setModeWork(modeWork.device))
                         navigation.navigate('DeviceMode');
                     },
                     beforeRemove: e => {
-                        setSerialNumber('')
+                        dispatch(setSerialNumberDevice(''))
                     },
                 })}
             />
@@ -88,4 +75,4 @@ const ContainerModeWork: React.FC<iProps> = ({setTypeWork, setSerialNumber}) => 
     );
 }
 
-export default connect(null, mapDispatchToProps)(ContainerModeWork);
+export default ContainerModeWork;

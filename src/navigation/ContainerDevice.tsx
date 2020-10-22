@@ -2,7 +2,14 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Device from '../pages/Device';
 import { rootParamsDevice } from "../types/navigationTypes";
-import { desingColor, colorWhite, colorInActiveButton, borderColorTabBar } from '../styles/constantStyle';
+import {
+    desingColor,
+    colorWhite,
+    colorInActiveButton,
+    borderColorTabBar,
+    barLabelSize,
+    barLabelFontFamily
+} from '../styles/constantStyle';
 
 const Tab = createMaterialTopTabNavigator<rootParamsDevice>();
 
@@ -21,7 +28,8 @@ const ContainerDevice: React.FC = () => {
                     backgroundColor: desingColor,
                 },
                 labelStyle:{
-                    fontFamily: 'OpenSans-Regular'
+                    fontFamily: barLabelFontFamily,
+                    fontSize: barLabelSize,
                 }
             }}
             initialRouteName='DevicesInWork'

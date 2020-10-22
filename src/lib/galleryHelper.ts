@@ -14,9 +14,9 @@ export const countImageRow = (): number =>{
     return countImage;
 };
 
-export const getPhotos = (setPhoto: Function): void => {
+export const getPhotos = (setImages: Function, countImages: number): void => {
     CameraRoll.getPhotos({
-        first: 50,
+        first: countImages,
         assetType: 'Photos',
         include: ['filename']
     })
@@ -32,6 +32,11 @@ export const getPhotos = (setPhoto: Function): void => {
             };
             return photoData;
         });
-        setPhoto(images)
+        setImages((prev: any) => {
+            const list: any = images.map((item: any, index: number) => {
+                return {...item, check: prev[index] ? prev[index].check : item.check}
+            });
+            return list;
+        })
     });
 };
