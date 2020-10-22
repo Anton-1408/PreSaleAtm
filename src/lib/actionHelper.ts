@@ -5,6 +5,7 @@ import { dbHelper } from './dbHelper';
 import { typeAction } from '../types/typeAction';
 
 type tDataTime = string | number;
+
 export interface iContext{
     files: Array<Object>,
     extraParams: any,

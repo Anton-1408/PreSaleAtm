@@ -9,7 +9,7 @@ import { iRootReducers } from '../types/reduxTypes';
 import { tNavigationProp, tRoutePropListActions } from '../types/navigationTypes';
 import { setActionKey } from '../redux/actions/actions';
 import { getListActions } from '../lib/listActionsHelper';
-import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack } from '../styles/constantStyle';
+import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack, iconSizeBar } from '../styles/constantStyle';
 import { selectorStepKey, selectorDeviceKey } from '../redux/selectors/holderKeysSelectors';
 
 interface iProps{
@@ -80,7 +80,7 @@ const ListActions: React.FC<iProps> = (props) => {
                             </Text>
                         </View>
                         <View>
-                            <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={25}/>
+                            <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={iconSizeBar}/>
                         </View>
                     </Pressable>
                 )}

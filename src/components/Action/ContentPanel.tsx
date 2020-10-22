@@ -17,18 +17,20 @@ export const ContentPanel: React.FC = () => {
                 {route.params.comment}
             </Text>
             <ExtraParamsPhoto/>
-            <View style={componentsStyle.containerFilesContent}>
-                {context.files.map((item: any) => (
-                    <Pressable
-                        key={item.id}
-                        style={style.imageContainer}
-                    >
-                        <Image
-                            source={{uri: item.path}}
-                            style={style.imageStyle}
-                        />
-                    </Pressable>
-                ))}
+            <View style={componentsStyle.imageConteinerPanel}>
+                <View style={componentsStyle.containerFilesContent}>
+                    {context.files.map((item: any) => (
+                        <Pressable
+                            key={item.id}
+                            style={style.imageContainer}
+                        >
+                            <Image
+                                source={{uri: item.path}}
+                                style={style.imageStyle}
+                            />
+                        </Pressable>
+                    ))}
+                </View>
             </View>
         </View>
     );

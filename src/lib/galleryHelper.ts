@@ -1,5 +1,6 @@
 import { PermissionsAndroid,Dimensions } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
+import { sizeImage } from '../styles/constantStyle';
 
 export const getAccessGallery = async (): Promise<string> => {
     const granted: string = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
@@ -8,7 +9,7 @@ export const getAccessGallery = async (): Promise<string> => {
 
 export const countImageRow = (): number =>{
     const screenWidth: number = Dimensions.get('window').width;
-    const imegeWidth: number = 115;
+    const imegeWidth: number = sizeImage;
     const countImage: number = Math.floor(screenWidth / imegeWidth);
     return countImage;
 };

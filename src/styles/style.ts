@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { colorTitle, colorWhite } from './constantStyle';
+import normalize from 'react-native-normalize';
+import { colorTitle, colorWhite, sizeImage } from './constantStyle';
 
 export const style = StyleSheet.create({
     container:{
@@ -8,10 +9,10 @@ export const style = StyleSheet.create({
     },
     button:{
         position: 'absolute',
-        height: 80,
-        width: 80,
-        borderRadius: 40,
-        bottom: 40,
+        height: normalize(80),
+        width: normalize(80),
+        borderRadius: normalize(40),
+        bottom: normalize(40),
         right: '5%',
         alignItems: 'center',
         justifyContent: 'center',
@@ -22,43 +23,43 @@ export const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        borderBottomColor: '#9E9E9E',
+        borderBottomColor: '#E0E0E0',
         borderBottomWidth: 1,
-        paddingVertical: 10,
-        paddingHorizontal: 10,
+        paddingVertical: normalize(10),
+        paddingHorizontal: normalize(10),
     },
     containerText:{
         width: '85%',
     },
     title: {
-        fontSize: 18,
+        fontSize: normalize(18),
         fontFamily: 'OpenSans-SemiBold',
         color: colorTitle,
     },
     comment:{
-        fontSize: 15,
+        fontSize: normalize(15),
         fontFamily: 'OpenSans-Light',
     },
     percent:{
-        fontSize: 20,
+        fontSize: normalize(20),
         fontFamily: 'OpenSans-ExtraBold',
         color: '#43A047',
     },
     headerTitle:{
-        fontSize: 20,
+        fontSize: normalize(20),
         fontFamily: 'OpenSans-SemiBold',
         color: colorWhite
     },
     imageStyle:{
-        width: 115,
-        height: 115
+        width: sizeImage,
+        height: sizeImage
     },
     imageContainer:{
         marginVertical: 1,
         marginHorizontal: 1,
     },
     imagesList:{
-        paddingHorizontal: 5,
-        paddingVertical: 5,
+        paddingHorizontal: normalize(5),
+        paddingVertical: normalize(5),
     }
 });

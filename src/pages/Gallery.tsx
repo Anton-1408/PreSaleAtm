@@ -47,12 +47,12 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
     }, [images]);
 
     return(
-        <View style={[style.container, {backgroundColor: colorBlack}]}>
+        <View style={[style.container, componentsStyle.galleryContainer]}>
             <StatusBar backgroundColor={colorBlack}/>
             <FlatList
                 data={images}
                 horizontal={false}
-                keyExtractor={ (item: any) => item.name }
+                keyExtractor={(item: any) => item.name}
                 numColumns={countImageRow()}
                 style={style.imagesList}
                 renderItem={({item}) => (

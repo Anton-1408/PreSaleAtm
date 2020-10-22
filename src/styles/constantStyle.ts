@@ -1,6 +1,8 @@
+import normalize from 'react-native-normalize';
+
 export const desingColor: string = '#3F51B5';
-export const iconSize: number = 50;
-export const iconSizeBar: number = 26;
+export const iconSize: number = normalize(50);
+export const iconSizeBar: number = normalize(26);
 export const colorWhite: string = '#FFFFFF';
 export const colorTitle: string = '#F57C00';
 export const colorIsDone: string = '#388E3C';
@@ -11,7 +13,8 @@ export const colorInActiveButton: string = '#BDBDBD';
 export const borderColorTabBar: string = '#F3E5F5';
 export const colorBlack: string = '#000000';
 export const colorIconSearch: string = '#616161';
-export const sizeButtonAction: number = 40;
+export const sizeButtonAction: number = normalize(40);
+export const sizeImage: number = normalize(120);
 
 export const colorPress: any = (pressed: boolean): Object => {
     return{

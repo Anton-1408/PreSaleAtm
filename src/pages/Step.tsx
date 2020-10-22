@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { tRoutePropStep, tNavigationProp } from '../types/navigationTypes';
-import { colorPress, bcolorDone, colorDone, colorBlack, colorTitle } from '../styles/constantStyle';
+import { colorPress, bcolorDone, colorDone, colorBlack, colorTitle, iconSizeBar } from '../styles/constantStyle';
 import { style } from '../styles/style';
 import { iRootReducers } from '../types/reduxTypes';
 import { setStepKey } from '../redux/actions/actions';
@@ -85,7 +85,7 @@ const Step: React.FC<iProps> = (props) => {
                                 <Text style={[style.comment, { color: colorDone(item.isDone, colorBlack) }]}>{item.comment}</Text>
                             </View>
                             <View>
-                                <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={25}/>
+                                <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={iconSizeBar}/>
                             </View>
                         </View>
                         <StepStatus
