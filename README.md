@@ -9,4 +9,4 @@ App functions:
   3. ofline mode;
   4. atm serial numb scan (mobile telephone camera);
   5. calculating the percent complete checklist;
-Mobile application for IOS and Android.
+  Mobile application for IOS and Android.
