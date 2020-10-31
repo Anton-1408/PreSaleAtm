@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
-import { colorTitle, colorWhite, sizeImage } from './constants';
+import { colors } from '.';
+import { sizeImage } from './constants';
 
-export const base = StyleSheet.create({
+export default StyleSheet.create({
     buttonBarContainer:{
         marginRight: 15,
     },
     container:{
         flex: 1,
-        backgroundColor: colorWhite,
+        backgroundColor: colors.color0,
     },
     button:{
         position: 'absolute',
@@ -18,14 +19,14 @@ export const base = StyleSheet.create({
         right: '5%',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: "#4527A0",
+        backgroundColor: colors.color18,
     },
     containerData:{
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        borderBottomColor: '#E0E0E0',
+        borderBottomColor: colors.color16,
         borderBottomWidth: 1,
         paddingVertical: 10,
         paddingHorizontal: 10,
@@ -36,7 +37,7 @@ export const base = StyleSheet.create({
     title: {
         fontSize: 18,
         fontFamily: 'OpenSans-SemiBold',
-        color: colorTitle,
+        color: colors.color1,
     },
     comment:{
         fontSize: 15,
@@ -45,7 +46,7 @@ export const base = StyleSheet.create({
     percent:{
         fontSize: 20,
         fontFamily: 'OpenSans-ExtraBold',
-        color: '#43A047',
+        color: colors.color19,
     },
     imageStyle:{
         width: sizeImage,

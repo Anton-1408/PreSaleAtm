@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   container:{
@@ -8,6 +9,6 @@ export const styles = StyleSheet.create({
   text:{
     fontSize: 20,
     fontFamily: 'OpenSans-BoldItalic',
-    color: '#9E9E9E'
+    color: colors.color11,
   },
 });

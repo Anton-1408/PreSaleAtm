@@ -4,12 +4,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
-import { base } from '../../styles/base';
 import { iRootReducers } from '../../types/reduxTypes';
 import { tNavigationProp, tRoutePropListActions } from '../../types/navigationTypes';
 import { setActionKey } from '../../redux/actions/actions';
 import { getListActions } from '../../lib/listActionsHelper';
-import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack, iconSizeBar } from '../../styles/constants';
+import { colors, base } from '../../styles';
+import { colorPress, bcolorDone, colorDone, iconSizeBar } from '../../styles/constants';
 import { selectorStepKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';
 
 interface iProps{
@@ -69,14 +69,14 @@ const ListActions: React.FC<iProps> = (props) => {
                     >
                         <View style={base.containerText}>
                             <Text style={[base.title, {
-                                        color: colorDone(item.isDone, colorTitle)
+                                        color: colorDone(item.isDone, colors.color1)
                                     }
                                 ]}
                             >
                                 {item.name}
                             </Text>
                             <Text style={[base.comment, {
-                                        color: colorDone(item.isDone, colorBlack)
+                                        color: colorDone(item.isDone, colors.color8)
                                     }
                                 ]}
                             >
@@ -84,7 +84,7 @@ const ListActions: React.FC<iProps> = (props) => {
                             </Text>
                         </View>
                         <View>
-                            <Icon name='angle-right' color={colorDone(item.isDone, colorTitle)} size={iconSizeBar}/>
+                            <Icon name='angle-right' color={colorDone(item.isDone, colors.color1)} size={iconSizeBar}/>
                         </View>
                     </Pressable>
                 )}

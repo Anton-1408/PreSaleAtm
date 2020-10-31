@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   containerData:{
@@ -6,7 +7,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: '100%',
     paddingHorizontal: '5%',
-    borderBottomColor: '#E0E0E0',
+    borderBottomColor: colors.color16,
   },
   dataInformation:{
     width: '100%',

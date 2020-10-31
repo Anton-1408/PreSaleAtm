@@ -3,8 +3,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native';
 import { tNavigationProp } from '../../types/navigationTypes';
-import { iconSizeBar, colorWhite } from '../../styles/constants';
-import { base } from '../../styles/base';
+import { iconSizeBar } from '../../styles/constants';
+import { colors, base } from '../../styles';
 
 const ButtonSetting: React.FC = ({}) => {
     const navigation: tNavigationProp = useNavigation();
@@ -16,7 +16,7 @@ const ButtonSetting: React.FC = ({}) => {
                 navigation.navigate("Setting");
             }}
         >
-            <Icon name="md-settings-sharp" color={colorWhite} size={iconSizeBar}/>
+            <Icon name="md-settings-sharp" color={colors.color0} size={iconSizeBar}/>
         </Pressable>
     )
 };

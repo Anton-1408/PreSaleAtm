@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { iconSize, colorIsDone } from '../../styles/constants';
+import { iconSize } from '../../styles/constants';
+import { colors } from '../../styles';
 
 interface iProps{
     readonly check: boolean
@@ -9,7 +10,7 @@ interface iProps{
 const CheckPhoto: React.FC<iProps> = ({ check }) => {
     if(check){
         return(
-            <Icon name='check' size={iconSize} color={colorIsDone}/>
+            <Icon name='check' size={iconSize} color={colors.color3}/>
         )
     }
     else{

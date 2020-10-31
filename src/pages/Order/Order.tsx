@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { tNavigationProp, tRoutePropOrder } from '../../types/navigationTypes';
-import { base } from '../../styles/base';
 import { iRootReducers } from '../../types/reduxTypes';
 import { getOrders } from '../../lib/ordersHelper';
-import { desingColor, colorPress, colorWhite } from '../../styles/constants';
+import { colorPress } from '../../styles/constants';
+import { colors, base } from '../../styles';
 import {
     setIdUser,
     setHashCodeProjects,
@@ -97,8 +97,8 @@ const Order: React.FC<iProps> = (props) => {
                         onRefresh={() => {
                             getDataFromServer();
                         }}
-                        progressBackgroundColor={desingColor}
-                        colors={[colorWhite]}
+                        progressBackgroundColor={colors.color17}
+                        colors={[colors.color0]}
                     />
                 }
                 renderItem={({item}) => (

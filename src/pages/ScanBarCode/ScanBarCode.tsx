@@ -10,9 +10,10 @@ import { iRootReducers } from '../../types/reduxTypes';
 import { setDeviceKey, setSerialNumberDevice } from '../../redux/actions/actions';
 import { getPermissions, getDevicesList, searchDevice } from '../../lib/scanCodeHelper';
 import { modeWork } from '../../types/modeWork';
-import { titlePage, colorBlack } from '../../styles/constants';
+import { titlePage } from '../../styles/constants';
 import { selectorOrderKey } from '../../redux/selectors/holderKeysSelectors';
 import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
+import { colors } from '../../styles';
 
 interface iProps{
     readonly orderKey: number,
@@ -48,7 +49,7 @@ const ScanBarCode: React.FC<iProps> = (props) => {
 
     return(
         <View style={styles.container}>
-            <StatusBar backgroundColor={colorBlack}/>
+            <StatusBar backgroundColor={colors.color8}/>
             <CameraKitCameraScreen
                 scanBarcode={true}
                 laserColor={"blue"}

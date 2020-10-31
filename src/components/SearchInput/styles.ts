@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorWhite } from '../../styles/constants';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   container:{
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: '2%',
-    backgroundColor: colorWhite,
+    backgroundColor: colors.color0,
     justifyContent: 'space-between',
   },
   inputStyle:{

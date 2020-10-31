@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   settingContainer:{
@@ -12,13 +13,13 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'OpenSans-Regular',
     width: '80%',
-    color: '#5E35B1',
-    borderBottomColor: '#5E35B1',
+    color: colors.color15,
+    borderBottomColor: colors.color15,
   },
   settingText:{
       fontSize: 20,
       marginLeft: 5,
       fontFamily: 'OpenSans-Regular',
-      color: '#5E35B1',
+      color: colors.color15,
   },
 });

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Pressable, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { base } from '../../styles/base';
-import { colorWhite, iconSize } from '../../styles/constants';
+import { iconSize } from '../../styles/constants';
+import { colors, base } from '../../styles';
 import { iRootReducers } from '../../types/reduxTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -93,7 +93,7 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
                         navigation.navigate('Camera')
                     }}
                 >
-                    <Icon name='camera-enhance' size={iconSize} color={colorWhite}/>
+                    <Icon name='camera-enhance' size={iconSize} color={colors.color0}/>
                 </Pressable>
             </View>
             <Pressable
@@ -102,7 +102,7 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
                     navigation.navigate('Gallery')
                 }}
             >
-                <Icon name='folder-image' size={iconSize} color={colorWhite}/>
+                <Icon name='folder-image' size={iconSize} color={colors.color0}/>
             </Pressable>
         </View>
     );

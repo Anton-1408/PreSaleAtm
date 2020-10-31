@@ -6,7 +6,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { iRootReducers } from '../../types/reduxTypes';
 import { tRoutePropTodo, tNavigationProp } from '../../types/navigationTypes'
 import { setTodoKey } from '../../redux/actions/actions';
-import { base } from '../../styles/base';
+import { base } from '../../styles';
 import { getTodos, setQuery, setParams } from '../../lib/todosHelper';
 import { colorPress } from '../../styles/constants';
 import { selectorOrderKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';

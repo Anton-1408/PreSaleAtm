@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { colorIsWork } from '../../styles/constants';
+import { colors } from '../../styles';
 import { styles } from './styles';
 
 interface iProps{
@@ -29,8 +29,8 @@ const CheckBoxType: React.FC<iProps> = ({setResult, initialState}) => {
           checked={checked}
           onPress={clickBox}
           size={150}
-          checkedColor={colorIsWork}
-          uncheckedColor={colorIsWork}
+          checkedColor={colors.color5}
+          uncheckedColor={colors.color5}
           containerStyle={styles.constainerBox}
         />
     );

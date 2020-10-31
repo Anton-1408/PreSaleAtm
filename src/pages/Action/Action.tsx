@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
-import { base } from '../../styles/base';
 import { iRootReducers } from '../../types/reduxTypes';
 import { tNavigationProp,tRoutePropAction } from '../../types/navigationTypes';
-import { iconSize, colorIsWork } from '../../styles/constants';
+import { iconSize } from '../../styles/constants';
+import { colors, base } from '../../styles';
 import { ActionContext, getExtraFiles, getExtraParams } from '../../lib/actionHelper';
 import { SwipperPanel, ActionType, SaveResultAction } from '../../components'
 import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/holderKeysSelectors';
@@ -55,7 +55,7 @@ const Action: React.FC<iProps> = (props) => {
                     }}
                 >
                     <Text style={base.title}>Комментарий</Text>
-                    <Icon name='gesture-tap' size={iconSize} color={colorIsWork}/>
+                    <Icon name='gesture-tap' size={iconSize} color={colors.color5}/>
                 </Pressable>
                 <View style={styles.containerType}>
                     <ActionType

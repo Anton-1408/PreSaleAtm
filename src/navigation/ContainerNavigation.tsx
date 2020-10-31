@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import { Stack } from "./stackNavigation";
 import { ButtonSetting, ButtonHome, HeaderModeWork, SearchInput, ButtonAction } from '../components';
-import { desingColor, colorBlack, barLabelFontFamily } from '../styles/constants';
-import { colorWhite } from '../styles/constants';
+import { barLabelFontFamily } from '../styles/constants';
+import { colors } from '../styles';
 import store from '../redux/store';
 import ContainerOrder from './ContainerOrder';
 import ContainerModeWork from './ContainerModeWork';
@@ -27,13 +27,13 @@ const ContainerNavigation: React.FC = () => {
     return(
         <Provider store={store}>
             <NavigationContainer>
-                <StatusBar backgroundColor={desingColor} barStyle="light-content"/>
+                <StatusBar backgroundColor={colors.color17} barStyle="light-content"/>
                 <Stack.Navigator
                     initialRouteName='Order'
                     screenOptions={{
-                        headerTintColor: colorWhite,
+                        headerTintColor: colors.color0,
                         headerStyle:{
-                            backgroundColor: desingColor,
+                            backgroundColor: colors.color17,
                             elevation: 0,
                         },
                         headerTitleStyle:{
@@ -151,7 +151,7 @@ const ContainerNavigation: React.FC = () => {
                         options={({navigation, route}) => ({
                             title: '',
                             headerStyle:{
-                                backgroundColor: colorBlack
+                                backgroundColor: colors.color8
                             },
                         })}
                     />
@@ -161,7 +161,7 @@ const ContainerNavigation: React.FC = () => {
                         options={({navigation, route}) => ({
                             title: 'Галерея',
                             headerStyle:{
-                                backgroundColor: colorBlack
+                                backgroundColor: colors.color8
                             },
                         })}
                     />
@@ -171,7 +171,7 @@ const ContainerNavigation: React.FC = () => {
                         options={({navigation, route}) => ({
                             title: '',
                             headerStyle:{
-                                backgroundColor: colorBlack
+                                backgroundColor: colors.color8
                             },
                         })}
                     />
@@ -181,7 +181,7 @@ const ContainerNavigation: React.FC = () => {
                         options={({navigation, route}) => ({
                             title: '',
                             headerStyle:{
-                                backgroundColor: colorBlack
+                                backgroundColor: colors.color8
                             },
                         })}
                     />

@@ -2,14 +2,8 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Order } from '../pages';
 import { rootParamsOrder } from "../types/navigationTypes";
-import {
-    desingColor,
-    colorWhite,
-    colorInActiveButton,
-    borderColorTabBar,
-    barLabelFontFamily,
-    barLabelSize
-} from '../styles/constants';
+import { colors } from '../styles';
+import { barLabelFontFamily, barLabelSize } from '../styles/constants';
 
 const Tab = createMaterialTopTabNavigator<rootParamsOrder>();
 
@@ -17,15 +11,15 @@ const ContainerOrder: React.FC = () => {
     return(
         <Tab.Navigator
             tabBarOptions={{
-                activeTintColor: colorWhite,
-                inactiveTintColor: colorInActiveButton,
+                activeTintColor: colors.color0,
+                inactiveTintColor: colors.color6,
                 indicatorStyle:{
-                    borderBottomColor: borderColorTabBar,
+                    borderBottomColor: colors.color7,
                     borderBottomWidth: 3,
                     borderRadius: 2,
                 },
                 style: {
-                    backgroundColor: desingColor,
+                    backgroundColor: colors.color17,
                 },
                 labelStyle:{
                     fontFamily: barLabelFontFamily,

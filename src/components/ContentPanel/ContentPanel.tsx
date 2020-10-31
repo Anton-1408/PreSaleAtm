@@ -5,7 +5,7 @@ import { ActionContext, iContext } from '../../lib/actionHelper';
 import { styles } from './styles';
 import { ExtraParamsPhoto } from '..';
 import { tRoutePropAction } from '../../types/navigationTypes';
-import { base } from '../../styles/base';
+import { base } from '../../styles';
 
 const ContentPanel: React.FC = () => {
     const context: iContext = useContext(ActionContext);

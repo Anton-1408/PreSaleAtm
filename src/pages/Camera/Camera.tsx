@@ -8,8 +8,8 @@ import { Pressable, View, StatusBar, Platform } from 'react-native';
 import { iRootReducers } from '../../types/reduxTypes';
 import { tNavigationProp,tRoutePropCamera } from '../../types/navigationTypes';
 import { setPhotosAction } from '../../redux/actions/actions';
-import { base } from '../../styles/base';
-import { colorBlack, colorWhite, iconSize } from '../../styles/constants';
+import { colors, base } from '../../styles';
+import { iconSize } from '../../styles/constants';
 import { styles } from './styles';
 
 interface iProps{
@@ -37,7 +37,7 @@ const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
 
     return(
         <View style={base.container}>
-            <StatusBar backgroundColor={colorBlack}/>
+            <StatusBar backgroundColor={colors.color8}/>
             <CameraKitCamera
                 ref={(cam: any) => ref.current = cam}
                 style={styles.cameraStyle}
@@ -52,7 +52,7 @@ const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                 style={[base.button, styles.buttonCamera]}
                 onPress={makePhoto}
             >
-                <Icon name="circle-double" size={iconSize} color={colorWhite}/>
+                <Icon name="circle-double" size={iconSize} color={colors.color0}/>
             </Pressable>
         </View>
     );

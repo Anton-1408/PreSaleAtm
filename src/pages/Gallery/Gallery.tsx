@@ -7,9 +7,9 @@ import { ThunkDispatch } from 'redux-thunk';
 import { iRootReducers } from '../../types/reduxTypes';
 import { tNavigationProp, tRoutePropGallery } from '../../types/navigationTypes';
 import { setPhotosAction } from '../../redux/actions/actions';
-import { colorBlack, colorWhite, iconSize } from '../../styles/constants';
+import { iconSize } from '../../styles/constants';
+import { colors, base } from '../../styles';
 import { getPhotos, getAccessGallery, countImageRow } from '../../lib/galleryHelper';
-import { base } from '../../styles/base';
 import { CheckPhoto } from '../../components';
 import { styles } from './styles';
 
@@ -55,7 +55,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
 
     return(
         <View style={[base.container, styles.galleryContainer]}>
-            <StatusBar backgroundColor={colorBlack}/>
+            <StatusBar backgroundColor={colors.color8}/>
             <FlatList
                 data={images}
                 horizontal={false}
@@ -90,7 +90,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
                 style={[base.button, styles.imageGalleryButton]}
                 onPress={chosePhoto}
             >
-                <Icon name="check-outline" size={iconSize} color={colorWhite}/>
+                <Icon name="check-outline" size={iconSize} color={colors.color0}/>
             </Pressable>
         </View>
     )

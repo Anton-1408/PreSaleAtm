@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { colorWhite } from '../../styles/constants';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   containerComment:{
-    backgroundColor: '#EDE7F6',
+    backgroundColor: colors.color14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -11,6 +11,6 @@ export const styles = StyleSheet.create({
     height: 60,
   },
   containerType: {
-    backgroundColor: colorWhite
+    backgroundColor: colors.color0
   },
 });

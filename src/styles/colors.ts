@@ -17,4 +17,8 @@ export default {
   color14: '#EDE7F6',
   color15: '#5E35B1',
   color16: '#E0E0E0',
+  color17: '#3F51B5',
+  color18: '#4527A0',
+  color19: '#43A047',
+  color20: '#424242',
 };

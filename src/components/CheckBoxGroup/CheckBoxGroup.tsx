@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
-import { colorIsWork, iconSize } from '../../styles/constants';
+import { iconSize } from '../../styles/constants';
+import { colors } from '../../styles';
 import { styles } from './styles';
 import { ActionContext, iContext } from '../../lib/actionHelper';
 
@@ -54,8 +55,8 @@ const CheckBoxGroup: React.FC<iProps> = ({ setResult, initialState }) => {
                         });
                     }}
                     size={iconSize}
-                    checkedColor={colorIsWork}
-                    uncheckedColor={colorIsWork}
+                    checkedColor={colors.color5}
+                    uncheckedColor={colors.color5}
                     containerStyle = {styles.containerBox}
                     textStyle={styles.textBox}
                 />

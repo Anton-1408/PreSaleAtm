@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { colorBlack } from '../../styles/constants';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   galleryContainer:{
-    backgroundColor: colorBlack,
+    backgroundColor: colors.color8,
     alignItems: 'center',
   },
   imageGallery:{
@@ -11,6 +11,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   imageGalleryButton:{
-      backgroundColor: colorBlack
+      backgroundColor: colors.color8
   },
 });

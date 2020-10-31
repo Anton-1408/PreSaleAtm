@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { colorWhite } from '../../styles/constants';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   containerBox:{
-    backgroundColor: colorWhite,
-    borderColor: colorWhite
+    backgroundColor: colors.color0,
+    borderColor: colors.color0,
   },
   textBox:{
     fontSize: 15,

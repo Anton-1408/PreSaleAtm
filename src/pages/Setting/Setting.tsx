@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { tNavigationProp, tRoutePropSetting } from '../../types/navigationTypes';
-import { base } from '../../styles/base';
-import { iconSize, colorWhite } from '../../styles/constants';
+import { iconSize } from '../../styles/constants';
 import { saveSetting, getSetting } from '../../lib/settingHelper';
 import { getVersion } from 'react-native-device-info';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors, base } from '../../styles';
 
 interface iProps{
   readonly route: tRoutePropSetting,
@@ -23,7 +23,7 @@ const Setting: React.FC<iProps> = ({navigation}) => {
   return(
     <View style={base.container}>
       <View style={styles.settingContainer}>
-        <Icon name="account" size={iconSize} color="#5E35B1"/>
+        <Icon name="account" size={iconSize} color={colors.color15}/>
         <TextInput
           value={userId}
           style={styles.settingTextInput}
@@ -34,7 +34,7 @@ const Setting: React.FC<iProps> = ({navigation}) => {
         />
       </View>
       <View style={styles.settingContainer}>
-        <Icon name="cellphone-information" size={iconSize} color="#5E35B1"/>
+        <Icon name="cellphone-information" size={iconSize} color={colors.color15}/>
         <Text style={styles.settingText}>{getVersion()}</Text>
       </View>
       <Pressable
@@ -45,7 +45,7 @@ const Setting: React.FC<iProps> = ({navigation}) => {
             })
           }}
       >
-        <Icon name="content-save-cog-outline" size={iconSize} color={colorWhite}/>
+        <Icon name="content-save-cog-outline" size={iconSize} color={colors.color0}/>
       </Pressable>
     </View>
   )

@@ -6,9 +6,9 @@ import { Pressable, View, StatusBar, Text, Alert } from 'react-native';
 import { iRootReducers } from '../../types/reduxTypes';
 import { tNavigationProp, tRoutePropViewPhoto } from '../../types/navigationTypes';
 import { setPhotosAction } from '../../redux/actions/actions';
-import { base } from '../../styles/base';
-import { colorBlack, colorWhite, iconSize, iconSizeBar } from '../../styles/constants';
+import { iconSize, iconSizeBar } from '../../styles/constants';
 import { styles } from './styles';
+import { colors, base } from '../../styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageView from "react-native-image-viewing";
 
@@ -39,7 +39,7 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
 
     return(
         <View style={base.container}>
-            <StatusBar backgroundColor={colorBlack}/>
+            <StatusBar backgroundColor={colors.color8}/>
             <ImageView
                 images={images}
                 imageIndex={initialIndex}
@@ -58,7 +58,7 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                                 navigation.goBack()
                             }}
                         >
-                            <Icon name='close' size={iconSizeBar} color={colorWhite}/>
+                            <Icon name='close' size={iconSizeBar} color={colors.color8}/>
                         </Pressable>
                     </View>
                 )}
@@ -80,7 +80,7 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                             ])
                         }}
                     >
-                        <Icon name="delete" size={iconSize} color={colorWhite}/>
+                        <Icon name="delete" size={iconSize} color={colors.color8}/>
                     </Pressable>
                 )}
             />

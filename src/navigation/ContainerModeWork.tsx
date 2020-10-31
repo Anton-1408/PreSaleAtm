@@ -9,14 +9,8 @@ import { rootParamsModeWork } from '../types/navigationTypes';
 import { setModeWork } from '../redux/actions/actions';
 import { setSerialNumberDevice } from '../redux/actions/actions';
 import { modeWork } from '../types/modeWork';
-import {
-    desingColor,
-    colorWhite,
-    colorInActiveButton,
-    barLabelSize,
-    iconSizeBar,
-    barLabelFontFamily
-} from '../styles/constants';
+import { colors } from '../styles';
+import { barLabelSize, iconSizeBar, barLabelFontFamily } from '../styles/constants';
 
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 
@@ -26,10 +20,10 @@ const ContainerModeWork: React.FC = () => {
         <Tab.Navigator
             initialRouteName="TodoMode"
             tabBarOptions={{
-                activeTintColor: colorWhite,
-                inactiveTintColor: colorInActiveButton,
+                activeTintColor: colors.color0,
+                inactiveTintColor: colors.color6,
                 style: {
-                    backgroundColor: desingColor,
+                    backgroundColor: colors.color17,
                 },
                 labelStyle:{
                     fontSize: barLabelSize,

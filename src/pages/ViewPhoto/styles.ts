@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorWhite } from '../../styles/constants';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   photoViewHeader:{
@@ -9,13 +9,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   photoViewTitle:{
-    color: colorWhite,
+    color: colors.color0,
     fontSize: 20,
     width: '60%',
     fontFamily: 'OpenSans-BoldItalic'
   },
   photoViewButtonClose:{
-    backgroundColor: '#616161',
+    backgroundColor: colors.color9,
     borderRadius: 20,
     height: 40,
     width: 40,

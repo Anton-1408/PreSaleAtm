@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colorWhite } from '../../styles/constants';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   container:{
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   deviceId:{
     fontSize: 15,
-    color: colorWhite,
+    color: colors.color0,
     fontFamily: 'OpenSans-Bold',
   },
   containerInformation:{
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   },
   name:{
       fontSize: 14,
-      color: '#424242',
+      color: colors.color20,
       fontFamily: 'OpenSans-Bold',
   },
   deviceInformation:{

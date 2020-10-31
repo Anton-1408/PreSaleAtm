@@ -6,19 +6,13 @@ import { View, Text, FlatList, Pressable } from 'react-native';
 import { iRootReducers } from '../../types/reduxTypes';
 import { tRoutePropDevice, tNavigationProp } from '../../types/navigationTypes';
 import { setDeviceKey } from '../../redux/actions/actions';
-import { base } from '../../styles/base';
 import { getDevices, setQuery, setParams } from '../../lib/devicesHelper';
 import { modeWork } from '../../types/modeWork';
 import { selectorOrderKey, selectorStepKey } from '../../redux/selectors/holderKeysSelectors';
 import { selectorSerialNumbDevice, selectorTypeWork } from '../../redux/selectors/appStateSelectors';
 import { styles } from './styles';
-import {
-    colorPress,
-    colorIsStop,
-    colorIsDone,
-    colorIsWork,
-    titlePage
-} from '../../styles/constants';
+import { colors, base } from '../../styles';
+import { colorPress, titlePage } from '../../styles/constants';
 
 interface iProps{
     readonly orderKey: number,
@@ -96,8 +90,8 @@ const Device: React.FC<iProps> = (props) => {
                     >
                         <View
                             style={[styles.containerId, {
-                                    backgroundColor: item.isStoped ? colorIsStop : (
-                                        item.percent < 100 ? colorIsWork : colorIsDone
+                                    backgroundColor: item.isStoped ? colors.color3 : (
+                                        item.percent < 100 ? colors.color5 : colors.color2
                                     )
                                 }
                             ]}

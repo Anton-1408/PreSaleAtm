@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { colorWhite } from '../../styles/constants';
+import { colors } from '../../styles';
 
 export const styles = StyleSheet.create({
   headerTitle:{
     fontSize: 20,
     fontFamily: 'OpenSans-SemiBold',
-    color: colorWhite
+    color: colors.color0
   },
 });
