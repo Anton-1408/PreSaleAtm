@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
-import { tNavigationProp, tRoutePropSetting } from '../types/navigationTypes';
-import { style } from '../styles/style';
-import { componentsStyle } from '../styles/componentsStyle';
-import { iconSize, colorWhite } from '../styles/constantStyle';
-import { saveSetting, getSetting } from '../lib/settingHelper';
+import { tNavigationProp, tRoutePropSetting } from '../../types/navigationTypes';
+import { base } from '../../styles/base';
+import { iconSize, colorWhite } from '../../styles/constants';
+import { saveSetting, getSetting } from '../../lib/settingHelper';
 import { getVersion } from 'react-native-device-info';
+import { styles } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface iProps{
@@ -21,24 +21,24 @@ const Setting: React.FC<iProps> = ({navigation}) => {
   }, []);
 
   return(
-    <View style={style.container}>
-      <View style={componentsStyle.settingContainer}>
+    <View style={base.container}>
+      <View style={styles.settingContainer}>
         <Icon name="account" size={iconSize} color="#5E35B1"/>
         <TextInput
           value={userId}
-          style={componentsStyle.settingTextInput}
+          style={styles.settingTextInput}
           onChangeText={(text) => {
             setUserId(text);
           }}
           keyboardType={"numeric"}
         />
       </View>
-      <View style={componentsStyle.settingContainer}>
+      <View style={styles.settingContainer}>
         <Icon name="cellphone-information" size={iconSize} color="#5E35B1"/>
-        <Text style={componentsStyle.settingText}>{getVersion()}</Text>
+        <Text style={styles.settingText}>{getVersion()}</Text>
       </View>
       <Pressable
-          style={style.button}
+          style={base.button}
           onPress={() => {
             saveSetting(userId).then(() => {
               navigation.goBack()

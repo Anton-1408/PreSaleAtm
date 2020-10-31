@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
-import { style } from '../styles/style';
-import { iRootReducers } from '../types/reduxTypes';
-import { tNavigationProp,tRoutePropAction } from '../types/navigationTypes';
-import { iconSize } from '../styles/constantStyle';
-import { componentsStyle } from '../styles/componentsStyle';
-import { ActionContext, getExtraFiles, getExtraParams } from '../lib/actionHelper';
-import { SwipperPanel, ActionType, SaveResultAction } from '../components'
-import { colorIsWork } from '../styles/constantStyle';
-import { selectorDeviceKey, selectorActionKey } from '../redux/selectors/holderKeysSelectors';
+import { base } from '../../styles/base';
+import { iRootReducers } from '../../types/reduxTypes';
+import { tNavigationProp,tRoutePropAction } from '../../types/navigationTypes';
+import { iconSize, colorIsWork } from '../../styles/constants';
+import { ActionContext, getExtraFiles, getExtraParams } from '../../lib/actionHelper';
+import { SwipperPanel, ActionType, SaveResultAction } from '../../components'
+import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/holderKeysSelectors';
+import { styles } from './styles';
 
 interface iProps{
     readonly deviceKey: number,
@@ -48,17 +47,17 @@ const Action: React.FC<iProps> = (props) => {
                 extraParams: extraParams,
             }}
         >
-            <View style={style.container}>
+            <View style={base.container}>
                 <Pressable
-                    style={componentsStyle.actionContainerComment}
+                    style={styles.containerComment}
                     onPress={() => {
                         setStatePanel(true);
                     }}
                 >
-                    <Text style={style.title}>Комментарий</Text>
+                    <Text style={base.title}>Комментарий</Text>
                     <Icon name='gesture-tap' size={iconSize} color={colorIsWork}/>
                 </Pressable>
-                <View style={componentsStyle.actionTypeContainer}>
+                <View style={styles.containerType}>
                     <ActionType
                         actionKey={actionKey}
                         deviceKey={deviceKey}

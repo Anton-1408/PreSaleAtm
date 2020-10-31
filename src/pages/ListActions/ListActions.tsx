@@ -4,13 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
-import { style } from '../styles/style';
-import { iRootReducers } from '../types/reduxTypes';
-import { tNavigationProp, tRoutePropListActions } from '../types/navigationTypes';
-import { setActionKey } from '../redux/actions/actions';
-import { getListActions } from '../lib/listActionsHelper';
-import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack, iconSizeBar } from '../styles/constantStyle';
-import { selectorStepKey, selectorDeviceKey } from '../redux/selectors/holderKeysSelectors';
+import { base } from '../../styles/base';
+import { iRootReducers } from '../../types/reduxTypes';
+import { tNavigationProp, tRoutePropListActions } from '../../types/navigationTypes';
+import { setActionKey } from '../../redux/actions/actions';
+import { getListActions } from '../../lib/listActionsHelper';
+import { colorPress, bcolorDone, colorDone, colorTitle, colorBlack, iconSizeBar } from '../../styles/constants';
+import { selectorStepKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';
 
 interface iProps{
     readonly stepKey: number,
@@ -45,7 +45,7 @@ const ListActions: React.FC<iProps> = (props) => {
     }, [navigation]);
 
     return(
-        <View style={style.container}>
+        <View style={base.container}>
             <FlatList
                 data={listActions}
                 keyExtractor={(item: any) => (item.id).toString()}
@@ -53,7 +53,7 @@ const ListActions: React.FC<iProps> = (props) => {
                     <Pressable
                         style={({ pressed }) => [
                             colorPress(pressed),
-                            style.containerData, {
+                            base.containerData, {
                                 backgroundColor: bcolorDone(item.isDone)
                             }
                         ]}
@@ -67,14 +67,18 @@ const ListActions: React.FC<iProps> = (props) => {
                             })
                         }}
                     >
-                        <View style={style.containerText}>
-                            <Text
-                                style={[style.title, { color: colorDone(item.isDone, colorTitle) }]}
+                        <View style={base.containerText}>
+                            <Text style={[base.title, {
+                                        color: colorDone(item.isDone, colorTitle)
+                                    }
+                                ]}
                             >
                                 {item.name}
                             </Text>
-                            <Text
-                                style={[style.comment, { color: colorDone(item.isDone, colorBlack)}]}
+                            <Text style={[base.comment, {
+                                        color: colorDone(item.isDone, colorBlack)
+                                    }
+                                ]}
                             >
                                 {item.fio} {item.date}
                             </Text>

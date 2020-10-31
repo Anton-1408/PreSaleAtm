@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { Text } from 'react-native';
 import { styles } from './styles';
+import { Text } from 'react-native';
 
 interface iProps{
     readonly isImportant: number,

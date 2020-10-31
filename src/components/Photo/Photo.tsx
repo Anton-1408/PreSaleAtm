@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Pressable, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { style } from '../../styles/style';
-import { colorWhite, iconSize } from '../../styles/constantStyle';
+import { base } from '../../styles/base';
+import { colorWhite, iconSize } from '../../styles/constants';
 import { iRootReducers } from '../../types/reduxTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -68,11 +68,11 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
                 data={images}
                 horizontal={false}
                 keyExtractor={ (item: any) => item.name }
-                style={style.imagesList}
+                style={base.imagesList}
                 numColumns={countImageRow()}
                 renderItem={({item}) => (
                     <Pressable
-                        style={style.imageContainer}
+                        style={base.imageContainer}
                         onPress={() => {
                             navigation.navigate('ViewPhoto', {
                                 name: item.name,
@@ -82,12 +82,12 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
                     >
                         <Image
                             source={{uri: item.uri}}
-                            style={style.imageStyle}
+                            style={base.imageStyle}
                         />
                     </Pressable>
                 )}
             />
-            <View style={[style.button, styles.buttonCamera]}>
+            <View style={[base.button, styles.buttonCamera]}>
                 <Pressable
                     onPress={() => {
                         navigation.navigate('Camera')
@@ -97,7 +97,7 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
                 </Pressable>
             </View>
             <Pressable
-                style={[style.button, styles.buttonGallery]}
+                style={[base.button, styles.buttonGallery]}
                 onPress={() => {
                     navigation.navigate('Gallery')
                 }}

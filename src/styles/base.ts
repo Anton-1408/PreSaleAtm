@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { colorTitle, colorWhite, sizeImage } from './constantStyle';
+import { colorTitle, colorWhite, sizeImage } from './constants';
 
-export const style = StyleSheet.create({
+export const base = StyleSheet.create({
     buttonBarContainer:{
         marginRight: 15,
     },

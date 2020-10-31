@@ -1,6 +1,6 @@
 import { PermissionsAndroid,Dimensions } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
-import { sizeImage } from '../styles/constantStyle';
+import { sizeImage } from '../styles/constants';
 
 export const getAccessGallery = async (): Promise<string> => {
     const granted: string = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);

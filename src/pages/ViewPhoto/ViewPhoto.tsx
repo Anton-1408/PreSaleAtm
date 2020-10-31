@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Pressable, View, StatusBar, Text, Alert } from 'react-native';
-import { iRootReducers } from '../types/reduxTypes';
-import { tNavigationProp, tRoutePropViewPhoto } from '../types/navigationTypes';
-import { setPhotosAction } from '../redux/actions/actions';
-import { style } from '../styles/style';
-import { colorBlack, colorWhite, iconSize, iconSizeBar } from '../styles/constantStyle';
-import { componentsStyle } from '../styles/componentsStyle';
+import { iRootReducers } from '../../types/reduxTypes';
+import { tNavigationProp, tRoutePropViewPhoto } from '../../types/navigationTypes';
+import { setPhotosAction } from '../../redux/actions/actions';
+import { base } from '../../styles/base';
+import { colorBlack, colorWhite, iconSize, iconSizeBar } from '../../styles/constants';
+import { styles } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageView from "react-native-image-viewing";
 
@@ -38,7 +38,7 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
     }, []);
 
     return(
-        <View style={style.container}>
+        <View style={base.container}>
             <StatusBar backgroundColor={colorBlack}/>
             <ImageView
                 images={images}
@@ -48,12 +48,12 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                 swipeToCloseEnabled={false}
                 onRequestClose={() => { }}
                 HeaderComponent={(index) => (
-                    <View style={componentsStyle.photoViewHeader}>
-                        <Text style={componentsStyle.photoViewTitle}>
+                    <View style={styles.photoViewHeader}>
+                        <Text style={styles.photoViewTitle}>
                             {images.length > 0 ? images[index.imageIndex].name : ''}
                         </Text>
                         <Pressable
-                            style={componentsStyle.photoViewButtonClose}
+                            style={styles.photoViewButtonClose}
                             onPress={() => {
                                 navigation.goBack()
                             }}
@@ -64,7 +64,7 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                 )}
                 FooterComponent={(index) => (
                     <Pressable
-                        style={componentsStyle.buttonDeletePhoto}
+                        style={styles.buttonDeletePhoto}
                         onPress={() => {
                             Alert.alert('Изображение будет удалено.', 'Вы уверены?', [
                                 {

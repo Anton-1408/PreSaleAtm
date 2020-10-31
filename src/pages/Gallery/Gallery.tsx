@@ -4,14 +4,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { iRootReducers } from '../types/reduxTypes';
-import { tNavigationProp, tRoutePropGallery } from '../types/navigationTypes';
-import { setPhotosAction } from '../redux/actions/actions';
-import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
-import { getPhotos, getAccessGallery, countImageRow } from '../lib/galleryHelper';
-import { style } from '../styles/style';
-import { componentsStyle } from '../styles/componentsStyle';
-import { CheckPhoto } from '../components';
+import { iRootReducers } from '../../types/reduxTypes';
+import { tNavigationProp, tRoutePropGallery } from '../../types/navigationTypes';
+import { setPhotosAction } from '../../redux/actions/actions';
+import { colorBlack, colorWhite, iconSize } from '../../styles/constants';
+import { getPhotos, getAccessGallery, countImageRow } from '../../lib/galleryHelper';
+import { base } from '../../styles/base';
+import { CheckPhoto } from '../../components';
+import { styles } from './styles';
 
 interface iProps{
     readonly route: tRoutePropGallery,
@@ -54,18 +54,18 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
     }, [countImages]);
 
     return(
-        <View style={[style.container, componentsStyle.galleryContainer]}>
+        <View style={[base.container, styles.galleryContainer]}>
             <StatusBar backgroundColor={colorBlack}/>
             <FlatList
                 data={images}
                 horizontal={false}
                 keyExtractor={(item: any) => item.name}
                 numColumns={countImageRow()}
-                style={style.imagesList}
+                style={base.imagesList}
                 onEndReached={viewImages}
                 renderItem={({item}) => (
                     <Pressable
-                        style={style.imageContainer}
+                        style={base.imageContainer}
                         onPress={() => {
                             setImages((prev: any) => {
                                 return prev.map((next: any) => {
@@ -77,7 +77,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
                     >
                         <ImageBackground
                             source={{uri: item.uri}}
-                            style={[style.imageStyle, componentsStyle.imageGallery]}
+                            style={[base.imageStyle, styles.imageGallery]}
                         >
                             <CheckPhoto
                                 check={item.check}
@@ -87,7 +87,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
                 )}
             />
             <Pressable
-                style={[style.button, componentsStyle.imageGalleryButton]}
+                style={[base.button, styles.imageGalleryButton]}
                 onPress={chosePhoto}
             >
                 <Icon name="check-outline" size={iconSize} color={colorWhite}/>

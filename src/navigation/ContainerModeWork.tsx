@@ -5,12 +5,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ContainerDevice from './ContainerDevice';
 import ContainerTodo from './ContainerTodo';
-import { desingColor, colorWhite, colorInActiveButton, barLabelSize, barLabelFontFamily } from '../styles/constantStyle';
 import { rootParamsModeWork } from '../types/navigationTypes';
-import { iconSizeBar } from '../styles/constantStyle';
 import { setModeWork } from '../redux/actions/actions';
 import { setSerialNumberDevice } from '../redux/actions/actions';
 import { modeWork } from '../types/modeWork';
+import {
+    desingColor,
+    colorWhite,
+    colorInActiveButton,
+    barLabelSize,
+    iconSizeBar,
+    barLabelFontFamily
+} from '../styles/constants';
 
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 

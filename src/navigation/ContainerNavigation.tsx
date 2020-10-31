@@ -5,21 +5,23 @@ import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import { Stack } from "./stackNavigation";
 import { ButtonSetting, ButtonHome, HeaderModeWork, SearchInput, ButtonAction } from '../components';
-import { desingColor, colorBlack, barLabelFontFamily } from '../styles/constantStyle';
-import { colorWhite } from '../styles/constantStyle';
+import { desingColor, colorBlack, barLabelFontFamily } from '../styles/constants';
+import { colorWhite } from '../styles/constants';
 import store from '../redux/store';
-import Setting from "../pages/Setting";
 import ContainerOrder from './ContainerOrder';
 import ContainerModeWork from './ContainerModeWork';
-import ScanBarCode from '../pages/ScanBarCode';
-import Step from '../pages/Step';
 import ContainerTodo from './ContainerTodo';
 import ContainerDevice from './ContainerDevice';
-import ListActions from '../pages/ListActions';
-import Action from '../pages/Action';
-import Gallery from '../pages/Gallery';
-import Camera from '../pages/Camera';
-import ViewPhoto from '../pages/ViewPhoto';
+import {
+    Setting,
+    ScanBarCode,
+    Step,
+    ListActions,
+    Action,
+    Gallery,
+    Camera,
+    ViewPhoto,
+} from '../pages';
 
 const ContainerNavigation: React.FC = () => {
     return(

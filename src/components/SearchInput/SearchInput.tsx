@@ -7,9 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
 import { iRootReducers } from '../../types/reduxTypes';
-import { colorIconSearch } from '../../styles/constantStyle';
+import { colorIconSearch } from '../../styles/constants';
 import { tNavigationProp } from '../../types/navigationTypes';
-import { colorPress } from '../../styles/constantStyle';
+import { colorPress } from '../../styles/constants';
 import { setSerialNumberDevice } from '../../redux/actions/actions';
 import { selectorSerialNumbDevice } from '../../redux/selectors/appStateSelectors';
 

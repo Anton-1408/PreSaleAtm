@@ -3,12 +3,19 @@ import {View, Text, FlatList, Pressable, RefreshControl} from 'react-native';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { tNavigationProp, tRoutePropOrder } from '../types/navigationTypes';
-import { style } from '../styles/style';
-import { setIdUser, setHashCodeProjects, setResultChecklist, setOrders, setOrderKey, setActionFiles } from '../redux/actions/actions';
-import { iRootReducers } from '../types/reduxTypes';
-import { getOrders } from '../lib/ordersHelper';
-import { desingColor, colorPress, colorWhite } from '../styles/constantStyle';
+import { tNavigationProp, tRoutePropOrder } from '../../types/navigationTypes';
+import { base } from '../../styles/base';
+import { iRootReducers } from '../../types/reduxTypes';
+import { getOrders } from '../../lib/ordersHelper';
+import { desingColor, colorPress, colorWhite } from '../../styles/constants';
+import {
+    setIdUser,
+    setHashCodeProjects,
+    setResultChecklist,
+    setOrders,
+    setOrderKey,
+    setActionFiles
+} from '../../redux/actions/actions';
 
 interface iProps{
     readonly route: tRoutePropOrder,
@@ -80,7 +87,7 @@ const Order: React.FC<iProps> = (props) => {
     }, [navigation]);
 
     return(
-        <View style={style.container}>
+        <View style={base.container}>
             <FlatList
                 data={orders}
                 keyExtractor={(item: any) => (item.id).toString()}
@@ -96,18 +103,18 @@ const Order: React.FC<iProps> = (props) => {
                 }
                 renderItem={({item}) => (
                     <Pressable
-                        style={({ pressed }) => [colorPress(pressed), style.containerData]}
+                        style={({ pressed }) => [colorPress(pressed), base.containerData]}
                         onPress={() => {
                             setOrderId(item.id)
                             navigation.navigate('ModeWork')
                         }}
                     >
-                        <View style={style.containerText}>
-                            <Text style={style.title}>{item.name}</Text>
-                            <Text style={style.comment}>{item.comment}</Text>
+                        <View style={base.containerText}>
+                            <Text style={base.title}>{item.name}</Text>
+                            <Text style={base.comment}>{item.comment}</Text>
                         </View>
                         <View>
-                            <Text style={style.percent}>{item.percent + "%"}</Text>
+                            <Text style={base.percent}>{item.percent + "%"}</Text>
                         </View>
                     </Pressable>
                 )}

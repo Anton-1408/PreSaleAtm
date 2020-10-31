@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { colorIsWork } from '../../styles/constantStyle';
+import { colorIsWork } from '../../styles/constants';
 import { styles } from './styles';
 
 interface iProps{

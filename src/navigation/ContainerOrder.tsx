@@ -1,6 +1,6 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Order from '../pages/Order';
+import { Order } from '../pages';
 import { rootParamsOrder } from "../types/navigationTypes";
 import {
     desingColor,
@@ -9,7 +9,7 @@ import {
     borderColorTabBar,
     barLabelFontFamily,
     barLabelSize
-} from '../styles/constantStyle';
+} from '../styles/constants';
 
 const Tab = createMaterialTopTabNavigator<rootParamsOrder>();
 

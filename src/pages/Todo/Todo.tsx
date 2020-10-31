@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { iRootReducers } from '../types/reduxTypes';
-import { tRoutePropTodo, tNavigationProp } from '../types/navigationTypes'
-import { setTodoKey } from '../redux/actions/actions';
-import { style } from '../styles/style';
-import { getTodos, setQuery, setParams } from '../lib/todosHelper';
-import { colorPress } from '../styles/constantStyle';
-import { selectorOrderKey, selectorDeviceKey } from '../redux/selectors/holderKeysSelectors';
-import { selectorTypeWork } from '../redux/selectors/appStateSelectors';
+import { iRootReducers } from '../../types/reduxTypes';
+import { tRoutePropTodo, tNavigationProp } from '../../types/navigationTypes'
+import { setTodoKey } from '../../redux/actions/actions';
+import { base } from '../../styles/base';
+import { getTodos, setQuery, setParams } from '../../lib/todosHelper';
+import { colorPress } from '../../styles/constants';
+import { selectorOrderKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
 
 interface iProps{
 	readonly orderKey: number,
@@ -49,13 +49,13 @@ const Todo: React.FC<iProps> = (props) => {
   }, [navigation]);
 
     return(
-      <View style={style.container}>
+      <View style={base.container}>
 					<FlatList
 						data={todos}
 						keyExtractor={(item: any) => (item.id).toString()}
 						renderItem={({item}) => (
 							<Pressable
-								style={({ pressed }) => [colorPress(pressed), style.containerData]}
+								style={({ pressed }) => [colorPress(pressed), base.containerData]}
 								onPress={() => {
 									setTodoId(item.id)
 									navigation.navigate('Step', {
@@ -63,12 +63,12 @@ const Todo: React.FC<iProps> = (props) => {
 									});
 								}}
 							>
-								<View style={style.containerText}>
-									<Text style={style.title}>{item.name}</Text>
-									<Text style={style.comment}>{item.comment}</Text>
+								<View style={base.containerText}>
+									<Text style={base.title}>{item.name}</Text>
+									<Text style={base.comment}>{item.comment}</Text>
 								</View>
 								<View>
-									<Text style={style.percent}>{item.percent + "%"}</Text>
+									<Text style={base.percent}>{item.percent + "%"}</Text>
 								</View>
 							</Pressable>
 						)}

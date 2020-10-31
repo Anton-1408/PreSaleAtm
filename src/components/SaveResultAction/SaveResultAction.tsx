@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { Pressable } from 'react-native';
-import { style } from '../../styles/style';
+import { base } from '../../styles/base';
 import { useSelector } from 'react-redux';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { iRootReducers } from '../../types/reduxTypes';
 import { selectorActionResult } from '../../redux/selectors/appStateSelectors';
 import { typeAction } from '../../types/typeAction';
 import { saveResult, deletePhoto, savePhotoAction } from '../../lib/actionHelper';
-import { iconSize, colorWhite } from '../../styles/constantStyle';
+import { iconSize, colorWhite } from '../../styles/constants';
 import { tRoutePropAction, tNavigationProp } from '../../types/navigationTypes';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -38,7 +38,7 @@ const SaveResultAction: React.FC<iProps> = ({ actionKey, deviceKey }) => {
 
     return(
         <Pressable
-            style={style.button}
+            style={base.button}
             onPress={setResult}
         >
             <Icon name='check' size={iconSize} color={colorWhite}/>

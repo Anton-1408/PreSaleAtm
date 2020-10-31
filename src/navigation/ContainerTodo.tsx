@@ -1,6 +1,6 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Todo from '../pages/Todo';
+import { Todo } from '../pages';
 import { rootParamsTodo } from "../types/navigationTypes";
 import {
     desingColor,
@@ -9,7 +9,7 @@ import {
     borderColorTabBar,
     barLabelSize,
     barLabelFontFamily
-} from '../styles/constantStyle';
+} from '../styles/constants';
 
 const Tab = createMaterialTopTabNavigator<rootParamsTodo>();
 

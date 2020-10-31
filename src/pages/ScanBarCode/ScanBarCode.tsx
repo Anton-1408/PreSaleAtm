@@ -4,15 +4,15 @@ import { CameraKitCameraScreen } from 'react-native-camera-kit';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { connect } from 'react-redux';
-import { style } from '../styles/style';
-import { tRoutePropScanBarCode, tNavigationProp } from '../types/navigationTypes';
-import { iRootReducers } from '../types/reduxTypes';
-import { setDeviceKey, setSerialNumberDevice } from '../redux/actions/actions';
-import { getPermissions, getDevicesList, searchDevice } from '../lib/scanCodeHelper';
-import { modeWork } from '../types/modeWork';
-import { titlePage, colorBlack } from '../styles/constantStyle';
-import { selectorOrderKey } from '../redux/selectors/holderKeysSelectors';
-import { selectorTypeWork } from '../redux/selectors/appStateSelectors';
+import { styles } from './styles';
+import { tRoutePropScanBarCode, tNavigationProp } from '../../types/navigationTypes';
+import { iRootReducers } from '../../types/reduxTypes';
+import { setDeviceKey, setSerialNumberDevice } from '../../redux/actions/actions';
+import { getPermissions, getDevicesList, searchDevice } from '../../lib/scanCodeHelper';
+import { modeWork } from '../../types/modeWork';
+import { titlePage, colorBlack } from '../../styles/constants';
+import { selectorOrderKey } from '../../redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
 
 interface iProps{
     readonly orderKey: number,
@@ -47,7 +47,7 @@ const ScanBarCode: React.FC<iProps> = (props) => {
     }, []);
 
     return(
-        <View style={style.container}>
+        <View style={styles.container}>
             <StatusBar backgroundColor={colorBlack}/>
             <CameraKitCameraScreen
                 scanBarcode={true}

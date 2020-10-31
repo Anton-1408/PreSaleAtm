@@ -3,15 +3,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native';
 import { tNavigationProp } from '../../types/navigationTypes';
-import { iconSizeBar, colorWhite } from '../../styles/constantStyle';
-import { style } from '../../styles/style';
+import { iconSizeBar, colorWhite } from '../../styles/constants';
+import { base } from '../../styles/base';
 
 const ButtonSetting: React.FC = ({}) => {
     const navigation: tNavigationProp = useNavigation();
 
     return(
         <Pressable
-            style={style.buttonBarContainer}
+            style={base.buttonBarContainer}
             onPress={() => {
                 navigation.navigate("Setting");
             }}

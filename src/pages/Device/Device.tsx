@@ -3,16 +3,22 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
-import { iRootReducers } from '../types/reduxTypes';
-import { tRoutePropDevice, tNavigationProp } from '../types/navigationTypes';
-import { setDeviceKey } from '../redux/actions/actions';
-import { componentsStyle } from '../styles/componentsStyle';
-import { colorPress, colorIsStop, colorIsDone, colorIsWork, titlePage } from '../styles/constantStyle';
-import { style } from '../styles/style';
-import { getDevices, setQuery, setParams } from '../lib/devicesHelper';
-import { modeWork } from '../types/modeWork';
-import { selectorOrderKey, selectorStepKey } from '../redux/selectors/holderKeysSelectors';
-import { selectorSerialNumbDevice, selectorTypeWork } from '../redux/selectors/appStateSelectors';
+import { iRootReducers } from '../../types/reduxTypes';
+import { tRoutePropDevice, tNavigationProp } from '../../types/navigationTypes';
+import { setDeviceKey } from '../../redux/actions/actions';
+import { base } from '../../styles/base';
+import { getDevices, setQuery, setParams } from '../../lib/devicesHelper';
+import { modeWork } from '../../types/modeWork';
+import { selectorOrderKey, selectorStepKey } from '../../redux/selectors/holderKeysSelectors';
+import { selectorSerialNumbDevice, selectorTypeWork } from '../../redux/selectors/appStateSelectors';
+import { styles } from './styles';
+import {
+    colorPress,
+    colorIsStop,
+    colorIsDone,
+    colorIsWork,
+    titlePage
+} from '../../styles/constants';
 
 interface iProps{
     readonly orderKey: number,
@@ -62,7 +68,7 @@ const Device: React.FC<iProps> = (props) => {
     }, [navigation]);
 
     return(
-        <View style={style.container}>
+        <View style={base.container}>
             <FlatList
                 data={devices.filter((item: any) => {
                     const itemSerialNumb = item.serialNumber.toUpperCase()
@@ -71,9 +77,9 @@ const Device: React.FC<iProps> = (props) => {
                     return result > -1
                 })}
                 keyExtractor={(item: any) => (item.id).toString()}
-                renderItem={({item}) => (
+                renderItem={({ item }) => (
                     <Pressable
-                        style={({ pressed }) => [colorPress(pressed), style.containerData]}
+                        style={({ pressed }) => [colorPress(pressed), base.containerData]}
                         onPress={() => {
                             setDiviceId(item.id)
                             if(typeWork === modeWork.device){
@@ -89,27 +95,27 @@ const Device: React.FC<iProps> = (props) => {
                         }}
                     >
                         <View
-                            style={[componentsStyle.deviceContainerId, {
+                            style={[styles.containerId, {
                                     backgroundColor: item.isStoped ? colorIsStop : (
                                         item.percent < 100 ? colorIsWork : colorIsDone
                                     )
                                 }
                             ]}
                         >
-                            <Text style={componentsStyle.deviceId} >{item.id}</Text>
+                            <Text style={styles.deviceId} >{item.id}</Text>
                         </View>
-                        <View style={componentsStyle.deviceContainer}>
-                            <View style={componentsStyle.deviceInformationContainer}>
-                                <Text style={componentsStyle.deviceName}>Модель: </Text>
-                                <Text style={[style.title, componentsStyle.deviceInformation]}>{item.model}</Text>
+                        <View style={styles.container}>
+                            <View style={styles.containerInformation}>
+                                <Text style={styles.name}>Модель: </Text>
+                                <Text style={[base.title, styles.deviceInformation]}>{item.model}</Text>
                             </View>
-                            <View style={componentsStyle.deviceInformationContainer}>
-                                <Text style={componentsStyle.deviceName}>Серийный номер: </Text>
-                                <Text style={[style.title, componentsStyle.deviceInformation]}>{item.serialNumber}</Text>
+                            <View style={styles.containerInformation}>
+                                <Text style={styles.name}>Серийный номер: </Text>
+                                <Text style={[base.title, styles.deviceInformation]}>{item.serialNumber}</Text>
                             </View>
                         </View>
                         <View>
-                            <Text style={style.percent}>{item.percent + "%"}</Text>
+                            <Text style={base.percent}>{item.percent + "%"}</Text>
                         </View>
                     </Pressable>
                 )}

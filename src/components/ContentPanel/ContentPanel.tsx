@@ -3,10 +3,9 @@ import { View, Text, Pressable, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { ActionContext, iContext } from '../../lib/actionHelper';
 import { styles } from './styles';
-import { componentsStyle } from '../../styles/componentsStyle';
 import { ExtraParamsPhoto } from '..';
 import { tRoutePropAction } from '../../types/navigationTypes';
-import { style } from '../../styles/style';
+import { base } from '../../styles/base';
 
 const ContentPanel: React.FC = () => {
     const context: iContext = useContext(ActionContext);
@@ -20,11 +19,11 @@ const ContentPanel: React.FC = () => {
                 {context.files.map((item: any) => (
                     <Pressable
                         key={item.id}
-                        style={style.imageContainer}
+                        style={base.imageContainer}
                     >
                         <Image
                             source={{uri: item.path}}
-                            style={style.imageStyle}
+                            style={base.imageStyle}
                         />
                     </Pressable>
                 ))}

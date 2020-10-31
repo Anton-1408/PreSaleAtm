@@ -5,12 +5,12 @@ import { ThunkDispatch } from 'redux-thunk';
 import { CameraKitCamera } from "react-native-camera-kit";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pressable, View, StatusBar, Platform } from 'react-native';
-import { iRootReducers } from '../types/reduxTypes';
-import { tNavigationProp,tRoutePropCamera } from '../types/navigationTypes';
-import { setPhotosAction } from '../redux/actions/actions';
-import { style } from '../styles/style';
-import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
-import { componentsStyle } from '../styles/componentsStyle';
+import { iRootReducers } from '../../types/reduxTypes';
+import { tNavigationProp,tRoutePropCamera } from '../../types/navigationTypes';
+import { setPhotosAction } from '../../redux/actions/actions';
+import { base } from '../../styles/base';
+import { colorBlack, colorWhite, iconSize } from '../../styles/constants';
+import { styles } from './styles';
 
 interface iProps{
     readonly route: tRoutePropCamera,
@@ -36,11 +36,11 @@ const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
     }, []);
 
     return(
-        <View style={style.container}>
+        <View style={base.container}>
             <StatusBar backgroundColor={colorBlack}/>
             <CameraKitCamera
                 ref={(cam: any) => ref.current = cam}
-                style={componentsStyle.cameraStyle}
+                style={styles.cameraStyle}
                 cameraOptions={{
                     flashMode: 'auto',
                     focusMode: 'on',
@@ -49,7 +49,7 @@ const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
                 }}
             />
             <Pressable
-                style={[style.button, componentsStyle.imageGalleryButton, {right: "36%"}]}
+                style={[base.button, styles.buttonCamera]}
                 onPress={makePhoto}
             >
                 <Icon name="circle-double" size={iconSize} color={colorWhite}/>

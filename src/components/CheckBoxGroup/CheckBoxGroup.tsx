@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
-import { colorIsWork, iconSize } from '../../styles/constantStyle';
+import { colorIsWork, iconSize } from '../../styles/constants';
 import { styles } from './styles';
 import { ActionContext, iContext } from '../../lib/actionHelper';
 
