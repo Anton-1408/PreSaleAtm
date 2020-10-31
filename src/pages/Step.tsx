@@ -10,7 +10,7 @@ import { iRootReducers } from '../types/reduxTypes';
 import { setStepKey } from '../redux/actions/actions';
 import { getSteps, setParams, setQuery } from '../lib/stepsHelper';
 import { componentsStyle } from '../styles/componentsStyle';
-import { StepStatus } from '../components/StepStatus';
+import { StepStatus } from '../components';
 import { modeWork } from '../types/modeWork';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { selectorOrderKey, selectorTodoKey, selectorDeviceKey } from '../redux/selectors/holderKeysSelectors';

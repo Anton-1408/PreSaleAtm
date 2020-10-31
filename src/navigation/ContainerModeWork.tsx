@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ContainerDevice from './ContainerDevice';
 import ContainerTodo from './ContainerTodo';
 import { desingColor, colorWhite, colorInActiveButton, barLabelSize, barLabelFontFamily } from '../styles/constantStyle';

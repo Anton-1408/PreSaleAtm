@@ -14,7 +14,7 @@ interface iProps{
 };
 
 const Setting: React.FC<iProps> = ({navigation}) => {
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState<string>("");
 
   useEffect(() => {
     getSetting(setUserId);

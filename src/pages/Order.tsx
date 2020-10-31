@@ -45,7 +45,7 @@ const Order: React.FC<iProps> = (props) => {
     } : iProps = props;
 
     const [orders, setOrders] = useState([]);
-    const [refresh, setRefresh] = useState(false);
+    const [refresh, setRefresh] = useState<boolean>(false);
 
     const getDataFromServer = (): void => {
         setRefresh(true);

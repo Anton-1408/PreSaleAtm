@@ -29,9 +29,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-		orderKey: selectorOrderKey(state),
-		deviceKey: selectorDeviceKey(state),
-		typeWork: selectorTypeWork(state),
+			orderKey: selectorOrderKey(state),
+			deviceKey: selectorDeviceKey(state),
+			typeWork: selectorTypeWork(state),
     };
 };
 
@@ -40,40 +40,40 @@ const Todo: React.FC<iProps> = (props) => {
 	const [ todos, useTodos ] = useState([]);
 
 	useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-			const query = setQuery(typeWork);
-			const params = setParams(typeWork, orderKey, deviceKey);
-			getTodos(query, params, useTodos, route.name);
-        });
-        return unsubscribe;
-    }, [navigation]);
+      const unsubscribe = navigation.addListener('focus', () => {
+				const query = setQuery(typeWork);
+				const params = setParams(typeWork, orderKey, deviceKey);
+				getTodos(query, params, useTodos, route.name);
+			});
+			return unsubscribe;
+  }, [navigation]);
 
     return(
-        <View style={style.container}>
-			<FlatList
-				data={todos}
-				keyExtractor={(item: any) => (item.id).toString()}
-				renderItem={({item}) => (
-					<Pressable
-						style={({ pressed }) => [colorPress(pressed), style.containerData]}
-						onPress={() => {
-							setTodoId(item.id)
-							navigation.navigate('Step', {
-								title: item.name
-							});
-						}}
-					>
-						<View style={style.containerText}>
-							<Text style={style.title}>{item.name}</Text>
-							<Text style={style.comment}>{item.comment}</Text>
-						</View>
-						<View>
-							<Text style={style.percent}>{item.percent + "%"}</Text>
-						</View>
-					</Pressable>
-				)}
-			/>
-        </View>
+      <View style={style.container}>
+					<FlatList
+						data={todos}
+						keyExtractor={(item: any) => (item.id).toString()}
+						renderItem={({item}) => (
+							<Pressable
+								style={({ pressed }) => [colorPress(pressed), style.containerData]}
+								onPress={() => {
+									setTodoId(item.id)
+									navigation.navigate('Step', {
+										title: item.name
+									});
+								}}
+							>
+								<View style={style.containerText}>
+									<Text style={style.title}>{item.name}</Text>
+									<Text style={style.comment}>{item.comment}</Text>
+								</View>
+								<View>
+									<Text style={style.percent}>{item.percent + "%"}</Text>
+								</View>
+							</Pressable>
+						)}
+					/>
+      </View>
     );
 };
 

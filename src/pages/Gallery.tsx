@@ -11,7 +11,7 @@ import { colorBlack, colorWhite, iconSize } from '../styles/constantStyle';
 import { getPhotos, getAccessGallery, countImageRow } from '../lib/galleryHelper';
 import { style } from '../styles/style';
 import { componentsStyle } from '../styles/componentsStyle';
-import { CheckPhoto } from '../components/CheckPhoto';
+import { CheckPhoto } from '../components';
 
 interface iProps{
     readonly route: tRoutePropGallery,
