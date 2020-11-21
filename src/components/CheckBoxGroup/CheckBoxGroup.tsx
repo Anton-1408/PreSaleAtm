@@ -7,62 +7,59 @@ import { styles } from './styles';
 import { ActionContext, iContext } from '../../lib/actionHelper';
 
 interface iProps{
-    readonly setResult: Function,
-    readonly initialState: Array<string>,
+  readonly setResult: Function,
+  readonly initialState: Array<string>,
 }
 
 const CheckBoxGroup: React.FC<iProps> = ({ setResult, initialState }) => {
-    const [chechBoxes, setCheckBoxes] = useState<Array<Object>>([]);
-    const context: iContext = useContext(ActionContext);
+  const [chechBoxes, setCheckBoxes] = useState<Array<Object>>([]);
+  const context: iContext = useContext(ActionContext);
 
-    useEffect(() => {
-        const arrChecked: any = [...context.extraParams];
-        initialState.forEach((el: string) => {
-            arrChecked.forEach((item: any) => {
-                if(el === item.title)
-                    item.value = true
+  useEffect(() => {
+    const arrChecked: any = [...context.extraParams];
+    initialState.forEach((el: string) => {
+      arrChecked.forEach((item: any) => {
+        if(el === item.title)
+          item.value = true
+      });
+    });
+    setCheckBoxes(arrChecked);
+  }, [initialState, context]);
+
+  useEffect(() => {
+    const result: Array<string> = [];
+    chechBoxes.forEach((item: any) => {
+      if(item.value){
+        result.push(item.title)
+      }
+    });
+    setResult(JSON.stringify(result));
+  }, [chechBoxes]);
+
+  return(
+    <FlatList
+      data={chechBoxes}
+      keyExtractor={(item: any) => (item.id).toString()}
+      renderItem={({item}: any) => (
+        <CheckBox
+          checked={item.value}
+          title={item.title}
+          onPress={() => {
+            setCheckBoxes((prev: any) => {
+              return prev.map((next: any) => {
+                return next.id === item.id ? {...next, value: !next.value} : next;
+              })
             });
-        });
-        setCheckBoxes(arrChecked);
-    }, [initialState, context]);
-
-    useEffect(() => {
-        const result: Array<string> = [];
-        chechBoxes.forEach((item: any) => {
-            if(item.value){
-                result.push(item.title)
-            }
-        });
-        setResult(JSON.stringify(result));
-    }, [chechBoxes]);
-
-    return(
-        <FlatList
-            data={chechBoxes}
-            keyExtractor={(item: any) => (item.id).toString()}
-            renderItem={({item}: any) => (
-                <CheckBox
-                    checked={item.value}
-                    title={item.title}
-                    onPress={() => {
-                        setCheckBoxes((prev: any) => {
-                            return prev.map((next: any) => {
-                                return next.id === item.id ? {
-                                    ...next,
-                                    value: !next.value
-                                } : next;
-                            })
-                        });
-                    }}
-                    size={iconSize}
-                    checkedColor={colors.color5}
-                    uncheckedColor={colors.color5}
-                    containerStyle = {styles.containerBox}
-                    textStyle={styles.textBox}
-                />
-            )}
+          }}
+          size={iconSize}
+          checkedColor={colors.color5}
+          uncheckedColor={colors.color5}
+          containerStyle = {styles.containerBox}
+          textStyle={styles.textBox}
         />
-    )
+      )}
+    />
+  )
 };
 
 export default CheckBoxGroup;

@@ -8,36 +8,36 @@ const stateOrderKey = (state: iRootReducers) => state.holderKeysReducer.orderKey
 const stateTodoKey = (state: iRootReducers) => state.holderKeysReducer.todoKey;
 
 export const selectorOrderKey = createSelector(
-    stateOrderKey,
-    (orderKey: number) => {
-        return orderKey;
-    }
+  stateOrderKey,
+  (orderKey: number) => {
+    return orderKey;
+  }
 );
 
 export const selectorStepKey = createSelector(
-    stateStepKey,
-    (stepKey) => {
-        return stepKey;
-    }
+  stateStepKey,
+  (stepKey) => {
+    return stepKey;
+  }
 );
 
 export const selectorDeviceKey = createSelector(
-    stateDeviceKey,
-    (deviceKey: number) => {
-        return deviceKey;
-    }
+  stateDeviceKey,
+  (deviceKey: number) => {
+    return deviceKey;
+  }
 );
 
 export const selectorActionKey = createSelector(
-    stateActionKey,
-    (actionKey: number) => {
-        return actionKey;
-    }
+  stateActionKey,
+  (actionKey: number) => {
+    return actionKey;
+  }
 );
 
 export const selectorTodoKey = createSelector(
-    stateTodoKey,
-    (todoKey: number) => {
-        return todoKey;
-    }
+  stateTodoKey,
+  (todoKey: number) => {
+    return todoKey;
+  }
 );

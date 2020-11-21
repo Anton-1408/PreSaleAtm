@@ -15,64 +15,64 @@ import { barLabelSize, iconSizeBar, barLabelFontFamily } from '../styles/constan
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 
 const ContainerModeWork: React.FC = () => {
-    const dispatch: Dispatch = useDispatch();
-    return (
-        <Tab.Navigator
-            initialRouteName="TodoMode"
-            tabBarOptions={{
-                activeTintColor: colors.color0,
-                inactiveTintColor: colors.color6,
-                style: {
-                    backgroundColor: colors.color17,
-                },
-                labelStyle:{
-                    fontSize: barLabelSize,
-                    fontFamily: barLabelFontFamily
-                }
-            }}
-        >
-            <Tab.Screen
-                name='TodoMode'
-                component={ContainerTodo}
-                options={{
-                    tabBarIcon: ({color, size}) => (
-                        <Icon name='playlist-check' color={color} size={iconSizeBar}/>
-                    ),
-                    tabBarLabel: 'Чек-листы'
-                }}
-                listeners={({ navigation, route }) => ({
-                    tabPress: e => {
-                        e.preventDefault();
-                        dispatch(setModeWork(modeWork.todo));
-                        navigation.navigate('TodoMode');
-                    },
-                    beforeRemove: e => {
-                        dispatch(setModeWork(modeWork.todo));
-                    },
-                })}
-            />
-            <Tab.Screen
-                name='DeviceMode'
-                component={ContainerDevice}
-                options={{
-                    tabBarIcon: ({color, size}) => (
-                        <Icon name='atm' color={color} size={iconSizeBar}/>
-                    ),
-                    tabBarLabel: 'Устройства'
-                }}
-                listeners={({ navigation, route }) => ({
-                    tabPress: e => {
-                        e.preventDefault();
-                        dispatch(setModeWork(modeWork.device))
-                        navigation.navigate('DeviceMode');
-                    },
-                    beforeRemove: e => {
-                        dispatch(setSerialNumberDevice(''))
-                    },
-                })}
-            />
-        </Tab.Navigator>
-    );
+  const dispatch: Dispatch = useDispatch();
+  return (
+    <Tab.Navigator
+      initialRouteName="TodoMode"
+      tabBarOptions={{
+        activeTintColor: colors.color0,
+        inactiveTintColor: colors.color6,
+        style: {
+          backgroundColor: colors.color17,
+        },
+        labelStyle:{
+          fontSize: barLabelSize,
+          fontFamily: barLabelFontFamily
+        }
+      }}
+    >
+      <Tab.Screen
+        name='TodoMode'
+        component={ContainerTodo}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name='playlist-check' color={color} size={iconSizeBar}/>
+          ),
+          tabBarLabel: 'Чек-листы'
+        }}
+        listeners={({ navigation, route }) => ({
+          tabPress: e => {
+            e.preventDefault();
+            dispatch(setModeWork(modeWork.todo));
+            navigation.navigate('TodoMode');
+          },
+          beforeRemove: e => {
+            dispatch(setModeWork(modeWork.todo));
+          },
+        })}
+      />
+      <Tab.Screen
+        name='DeviceMode'
+        component={ContainerDevice}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon name='atm' color={color} size={iconSizeBar}/>
+          ),
+          tabBarLabel: 'Устройства'
+        }}
+        listeners={({ navigation, route }) => ({
+          tabPress: e => {
+            e.preventDefault();
+            dispatch(setModeWork(modeWork.device))
+            navigation.navigate('DeviceMode');
+          },
+          beforeRemove: e => {
+            dispatch(setSerialNumberDevice(''))
+          },
+        })}
+      />
+    </Tab.Navigator>
+  );
 }
 
 export default ContainerModeWork;

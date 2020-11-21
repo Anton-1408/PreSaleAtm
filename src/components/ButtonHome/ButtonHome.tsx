@@ -11,17 +11,17 @@ interface iProps{
 };
 
 const ButtonHome: React.FC<iProps> = ({}) => {
-    const navigation: tNavigationProp = useNavigation();
-    return(
-        <Pressable
-            style={base.buttonBarContainer}
-            onPress={() => {
-                navigation.popToTop();
-            }}
-        >
-            <Icon name="home" color={colors.color0} size={iconSizeBar}/>
-        </Pressable>
-    )
+  const navigation: tNavigationProp = useNavigation();
+  return(
+    <Pressable
+      style={base.buttonBarContainer}
+      onPress={() => {
+        navigation.popToTop();
+      }}
+    >
+      <Icon name="home" color={colors.color0} size={iconSizeBar}/>
+    </Pressable>
+  )
 };
 
 export default ButtonHome;

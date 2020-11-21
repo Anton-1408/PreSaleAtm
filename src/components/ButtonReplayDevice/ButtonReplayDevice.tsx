@@ -8,22 +8,22 @@ import { tNavigationProp } from '../../types/navigationTypes';
 import { colors, base } from '../../styles';
 
 interface iProps{
-    readonly deviceKey: number
+  readonly deviceKey: number
 };
 
 const ButtonReplayDevice: React.FC<iProps> = ({ deviceKey }) => {
-    const navigation: tNavigationProp = useNavigation();
-    return(
-        <Pressable
-            style={base.buttonBarContainer}
-            onPress={() => {
-                setReplayDevice(deviceKey);
-                navigation.goBack();
-            }}
-        >
-            <Icon name='play' size={sizeButtonAction} color={colors.color2}/>
-        </Pressable>
-    )
+  const navigation: tNavigationProp = useNavigation();
+  return(
+    <Pressable
+      style={base.buttonBarContainer}
+      onPress={() => {
+        setReplayDevice(deviceKey);
+        navigation.goBack();
+      }}
+    >
+      <Icon name='play' size={sizeButtonAction} color={colors.color2}/>
+    </Pressable>
+  )
 }
 
 export default ButtonReplayDevice;

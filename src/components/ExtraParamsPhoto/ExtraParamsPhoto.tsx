@@ -11,26 +11,26 @@ interface iProps{
 };
 
 const ExtraParamsPhoto: React.FC<iProps> = ({}) => {
-    const route: tRoutePropAction = useRoute();
-    const context: iContext = useContext(ActionContext);
+  const route: tRoutePropAction = useRoute();
+  const context: iContext = useContext(ActionContext);
 
-    if(typeAction.photo === route.params.type){
+  if(typeAction.photo === route.params.type){
+    return(
+      context.extraParams.map((item: any) => {
         return(
-            context.extraParams.map((item: any) => {
-                return(
-                    <Text key={item.id} style={styles.comment}>
-                        {item.title}
-                    </Text>
-                );
-            })
-        )
-    }
-    else{
-        return(
-            <Fragment>
-            </Fragment>
+          <Text key={item.id} style={styles.comment}>
+            {item.title}
+          </Text>
         );
-    }
+      })
+    )
+  }
+  else{
+    return(
+      <Fragment>
+      </Fragment>
+    );
+  }
 };
 
 export default ExtraParamsPhoto;

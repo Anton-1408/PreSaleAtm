@@ -2,50 +2,50 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 
 export type rootStackParams={
-    Setting: undefined,
-    Order: undefined,
-    ModeWork: undefined,
-    ScanBarCode: undefined,
-    Gallery: undefined,
-    Camera: undefined,
-    Step: {
+  Setting: undefined,
+  Order: undefined,
+  ModeWork: undefined,
+  ScanBarCode: undefined,
+  Gallery: undefined,
+  Camera: undefined,
+  Step: {
+    title: string,
+  },
+  Todo: {
+    title: 'Чек-Листы'
+  },
+  Device: undefined,
+  ListActions: {
         title: string,
-    },
-    Todo: {
-        title: 'Чек-Листы'
-    },
-    Device: undefined,
-    ListActions: {
-        title: string,
-    },
-    Action:{
-        title: string,
-        comment: string,
-        type: string,
-        stoped: number
-    }
-    ViewPhoto:{
-        name: string,
-        array: Array<Object>,
-    }
+  },
+  Action:{
+    title: string,
+    comment: string,
+    type: string,
+    stoped: number
+  }
+  ViewPhoto:{
+    name: string,
+    array: Array<Object>,
+  }
 };
 
 export type rootParamsOrder={
-    OrderAll: undefined,
-    OrderInWork: undefined,
-    OrderDone: undefined,
+  OrderAll: undefined,
+  OrderInWork: undefined,
+  OrderDone: undefined,
 };
 
 export type rootParamsDevice={
-    DevicesInWork: undefined,
-    DevicesStop: undefined,
-    DevicesDone: undefined,
+  DevicesInWork: undefined,
+  DevicesStop: undefined,
+  DevicesDone: undefined,
 };
 
 export type rootParamsTodo={
-    TodoAll: undefined,
-    TodoInWork: undefined,
-    TodoDone: undefined,
+  TodoAll: undefined,
+  TodoInWork: undefined,
+  TodoDone: undefined,
 };
 
 export type rootParamsModeWork={

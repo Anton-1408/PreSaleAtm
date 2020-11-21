@@ -10,22 +10,22 @@ interface iProps{
 };
 
 const HeaderModeWork: React.FC<iProps> = ({ }) => {
-    const getModeWork: string = useSelector(
-        (state: iRootReducers) => selectorTypeWork(state)
-    );
+  const getModeWork: string = useSelector(
+    (state: iRootReducers) => selectorTypeWork(state)
+  );
 
-    if(getModeWork === modeWork.device){
-        return(
-            <SearchInput/>
-        );
-    }
-    else{
-        return(
-            <HeaderTitle
-                title='Чек-Листы'
-            />
-        );
-    }
+  if(getModeWork === modeWork.device){
+    return(
+      <SearchInput/>
+    );
+  }
+  else{
+    return(
+      <HeaderTitle
+        title='Чек-Листы'
+      />
+    );
+  }
 }
 
 export default HeaderModeWork;

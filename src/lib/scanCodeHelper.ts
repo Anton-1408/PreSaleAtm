@@ -4,29 +4,29 @@ import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 
 export const getPermissions = async () => {
-    const isUserAuthorizedCamera = await CameraKitCamera.requestDeviceCameraAuthorization();
+  await CameraKitCamera.requestDeviceCameraAuthorization();
 };
 
 export const getDevicesList = (idOrder: number, setDevices: Function): void => {
-    const query: string = 'SELECT id, serial_number from devices where id_order = ?'
-    const params: typeDbParams = [idOrder];
-    const callBack: SQLite.StatementCallback = (transaction, result) => {
-        const len: number = result.rows.length;
-        const rowList: SQLite.ResultSetRowList = result.rows;
-        const listDevices: Array<Object> = [];
-        for(let i = 0; i < len; i++){
-            const row: any = rowList.item(i);
-            const item: Object = {id: row.id, serialNumber: row.serial_number };
-            listDevices.push(item)
-        }
-        setDevices(listDevices);
-    };
-    dbHelper(query, params, callBack)
+  const query: string = 'SELECT id, serial_number from devices where id_order = ?'
+  const params: typeDbParams = [idOrder];
+  const callBack: SQLite.StatementCallback = (transaction, result) => {
+    const len: number = result.rows.length;
+    const rowList: SQLite.ResultSetRowList = result.rows;
+    const listDevices: Array<Object> = [];
+    for(let i = 0; i < len; i++){
+      const row: any = rowList.item(i);
+      const item: Object = {id: row.id, serialNumber: row.serial_number };
+      listDevices.push(item)
+    }
+    setDevices(listDevices);
+  };
+  dbHelper(query, params, callBack)
 };
 
 export const searchDevice = (listDevice: Array<Object>, serialNumber: string): Object => {
-    const device: any = listDevice.find((item: any) => {
-        return item.serialNumber === serialNumber
-    });
-    return device;
+  const device: any = listDevice.find((item: any) => {
+    return item.serialNumber === serialNumber
+  });
+  return device;
 };

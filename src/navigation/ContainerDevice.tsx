@@ -8,49 +8,49 @@ import { barLabelSize, barLabelFontFamily } from '../styles/constants';
 const Tab = createMaterialTopTabNavigator<rootParamsDevice>();
 
 const ContainerDevice: React.FC = () => {
-    return(
-        <Tab.Navigator
-            tabBarOptions={{
-                activeTintColor: colors.color0,
-                inactiveTintColor: colors.color6,
-                indicatorStyle:{
-                    borderBottomColor: colors.color7,
-                    borderBottomWidth: 3,
-                    borderRadius: 2,
-                },
-                style: {
-                    backgroundColor: colors.color17,
-                },
-                labelStyle:{
-                    fontFamily: barLabelFontFamily,
-                    fontSize: barLabelSize,
-                }
-            }}
-            initialRouteName='DevicesInWork'
-        >
-            <Tab.Screen
-                name='DevicesInWork'
-                component={Device}
-                options={{
-                    title: 'В работе'
-                }}
-            />
-            <Tab.Screen
-                name="DevicesStop"
-                component={Device}
-                options={{
-                    title: 'Остановлены'
-                }}
-            />
-            <Tab.Screen
-                name="DevicesDone"
-                component={Device}
-                options={{
-                    title: 'Завершены'
-                }}
-            />
-        </Tab.Navigator>
-    );
+  return(
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: colors.color0,
+        inactiveTintColor: colors.color6,
+        indicatorStyle:{
+          borderBottomColor: colors.color7,
+          borderBottomWidth: 3,
+          borderRadius: 2,
+        },
+        style: {
+          backgroundColor: colors.color17,
+        },
+        labelStyle:{
+          fontFamily: barLabelFontFamily,
+          fontSize: barLabelSize,
+        }
+      }}
+      initialRouteName='DevicesInWork'
+    >
+      <Tab.Screen
+        name='DevicesInWork'
+        component={Device}
+        options={{
+          title: 'В работе'
+        }}
+      />
+      <Tab.Screen
+        name="DevicesStop"
+        component={Device}
+        options={{
+          title: 'Остановлены'
+        }}
+      />
+      <Tab.Screen
+        name="DevicesDone"
+        component={Device}
+        options={{
+          title: 'Завершены'
+        }}
+      />
+    </Tab.Navigator>
+  );
 };
 
 export default ContainerDevice;

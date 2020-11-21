@@ -8,28 +8,28 @@ import { tRoutePropAction } from '../../types/navigationTypes';
 import { base } from '../../styles';
 
 const ContentPanel: React.FC = () => {
-    const context: iContext = useContext(ActionContext);
-    const route: tRoutePropAction = useRoute();
+  const context: iContext = useContext(ActionContext);
+  const route: tRoutePropAction = useRoute();
 
-    return(
-        <View>
-            <Text style={styles.comment}>{route.params.comment}</Text>
-            <ExtraParamsPhoto/>
-            <View style={styles.containerFiles}>
-                {context.files.map((item: any) => (
-                    <Pressable
-                        key={item.id}
-                        style={base.imageContainer}
-                    >
-                        <Image
-                            source={{uri: item.path}}
-                            style={base.imageStyle}
-                        />
-                    </Pressable>
-                ))}
-            </View>
-        </View>
-    );
+  return(
+    <View>
+      <Text style={styles.comment}>{route.params.comment}</Text>
+      <ExtraParamsPhoto/>
+      <View style={styles.containerFiles}>
+        {context.files.map((item: any) => (
+          <Pressable
+            key={item.id}
+            style={base.imageContainer}
+          >
+            <Image
+              source={{uri: item.path}}
+              style={base.imageStyle}
+            />
+          </Pressable>
+        ))}
+      </View>
+    </View>
+  );
 };
 
 export default ContentPanel;

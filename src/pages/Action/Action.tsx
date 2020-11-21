@@ -12,71 +12,70 @@ import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/hold
 import { styles } from './styles';
 
 interface iProps{
-    readonly deviceKey: number,
-    readonly actionKey: number,
-    readonly route: tRoutePropAction,
-    readonly navigation: tNavigationProp,
+  readonly deviceKey: number,
+  readonly actionKey: number,
+  readonly route: tRoutePropAction,
+  readonly navigation: tNavigationProp,
 };
 
 const mapStateToProps = (state: iRootReducers) => {
     return{
-        deviceKey: selectorDeviceKey(state),
-        actionKey: selectorActionKey(state),
+      deviceKey: selectorDeviceKey(state),
+      actionKey: selectorActionKey(state),
     }
 };
 
 const Action: React.FC<iProps> = (props) => {
-    const { navigation, actionKey, deviceKey } = props;
+  const { navigation, actionKey, deviceKey } = props;
 
-    const [extraFiles, setExtraFile] = useState([]);
-    const [extraParams, setExtraParams] = useState([]);
-    const [statePanel, setStatePanel] = useState(false);
+  const [extraFiles, setExtraFile] = useState([]);
+  const [extraParams, setExtraParams] = useState([]);
+  const [statePanel, setStatePanel] = useState(false);
 
-    useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-            getExtraParams(actionKey, setExtraParams);
-            getExtraFiles(actionKey, setExtraFile)
-        });
-        return unsubscribe;
-    }, [navigation]);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getExtraParams(actionKey, setExtraParams);
+      getExtraFiles(actionKey, setExtraFile)
+    });
+    return unsubscribe;
+  }, [navigation]);
 
-    return(
-        <ActionContext.Provider
-            value={{
-                files: extraFiles,
-                extraParams: extraParams,
-            }}
+  return(
+    <ActionContext.Provider
+      value={{
+        files: extraFiles,
+        extraParams: extraParams,
+      }}
+    >
+      <View style={base.container}>
+        <Pressable
+          style={styles.containerComment}
+          onPress={() => {
+            setStatePanel(true);
+          }}
         >
-            <View style={base.container}>
-                <Pressable
-                    style={styles.containerComment}
-                    onPress={() => {
-                        setStatePanel(true);
-                    }}
-                >
-                    <Text style={base.title}>Комментарий</Text>
-                    <Icon name='gesture-tap' size={iconSize} color={colors.color5}/>
-                </Pressable>
-                <View style={styles.containerType}>
-                    <ActionType
-                        actionKey={actionKey}
-                        deviceKey={deviceKey}
-                    />
-                </View>
-                <SwipperPanel
-                    statePanel={statePanel}
-                    closePanel={() => {
-                        setStatePanel(false);
-                    }}
-                />
-                <SaveResultAction
-                    deviceKey={deviceKey}
-                    actionKey={actionKey}
-                />
-
-            </View>
-        </ActionContext.Provider>
-    );
+          <Text style={base.title}>Комментарий</Text>
+          <Icon name='gesture-tap' size={iconSize} color={colors.color5}/>
+        </Pressable>
+        <View style={styles.containerType}>
+          <ActionType
+            actionKey={actionKey}
+            deviceKey={deviceKey}
+          />
+        </View>
+        <SwipperPanel
+          statePanel={statePanel}
+          closePanel={() => {
+            setStatePanel(false);
+          }}
+        />
+        <SaveResultAction
+          deviceKey={deviceKey}
+          actionKey={actionKey}
+        />
+      </View>
+    </ActionContext.Provider>
+  );
 };
 
 export default connect(mapStateToProps, null)(Action);

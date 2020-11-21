@@ -7,18 +7,18 @@ import { iconSizeBar } from '../../styles/constants';
 import { colors, base } from '../../styles';
 
 const ButtonSetting: React.FC = ({}) => {
-    const navigation: tNavigationProp = useNavigation();
+  const navigation: tNavigationProp = useNavigation();
 
-    return(
-        <Pressable
-            style={base.buttonBarContainer}
-            onPress={() => {
-                navigation.navigate("Setting");
-            }}
-        >
-            <Icon name="md-settings-sharp" color={colors.color0} size={iconSizeBar}/>
-        </Pressable>
-    )
+  return(
+    <Pressable
+      style={base.buttonBarContainer}
+      onPress={() => {
+        navigation.navigate("Setting");
+      }}
+    >
+      <Icon name="md-settings-sharp" color={colors.color0} size={iconSizeBar}/>
+    </Pressable>
+  )
 };
 
 export default ButtonSetting;

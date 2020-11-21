@@ -8,36 +8,36 @@ const stateFilesAction = (state: iRootReducers) => state.syncDataReducer.actionF
 const stateCheckListResults = (state : iRootReducers) => state.syncDataReducer.listResultsCheckList;
 
 export const selectorIdUser = createSelector(
-    stateIdUser,
-    (idUser: string) => {
-        return idUser;
-    }
+  stateIdUser,
+  (idUser: string) => {
+    return idUser;
+  }
 );
 
 export const selectorProjectsHash = createSelector(
-    stateProjectsHash,
-    (projectHash: Object) => {
-        return projectHash;
-    }
+  stateProjectsHash,
+  (projectHash: Object) => {
+    return projectHash;
+  }
 );
 
 export const selectorResultsHash = createSelector(
-    stateResultsHash,
-    (resultsHash: Object) => {
-        return resultsHash;
-    }
+  stateResultsHash,
+  (resultsHash: Object) => {
+    return resultsHash;
+  }
 );
 
 export const selectorFilesAction = createSelector(
-    stateFilesAction,
-    (filesAction: FormData) => {
-        return filesAction;
-    }
+  stateFilesAction,
+  (filesAction: FormData) => {
+    return filesAction;
+  }
 );
 
 export const selectorCheckListResults = createSelector(
-    stateCheckListResults,
-    (checkListResults: Array<Object>) => {
-        return checkListResults;
-    }
+  stateCheckListResults,
+  (checkListResults: Array<Object>) => {
+    return checkListResults;
+  }
 );

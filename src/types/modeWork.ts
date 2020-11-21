@@ -1,4 +1,4 @@
 export enum modeWork{
-    todo = 'todoMode',
-    device = 'deviceMode',
+  todo = 'todoMode',
+  device = 'deviceMode',
 };

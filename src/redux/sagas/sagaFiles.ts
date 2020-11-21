@@ -7,20 +7,20 @@ import { iRootReducers } from '../../types/reduxTypes';
 import { selectorFilesAction } from '../selectors/syncDataSelectors';
 
 export function* sagaWatcherFiles(): SagaIterator{
-    yield takeEvery(SET_SEND_FILES, sagaWorker)
+  yield takeEvery(SET_SEND_FILES, sagaWorker)
 };
 
 function *sagaWorker(): SagaIterator{
-    try{
-        yield call(sendFiles);
-    }
-    catch(err){ }
+  try{
+    yield call(sendFiles);
+  }
+  catch(err){ }
 }
 
 function* sendFiles(): SagaIterator{
-    const state: iRootReducers = yield select();
-    const params: FormData = selectorFilesAction(state);
-    return axios.post(urlServer + 'mobile/api001.php', params)
-    .then((res: AxiosResponse) => { })
-    .catch((err: AxiosError) => { })
+  const state: iRootReducers = yield select();
+  const params: FormData = selectorFilesAction(state);
+  return axios.post(urlServer + 'mobile/api001.php', params)
+  .then((res: AxiosResponse) => { })
+  .catch((err: AxiosError) => { })
 };

@@ -1,83 +1,83 @@
 import {
-    SET_ACTION_KEY,
-    SET_DEVICE_KEY,
-    SET_HASHCODE_PROJECTS,
-    SET_ORDER_KEY,
-    SET_MODE_WORK,
-    SET_ID_USER,
-    SET_RESULT_CHECK_LIST,
-    SET_TODO_KEY,
-    SET_STEP_KEY,
-    SET_SERIAL_NUMBER_DEVICE,
-    SET_RESULT_ACTION,
-    SET_ACTION_PHOTOS,
-    SET_SEND_FILES,
+  SET_ACTION_KEY,
+  SET_DEVICE_KEY,
+  SET_HASHCODE_PROJECTS,
+  SET_ORDER_KEY,
+  SET_MODE_WORK,
+  SET_ID_USER,
+  SET_RESULT_CHECK_LIST,
+  SET_TODO_KEY,
+  SET_STEP_KEY,
+  SET_SERIAL_NUMBER_DEVICE,
+  SET_RESULT_ACTION,
+  SET_ACTION_PHOTOS,
+  SET_SEND_FILES,
 } from "../redux/actions/types";
 
 export interface iOrdertKey{
-    type: typeof SET_ORDER_KEY,
-    orderKey: number,
+  type: typeof SET_ORDER_KEY,
+  orderKey: number,
 };
 
 export interface iTodoKey{
-    type: typeof SET_TODO_KEY,
-    todoKey: number,
+  type: typeof SET_TODO_KEY,
+  todoKey: number,
 };
 
 export interface iDeviceKey{
-    type: typeof SET_DEVICE_KEY,
-    deviceKey: number,
+  type: typeof SET_DEVICE_KEY,
+  deviceKey: number,
 };
 
 export interface iStepKey{
-    type: typeof SET_STEP_KEY,
-    stepKey: number,
+  type: typeof SET_STEP_KEY,
+  stepKey: number,
 };
 
 export interface iActionKey{
-    type: typeof SET_ACTION_KEY,
-    actionKey: number,
+  type: typeof SET_ACTION_KEY,
+  actionKey: number,
 };
 
 export interface iModeWork{
-    type: typeof SET_MODE_WORK,
-    modeWork: string,
+  type: typeof SET_MODE_WORK,
+  modeWork: string,
 };
 
 export interface iUserId{
-    type: typeof SET_ID_USER,
-    idUser: string,
+  type: typeof SET_ID_USER,
+  idUser: string,
 };
 
 export interface iResultCheckList{
-    type: typeof SET_RESULT_CHECK_LIST,
-    listResultsCheckList: Array<Object>,
+  type: typeof SET_RESULT_CHECK_LIST,
+  listResultsCheckList: Array<Object>,
 };
 
 export interface iHashcodeProjects{
-    type: typeof SET_HASHCODE_PROJECTS,
-    projectHash: Array<Object>,
-    resultHash:  Array<Object>,
+  type: typeof SET_HASHCODE_PROJECTS,
+  projectHash: Array<Object>,
+  resultHash:  Array<Object>,
 };
 
 export interface iSetSerialNumberDevice{
-    type: typeof SET_SERIAL_NUMBER_DEVICE,
-    serialNumber: string,
+  type: typeof SET_SERIAL_NUMBER_DEVICE,
+  serialNumber: string,
 };
 
 export interface iSetResultAction{
-    type: typeof SET_RESULT_ACTION,
-    resultAction: any
+  type: typeof SET_RESULT_ACTION,
+  resultAction: any
 };
 
 export interface iSetPhotosAction{
-    type: typeof SET_ACTION_PHOTOS,
-    photoAction: Array<Object> | Object
+  type: typeof SET_ACTION_PHOTOS,
+  photoAction: Array<Object> | Object
 }
 
 export interface iSetSendFiles{
-    type: typeof SET_SEND_FILES,
-    actionFiles: FormData
+  type: typeof SET_SEND_FILES,
+  actionFiles: FormData
 };
 
 export interface iHolderKeysReducerState{

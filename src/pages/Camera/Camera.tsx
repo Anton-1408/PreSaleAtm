@@ -13,49 +13,49 @@ import { iconSize } from '../../styles/constants';
 import { styles } from './styles';
 
 interface iProps{
-    readonly route: tRoutePropCamera,
-    readonly navigation: tNavigationProp,
-    readonly setPhoto: Function
+  readonly route: tRoutePropCamera,
+  readonly navigation: tNavigationProp,
+  readonly setPhoto: Function
 }
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
-    return{
-        setPhoto: (path: Object) => dispatch(setPhotosAction(path))
-    };
+  return{
+    setPhoto: (path: Object) => dispatch(setPhotosAction(path))
+  };
 };
 
 const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
-    const ref: any = useRef(null);
-    const src = Platform.OS === 'ios' ? "ph://" : "file://";
+  const ref = useRef<CameraKitCamera>(null);
+  const src = Platform.OS === 'ios' ? "ph://" : "file://";
 
-    const makePhoto = useCallback(async () => {
-        const image = await ref.current.capture(true)
-        const data = {name: image.name, uri: src + image.uri, type: 'image/jpeg'}
-        setPhoto(data);
-        navigation.goBack();
-    }, []);
+  const makePhoto = useCallback(async () => {
+    const image = await ref.current.capture(true)
+    const data = {name: image.name, uri: src + image.uri, type: 'image/jpeg'}
+    setPhoto(data);
+    navigation.goBack();
+  }, []);
 
-    return(
-        <View style={base.container}>
-            <StatusBar backgroundColor={colors.color8}/>
-            <CameraKitCamera
-                ref={(cam: any) => ref.current = cam}
-                style={styles.cameraStyle}
-                cameraOptions={{
-                    flashMode: 'auto',
-                    focusMode: 'on',
-                    zoomMode: 'on',
-                    ratioOverlay:'1:1',
-                }}
-            />
-            <Pressable
-                style={[base.button, styles.buttonCamera]}
-                onPress={makePhoto}
-            >
-                <Icon name="circle-double" size={iconSize} color={colors.color0}/>
-            </Pressable>
-        </View>
-    );
+  return(
+    <View style={base.container}>
+      <StatusBar backgroundColor={colors.color8}/>
+      <CameraKitCamera
+        ref={(cam: CameraKitCamera) => ref.current = cam}
+        style={styles.cameraStyle}
+        cameraOptions={{
+          flashMode: 'auto',
+          focusMode: 'on',
+          zoomMode: 'on',
+          ratioOverlay:'1:1',
+        }}
+      />
+      <Pressable
+        style={[base.button, styles.buttonCamera]}
+        onPress={makePhoto}
+      >
+        <Icon name="circle-double" size={iconSize} color={colors.color0}/>
+      </Pressable>
+    </View>
+  );
 };
 
 export default connect(null, mapDispatchToProps)(Camera);

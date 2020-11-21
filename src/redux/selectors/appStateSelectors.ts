@@ -7,29 +7,29 @@ const stateSerialNumberDevice = (state: iRootReducers) => state.appStateReducer.
 const statePhotoAction = (state: iRootReducers) => state.appStateReducer.photoAction;
 
 export const selectorActionResult = createSelector(
-    stateActionResult,
-    (actionResult: any) => {
-        return actionResult;
-    }
+  stateActionResult,
+  (actionResult: any) => {
+    return actionResult;
+  }
 );
 
 export const selectorSerialNumbDevice = createSelector(
-    stateSerialNumberDevice,
-    (serialNumb: string) => {
-        return serialNumb;
-    }
+  stateSerialNumberDevice,
+  (serialNumb: string) => {
+    return serialNumb;
+  }
 );
 
 export const selectorTypeWork = createSelector(
-    stateTypeWork,
-    (typeWork) => {
-        return typeWork;
-    }
+  stateTypeWork,
+  (typeWork) => {
+    return typeWork;
+  }
 );
 
 export const selectorPhotoAction = createSelector(
-    statePhotoAction,
-    (photoAction: Array<Object> | Object) => {
-        return photoAction;
-    }
+  statePhotoAction,
+  (photoAction: Array<Object> | Object) => {
+    return photoAction;
+  }
 );

@@ -3,20 +3,20 @@ import { Text, View } from 'react-native';
 import { styles } from './styles';
 
 interface iProps{
-    readonly initialState: number,
-    readonly setResult: Function
+  readonly initialState: number,
+  readonly setResult: Function
 };
 
 const NoAction: React.FC<iProps> = ({ initialState, setResult }) => {
-    useEffect(() => {
-        setResult(initialState)
-    }, [initialState]);
+  useEffect(() => {
+    setResult(initialState)
+  }, [initialState]);
 
-    return(
-        <View style={styles.container}>
-            <Text style={styles.text}>Прочтите комментарий!</Text>
-        </View>
-    )
+  return(
+    <View style={styles.container}>
+      <Text style={styles.text}>Прочтите комментарий!</Text>
+    </View>
+  )
 };
 
 export default NoAction;
