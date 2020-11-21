@@ -7,6 +7,6 @@ Mobile application for IOS and Android.
 App functions:
   1. authorization;
   2. sync with server;
-  3. ofline mode;
+  3. offline mode;
   4. atm serial numb scan (mobile telephone camera);
   5. calculating the percent complete checklist;
