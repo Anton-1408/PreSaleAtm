@@ -1,4 +1,4 @@
-import { RootReducers } from '../../types/reduxTypes';
+import { RootReducers } from 'types/reduxTypes';
 import { createSelector } from 'reselect';
 
 const stateDeviceKey = (state: RootReducers) => state.holderKeysReducer.deviceKey;

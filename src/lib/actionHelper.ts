@@ -1,11 +1,11 @@
 import React from 'react';
 import SQLite from 'react-native-sqlite-storage';
 
-import { ExtraFile, ExtraParam } from '../types/elementType';
-import { ActionResult, ElementGalleryPhoto } from '../types/elementType';
-import { typeDbParams } from '../types/dbTypes';
+import { ExtraFile, ExtraParam } from 'types/elementType';
+import { ActionResult, ElementGalleryPhoto } from 'types/elementType';
+import { typeDbParams } from 'types/dbTypes';
 import { dbHelper } from './dbHelper';
-import { typeAction } from '../types/typeAction';
+import { typeAction } from 'types/typeAction';
 
 export const ActionContext = React.createContext<ContextParams>({
   files: [],

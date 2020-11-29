@@ -3,13 +3,13 @@ import { View, Text, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 
-import { RootReducers } from '../../types/reduxTypes';
-import { NavigationProp, RoutePropAction } from '../../types/navigationTypes';
-import { iconSize } from '../../styles/constants';
-import { colors, base } from '../../styles';
-import { ActionContext, getExtraFiles, getExtraParams } from '../../lib/actionHelper';
-import { SwipperPanel, ActionType, SaveResultAction } from '../../components'
-import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/holderKeysSelectors';
+import { RootReducers } from 'types/reduxTypes';
+import { NavigationProp, RoutePropAction } from 'types/navigationTypes';
+import { iconSize } from 'styles/constants';
+import { colors, base } from 'styles';
+import { ActionContext, getExtraFiles, getExtraParams } from 'lib/actionHelper';
+import { SwipperPanel, ActionType, SaveResultAction } from 'components'
+import { selectorDeviceKey, selectorActionKey } from 'redux/selectors/holderKeysSelectors';
 import { styles } from './styles';
 
 const mapStateToProps = (state: RootReducers) => {

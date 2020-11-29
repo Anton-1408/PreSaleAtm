@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
-import { ElementGalleryPhoto } from '../../types/elementType';
-import { RootReducers } from '../../types/reduxTypes';
-import { NavigationProp, RoutePropGallery } from '../../types/navigationTypes';
-import { setPhotosAction } from '../../redux/actions/actions';
-import { iconSize } from '../../styles/constants';
-import { colors, base } from '../../styles';
-import { getPhotos, getAccessGallery, countImageRow } from '../../lib/galleryHelper';
-import { CheckPhoto } from '../../components';
+import { ElementGalleryPhoto } from 'types/elementType';
+import { RootReducers } from 'types/reduxTypes';
+import { NavigationProp, RoutePropGallery } from 'types/navigationTypes';
+import { setPhotosAction } from 'redux/actions/actions';
+import { iconSize } from 'styles/constants';
+import { colors, base } from 'styles';
+import { getPhotos, getAccessGallery, countImageRow } from 'lib/galleryHelper';
+import { CheckPhoto } from 'components';
 import { styles } from './styles';
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {

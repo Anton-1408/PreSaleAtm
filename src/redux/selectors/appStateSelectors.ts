@@ -1,5 +1,5 @@
-import { RootReducers } from '../../types/reduxTypes';
-import { FilesPhoto } from '../../types/elementType';
+import { RootReducers } from 'types/reduxTypes';
+import { FilesPhoto } from 'types/elementType';
 import { createSelector } from 'reselect';
 
 const stateActionResult = (state: RootReducers) => state.appStateReducer.resultAction;

@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
-import { ElementOrder } from '../../types/elementType';
-import { NavigationProp, RoutePropOrder } from '../../types/navigationTypes';
-import { RootReducers } from '../../types/reduxTypes';
-import { getOrders } from '../../lib/ordersHelper';
-import { colorPress } from '../../styles/constants';
-import { colors, base } from '../../styles';
+import { ElementOrder } from 'types/elementType';
+import { NavigationProp, RoutePropOrder } from 'types/navigationTypes';
+import { RootReducers } from 'types/reduxTypes';
+import { getOrders } from 'lib/ordersHelper';
+import { colorPress } from 'styles/constants';
+import { colors, base } from 'styles';
 import {
   setIdUser,
   setHashCodeProjects,
@@ -17,7 +17,7 @@ import {
   setOrders,
   setOrderKey,
   setActionFiles
-} from '../../redux/actions/actions';
+} from 'redux/actions/actions';
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{

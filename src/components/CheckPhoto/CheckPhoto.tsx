@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { iconSize } from '../../styles/constants';
-import { colors } from '../../styles';
+import { iconSize } from 'styles/constants';
+import { colors } from 'styles';
 
 const CheckPhoto: React.FC<CheckPhotoProps> = ({ check }) => {
   if(check){

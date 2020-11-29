@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { RootReducers } from '../../types/reduxTypes';
-import { modeWork } from '../../types/modeWork';
-import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
-import { HeaderTitle, SearchInput }  from '..';
+import { RootReducers } from 'types/reduxTypes';
+import { modeWork } from 'types/modeWork';
+import { selectorTypeWork } from 'redux/selectors/appStateSelectors';
+import { HeaderTitle, SearchInput }  from 'components';
 
 const HeaderModeWork: React.FC<HeaderModeWorkProps> = ({ }) => {
-  const getModeWork: string = useSelector(
+  const selectModeWork = useSelector(
     (state: RootReducers) => selectorTypeWork(state)
   );
 
-  if(getModeWork === modeWork.device){
+  if(selectModeWork === modeWork.device){
     return(
       <SearchInput/>
     );

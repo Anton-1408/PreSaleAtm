@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 
-import { ElementAction } from '../../types/elementType';
-import { RootReducers } from '../../types/reduxTypes';
-import { NavigationProp, RoutePropListActions } from '../../types/navigationTypes';
-import { setActionKey } from '../../redux/actions/actions';
-import { getListActions } from '../../lib/listActionsHelper';
-import { colors, base } from '../../styles';
-import { colorPress, bcolorDone, colorDone, iconSizeBar } from '../../styles/constants';
-import { selectorStepKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';
+import { ElementAction } from 'types/elementType';
+import { RootReducers } from 'types/reduxTypes';
+import { NavigationProp, RoutePropListActions } from 'types/navigationTypes';
+import { setActionKey } from 'redux/actions/actions';
+import { getListActions } from 'lib/listActionsHelper';
+import { colors, base } from 'styles';
+import { colorPress, bcolorDone, colorDone, iconSizeBar } from 'styles/constants';
+import { selectorStepKey, selectorDeviceKey } from 'redux/selectors/holderKeysSelectors';
 
 const mapStateToProps = (state: RootReducers) => {
   return{

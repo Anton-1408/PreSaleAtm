@@ -3,10 +3,10 @@ import { Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { sizeButtonAction } from '../../styles/constants';
-import { setReplayDevice } from '../../lib/actionHelper';
-import { NavigationProp } from '../../types/navigationTypes';
-import { colors, base } from '../../styles';
+import { sizeButtonAction } from 'styles/constants';
+import { setReplayDevice } from 'lib/actionHelper';
+import { NavigationProp } from 'types/navigationTypes';
+import { colors, base } from 'styles';
 
 const ButtonReplayDevice: React.FC<ButtonReplayDeviceProps> = ({ deviceKey }) => {
   const navigation = useNavigation<NavigationProp>();

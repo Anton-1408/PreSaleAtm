@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Text, View } from 'react-native';
-import { RequiredStatus, ImportantStatus } from '..';
+import { RequiredStatus, ImportantStatus } from 'components';
 import { styles } from './styles';
 
 const StepStatus: React.FC<StepStatusProps> = ({ isImportant, isRequired }) => {

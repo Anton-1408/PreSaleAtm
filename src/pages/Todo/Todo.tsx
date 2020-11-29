@@ -4,15 +4,15 @@ import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
-import { ElementTodo } from '../../types/elementType';
-import { RootReducers } from '../../types/reduxTypes';
-import { RoutePropTodo, NavigationProp } from '../../types/navigationTypes'
-import { setTodoKey } from '../../redux/actions/actions';
-import { base } from '../../styles';
-import { getTodos, setQuery, setParams } from '../../lib/todosHelper';
-import { colorPress } from '../../styles/constants';
-import { selectorOrderKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';
-import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
+import { ElementTodo } from 'types/elementType';
+import { RootReducers } from 'types/reduxTypes';
+import { RoutePropTodo, NavigationProp } from 'types/navigationTypes'
+import { setTodoKey } from 'redux/actions/actions';
+import { base } from 'styles';
+import { getTodos, setQuery, setParams } from 'lib/todosHelper';
+import { colorPress } from 'styles/constants';
+import { selectorOrderKey, selectorDeviceKey } from 'redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from 'redux/selectors/appStateSelectors';
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{

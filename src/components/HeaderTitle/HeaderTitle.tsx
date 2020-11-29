@@ -12,6 +12,6 @@ const HeaderTitle: React.FC<HeaderTitleProps> = ({ title }) => {
 
 interface HeaderTitleProps{
   title: string
-}
+};
 
 export default HeaderTitle;

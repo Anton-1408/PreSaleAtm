@@ -4,17 +4,17 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
 
-import { ElementDevice } from '../../types/elementType';
-import { RootReducers } from '../../types/reduxTypes';
-import { RoutePropDevice, NavigationProp } from '../../types/navigationTypes';
-import { setDeviceKey } from '../../redux/actions/actions';
-import { getDevices, setQuery, setParams } from '../../lib/devicesHelper';
-import { modeWork } from '../../types/modeWork';
-import { selectorOrderKey, selectorStepKey } from '../../redux/selectors/holderKeysSelectors';
-import { selectorSerialNumbDevice, selectorTypeWork } from '../../redux/selectors/appStateSelectors';
+import { ElementDevice } from 'types/elementType';
+import { RootReducers } from 'types/reduxTypes';
+import { RoutePropDevice, NavigationProp } from 'types/navigationTypes';
+import { setDeviceKey } from 'redux/actions/actions';
+import { getDevices, setQuery, setParams } from 'lib/devicesHelper';
+import { modeWork } from 'types/modeWork';
+import { selectorOrderKey, selectorStepKey } from 'redux/selectors/holderKeysSelectors';
+import { selectorSerialNumbDevice, selectorTypeWork } from 'redux/selectors/appStateSelectors';
 import { styles } from './styles';
-import { colors, base } from '../../styles';
-import { colorPress, titlePage } from '../../styles/constants';
+import { colors, base } from 'styles';
+import { colorPress, titlePage } from 'styles/constants';
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{

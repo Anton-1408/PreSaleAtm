@@ -1,7 +1,7 @@
 import SQLite from 'react-native-sqlite-storage';
 
 import { dbHelper } from './dbHelper';
-import { typeDbParams } from '../types/dbTypes';
+import { typeDbParams } from 'types/dbTypes';
 
 export const saveSetting = (sid: string): Promise<void> => {
   return new Promise((resolve, reject) => {

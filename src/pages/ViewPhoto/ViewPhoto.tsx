@@ -4,13 +4,13 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Pressable, View, StatusBar, Text, Alert } from 'react-native';
 
-import { ElementGalleryPhoto } from '../../types/elementType';
-import { RootReducers } from '../../types/reduxTypes';
-import { NavigationProp, RoutePropViewPhoto } from '../../types/navigationTypes';
-import { setPhotosAction } from '../../redux/actions/actions';
-import { iconSize, iconSizeBar } from '../../styles/constants';
+import { ElementGalleryPhoto } from 'types/elementType';
+import { RootReducers } from 'types/reduxTypes';
+import { NavigationProp, RoutePropViewPhoto } from 'types/navigationTypes';
+import { setPhotosAction } from 'redux/actions/actions';
+import { iconSize, iconSizeBar } from 'styles/constants';
 import { styles } from './styles';
-import { colors, base } from '../../styles';
+import { colors, base } from 'styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageView from "react-native-image-viewing";
 

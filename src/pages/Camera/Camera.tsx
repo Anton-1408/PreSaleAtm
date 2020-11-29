@@ -4,14 +4,14 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CameraKitCamera } from "react-native-camera-kit";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import { ElementGalleryPhoto } from '../../types/elementType';
 import { Pressable, View, StatusBar, Platform } from 'react-native';
-import { RootReducers } from '../../types/reduxTypes';
-import { NavigationProp, RoutePropCamera } from '../../types/navigationTypes';
-import { setPhotosAction } from '../../redux/actions/actions';
-import { colors, base } from '../../styles';
-import { iconSize } from '../../styles/constants';
+
+import { ElementGalleryPhoto } from 'types/elementType';
+import { RootReducers } from 'types/reduxTypes';
+import { NavigationProp, RoutePropCamera } from 'types/navigationTypes';
+import { setPhotosAction } from 'redux/actions/actions';
+import { colors, base } from 'styles';
+import { iconSize } from 'styles/constants';
 import { styles } from './styles';
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {

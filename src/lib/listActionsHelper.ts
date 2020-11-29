@@ -1,7 +1,7 @@
 import SQLite from 'react-native-sqlite-storage';
 
-import { ElementAction } from '../types/elementType';
-import { typeDbParams } from "../types/dbTypes";
+import { ElementAction } from 'types/elementType';
+import { typeDbParams } from "types/dbTypes";
 import { dbHelper } from './dbHelper';
 
 export const getListActions = (idDevice: number, idStep: number, setListActions: Function): void => {

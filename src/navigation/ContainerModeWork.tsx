@@ -3,14 +3,15 @@ import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import ContainerDevice from './ContainerDevice';
 import ContainerTodo from './ContainerTodo';
-import { rootParamsModeWork } from '../types/navigationTypes';
-import { setModeWork } from '../redux/actions/actions';
-import { setSerialNumberDevice } from '../redux/actions/actions';
-import { modeWork } from '../types/modeWork';
-import { colors } from '../styles';
-import { barLabelSize, iconSizeBar, barLabelFontFamily } from '../styles/constants';
+import { rootParamsModeWork } from 'types/navigationTypes';
+import { setModeWork } from 'redux/actions/actions';
+import { setSerialNumberDevice } from 'redux/actions/actions';
+import { modeWork } from 'types/modeWork';
+import { colors } from 'styles';
+import { barLabelSize, iconSizeBar, barLabelFontFamily } from 'styles/constants';
 
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 

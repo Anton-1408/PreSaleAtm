@@ -4,15 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ButtonSetting, ButtonHome, HeaderModeWork, SearchInput, ButtonAction } from '../components';
-import { barLabelFontFamily } from '../styles/constants';
-import { colors } from '../styles';
-import store from '../redux/store';
+
+import { ButtonSetting, ButtonHome, HeaderModeWork, SearchInput, ButtonAction } from 'components';
+import { barLabelFontFamily } from 'styles/constants';
+import { colors } from 'styles';
+import store from 'redux/store';
 import ContainerOrder from './ContainerOrder';
 import ContainerModeWork from './ContainerModeWork';
 import ContainerTodo from './ContainerTodo';
 import ContainerDevice from './ContainerDevice';
-import { rootStackParams } from '../types/navigationTypes';
+import { rootStackParams } from 'types/navigationTypes';
 import {
   Setting,
   ScanBarCode,
@@ -68,7 +69,6 @@ const ContainerNavigation: React.FC = () => {
             name='ModeWork'
             component={ContainerModeWork}
             options={({navigation, route}) => ({
-              title: 'Режим работы',
               headerRight: () => {
                 return(
                   <ButtonHome/>

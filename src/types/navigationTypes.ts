@@ -1,7 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 
-import { ElementGalleryPhoto } from '../types/elementType';
+import { ElementGalleryPhoto } from 'types/elementType';
 
 export type rootStackParams={
   Setting: undefined,

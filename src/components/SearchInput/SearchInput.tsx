@@ -7,12 +7,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
-import { RootReducers } from '../../types/reduxTypes';
-import { colors } from '../../styles';
-import { NavigationProp } from '../../types/navigationTypes';
-import { colorPress } from '../../styles/constants';
-import { setSerialNumberDevice } from '../../redux/actions/actions';
-import { selectorSerialNumbDevice } from '../../redux/selectors/appStateSelectors';
+import { RootReducers } from 'types/reduxTypes';
+import { colors } from 'styles';
+import { NavigationProp } from 'types/navigationTypes';
+import { colorPress } from 'styles/constants';
+import { setSerialNumberDevice } from 'redux/actions/actions';
+import { selectorSerialNumbDevice } from 'redux/selectors/appStateSelectors';
 
 const SearchInput: React.FC<SearchInputProps> = ({}) => {
   const navigation: NavigationProp = useNavigation();

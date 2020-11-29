@@ -1,8 +1,8 @@
 import SQLite from 'react-native-sqlite-storage';
 import { CameraKitCamera } from 'react-native-camera-kit';
 
-import { ElementSearchDevice } from '../types/elementType';
-import { typeDbParams } from '../types/dbTypes';
+import { ElementSearchDevice } from 'types/elementType';
+import { typeDbParams } from 'types/dbTypes';
 import { dbHelper } from './dbHelper';
 
 export const getPermissions = async () => {

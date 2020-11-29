@@ -3,17 +3,17 @@ import { View, Pressable, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 
-import { ElementGalleryPhoto } from '../../types/elementType';
-import { iconSize } from '../../styles/constants';
-import { colors, base } from '../../styles';
-import { RootReducers } from '../../types/reduxTypes';
+import { ElementGalleryPhoto } from 'types/elementType';
+import { iconSize } from 'styles/constants';
+import { colors, base } from 'styles';
+import { RootReducers } from 'types/reduxTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import { styles } from './styles';
-import { countImageRow } from '../../lib/galleryHelper';
-import { NavigationProp } from '../../types/navigationTypes';
-import { selectorPhotoAction } from '../../redux/selectors/appStateSelectors';
-import { setPhotosAction } from '../../redux/actions/actions';
+import { countImageRow } from 'lib/galleryHelper';
+import { NavigationProp } from 'types/navigationTypes';
+import { selectorPhotoAction } from 'redux/selectors/appStateSelectors';
+import { setPhotosAction } from 'redux/actions/actions';
 
 const Photo: React.FC<PhotoProps> = ({ initialState, setResult }) => {
   const navigation: NavigationProp = useNavigation();

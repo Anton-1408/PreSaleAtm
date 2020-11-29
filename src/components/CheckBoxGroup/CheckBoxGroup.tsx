@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
 
-import { ExtraParam } from '../../types/elementType';
-import { iconSize } from '../../styles/constants';
-import { colors } from '../../styles';
+import { ExtraParam } from 'types/elementType';
+import { iconSize } from 'styles/constants';
+import { colors } from 'styles';
 import { styles } from './styles';
-import { ActionContext, ContextParams } from '../../lib/actionHelper';
+import { ActionContext, ContextParams } from 'lib/actionHelper';
 
 const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ setResult, initialState }) => {
   const [chechBoxes, setCheckBoxes] = useState<ExtraParam[]>([]);

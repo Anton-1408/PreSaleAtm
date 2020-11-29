@@ -12,8 +12,8 @@ import {
   SET_RESULT_ACTION,
   SET_ACTION_PHOTOS,
   SET_SEND_FILES,
-} from "../redux/actions/types";
-import { FilesPhoto } from '../types/elementType';
+} from "redux/actions/types";
+import { FilesPhoto } from 'types/elementType';
 
 export interface OrdertKey{
   type: typeof SET_ORDER_KEY,

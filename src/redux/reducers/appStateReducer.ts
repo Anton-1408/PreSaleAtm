@@ -1,14 +1,14 @@
-import { modeWork } from './../../types/modeWork';
+import { modeWork } from 'types/modeWork';
 import {
   SET_SERIAL_NUMBER_DEVICE,
   SET_MODE_WORK,
   SET_RESULT_ACTION,
   SET_ACTION_PHOTOS,
-} from "../actions/types";
+} from "redux/actions/types";
 import {
   AppStateReducerState,
   AppStateReducer
-} from "../../types/reduxTypes";
+} from "types/reduxTypes";
 
 const initialState={
   serialNumber: '',

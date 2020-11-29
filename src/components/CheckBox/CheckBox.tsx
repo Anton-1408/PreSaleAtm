@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
-import { colors } from '../../styles';
+import { colors } from 'styles';
 import { styles } from './styles';
 
 const CheckBoxAction: React.FC<CheckBoxActionProps> = ({setResult, initialState}) => {

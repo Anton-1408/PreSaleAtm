@@ -1,6 +1,6 @@
 import { SwipeablePanel } from 'rn-swipeable-panel';
 import React from 'react';
-import { ContentPanel } from '..';
+import { ContentPanel } from 'components';
 
 const SwipperPanel: React.FC<SwipperPanelProps> = ({ statePanel, closePanel }) => {
   return(

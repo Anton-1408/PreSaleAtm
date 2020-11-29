@@ -2,15 +2,15 @@ import React, { useCallback } from 'react';
 import { Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useRoute, useNavigation } from '@react-navigation/native';
-
-import { RootReducers } from '../../types/reduxTypes';
-import { selectorActionResult } from '../../redux/selectors/appStateSelectors';
-import { typeAction } from '../../types/typeAction';
-import { saveResult, deletePhoto, savePhotoAction } from '../../lib/actionHelper';
-import { iconSize } from '../../styles/constants';
-import { colors, base } from '../../styles';
-import { RoutePropAction, NavigationProp } from '../../types/navigationTypes';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { RootReducers } from 'types/reduxTypes';
+import { selectorActionResult } from 'redux/selectors/appStateSelectors';
+import { typeAction } from 'types/typeAction';
+import { saveResult, deletePhoto, savePhotoAction } from 'lib/actionHelper';
+import { iconSize } from 'styles/constants';
+import { colors, base } from 'styles';
+import { RoutePropAction, NavigationProp } from 'types/navigationTypes';
 
 const SaveResultAction: React.FC<SaveResultActionProps> = ({ actionKey, deviceKey }) => {
   const route: RoutePropAction = useRoute();

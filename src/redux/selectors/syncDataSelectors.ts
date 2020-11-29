@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { RootReducers } from '../../types/reduxTypes';
+import { RootReducers } from 'types/reduxTypes';
 
 const stateIdUser = (state: RootReducers) => state.syncDataReducer.idUser;
 const stateProjectsHash = (state: RootReducers) => state.syncDataReducer.projectHash;

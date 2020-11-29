@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
 
-import { ExtraParam } from '../../types/elementType';
-import { iconSize } from '../../styles/constants';
-import { colors } from '../../styles';
-import { ActionContext, ContextParams } from '../../lib/actionHelper';
+import { ExtraParam } from 'types/elementType';
+import { iconSize } from 'styles/constants';
+import { colors } from 'styles';
+import { ActionContext, ContextParams } from 'lib/actionHelper';
 import { styles } from './styles';
 
 const RadioBoxGroup: React.FC<RadioBoxGroupProps> = ({ initialState, setResult }) => {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import { NavigationProp, RoutePropSetting } from '../../types/navigationTypes';
-import { iconSize } from '../../styles/constants';
-import { saveSetting, getSetting } from '../../lib/settingHelper';
 import { getVersion } from 'react-native-device-info';
+
+import { NavigationProp, RoutePropSetting } from 'types/navigationTypes';
+import { iconSize } from 'styles/constants';
+import { saveSetting, getSetting } from 'lib/settingHelper';
 import { styles } from './styles';
-import { colors, base } from '../../styles';
+import { colors, base } from 'styles';
 
 const Setting: React.FC<SettingProps> = ({navigation}) => {
   const [userId, setUserId] = useState<string>("");

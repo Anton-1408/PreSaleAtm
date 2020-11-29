@@ -1,11 +1,11 @@
-import { HolderKeysReducerState, HolderKeysReducer } from "../../types/reduxTypes";
+import { HolderKeysReducerState, HolderKeysReducer } from "types/reduxTypes";
 import {
   SET_ACTION_KEY,
   SET_DEVICE_KEY,
   SET_ORDER_KEY,
   SET_TODO_KEY,
   SET_STEP_KEY,
-} from "../actions/types";
+} from "redux/actions/types";
 
 const initialState={
   actionKey: 0,

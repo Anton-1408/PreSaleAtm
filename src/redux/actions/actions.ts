@@ -3,18 +3,18 @@ import { ThunkAction } from 'redux-thunk';
 import SQLite from 'react-native-sqlite-storage';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-import { FilesPhoto } from '../../types/elementType';
-import { typeDbParams } from '../../types/dbTypes';
-import { dbHelper } from '../../lib/dbHelper';
-import { RootReducers } from '../../types/reduxTypes';
-import { setOrdersToDB } from '../../lib/setOrdersToDB';
-import { urlServer } from '../../lib/urlServer'
+import { FilesPhoto } from 'types/elementType';
+import { typeDbParams } from 'types/dbTypes';
+import { dbHelper } from 'lib/dbHelper';
+import { RootReducers } from 'types/reduxTypes';
+import { setOrdersToDB } from 'lib/setOrdersToDB';
+import { urlServer } from 'lib/urlServer'
 import {
   selectorIdUser,
   selectorCheckListResults,
   selectorResultsHash,
   selectorProjectsHash
-} from '../selectors/syncDataSelectors';
+} from 'redux/selectors/syncDataSelectors';
 import {
   SET_ACTION_KEY,
   SET_DEVICE_KEY,
@@ -44,7 +44,7 @@ import {
   SetResultAction,
   SetPhotosAction,
   SetSendFiles
-} from "../../types/reduxTypes";
+} from "types/reduxTypes";
 
 export function setIdUser(): ThunkAction<Promise<void>, RootReducers, unknown, Action<Object>>{
   return async (dispatch) => {

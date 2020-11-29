@@ -1,9 +1,9 @@
 import SQLite from 'react-native-sqlite-storage';
 
-import { ElementStep } from '../types/elementType';
-import { typeDbParams } from '../types/dbTypes';
+import { ElementStep } from 'types/elementType';
+import { typeDbParams } from 'types/dbTypes';
 import { dbHelper } from './dbHelper';
-import { modeWork } from '../types/modeWork';
+import { modeWork } from 'types/modeWork';
 
 export const setQuery = (typeWork: string): string => {
   let query = '';

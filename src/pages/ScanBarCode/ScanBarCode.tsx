@@ -6,15 +6,15 @@ import { ThunkDispatch } from 'redux-thunk';
 import { connect } from 'react-redux';
 
 import { styles } from './styles';
-import { RoutePropScanBarCode, NavigationProp } from '../../types/navigationTypes';
-import { RootReducers } from '../../types/reduxTypes';
-import { setDeviceKey, setSerialNumberDevice } from '../../redux/actions/actions';
-import { getPermissions, getDevicesList, searchDevice, SearchDevice } from '../../lib/scanCodeHelper';
-import { modeWork } from '../../types/modeWork';
-import { titlePage } from '../../styles/constants';
-import { selectorOrderKey } from '../../redux/selectors/holderKeysSelectors';
-import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
-import { colors } from '../../styles';
+import { RoutePropScanBarCode, NavigationProp } from 'types/navigationTypes';
+import { RootReducers } from 'types/reduxTypes';
+import { setDeviceKey, setSerialNumberDevice } from 'redux/actions/actions';
+import { getPermissions, getDevicesList, searchDevice, SearchDevice } from 'lib/scanCodeHelper';
+import { modeWork } from 'types/modeWork';
+import { titlePage } from 'styles/constants';
+import { selectorOrderKey } from 'redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from 'redux/selectors/appStateSelectors';
+import { colors } from 'styles';
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{

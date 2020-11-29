@@ -1,10 +1,10 @@
 import { typeDbParams } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
 
-import { ElementDevice } from '../types/elementType';
+import { ElementDevice } from 'types/elementType';
 import { dbHelper } from './dbHelper';
 import { filterByInWork, filterByDone, filterByStopped, calculationPercent } from './filterListDataPage';
-import { modeWork } from '../types/modeWork';
+import { modeWork } from 'types/modeWork';
 
 export const setQuery = (typeWork: string): string => {
   let query = '';

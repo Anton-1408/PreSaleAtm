@@ -11,7 +11,18 @@
       "strict": true,
       "target": "esnext",
       "noImplicitAny": false,
-      "typeRoots": ["./types/react-native-camera-kit","./node_modules/@types"]
+      "typeRoots": ["./types/react-native-camera-kit","./node_modules/@types"],
+      "baseUrl": ".",
+      "paths": {
+        "*": ["src/*"],
+        "@components/*": ["src/components/*"],
+        "@lib/*": ["src/lib/*"],
+        "@navigation/*": ["src/navigation/*"],
+        "@pages/*": ["src/pages/*"],
+        "@redux/*": ["src/redux/*"],
+        "@styles/*": ["src/styles/*"],
+        "@types/*": ["src/types/*"]
+      },
     },
     "exclude": [
       "node_modules",

@@ -1,9 +1,9 @@
 import SQLite from 'react-native-sqlite-storage';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import { } from '../types/elementType';
+import { } from 'types/elementType';
 import { dbHelper } from './dbHelper';
-import { typeDbParams } from '../types/dbTypes';
+import { typeDbParams } from 'types/dbTypes';
 import { urlServer } from './urlServer';
 
 const callBack: SQLite.StatementCallback = (transaction, result) => { };

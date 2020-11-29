@@ -3,20 +3,20 @@ import { FlatList, Pressable, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
-
-import { ElementStep } from '../../types/elementType';
-import { RoutePropStep, NavigationProp } from '../../types/navigationTypes';
-import { colorPress, bcolorDone, colorDone, iconSizeBar } from '../../styles/constants';
-import { RootReducers } from '../../types/reduxTypes';
-import { setStepKey } from '../../redux/actions/actions';
-import { getSteps, setParams, setQuery } from '../../lib/stepsHelper';
-import { styles } from './styles';
-import { StepStatus } from '../../components';
-import { modeWork } from '../../types/modeWork';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { selectorOrderKey, selectorTodoKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';
-import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
-import { colors, base } from '../../styles';
+
+import { ElementStep } from 'types/elementType';
+import { RoutePropStep, NavigationProp } from 'types/navigationTypes';
+import { colorPress, bcolorDone, colorDone, iconSizeBar } from 'styles/constants';
+import { RootReducers } from 'types/reduxTypes';
+import { setStepKey } from 'redux/actions/actions';
+import { getSteps, setParams, setQuery } from 'lib/stepsHelper';
+import { styles } from './styles';
+import { StepStatus } from 'components';
+import { modeWork } from 'types/modeWork';
+import { selectorOrderKey, selectorTodoKey, selectorDeviceKey } from 'redux/selectors/holderKeysSelectors';
+import { selectorTypeWork } from 'redux/selectors/appStateSelectors';
+import { colors, base } from 'styles';
 
 const mapStateToProps = (state: RootReducers) => {
   return{

@@ -1,7 +1,7 @@
 import SQLite from 'react-native-sqlite-storage';
 
-import { ElementOrder } from '../types/elementType';
-import { typeDbParams } from '../types/dbTypes';
+import { ElementOrder } from 'types/elementType';
+import { typeDbParams } from 'types/dbTypes';
 import { dbHelper } from './dbHelper';
 import { filterByInWork, filterByDone, filterByAll, calculationPercent } from './filterListDataPage';
 

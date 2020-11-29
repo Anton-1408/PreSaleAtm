@@ -3,11 +3,11 @@ import {
   SET_RESULT_CHECK_LIST,
   SET_HASHCODE_PROJECTS,
   SET_SEND_FILES
-} from "../actions/types";
+} from "redux/actions/types";
 import {
   SyncDataReducerState,
   SyncDataReducer
-} from "../../types/reduxTypes";
+} from "types/reduxTypes";
 
 const initialState={
   idUser: "",

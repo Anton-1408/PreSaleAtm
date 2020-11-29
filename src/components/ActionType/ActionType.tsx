@@ -2,11 +2,11 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 
-import { ActionResult, ElementGalleryPhoto } from '../../types/elementType';
-import { typeAction } from '../../types/typeAction';
-import { getResult, initialState, getPhoto } from '../../lib/actionHelper';
-import { setResultAction } from '../../redux/actions/actions';
-import { RoutePropAction } from '../../types/navigationTypes';
+import { ActionResult, ElementGalleryPhoto } from 'types/elementType';
+import { typeAction } from 'types/typeAction';
+import { getResult, initialState, getPhoto } from 'lib/actionHelper';
+import { setResultAction } from 'redux/actions/actions';
+import { RoutePropAction } from 'types/navigationTypes';
 import {
   CheckBoxGroup,
   CheckBox,
@@ -14,7 +14,7 @@ import {
   RadioBoxGroup,
   Photo,
   NoAction
-} from '..';
+} from 'components';
 
 const ActionType: React.FC<ActionTypeProps> = ({ actionKey, deviceKey }) => {
   const route = useRoute<RoutePropAction>();

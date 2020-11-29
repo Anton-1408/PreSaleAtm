@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { View, Text, Pressable, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import { ActionContext, ContextParams } from '../../lib/actionHelper';
+import { ActionContext, ContextParams } from 'lib/actionHelper';
 import { styles } from './styles';
-import { ExtraParamsPhoto } from '..';
-import { RoutePropAction } from '../../types/navigationTypes';
-import { base } from '../../styles';
+import { ExtraParamsPhoto } from 'components';
+import { RoutePropAction } from 'types/navigationTypes';
+import { base } from 'styles';
 
 const ContentPanel: React.FC<ContentPanelProps> = ({}) => {
   const context = useContext<ContextParams>(ActionContext);

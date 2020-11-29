@@ -1,11 +1,12 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { sizeButtonAction } from '../../styles/constants';
-import { NavigationProp } from '../../types/navigationTypes';
-import { setStopDevice } from '../../lib/actionHelper';
 import { useNavigation } from '@react-navigation/native';
-import { colors, base } from '../../styles';
+
+import { sizeButtonAction } from 'styles/constants';
+import { NavigationProp } from 'types/navigationTypes';
+import { setStopDevice } from 'lib/actionHelper';
+import { colors, base } from 'styles';
 
 const ButtonStopDevice: React.FC<ButtonStopDeviceProps> = ({deviceKey, actionKey}) => {
   const navigation = useNavigation<NavigationProp>();
