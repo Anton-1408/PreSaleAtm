@@ -1,11 +1,11 @@
 import { createSelector } from "reselect";
-import { iRootReducers } from '../../types/reduxTypes';
+import { RootReducers } from '../../types/reduxTypes';
 
-const stateIdUser = (state: iRootReducers) => state.syncDataReducer.idUser;
-const stateProjectsHash = (state: iRootReducers) => state.syncDataReducer.projectHash;
-const stateResultsHash = (state: iRootReducers) => state.syncDataReducer.resultHash;
-const stateFilesAction = (state: iRootReducers) => state.syncDataReducer.actionFiles;
-const stateCheckListResults = (state : iRootReducers) => state.syncDataReducer.listResultsCheckList;
+const stateIdUser = (state: RootReducers) => state.syncDataReducer.idUser;
+const stateProjectsHash = (state: RootReducers) => state.syncDataReducer.projectHash;
+const stateResultsHash = (state: RootReducers) => state.syncDataReducer.resultHash;
+const stateFilesAction = (state: RootReducers) => state.syncDataReducer.actionFiles;
+const stateCheckListResults = (state : RootReducers) => state.syncDataReducer.listResultsCheckList;
 
 export const selectorIdUser = createSelector(
   stateIdUser,

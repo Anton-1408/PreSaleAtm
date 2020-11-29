@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Pressable, View, StatusBar, Text, Alert } from 'react-native';
-import { iRootReducers } from '../../types/reduxTypes';
-import { tNavigationProp, tRoutePropViewPhoto } from '../../types/navigationTypes';
+
+import { ElementGalleryPhoto } from '../../types/elementType';
+import { RootReducers } from '../../types/reduxTypes';
+import { NavigationProp, RoutePropViewPhoto } from '../../types/navigationTypes';
 import { setPhotosAction } from '../../redux/actions/actions';
 import { iconSize, iconSizeBar } from '../../styles/constants';
 import { styles } from './styles';
@@ -12,26 +14,20 @@ import { colors, base } from '../../styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageView from "react-native-image-viewing";
 
-interface iProps{
-  readonly route: tRoutePropViewPhoto,
-  readonly navigation: tNavigationProp,
-  readonly setPhoto: Function
-}
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
-    setPhoto: (path: Object) => dispatch(setPhotosAction(path))
+    setPhoto: (img: ElementGalleryPhoto) => dispatch(setPhotosAction(img))
   };
 };
 
-const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
-  const [images, setImages]: any = useState([]);
+const ViewPhoto: React.FC<ViewPhotoProps> = ({navigation, route, setPhoto}) => {
+  const [images, setImages] = useState<ElementGalleryPhoto[]>([]);
   const [initialIndex, setInitialIndex] = useState<number>(0);
 
   useEffect(() => {
-    const imgs: any = route.params.array;
-    const index: number = route.params.array.findIndex((item: any) => {
-      return item.name === route.params.name
+    const imgs: ElementGalleryPhoto[] = route.params.array;
+    const index: number = route.params.array.findIndex((img) => {
+      return img.name === route.params.name
     });
     setInitialIndex(index);
     setImages(imgs);
@@ -80,12 +76,18 @@ const ViewPhoto: React.FC<iProps> = ({navigation, route, setPhoto}) => {
               ])
             }}
           >
-            <Icon name="delete" size={iconSize} color={colors.color8}/>
+            <Icon name="delete" size={iconSize} color={colors.color6}/>
           </Pressable>
         )}
       />
     </View>
   );
 };
+
+interface ViewPhotoProps{
+  route: RoutePropViewPhoto,
+  navigation: NavigationProp,
+  setPhoto: Function
+}
 
 export default connect(null, mapDispatchToProps)(ViewPhoto);

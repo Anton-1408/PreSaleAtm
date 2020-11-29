@@ -3,9 +3,11 @@ import { FlatList, Pressable, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
-import { tRoutePropStep, tNavigationProp } from '../../types/navigationTypes';
+
+import { ElementStep } from '../../types/elementType';
+import { RoutePropStep, NavigationProp } from '../../types/navigationTypes';
 import { colorPress, bcolorDone, colorDone, iconSizeBar } from '../../styles/constants';
-import { iRootReducers } from '../../types/reduxTypes';
+import { RootReducers } from '../../types/reduxTypes';
 import { setStepKey } from '../../redux/actions/actions';
 import { getSteps, setParams, setQuery } from '../../lib/stepsHelper';
 import { styles } from './styles';
@@ -16,17 +18,7 @@ import { selectorOrderKey, selectorTodoKey, selectorDeviceKey } from '../../redu
 import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
 import { colors, base } from '../../styles';
 
-interface iProps{
-  readonly navigation: tNavigationProp,
-  readonly route: tRoutePropStep,
-  readonly todoKey: number,
-  readonly orderKey: number,
-  readonly deviceKey: number,
-  readonly typeWork: string,
-  readonly setStepId: Function,
-}
-
-const mapStateToProps = (state: iRootReducers) => {
+const mapStateToProps = (state: RootReducers) => {
   return{
     todoKey: selectorTodoKey(state),
     orderKey: selectorOrderKey(state),
@@ -35,15 +27,15 @@ const mapStateToProps = (state: iRootReducers) => {
   }
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
     setStepId: (id: number) => dispatch(setStepKey(id)),
   }
 };
 
-const Step: React.FC<iProps> = (props) => {
+const Step: React.FC<StepProps> = (props) => {
   const { navigation, todoKey, orderKey, typeWork,  deviceKey, setStepId } = props;
-  const [steps, setSteps] = useState([]);
+  const [steps, setSteps] = useState<ElementStep[]>([]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -58,7 +50,7 @@ const Step: React.FC<iProps> = (props) => {
     <View style={base.container}>
       <FlatList
         data={steps}
-        keyExtractor={(item: any) => (item.id).toString()}
+        keyExtractor={(item) => (item.id).toString()}
         renderItem={({item}) => (
           <Pressable
             style={({ pressed }) => [
@@ -98,5 +90,15 @@ const Step: React.FC<iProps> = (props) => {
     </View>
   );
 };
+
+interface StepProps{
+  navigation: NavigationProp,
+  route: RoutePropStep,
+  todoKey: number,
+  orderKey: number,
+  deviceKey: number,
+  typeWork: string,
+  setStepId: Function,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Step)

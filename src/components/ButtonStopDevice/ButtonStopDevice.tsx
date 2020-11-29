@@ -2,18 +2,13 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { sizeButtonAction } from '../../styles/constants';
-import { tNavigationProp } from '../../types/navigationTypes';
+import { NavigationProp } from '../../types/navigationTypes';
 import { setStopDevice } from '../../lib/actionHelper';
 import { useNavigation } from '@react-navigation/native';
 import { colors, base } from '../../styles';
 
-interface iProps{
-  readonly deviceKey: number
-  readonly actionKey: number,
-};
-
-const ButtonStopDevice: React.FC<iProps> = ({deviceKey, actionKey}) => {
-  const navigation: tNavigationProp = useNavigation();
+const ButtonStopDevice: React.FC<ButtonStopDeviceProps> = ({deviceKey, actionKey}) => {
+  const navigation = useNavigation<NavigationProp>();
 
   return(
     <Pressable
@@ -27,5 +22,10 @@ const ButtonStopDevice: React.FC<iProps> = ({deviceKey, actionKey}) => {
     </Pressable>
   )
 }
+
+interface ButtonStopDeviceProps{
+  deviceKey: number
+  actionKey: number,
+};
 
 export default ButtonStopDevice;

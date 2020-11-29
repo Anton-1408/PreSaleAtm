@@ -1,6 +1,13 @@
 import { typeAction } from './typeAction';
 
-export interface Element{
+export interface ElementOrder{
+  id: number,
+  name: string,
+  comment: string,
+  percent: number
+};
+
+export interface ElementTodo{
   id: number,
   name: string,
   comment: string,
@@ -16,9 +23,12 @@ export interface ElementStep{
   isDone: boolean,
 };
 
-export interface ElementDevice{
+export interface ElementSearchDevice{
   id: number,
-  serialNumber: string,
+  serialNumber: string
+};
+
+export interface ElementDevice extends ElementSearchDevice{
   model: string,
   isStoped: number,
   percent: number
@@ -38,7 +48,7 @@ export interface ElementAction{
 export interface ElemetResult{
   idAction: number,
   idDevice: number,
-  value: any,
+  value: number | string,
   dt: string,
   fio: string,
   stoped: number
@@ -60,10 +70,21 @@ export interface ElementGalleryPhoto{
   name: string | null,
   uri: string,
   type: string,
-  check: boolean
+  check?: boolean
 };
 
-export interface ElementSearchDevice{
+export interface ExtraParam{
+  value: boolean,
+  title: string,
+  id: number
+};
+
+export interface ExtraFile{
   id: number,
-  serialNumber: string
-}
+  path: string,
+  name: string
+};
+
+export type ActionResult = string | number | [] | boolean | undefined;
+
+export type FilesPhoto = Array<ElementGalleryPhoto> | ElementGalleryPhoto;

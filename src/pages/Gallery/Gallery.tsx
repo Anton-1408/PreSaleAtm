@@ -4,8 +4,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { iRootReducers } from '../../types/reduxTypes';
-import { tNavigationProp, tRoutePropGallery } from '../../types/navigationTypes';
+
+import { ElementGalleryPhoto } from '../../types/elementType';
+import { RootReducers } from '../../types/reduxTypes';
+import { NavigationProp, RoutePropGallery } from '../../types/navigationTypes';
 import { setPhotosAction } from '../../redux/actions/actions';
 import { iconSize } from '../../styles/constants';
 import { colors, base } from '../../styles';
@@ -13,21 +15,15 @@ import { getPhotos, getAccessGallery, countImageRow } from '../../lib/galleryHel
 import { CheckPhoto } from '../../components';
 import { styles } from './styles';
 
-interface iProps{
-  readonly route: tRoutePropGallery,
-  readonly navigation: tNavigationProp,
-  readonly setPhotos: Function
-};
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
-    setPhotos: (paths: Array<Object>) => dispatch(setPhotosAction(paths))
+    setPhotos: (imgs: Array<ElementGalleryPhoto>) => dispatch(setPhotosAction(imgs))
   };
 };
 
-const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
-  const [images, setImages] = useState([]);
-  const [countImages, setCountImages] = useState(20);
+const Gallery: React.FC<GalleryProps> = ({navigation, route, setPhotos}) => {
+  const [images, setImages] = useState<ElementGalleryPhoto[]>([]);
+  const [countImages, setCountImages] = useState<number>(20);
 
   useEffect(() => {
     getAccessGallery()
@@ -39,9 +35,9 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
   }, [countImages]);
 
   const chosePhoto = useCallback(() => {
-    const photos = images.filter((item: any) => {
-      if(item.check){
-        return  delete item.check;
+    const photos = images.filter((image: ElementGalleryPhoto) => {
+      if(image.check){
+        return  delete image.check;
       }
     });
     setPhotos(photos);
@@ -49,7 +45,7 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
   }, [images]);
 
   const viewImages = useCallback(() => {
-    setCountImages((prev: number) => {
+    setCountImages((prev) => {
       return prev + 20;
     });
   }, [countImages]);
@@ -60,20 +56,20 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
       <FlatList
         data={images}
         horizontal={false}
-        keyExtractor={(item: any) => item.name}
+        keyExtractor={(item) => item.name! }
         numColumns={countImageRow()}
         style={base.imagesList}
         onEndReached={viewImages}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <Pressable
             style={base.imageContainer}
             onPress={() => {
-              setImages((prev: any) => {
-                return prev.map((next: any) => {
-                  return next.name === item.name ? {
-                    ...next,
-                    check: !next.check
-                  } : next;
+              setImages((prev) => {
+                return prev.map((image) => {
+                  return image.name === item.name ? {
+                    ...image,
+                    check: !image.check
+                  } : image;
                 })
               });
             }}
@@ -97,6 +93,12 @@ const Gallery: React.FC<iProps> = ({navigation, route, setPhotos}) => {
         </Pressable>
     </View>
   );
+};
+
+interface GalleryProps{
+  route: RoutePropGallery,
+  navigation: NavigationProp,
+  setPhotos: Function
 };
 
 export default connect(null, mapDispatchToProps)(Gallery)

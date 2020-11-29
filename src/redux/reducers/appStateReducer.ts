@@ -6,8 +6,8 @@ import {
   SET_ACTION_PHOTOS,
 } from "../actions/types";
 import {
-  iAppStateReducer,
-  typeAppStateReducer
+  AppStateReducerState,
+  AppStateReducer
 } from "../../types/reduxTypes";
 
 const initialState={
@@ -17,7 +17,7 @@ const initialState={
   photoAction: [],
 };
 
-export function appStateReducer(state: iAppStateReducer = initialState, action: typeAppStateReducer){
+export function appStateReducer(state: AppStateReducerState = initialState, action: AppStateReducer){
   switch(action.type){
     case SET_SERIAL_NUMBER_DEVICE:
       return{

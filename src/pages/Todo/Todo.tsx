@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { iRootReducers } from '../../types/reduxTypes';
-import { tRoutePropTodo, tNavigationProp } from '../../types/navigationTypes'
+
+import { ElementTodo } from '../../types/elementType';
+import { RootReducers } from '../../types/reduxTypes';
+import { RoutePropTodo, NavigationProp } from '../../types/navigationTypes'
 import { setTodoKey } from '../../redux/actions/actions';
 import { base } from '../../styles';
 import { getTodos, setQuery, setParams } from '../../lib/todosHelper';
@@ -12,22 +14,13 @@ import { colorPress } from '../../styles/constants';
 import { selectorOrderKey, selectorDeviceKey } from '../../redux/selectors/holderKeysSelectors';
 import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
 
-interface iProps{
-	readonly orderKey: number,
-	readonly deviceKey: number,
-	readonly typeWork: string
-	readonly route: tRoutePropTodo,
-	readonly navigation: tNavigationProp,
-	readonly setTodoId: Function,
-}
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
 		setTodoId: (id: number) => dispatch(setTodoKey(id)),
   };
 };
 
-const mapStateToProps = (state: iRootReducers) => {
+const mapStateToProps = (state: RootReducers) => {
   return{
 		orderKey: selectorOrderKey(state),
 		deviceKey: selectorDeviceKey(state),
@@ -35,9 +28,9 @@ const mapStateToProps = (state: iRootReducers) => {
   };
 };
 
-const Todo: React.FC<iProps> = (props) => {
+const Todo: React.FC<TodoProps> = (props) => {
 	const { navigation, setTodoId, orderKey, deviceKey, typeWork, route } = props;
-	const [ todos, useTodos ] = useState([]);
+	const [ todos, useTodos ] = useState<ElementTodo[]>([]);
 
 	useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -52,8 +45,8 @@ const Todo: React.FC<iProps> = (props) => {
     <View style={base.container}>
 			<FlatList
 				data={todos}
-				keyExtractor={(item: any) => (item.id).toString()}
-				renderItem={({item}) => (
+				keyExtractor={(item) => (item.id).toString()}
+				renderItem={({ item }) => (
 					<Pressable
 						style={({ pressed }) => [colorPress(pressed), base.containerData]}
 						onPress={() => {
@@ -76,5 +69,14 @@ const Todo: React.FC<iProps> = (props) => {
     </View>
   );
 };
+
+interface TodoProps{
+	orderKey: number,
+	deviceKey: number,
+	typeWork: string
+	route: RoutePropTodo,
+	navigation: NavigationProp,
+	setTodoId: Function,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);

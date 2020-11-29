@@ -3,12 +3,7 @@ import { CheckBox } from 'react-native-elements';
 import { colors } from '../../styles';
 import { styles } from './styles';
 
-interface iProps{
-  readonly setResult: Function,
-  readonly initialState: boolean,
-}
-
-const CheckBoxType: React.FC<iProps> = ({setResult, initialState}) => {
+const CheckBoxAction: React.FC<CheckBoxActionProps> = ({setResult, initialState}) => {
   const [checked, setSchecked] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,4 +31,9 @@ const CheckBoxType: React.FC<iProps> = ({setResult, initialState}) => {
   );
 };
 
-export default CheckBoxType;
+interface CheckBoxActionProps{
+  setResult: Function,
+  initialState: boolean,
+}
+
+export default CheckBoxAction;

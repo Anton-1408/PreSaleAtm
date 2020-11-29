@@ -1,32 +1,29 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
+
+import { ExtraParam } from '../../types/elementType';
 import { iconSize } from '../../styles/constants';
 import { colors } from '../../styles';
-import { ActionContext, iContext } from '../../lib/actionHelper';
+import { ActionContext, ContextParams } from '../../lib/actionHelper';
 import { styles } from './styles';
 
-interface iProps{
-  readonly setResult: Function,
-  readonly initialState: string,
-}
-
-const RadioBoxGroup: React.FC<iProps> = ({ initialState, setResult }) => {
-  const context: iContext = useContext(ActionContext);
-  const [radioBoxes, setRadioBoxes] = useState([]);
+const RadioBoxGroup: React.FC<RadioBoxGroupProps> = ({ initialState, setResult }) => {
+  const context = useContext<ContextParams>(ActionContext);
+  const [radioBoxes, setRadioBoxes] = useState<ExtraParam[]>([]);
 
   useEffect(() => {
-    const listBoxes = context.extraParams.map((item: any) => {
-      return item.title === initialState ? {...item, value: true} : item;
+    const listBoxes = context.extraParams.map((radioBox) => {
+      return radioBox.title === initialState ? {...radioBox, value: true} : radioBox;
     });
     setRadioBoxes(listBoxes);
   }, [context, initialState]);
 
   useEffect(() => {
     let result = '';
-    radioBoxes.forEach((item: any) => {
-      if(item.value)
-        result = item.title;
+    radioBoxes.forEach((radioBox) => {
+      if(radioBox.value)
+        result = radioBox.title;
     });
     setResult(result);
   }, [radioBoxes]);
@@ -34,7 +31,7 @@ const RadioBoxGroup: React.FC<iProps> = ({ initialState, setResult }) => {
   return(
     <FlatList
       data={radioBoxes}
-      keyExtractor={(item: any) => (item.id).toString()}
+      keyExtractor={(item) => (item.id).toString()}
       renderItem={({ item }) => (
         <CheckBox
           checked={item.value}
@@ -42,9 +39,11 @@ const RadioBoxGroup: React.FC<iProps> = ({ initialState, setResult }) => {
           checkedIcon='dot-circle-o'
           uncheckedIcon='circle-o'
           onPress={() => {
-            setRadioBoxes((prev: any) => {
-              return prev.map((next: any) => {
-                return next.id === item.id ? {...next, value: !next.value} : {...next, value: false};
+            setRadioBoxes((prev) => {
+              return prev.map((radioBox) => {
+                return radioBox.id === item.id
+                  ? {...radioBox, value: !radioBox.value}
+                  : {...radioBox, value: false};
               })
             });
           }}
@@ -57,6 +56,11 @@ const RadioBoxGroup: React.FC<iProps> = ({ initialState, setResult }) => {
       )}
     />
   )
+};
+
+interface RadioBoxGroupProps{
+  setResult: Function,
+  initialState: string,
 };
 
 export default RadioBoxGroup;

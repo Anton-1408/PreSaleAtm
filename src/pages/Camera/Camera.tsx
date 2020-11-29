@@ -4,33 +4,33 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { CameraKitCamera } from "react-native-camera-kit";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { ElementGalleryPhoto } from '../../types/elementType';
 import { Pressable, View, StatusBar, Platform } from 'react-native';
-import { iRootReducers } from '../../types/reduxTypes';
-import { tNavigationProp,tRoutePropCamera } from '../../types/navigationTypes';
+import { RootReducers } from '../../types/reduxTypes';
+import { NavigationProp, RoutePropCamera } from '../../types/navigationTypes';
 import { setPhotosAction } from '../../redux/actions/actions';
 import { colors, base } from '../../styles';
 import { iconSize } from '../../styles/constants';
 import { styles } from './styles';
 
-interface iProps{
-  readonly route: tRoutePropCamera,
-  readonly navigation: tNavigationProp,
-  readonly setPhoto: Function
-}
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
-    setPhoto: (path: Object) => dispatch(setPhotosAction(path))
+    setPhoto: (img: ElementGalleryPhoto) => dispatch(setPhotosAction(img))
   };
 };
 
-const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
+const Camera: React.FC<CameraProps> = ({navigation, route, setPhoto}) => {
   const ref = useRef<CameraKitCamera>(null);
-  const src = Platform.OS === 'ios' ? "ph://" : "file://";
 
   const makePhoto = useCallback(async () => {
-    const image = await ref.current.capture(true)
-    const data = {name: image.name, uri: src + image.uri, type: 'image/jpeg'}
+    const image = await ref.current.capture(true);
+    const src: string = Platform.OS === 'ios' ? "ph://" : "file://";
+    const data = {
+      name: image.name,
+      uri: src + image.uri,
+      type: 'image/jpeg'
+    };
     setPhoto(data);
     navigation.goBack();
   }, []);
@@ -57,5 +57,11 @@ const Camera: React.FC<iProps> = ({navigation, route, setPhoto}) => {
     </View>
   );
 };
+
+interface CameraProps{
+  route: RoutePropCamera,
+  navigation: NavigationProp,
+  setPhoto: Function
+}
 
 export default connect(null, mapDispatchToProps)(Camera);

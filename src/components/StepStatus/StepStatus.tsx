@@ -3,12 +3,7 @@ import { Text, View } from 'react-native';
 import { RequiredStatus, ImportantStatus } from '..';
 import { styles } from './styles';
 
-interface iProps{
-  readonly isImportant: number,
-  readonly isRequired: number
-}
-
-const StepStatus: React.FC<iProps> = ({isImportant, isRequired}) => {
+const StepStatus: React.FC<StepStatusProps> = ({ isImportant, isRequired }) => {
   if(isImportant || isRequired){
     return(
       <View style={styles.container}>
@@ -28,6 +23,11 @@ const StepStatus: React.FC<iProps> = ({isImportant, isRequired}) => {
       </Fragment>
     );
   }
+};
+
+interface StepStatusProps{
+  isImportant: number,
+  isRequired: number
 };
 
 export default StepStatus;

@@ -3,8 +3,10 @@ import {View, Text, FlatList, Pressable, RefreshControl} from 'react-native';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { tNavigationProp, tRoutePropOrder } from '../../types/navigationTypes';
-import { iRootReducers } from '../../types/reduxTypes';
+
+import { ElementOrder } from '../../types/elementType';
+import { NavigationProp, RoutePropOrder } from '../../types/navigationTypes';
+import { RootReducers } from '../../types/reduxTypes';
 import { getOrders } from '../../lib/ordersHelper';
 import { colorPress } from '../../styles/constants';
 import { colors, base } from '../../styles';
@@ -17,18 +19,7 @@ import {
   setActionFiles
 } from '../../redux/actions/actions';
 
-interface iProps{
-  readonly route: tRoutePropOrder,
-  readonly navigation: tNavigationProp,
-  readonly getIdUser: Function,
-  readonly getHashCodeProjects: Function,
-  readonly syncServer: Function,
-  readonly getResultChecklist: Function,
-  readonly setOrderId: Function,
-  readonly getFilesActions: Function
-};
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
     getIdUser: () => dispatch(setIdUser()),
     getHashCodeProjects: () => dispatch(setHashCodeProjects()),
@@ -39,7 +30,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Acti
   };
 };
 
-const Order: React.FC<iProps> = (props) => {
+const Order: React.FC<OrderProps> = (props) => {
   const {
     navigation,
     route,
@@ -49,9 +40,9 @@ const Order: React.FC<iProps> = (props) => {
     getResultChecklist,
     setOrderId,
     getFilesActions
-  } : iProps = props;
+  } = props;
 
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<ElementOrder[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
 
   const getDataFromServer = (): void => {
@@ -90,7 +81,7 @@ const Order: React.FC<iProps> = (props) => {
     <View style={base.container}>
       <FlatList
         data={orders}
-        keyExtractor={(item: any) => (item.id).toString()}
+        keyExtractor={(item) => (item.id).toString()}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -101,7 +92,7 @@ const Order: React.FC<iProps> = (props) => {
             colors={[colors.color0]}
           />
         }
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <Pressable
             style={({ pressed }) => [colorPress(pressed), base.containerData]}
             onPress={() => {
@@ -121,6 +112,17 @@ const Order: React.FC<iProps> = (props) => {
       />
     </View>
   );
+};
+
+interface OrderProps{
+  route: RoutePropOrder,
+  navigation: NavigationProp,
+  getIdUser: Function,
+  getHashCodeProjects: Function,
+  syncServer: Function,
+  getResultChecklist: Function,
+  setOrderId: Function,
+  getFilesActions: Function
 };
 
 export default connect(null, mapDispatchToProps)(Order);

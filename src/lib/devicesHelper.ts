@@ -1,5 +1,7 @@
 import { typeDbParams } from '../types/dbTypes';
 import SQLite from 'react-native-sqlite-storage';
+
+import { ElementDevice } from '../types/elementType';
 import { dbHelper } from './dbHelper';
 import { filterByInWork, filterByDone, filterByStopped, calculationPercent } from './filterListDataPage';
 import { modeWork } from '../types/modeWork';
@@ -70,10 +72,10 @@ export const getDevices = (query: string, params: typeDbParams, namePage: string
   const callBack: SQLite.StatementCallback = (transaction, results) => {
     const len: number = results.rows.length;
     const listRow: SQLite.ResultSetRowList = results.rows;
-    const deviceList: Array<Object> = [];
+    const deviceList: Array<ElementDevice> = [];
     for(let i = 0; i < len; i++){
-      const row: any = listRow.item(i);
-      const item: Object = {
+      const row = listRow.item(i);
+      const item: ElementDevice = {
         id: row.id,
         serialNumber: row.serial_number,
         model: row.model,
@@ -87,7 +89,7 @@ export const getDevices = (query: string, params: typeDbParams, namePage: string
   dbHelper(query, params, callBack);
 };
 
-const deviceFilter = (listDevice: Array<Object>, namePage: string): Array<Object> => {
+const deviceFilter = (listDevice: Array<ElementDevice>, namePage: string): Array<Object> => {
   switch(namePage){
     case 'DevicesDone':
       return filterByDone(listDevice);

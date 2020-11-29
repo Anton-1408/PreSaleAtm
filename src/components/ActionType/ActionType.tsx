@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
+
+import { ActionResult, ElementGalleryPhoto } from '../../types/elementType';
 import { typeAction } from '../../types/typeAction';
 import { getResult, initialState, getPhoto } from '../../lib/actionHelper';
 import { setResultAction } from '../../redux/actions/actions';
-import { tRoutePropAction } from '../../types/navigationTypes';
+import { RoutePropAction } from '../../types/navigationTypes';
 import {
   CheckBoxGroup,
   CheckBox,
@@ -15,16 +16,11 @@ import {
   NoAction
 } from '..';
 
-interface iProps{
-  readonly actionKey: number,
-  readonly deviceKey: number,
-};
-
-const ActionType: React.FC<iProps> = ({ actionKey, deviceKey }) => {
-  const route: tRoutePropAction = useRoute();
+const ActionType: React.FC<ActionTypeProps> = ({ actionKey, deviceKey }) => {
+  const route = useRoute<RoutePropAction>();
   const type: string = route.params.type;
-  const [state, setInitialState] = useState(initialState(type));
-  const dispatch: Dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [state, setInitialState] = useState<ActionResult>(initialState(type));
 
   useEffect(() => {
     if(type === typeAction.photo){
@@ -35,7 +31,7 @@ const ActionType: React.FC<iProps> = ({ actionKey, deviceKey }) => {
     }
   }, []);
 
-  const setResult = (value: any) => {
+  const setResult = (value: ActionResult) => {
     return dispatch(setResultAction(value))
   };
 
@@ -43,21 +39,21 @@ const ActionType: React.FC<iProps> = ({ actionKey, deviceKey }) => {
     case typeAction.checkbox:
     return(
       <CheckBox
-        initialState={state}
+        initialState={state as boolean}
         setResult={setResult}
       />
     );
     case typeAction.photo:
       return(
         <Photo
-          initialState={state}
+          initialState={state as ElementGalleryPhoto[]}
           setResult={setResult}
         />
       );
     case typeAction.textInput:
       return(
         <Input
-          initialState={state}
+          initialState={state as string}
           setResult={setResult}
           typeKeyBoard='default'
         />
@@ -65,7 +61,7 @@ const ActionType: React.FC<iProps> = ({ actionKey, deviceKey }) => {
     case typeAction.numberInput:
       return(
         <Input
-          initialState={state}
+          initialState={state as string}
           setResult={setResult}
           typeKeyBoard='numeric'
         />
@@ -73,21 +69,21 @@ const ActionType: React.FC<iProps> = ({ actionKey, deviceKey }) => {
     case typeAction.radioGroup:
       return(
         <RadioBoxGroup
-          initialState={state}
+          initialState={state as string}
           setResult={setResult}
         />
       );
     case typeAction.checkboxGroup:
       return(
         <CheckBoxGroup
-          initialState={state}
+          initialState={state as string[]}
           setResult={setResult}
         />
       );
     case typeAction.noAction:
       return(
         <NoAction
-          initialState={state}
+          initialState={state as number}
           setResult={setResult}
         />
       );
@@ -97,6 +93,11 @@ const ActionType: React.FC<iProps> = ({ actionKey, deviceKey }) => {
         </Fragment>
       );
   };
+};
+
+interface ActionTypeProps{
+  actionKey: number,
+  deviceKey: number,
 };
 
 export default ActionType;

@@ -2,28 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { View, Pressable, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
+
+import { ElementGalleryPhoto } from '../../types/elementType';
 import { iconSize } from '../../styles/constants';
 import { colors, base } from '../../styles';
-import { iRootReducers } from '../../types/reduxTypes';
+import { RootReducers } from '../../types/reduxTypes';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import { styles } from './styles';
 import { countImageRow } from '../../lib/galleryHelper';
-import { tNavigationProp } from '../../types/navigationTypes';
+import { NavigationProp } from '../../types/navigationTypes';
 import { selectorPhotoAction } from '../../redux/selectors/appStateSelectors';
 import { setPhotosAction } from '../../redux/actions/actions';
 
-interface iProps{
-  readonly initialState: any,
-  readonly setResult: Function,
-};
+const Photo: React.FC<PhotoProps> = ({ initialState, setResult }) => {
+  const navigation: NavigationProp = useNavigation();
+  const [images, setImages] = useState<ElementGalleryPhoto[]>([]);
+  const dispatch = useDispatch();
 
-const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
-  const navigation: tNavigationProp = useNavigation();
-  const [images, setImages] = useState([]);
-  const dispatch: Dispatch = useDispatch();
-  const photoAction: any = useSelector(
-    (state: iRootReducers) => selectorPhotoAction(state)
+  const photoAction = useSelector(
+    (state: RootReducers) => selectorPhotoAction(state)
   );
 
   const removePhotosFromStore = () => {
@@ -35,15 +33,15 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
   }, [])
 
   useEffect(() => {
-    setImages((prev: any) => {
+    setImages((prev) => {
       if(Array.isArray(photoAction)){
-        const newState: any = [...prev, ...photoAction];
+        const newState = [...prev, ...photoAction];
         return newState;
       }
       else{
-        const arrImg: any = [...prev];
-        const findeImg = arrImg.findIndex((item: any) => {
-          return item.name === photoAction.name;
+        const arrImg = [...prev];
+        const findeImg = arrImg.findIndex((img) => {
+          return img.name === photoAction.name;
         });
         if(findeImg < 0)
           arrImg.push(photoAction);
@@ -67,15 +65,15 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
       <FlatList
         data={images}
         horizontal={false}
-        keyExtractor={ (item: any) => item.name }
+        keyExtractor={(item) => item.name!}
         style={base.imagesList}
         numColumns={countImageRow()}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <Pressable
             style={base.imageContainer}
             onPress={() => {
               navigation.navigate('ViewPhoto', {
-                name: item.name,
+                name: item.name!,
                 array: images,
               })
             }}
@@ -106,6 +104,11 @@ const Photo: React.FC<iProps> = ({ initialState, setResult }) => {
       </Pressable>
     </View>
   );
+};
+
+interface PhotoProps{
+  initialState: ElementGalleryPhoto[],
+  setResult: Function,
 };
 
 export default Photo;

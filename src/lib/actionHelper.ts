@@ -1,17 +1,13 @@
 import React from 'react';
 import SQLite from 'react-native-sqlite-storage';
+
+import { ExtraFile, ExtraParam } from '../types/elementType';
+import { ActionResult, ElementGalleryPhoto } from '../types/elementType';
 import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 import { typeAction } from '../types/typeAction';
 
-type tDataTime = string | number;
-
-export interface iContext{
-  files: Array<Object>,
-  extraParams: any,
-};
-
-export const ActionContext = React.createContext<iContext>({
+export const ActionContext = React.createContext<ContextParams>({
   files: [],
   extraParams: [],
 });
@@ -22,9 +18,9 @@ export const getExtraFiles = (idAction: number, setExtraFiles: Function): void =
   const callBack: SQLite.StatementCallback = (transaction, result) => {
     const len: number = result.rows.length;
     const rowList: SQLite.ResultSetRowList = result.rows;
-    const listFiles: Array<Object> = [];
+    const listFiles: Array<ExtraFile> = [];
     for(let i = 0; i< len; i++){
-      const row: any = rowList.item(i);
+      const row = rowList.item(i);
       listFiles.push(row);
     }
     setExtraFiles(listFiles)
@@ -38,10 +34,14 @@ export const getExtraParams = (idAction: number, setExtraParams: Function): void
   const callBack: SQLite.StatementCallback = (transaction, result) => {
     const len: number = result.rows.length;
     const rowList: SQLite.ResultSetRowList = result.rows;
-    const listFiles: Array<Object> = [];
+    const listFiles: Array<ExtraParam> = [];
     for(let i = 0; i < len; i++){
-      const row: any = rowList.item(i);
-      const item: Object = {id: row.id, value: false, title: row.extra_params}
+      const row = rowList.item(i);
+      const item: ExtraParam = {
+        id: row.id,
+        value: false,
+        title: row.extra_params
+      }
       listFiles.push(item);
     }
     setExtraParams(listFiles)
@@ -56,8 +56,8 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
     const len: number = result.rows.length;
     const rowList: SQLite.ResultSetRowList = result.rows;
     if(len > 0){
-      const row: any = rowList.item(0);
-      let result: any = null;
+      const row = rowList.item(0);
+      let result: ActionResult;
       switch(type){
         case typeAction.checkbox:
             result = row.value == 1 ? true : false;
@@ -81,8 +81,8 @@ export const getResult = (idAction: number, idDevice: number, type: string, setR
   dbHelper(query, params, callBack);
 };
 
-export const initialState = (type: string): any => {
-  let state: any;
+export const initialState = (type: string): ActionResult => {
+  let state: ActionResult;
   switch(type){
     case typeAction.checkbox:
         state = false;
@@ -106,18 +106,18 @@ export const initialState = (type: string): any => {
   return state;
 };
 
-export const saveResult = (idAction: number, idDevice: number, value: any): void => {
+export const saveResult = (idAction: number, idDevice: number, result: Value): void => {
   const query: string = `replace into results (id_action, id_device, date, value) VALUES (?, ?, ?, ?)`;
-  const params: typeDbParams = [idAction, idDevice, nowDate(), value];
+  const params: typeDbParams = [idAction, idDevice, nowDate(), result];
   const callBack: SQLite.StatementCallback = (transaction, result) => { };
   dbHelper(query, params, callBack);
 };
 
-export const savePhotoAction = (idAction: number, idDevice: number, files: Array<Object>): void => {
+export const savePhotoAction = (idAction: number, idDevice: number, files: Array<ElementGalleryPhoto>): void => {
   const query: string = `replace into photos (id_action, id_device, name, uri, type) VALUES (?,?,?,?,?)`;
   const callBack : SQLite.StatementCallback = (transaction, result) => { };
-  files.forEach((item: any) => {
-    const params: typeDbParams = [idAction, idDevice, item.name, item.uri, item.type];
+  files.forEach((file: ElementGalleryPhoto) => {
+    const params: typeDbParams = [idAction, idDevice, file.name!, file.uri, file.type];
     dbHelper(query, params, callBack);
   });
 };
@@ -125,10 +125,10 @@ export const savePhotoAction = (idAction: number, idDevice: number, files: Array
 const nowDate = (): string => {
   const dateTime: Date = new Date();
   let year: number = dateTime.getFullYear();
-  let month: tDataTime = dateTime.getMonth() + 1;
-  let day: tDataTime = dateTime.getDate();
-  let hour: tDataTime = dateTime.getHours();
-  let minut: tDataTime = dateTime.getMinutes();
+  let month: DataTime = dateTime.getMonth() + 1;
+  let day: DataTime = dateTime.getDate();
+  let hour: DataTime = dateTime.getHours();
+  let minut: DataTime = dateTime.getMinutes();
 
   month = month < 10 ? "0" + month : month;
   day = day < 10 ? "0" + day : day;
@@ -167,12 +167,26 @@ export const getPhoto = (idAction: number, idDevice: number, setResult: Function
   const callBack: SQLite.StatementCallback = (transaction, result) => {
     const len: number = result.rows.length;
     const rowList: SQLite.ResultSetRowList = result.rows;
-    const listPhotos: Array<Object> = [];
+    const listPhotos: Array<Photo> = [];
     for(let i = 0; i < len; i++){
-      const row: any = rowList.item(i);
+      const row = rowList.item(i);
       listPhotos.push(row);
     }
     setResult(listPhotos);
   };
   dbHelper(query, params, callBack);
 };
+
+interface Photo{
+  name: string,
+  uri: string
+};
+
+type DataTime = string | number;
+
+export interface ContextParams{
+  files: Array<ExtraFile>,
+  extraParams: Array<ExtraParam>,
+};
+
+type Value = string | number;

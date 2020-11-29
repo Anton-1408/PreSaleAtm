@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import { holderKeysReducer } from './holderKeysReducer';
 import { syncDataReducer } from './syncDataReducer'
 import { appStateReducer} from './appStateReducer';
-import { iRootReducers } from "../../types/reduxTypes";
+import { RootReducers } from "../../types/reduxTypes";
 
-export default combineReducers<iRootReducers>({
+export default combineReducers<RootReducers>({
   holderKeysReducer,
   syncDataReducer,
   appStateReducer

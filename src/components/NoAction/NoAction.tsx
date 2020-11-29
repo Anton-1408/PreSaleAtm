@@ -2,12 +2,7 @@ import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { styles } from './styles';
 
-interface iProps{
-  readonly initialState: number,
-  readonly setResult: Function
-};
-
-const NoAction: React.FC<iProps> = ({ initialState, setResult }) => {
+const NoAction: React.FC<NoActionProps> = ({ initialState, setResult }) => {
   useEffect(() => {
     setResult(initialState)
   }, [initialState]);
@@ -17,6 +12,11 @@ const NoAction: React.FC<iProps> = ({ initialState, setResult }) => {
       <Text style={styles.text}>Прочтите комментарий!</Text>
     </View>
   )
+};
+
+interface NoActionProps{
+  initialState: number,
+  setResult: Function
 };
 
 export default NoAction;

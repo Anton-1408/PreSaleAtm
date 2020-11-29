@@ -5,23 +5,20 @@ import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Dispatch } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+
 import { styles } from './styles';
-import { iRootReducers } from '../../types/reduxTypes';
+import { RootReducers } from '../../types/reduxTypes';
 import { colors } from '../../styles';
-import { tNavigationProp } from '../../types/navigationTypes';
+import { NavigationProp } from '../../types/navigationTypes';
 import { colorPress } from '../../styles/constants';
 import { setSerialNumberDevice } from '../../redux/actions/actions';
 import { selectorSerialNumbDevice } from '../../redux/selectors/appStateSelectors';
 
-interface iProps{
-
-};
-
-const SearchInput: React.FC<iProps> = ({}) => {
-  const navigation: tNavigationProp = useNavigation();
+const SearchInput: React.FC<SearchInputProps> = ({}) => {
+  const navigation: NavigationProp = useNavigation();
   const dispatch: Dispatch = useDispatch();
   const serialNumber: string = useSelector(
-    (state: iRootReducers) => selectorSerialNumbDevice(state)
+    (state: RootReducers) => selectorSerialNumbDevice(state)
   );
 
   return(
@@ -47,5 +44,7 @@ const SearchInput: React.FC<iProps> = ({}) => {
     </View>
   );
 }
+
+interface SearchInputProps{ };
 
 export default SearchInput;

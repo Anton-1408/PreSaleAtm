@@ -1,26 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from 'react-native';
+
+import { ExtraParam } from '../../types/elementType';
 import { iconSize } from '../../styles/constants';
 import { colors } from '../../styles';
 import { styles } from './styles';
-import { ActionContext, iContext } from '../../lib/actionHelper';
+import { ActionContext, ContextParams } from '../../lib/actionHelper';
 
-interface iProps{
-  readonly setResult: Function,
-  readonly initialState: Array<string>,
-}
-
-const CheckBoxGroup: React.FC<iProps> = ({ setResult, initialState }) => {
-  const [chechBoxes, setCheckBoxes] = useState<Array<Object>>([]);
-  const context: iContext = useContext(ActionContext);
+const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ setResult, initialState }) => {
+  const [chechBoxes, setCheckBoxes] = useState<ExtraParam[]>([]);
+  const context = useContext<ContextParams>(ActionContext);
 
   useEffect(() => {
-    const arrChecked: any = [...context.extraParams];
+    const arrChecked: ExtraParam[] = [...context.extraParams];
     initialState.forEach((el: string) => {
-      arrChecked.forEach((item: any) => {
-        if(el === item.title)
-          item.value = true
+      arrChecked.forEach((checkBox) => {
+        if(el === checkBox.title)
+          checkBox.value = true
       });
     });
     setCheckBoxes(arrChecked);
@@ -28,9 +25,9 @@ const CheckBoxGroup: React.FC<iProps> = ({ setResult, initialState }) => {
 
   useEffect(() => {
     const result: Array<string> = [];
-    chechBoxes.forEach((item: any) => {
-      if(item.value){
-        result.push(item.title)
+    chechBoxes.forEach((checkBox) => {
+      if(checkBox.value){
+        result.push(checkBox.title)
       }
     });
     setResult(JSON.stringify(result));
@@ -39,15 +36,17 @@ const CheckBoxGroup: React.FC<iProps> = ({ setResult, initialState }) => {
   return(
     <FlatList
       data={chechBoxes}
-      keyExtractor={(item: any) => (item.id).toString()}
-      renderItem={({item}: any) => (
+      keyExtractor={(item) => (item.id).toString()}
+      renderItem={({ item }) => (
         <CheckBox
           checked={item.value}
           title={item.title}
           onPress={() => {
-            setCheckBoxes((prev: any) => {
-              return prev.map((next: any) => {
-                return next.id === item.id ? {...next, value: !next.value} : next;
+            setCheckBoxes((prev) => {
+              return prev.map((checkBox) => {
+                return checkBox.id === item.id
+                  ? {...checkBox, value: !checkBox.value}
+                  : checkBox;
               })
             });
           }}
@@ -61,5 +60,10 @@ const CheckBoxGroup: React.FC<iProps> = ({ setResult, initialState }) => {
     />
   )
 };
+
+interface CheckBoxGroupProps{
+  setResult: Function,
+  initialState: Array<string>,
+}
 
 export default CheckBoxGroup;

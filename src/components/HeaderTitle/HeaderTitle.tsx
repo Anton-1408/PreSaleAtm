@@ -2,16 +2,16 @@ import React from 'react';
 import { Text, View } from "react-native"
 import { styles } from './styles';
 
-interface iProps{
-  readonly title: string
-}
-
-const HeaderTitle: React.FC<iProps> = ({ title }) => {
+const HeaderTitle: React.FC<HeaderTitleProps> = ({ title }) => {
   return(
     <View>
       <Text style={styles.headerTitle}>{title}</Text>
     </View>
   )
 };
+
+interface HeaderTitleProps{
+  title: string
+}
 
 export default HeaderTitle;

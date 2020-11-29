@@ -1,17 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { iRootReducers } from '../../types/reduxTypes';
+
+import { RootReducers } from '../../types/reduxTypes';
 import { modeWork } from '../../types/modeWork';
 import { selectorTypeWork } from '../../redux/selectors/appStateSelectors';
 import { HeaderTitle, SearchInput }  from '..';
 
-interface iProps{
-
-};
-
-const HeaderModeWork: React.FC<iProps> = ({ }) => {
+const HeaderModeWork: React.FC<HeaderModeWorkProps> = ({ }) => {
   const getModeWork: string = useSelector(
-    (state: iRootReducers) => selectorTypeWork(state)
+    (state: RootReducers) => selectorTypeWork(state)
   );
 
   if(getModeWork === modeWork.device){
@@ -27,5 +24,7 @@ const HeaderModeWork: React.FC<iProps> = ({ }) => {
     );
   }
 }
+
+interface HeaderModeWorkProps{ };
 
 export default HeaderModeWork;

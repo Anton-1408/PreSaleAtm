@@ -1,4 +1,6 @@
 import SQLite from 'react-native-sqlite-storage';
+
+import { ElementStep } from '../types/elementType';
 import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 import { modeWork } from '../types/modeWork';
@@ -51,10 +53,10 @@ export const getSteps= (query: string, params: typeDbParams, setSteps: Function)
   const callBack: SQLite.StatementCallback = (transaction, result) => {
     const len: number = result.rows.length;
     const rowList: SQLite.ResultSetRowList = result.rows;
-    const listSteps: Array<Object> = [];
+    const listSteps: Array<ElementStep> = [];
     for(let i = 0; i < len; i++){
-      const row: any = rowList.item(i);
-      const item: Object = {
+      const row = rowList.item(i);
+      const item: ElementStep = {
         id: row.id,
         name: row.name,
         comment: row.comment,

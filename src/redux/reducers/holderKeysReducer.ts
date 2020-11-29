@@ -1,4 +1,4 @@
-import { iHolderKeysReducerState, typeHolderKeysReducer } from "../../types/reduxTypes";
+import { HolderKeysReducerState, HolderKeysReducer } from "../../types/reduxTypes";
 import {
   SET_ACTION_KEY,
   SET_DEVICE_KEY,
@@ -15,7 +15,7 @@ const initialState={
   orderKey: 0,
 };
 
-export function holderKeysReducer(state: iHolderKeysReducerState = initialState, action: typeHolderKeysReducer){
+export function holderKeysReducer(state: HolderKeysReducerState = initialState, action: HolderKeysReducer){
   switch(action.type){
     case SET_ACTION_KEY:
       return{

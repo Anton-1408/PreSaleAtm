@@ -1,5 +1,7 @@
 import SQLite from 'react-native-sqlite-storage';
 import { CameraKitCamera } from 'react-native-camera-kit';
+
+import { ElementSearchDevice } from '../types/elementType';
 import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 
@@ -13,10 +15,13 @@ export const getDevicesList = (idOrder: number, setDevices: Function): void => {
   const callBack: SQLite.StatementCallback = (transaction, result) => {
     const len: number = result.rows.length;
     const rowList: SQLite.ResultSetRowList = result.rows;
-    const listDevices: Array<Object> = [];
+    const listDevices: Array<ElementSearchDevice> = [];
     for(let i = 0; i < len; i++){
-      const row: any = rowList.item(i);
-      const item: Object = {id: row.id, serialNumber: row.serial_number };
+      const row = rowList.item(i);
+      const item: ElementSearchDevice = {
+        id: row.id,
+        serialNumber: row.serial_number
+      };
       listDevices.push(item)
     }
     setDevices(listDevices);
@@ -24,9 +29,11 @@ export const getDevicesList = (idOrder: number, setDevices: Function): void => {
   dbHelper(query, params, callBack)
 };
 
-export const searchDevice = (listDevice: Array<Object>, serialNumber: string): Object => {
-  const device: any = listDevice.find((item: any) => {
+export const searchDevice = (listDevice: Array<ElementSearchDevice>, serialNumber: string): SearchDevice => {
+  const device = listDevice.find((item: ElementSearchDevice) => {
     return item.serialNumber === serialNumber
   });
   return device;
 };
+
+export type SearchDevice = ElementSearchDevice | undefined;

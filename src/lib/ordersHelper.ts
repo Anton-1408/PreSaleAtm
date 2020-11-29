@@ -1,4 +1,6 @@
 import SQLite from 'react-native-sqlite-storage';
+
+import { ElementOrder } from '../types/elementType';
 import { typeDbParams } from '../types/dbTypes';
 import { dbHelper } from './dbHelper';
 import { filterByInWork, filterByDone, filterByAll, calculationPercent } from './filterListDataPage';
@@ -30,11 +32,11 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<void> =
     const callBack: SQLite.StatementCallback = (transaction, result) => {
       const len: number = result.rows.length;
       const rowList: SQLite.ResultSetRowList = result.rows;
-      const listOrder: Array<Object> = [];
+      const listOrder: Array<ElementOrder> = [];
 
       for(let i = 0; i < len; i++){
-        const row: any = rowList.item(i);
-        const item: Object = {
+        const row = rowList.item(i);
+        const item: ElementOrder = {
           id: row.id,
           name: row.name,
           comment: row.comment,
@@ -49,7 +51,7 @@ export const getOrders = (setOrder: Function, namePage: string): Promise<void> =
   });
 };
 
-const orderFilter = (listOrder: Array<Object>, namePage: string): Array<Object> => {
+const orderFilter = (listOrder: Array<ElementOrder>, namePage: string): Array<Object> => {
   switch(namePage){
     case 'OrderAll':
       return filterByAll(listOrder);

@@ -2,17 +2,14 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { sizeButtonAction } from '../../styles/constants';
 import { setReplayDevice } from '../../lib/actionHelper';
-import { tNavigationProp } from '../../types/navigationTypes';
+import { NavigationProp } from '../../types/navigationTypes';
 import { colors, base } from '../../styles';
 
-interface iProps{
-  readonly deviceKey: number
-};
-
-const ButtonReplayDevice: React.FC<iProps> = ({ deviceKey }) => {
-  const navigation: tNavigationProp = useNavigation();
+const ButtonReplayDevice: React.FC<ButtonReplayDeviceProps> = ({ deviceKey }) => {
+  const navigation = useNavigation<NavigationProp>();
   return(
     <Pressable
       style={base.buttonBarContainer}
@@ -25,5 +22,9 @@ const ButtonReplayDevice: React.FC<iProps> = ({ deviceKey }) => {
     </Pressable>
   )
 }
+
+interface ButtonReplayDeviceProps{
+  deviceKey: number
+};
 
 export default ButtonReplayDevice;

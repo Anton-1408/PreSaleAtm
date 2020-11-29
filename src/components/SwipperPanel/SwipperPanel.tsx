@@ -2,24 +2,24 @@ import { SwipeablePanel } from 'rn-swipeable-panel';
 import React from 'react';
 import { ContentPanel } from '..';
 
-interface iProps{
-  readonly statePanel: boolean,
-  readonly closePanel: Function
-};
-
-const SwipperPanel: React.FC<iProps> = ({ statePanel, closePanel }) => {
+const SwipperPanel: React.FC<SwipperPanelProps> = ({ statePanel, closePanel }) => {
   return(
     <SwipeablePanel
       fullWidth={true}
       closeOnTouchOutside={true}
       isActive={statePanel}
       onClose={() => {
-                closePanel()
+        closePanel()
       }}
     >
       <ContentPanel/>
     </SwipeablePanel>
   )
+};
+
+interface SwipperPanelProps{
+  statePanel: boolean,
+  closePanel: Function
 };
 
 export default SwipperPanel;

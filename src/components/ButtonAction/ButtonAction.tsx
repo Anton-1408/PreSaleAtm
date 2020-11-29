@@ -1,16 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { ButtonStopDevice, ButtonReplayDevice } from '..';
-import { iRootReducers } from '../../types/reduxTypes';
+import { RootReducers } from '../../types/reduxTypes';
 import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/holderKeysSelectors';
 
-interface iProps{
-  readonly stoped: number,
-}
-
-const ButtonAction: React.FC<iProps> = ({ stoped }) => {
-  const deviceKey: number = useSelector((state: iRootReducers) => selectorDeviceKey(state));
-  const actionKey: number = useSelector((state: iRootReducers) => selectorActionKey(state));
+const ButtonAction: React.FC<ButtonActionProps> = ({ stoped }) => {
+  const deviceKey: number = useSelector((state: RootReducers) => selectorDeviceKey(state));
+  const actionKey: number = useSelector((state: RootReducers) => selectorActionKey(state));
 
   if(!stoped){
     return(
@@ -28,5 +24,9 @@ const ButtonAction: React.FC<iProps> = ({ stoped }) => {
     )
   }
 };
+
+interface ButtonActionProps{
+  stoped: number,
+}
 
 export default ButtonAction;

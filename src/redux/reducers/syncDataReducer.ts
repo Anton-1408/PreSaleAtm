@@ -5,8 +5,8 @@ import {
   SET_SEND_FILES
 } from "../actions/types";
 import {
-  iSyncDataReducer,
-  typeSyncDataReducer
+  SyncDataReducerState,
+  SyncDataReducer
 } from "../../types/reduxTypes";
 
 const initialState={
@@ -17,7 +17,7 @@ const initialState={
   actionFiles: new FormData(),
 };
 
-export function syncDataReducer(state: iSyncDataReducer = initialState, action: typeSyncDataReducer){
+export function syncDataReducer(state: SyncDataReducerState = initialState, action: SyncDataReducer){
   switch(action.type){
     case SET_ID_USER:
       return{

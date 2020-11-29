@@ -13,108 +13,105 @@ import {
   SET_ACTION_PHOTOS,
   SET_SEND_FILES,
 } from "../redux/actions/types";
+import { FilesPhoto } from '../types/elementType';
 
-export interface iOrdertKey{
+export interface OrdertKey{
   type: typeof SET_ORDER_KEY,
   orderKey: number,
 };
 
-export interface iTodoKey{
+export interface TodoKey{
   type: typeof SET_TODO_KEY,
   todoKey: number,
 };
 
-export interface iDeviceKey{
+export interface DeviceKey{
   type: typeof SET_DEVICE_KEY,
   deviceKey: number,
 };
 
-export interface iStepKey{
+export interface StepKey{
   type: typeof SET_STEP_KEY,
   stepKey: number,
 };
 
-export interface iActionKey{
+export interface ActionKey{
   type: typeof SET_ACTION_KEY,
   actionKey: number,
 };
 
-export interface iModeWork{
+export interface ModeWork{
   type: typeof SET_MODE_WORK,
   modeWork: string,
 };
 
-export interface iUserId{
+export interface UserId{
   type: typeof SET_ID_USER,
   idUser: string,
 };
 
-export interface iResultCheckList{
+export interface ResultCheckList{
   type: typeof SET_RESULT_CHECK_LIST,
   listResultsCheckList: Array<Object>,
 };
 
-export interface iHashcodeProjects{
+export interface HashcodeProjects{
   type: typeof SET_HASHCODE_PROJECTS,
   projectHash: Array<Object>,
   resultHash:  Array<Object>,
 };
 
-export interface iSetSerialNumberDevice{
+export interface SetSerialNumberDevice{
   type: typeof SET_SERIAL_NUMBER_DEVICE,
   serialNumber: string,
 };
 
-export interface iSetResultAction{
+export interface SetResultAction{
   type: typeof SET_RESULT_ACTION,
   resultAction: any
 };
 
-export interface iSetPhotosAction{
+export interface SetPhotosAction{
   type: typeof SET_ACTION_PHOTOS,
-  photoAction: Array<Object> | Object
+  photoAction: FilesPhoto
 }
 
-export interface iSetSendFiles{
+export interface SetSendFiles{
   type: typeof SET_SEND_FILES,
   actionFiles: FormData
 };
 
-export interface iHolderKeysReducerState{
-    actionKey: number,
-    stepKey: number,
-    deviceKey: number,
-    todoKey: number,
-    orderKey: number,
+export interface HolderKeysReducerState{
+  actionKey: number,
+  stepKey: number,
+  deviceKey: number,
+  todoKey: number,
+  orderKey: number,
 };
 
-export interface iSyncDataReducer{
-    idUser: string,
-    resultHash: Object,
-    projectHash: Object,
-    actionFiles: FormData,
-    listResultsCheckList: Array<Object>,
+export interface SyncDataReducerState{
+  idUser: string,
+  resultHash: Object,
+  projectHash: Object,
+  actionFiles: FormData,
+  listResultsCheckList: Array<Object>,
 };
 
-export interface iAppStateReducer{
-    serialNumber: string,
-    modeWork: string,
-    resultAction: any,
-    photoAction: Array<Object> | Object,
+export interface AppStateReducerState{
+  serialNumber: string,
+  modeWork: string,
+  resultAction: any,
+  photoAction: FilesPhoto,
 }
 
-export type typeHolderKeysReducer = iOrdertKey | iTodoKey |
-                                    iDeviceKey | iStepKey |
-                                    iActionKey;
+export type HolderKeysReducer = OrdertKey | TodoKey | DeviceKey | StepKey | ActionKey;
 
-export type typeSyncDataReducer = iHashcodeProjects | iResultCheckList |
-                                    iUserId | iSetSendFiles;
+export type SyncDataReducer = HashcodeProjects | ResultCheckList | UserId | SetSendFiles;
 
-export type typeAppStateReducer = iSetSerialNumberDevice | iModeWork |
-                                    iSetResultAction | iSetPhotosAction;
+export type AppStateReducer = SetSerialNumberDevice | ModeWork | SetResultAction | SetPhotosAction;
 
-export interface iRootReducers{
-    holderKeysReducer: iHolderKeysReducerState,
-    syncDataReducer: iSyncDataReducer,
-    appStateReducer: iAppStateReducer
+export interface RootReducers{
+    holderKeysReducer: HolderKeysReducerState,
+    syncDataReducer: SyncDataReducerState,
+    appStateReducer: AppStateReducerState
 };

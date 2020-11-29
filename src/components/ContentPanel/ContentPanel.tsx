@@ -1,28 +1,29 @@
 import React, { useContext } from 'react';
 import { View, Text, Pressable, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { ActionContext, iContext } from '../../lib/actionHelper';
+
+import { ActionContext, ContextParams } from '../../lib/actionHelper';
 import { styles } from './styles';
 import { ExtraParamsPhoto } from '..';
-import { tRoutePropAction } from '../../types/navigationTypes';
+import { RoutePropAction } from '../../types/navigationTypes';
 import { base } from '../../styles';
 
-const ContentPanel: React.FC = () => {
-  const context: iContext = useContext(ActionContext);
-  const route: tRoutePropAction = useRoute();
+const ContentPanel: React.FC<ContentPanelProps> = ({}) => {
+  const context = useContext<ContextParams>(ActionContext);
+  const route = useRoute<RoutePropAction>();
 
   return(
     <View>
       <Text style={styles.comment}>{route.params.comment}</Text>
       <ExtraParamsPhoto/>
       <View style={styles.containerFiles}>
-        {context.files.map((item: any) => (
+        {context.files.map((file) => (
           <Pressable
-            key={item.id}
+            key={file.id}
             style={base.imageContainer}
           >
             <Image
-              source={{uri: item.path}}
+              source={{uri: file.path}}
               style={base.imageStyle}
             />
           </Pressable>
@@ -31,5 +32,7 @@ const ContentPanel: React.FC = () => {
     </View>
   );
 };
+
+interface ContentPanelProps{ }
 
 export default ContentPanel;

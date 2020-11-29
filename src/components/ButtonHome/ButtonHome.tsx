@@ -2,16 +2,14 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { tNavigationProp } from '../../types/navigationTypes';
+
+import { NavigationProp } from '../../types/navigationTypes';
 import { iconSizeBar } from '../../styles/constants';
 import { colors, base } from '../../styles';
 
-interface iProps{
+const ButtonHome: React.FC<ButtonHomeProps> = ({}) => {
+  const navigation = useNavigation<NavigationProp>();
 
-};
-
-const ButtonHome: React.FC<iProps> = ({}) => {
-  const navigation: tNavigationProp = useNavigation();
   return(
     <Pressable
       style={base.buttonBarContainer}
@@ -23,5 +21,7 @@ const ButtonHome: React.FC<iProps> = ({}) => {
     </Pressable>
   )
 };
+
+interface ButtonHomeProps{ };
 
 export default ButtonHome;

@@ -1,5 +1,7 @@
 import SQLite from 'react-native-sqlite-storage';
 import RNFetchBlob from 'rn-fetch-blob';
+
+import { } from '../types/elementType';
 import { dbHelper } from './dbHelper';
 import { typeDbParams } from '../types/dbTypes';
 import { urlServer } from './urlServer';
@@ -20,7 +22,7 @@ export const setOrdersToDB = (orders: any): void => {
   });
 };
 
-const setDevices = (idOrder: string, devices: any): void => {
+const setDevices = (idOrder: number, devices: any): void => {
   const keyDevice = Object.keys(devices).forEach((id) => {
     const query: string = 'replace into devices (id, serial_number, model, id_order) VALUES (?,?,?,?)';
     const params: typeDbParams = [devices[id].id, devices[id].sn, devices[id].model, idOrder];
@@ -36,7 +38,7 @@ const setResults = (results: any): void => {
   });
 };
 
-const setTodos = (idOrder: string, todos: any): void => {
+const setTodos = (idOrder: number, todos: any): void => {
   const keyTodo = Object.keys(todos).forEach((id) => {
     const query: string = 'replace into todos (id, name, comment, id_order) VALUES (?,?,?,?)';
     const params: typeDbParams = [todos[id].id, todos[id].name, todos[id].comment, idOrder];
@@ -46,7 +48,7 @@ const setTodos = (idOrder: string, todos: any): void => {
   });
 };
 
-const setSteps = (idTodo: string, steps: any): void => {
+const setSteps = (idTodo: number, steps: any): void => {
   const keyStep = Object.keys(steps).forEach((id) => {
     const query: string = `replace into steps (id, id_todo, name, comment, is_required, is_important) VALUES (?,?,?,?,?,?)`;
     const params: typeDbParams = [steps[id].id, idTodo, steps[id].name, steps[id].comment, steps[id].isRequired, steps[id].isImportant];
@@ -56,7 +58,7 @@ const setSteps = (idTodo: string, steps: any): void => {
   });
 };
 
-const setActions = (idStep: string, actios: any): void => {
+const setActions = (idStep: number, actios: any): void => {
   const keyAction = Object.keys(actios).forEach((id) => {
     const query: string = `replace into actions (id, id_step, name, comment, type) VALUES (?,?,?,?,?)`;
     const params: typeDbParams = [actios[id].id, idStep, actios[id].name, actios[id].comment, actios[id].type];
@@ -68,13 +70,13 @@ const setActions = (idStep: string, actios: any): void => {
   });
 };
 
-const setExtraFiles = (idAction: string, files: any): void => {
+const setExtraFiles = (idAction: number, files: any): void => {
   const keyFile = Object.keys(files).forEach((id) => {
     downLoadsFile(idAction, files[id]);
   });
 };
 
-const setExstraParams = (idAction: string, extraParams: any): void => {
+const setExstraParams = (idAction: number, extraParams: any): void => {
   const keyExtraParams = Object.keys(extraParams).forEach((id) => {
     const query: string = 'replace into extra_params (id_action, extra_params) VALUES(?,?)';
     if(id === 'item'){
@@ -96,7 +98,7 @@ const setExstraParams = (idAction: string, extraParams: any): void => {
   });
 };
 
-const downLoadsFile = (idAction: string, files: any): void => {
+const downLoadsFile = (idAction: number, files: any): void => {
   const dirs = RNFetchBlob.fs.dirs;
   const name = files.id + files.filename;
   RNFetchBlob.config({

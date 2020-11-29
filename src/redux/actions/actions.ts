@@ -2,9 +2,11 @@ import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import SQLite from 'react-native-sqlite-storage';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+
+import { FilesPhoto } from '../../types/elementType';
 import { typeDbParams } from '../../types/dbTypes';
 import { dbHelper } from '../../lib/dbHelper';
-import { iRootReducers } from '../../types/reduxTypes';
+import { RootReducers } from '../../types/reduxTypes';
 import { setOrdersToDB } from '../../lib/setOrdersToDB';
 import { urlServer } from '../../lib/urlServer'
 import {
@@ -29,22 +31,22 @@ import {
   SET_SEND_FILES,
 } from "./types";
 import {
-  iOrdertKey,
-  iTodoKey,
-  iDeviceKey,
-  iStepKey,
-  iActionKey,
-  iModeWork,
-  iUserId,
-  iResultCheckList,
-  iHashcodeProjects,
-  iSetSerialNumberDevice,
-  iSetResultAction,
-  iSetPhotosAction,
-  iSetSendFiles
+  OrdertKey,
+  TodoKey,
+  DeviceKey,
+  StepKey,
+  ActionKey,
+  ModeWork,
+  UserId,
+  ResultCheckList,
+  HashcodeProjects,
+  SetSerialNumberDevice,
+  SetResultAction,
+  SetPhotosAction,
+  SetSendFiles
 } from "../../types/reduxTypes";
 
-export function setIdUser(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
+export function setIdUser(): ThunkAction<Promise<void>, RootReducers, unknown, Action<Object>>{
   return async (dispatch) => {
     return new Promise((resolve, reject) => {
       const query: string = 'select sid from settings';
@@ -62,7 +64,7 @@ export function setIdUser(): ThunkAction<Promise<void>, iRootReducers, unknown, 
   };
 };
 
-export function setActionFiles(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
+export function setActionFiles(): ThunkAction<Promise<void>, RootReducers, unknown, Action<Object>>{
   return async (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     const query: string = 'select name, type, id_action, id_device, uri from photos';
@@ -95,7 +97,7 @@ export function setActionFiles(): ThunkAction<Promise<void>, iRootReducers, unkn
   }
 };
 
-export function setResultChecklist(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
+export function setResultChecklist(): ThunkAction<Promise<void>, RootReducers, unknown, Action<Object>>{
   return async (dispatch) => {
     return new Promise((resolve, reject) => {
       const query: string = `select r.id, r.id_device, r.id_action, r.value, r.date, r.fio, (select max(stoped)
@@ -125,7 +127,7 @@ export function setResultChecklist(): ThunkAction<Promise<void>, iRootReducers, 
   };
 };
 
-export function setHashCodeProjects(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
+export function setHashCodeProjects(): ThunkAction<Promise<void>, RootReducers, unknown, Action<Object>>{
   return async (dispatch) => {
     return new Promise((resolve, reject) => {
       const query: string = 'select id, order_hash, result_hash from orders';
@@ -148,7 +150,7 @@ export function setHashCodeProjects(): ThunkAction<Promise<void>, iRootReducers,
   };
 };
 
-export function setOrders(): ThunkAction<Promise<void>, iRootReducers, unknown, Action<Object>>{
+export function setOrders(): ThunkAction<Promise<void>, RootReducers, unknown, Action<Object>>{
   return async (dispatch, getState) => {
     return await axios.post(urlServer + 'mobile/api001.php', {
       sid: selectorIdUser(getState()),
@@ -163,34 +165,32 @@ export function setOrders(): ThunkAction<Promise<void>, iRootReducers, unknown, 
         setOrdersToDB(orders);
       }
     })
-    .catch((err: AxiosError) => {
-
-    });
+    .catch((err: AxiosError) => { });
   };
 };
 
-function setValueIdUser(value: string): iUserId{
+function setValueIdUser(value: string): UserId{
   return{
     type: SET_ID_USER,
     idUser: value
   }
 };
 
-function setValueFiles(value: FormData): iSetSendFiles{
+function setValueFiles(value: FormData): SetSendFiles{
   return{
     type: SET_SEND_FILES,
     actionFiles: value,
   }
 };
 
-function setValueResults(value: Array<Object>): iResultCheckList{
+function setValueResults(value: Array<Object>): ResultCheckList{
   return{
     type: SET_RESULT_CHECK_LIST,
     listResultsCheckList: value,
   }
 };
 
-function setValueHashs(projectHash: Array<Object>, resultHash: Array<Object>): iHashcodeProjects{
+function setValueHashs(projectHash: Array<Object>, resultHash: Array<Object>): HashcodeProjects{
   return{
     type: SET_HASHCODE_PROJECTS,
     projectHash: projectHash,
@@ -198,65 +198,65 @@ function setValueHashs(projectHash: Array<Object>, resultHash: Array<Object>): i
   }
 };
 
-export function setModeWork(value: string): iModeWork{
+export function setModeWork(value: string): ModeWork{
   return {
     type: SET_MODE_WORK,
     modeWork: value
   }
 };
 
-export function setActionKey(value: number): iActionKey{
+export function setActionKey(value: number): ActionKey{
   return{
     type: SET_ACTION_KEY,
     actionKey: value
   };
 };
 
-export function setOrderKey(value: number): iOrdertKey{
+export function setOrderKey(value: number): OrdertKey{
   return{
     type: SET_ORDER_KEY,
     orderKey: value
   };
 };
 
-export function setTodoKey(value: number): iTodoKey{
+export function setTodoKey(value: number): TodoKey{
   return{
     type: SET_TODO_KEY,
     todoKey: value
   };
 };
 
-export function setDeviceKey(value: number): iDeviceKey{
+export function setDeviceKey(value: number): DeviceKey{
   return{
     type: SET_DEVICE_KEY,
     deviceKey: value
   };
 };
 
-export function setStepKey(value: number): iStepKey{
+export function setStepKey(value: number): StepKey{
   return{
     type: SET_STEP_KEY,
     stepKey: value
   };
 };
 
-export function setSerialNumberDevice(value: string): iSetSerialNumberDevice{
+export function setSerialNumberDevice(value: string): SetSerialNumberDevice{
   return{
     type: SET_SERIAL_NUMBER_DEVICE,
     serialNumber: value,
   };
 }
 
-export function setResultAction(value: any): iSetResultAction{
+export function setResultAction(value: any): SetResultAction{
   return{
     type: SET_RESULT_ACTION,
     resultAction: value
   };
 };
 
-export function setPhotosAction(value: Array<Object> | Object): iSetPhotosAction{
+export function setPhotosAction(value: FilesPhoto): SetPhotosAction{
   return{
     type: SET_ACTION_PHOTOS,
     photoAction: value,
-  }
-}
+  };
+};

@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '.';
-import { sizeImage } from './constants';
 
 export default StyleSheet.create({
   buttonBarContainer:{
@@ -49,8 +48,8 @@ export default StyleSheet.create({
     color: colors.color19,
   },
   imageStyle:{
-    width: sizeImage,
-    height: sizeImage
+    width: 118,
+    height: 118,
   },
   imageContainer:{
     marginVertical: 1,

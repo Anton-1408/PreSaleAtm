@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
-import { tNavigationProp, tRoutePropSetting } from '../../types/navigationTypes';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { NavigationProp, RoutePropSetting } from '../../types/navigationTypes';
 import { iconSize } from '../../styles/constants';
 import { saveSetting, getSetting } from '../../lib/settingHelper';
 import { getVersion } from 'react-native-device-info';
 import { styles } from './styles';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, base } from '../../styles';
 
-interface iProps{
-  readonly route: tRoutePropSetting,
-  readonly navigation: tNavigationProp,
-};
-
-const Setting: React.FC<iProps> = ({navigation}) => {
+const Setting: React.FC<SettingProps> = ({navigation}) => {
   const [userId, setUserId] = useState<string>("");
 
   useEffect(() => {
@@ -49,6 +45,11 @@ const Setting: React.FC<iProps> = ({navigation}) => {
       </Pressable>
     </View>
   )
+};
+
+interface SettingProps{
+  route: RoutePropSetting,
+  navigation: NavigationProp,
 };
 
 export default Setting;

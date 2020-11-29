@@ -1,5 +1,7 @@
 import { PermissionsAndroid,Dimensions } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
+
+import { ElementGalleryPhoto } from '../types/elementType';
 import { sizeImage } from '../styles/constants';
 
 export const getAccessGallery = async (): Promise<string> => {
@@ -22,7 +24,7 @@ export const getPhotos = (setImages: Function, countImages: number): void => {
   })
   .then((data) => {
     const assets = data.edges;
-    const images = assets.map((item) => {
+    const images: ElementGalleryPhoto[] = assets.map((item) => {
       const image = item.node;
       const photoData = {
         name: image.image.filename,
@@ -32,9 +34,9 @@ export const getPhotos = (setImages: Function, countImages: number): void => {
       };
       return photoData;
     });
-    setImages((prev: any) => {
-      const list: any = images.map((item: any, index: number) => {
-        return {...item, check: prev[index] ? prev[index].check : item.check}
+    setImages((prev: ElementGalleryPhoto[]) => {
+      const list = images.map((image: ElementGalleryPhoto, index: number) => {
+        return {...image, check: prev[index] ? prev[index].check : image.check}
       });
       return list;
     })

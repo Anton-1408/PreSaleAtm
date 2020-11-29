@@ -2,13 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { TextInput } from 'react-native';
 import { styles } from './styles';
 
-interface iProps{
-  readonly typeKeyBoard: 'numeric' | 'default',
-  readonly setResult: Function,
-  readonly initialState: string
-}
-
-const Input: React.FC<iProps> = ({typeKeyBoard, setResult, initialState}) => {
+const Input: React.FC<InputProps> = ({typeKeyBoard, setResult, initialState}) => {
   const [text, setText] = useState<string>('');
 
   useEffect(() => {
@@ -33,5 +27,11 @@ const Input: React.FC<iProps> = ({typeKeyBoard, setResult, initialState}) => {
     />
   );
 };
+
+interface InputProps{
+  typeKeyBoard: 'numeric' | 'default',
+  setResult: Function,
+  initialState: string
+}
 
 export default Input;

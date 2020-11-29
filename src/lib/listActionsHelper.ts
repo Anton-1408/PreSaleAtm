@@ -1,4 +1,6 @@
 import SQLite from 'react-native-sqlite-storage';
+
+import { ElementAction } from '../types/elementType';
 import { typeDbParams } from "../types/dbTypes";
 import { dbHelper } from './dbHelper';
 
@@ -19,9 +21,9 @@ export const getListActions = (idDevice: number, idStep: number, setListActions:
   const callBack: SQLite.StatementCallback = (transaction, results) => {
     const len: number = results.rows.length;
     const rowList: SQLite.ResultSetRowList = results.rows;
-    const listActions: Array<Object> = [];
+    const listActions: Array<ElementAction> = [];
     for(let i = 0; i < len; i++){
-      const row: any = rowList.item(i);
+      const row = rowList.item(i);
       listActions.push(row);
     };
     setListActions(listActions);

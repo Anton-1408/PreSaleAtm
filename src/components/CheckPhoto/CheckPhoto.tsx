@@ -3,11 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { iconSize } from '../../styles/constants';
 import { colors } from '../../styles';
 
-interface iProps{
-  readonly check: boolean
-}
-
-const CheckPhoto: React.FC<iProps> = ({ check }) => {
+const CheckPhoto: React.FC<CheckPhotoProps> = ({ check }) => {
   if(check){
     return(
       <Icon name='check' size={iconSize} color={colors.color3}/>
@@ -20,5 +16,9 @@ const CheckPhoto: React.FC<iProps> = ({ check }) => {
     )
   }
 };
+
+interface CheckPhotoProps{
+  check?: boolean,
+}
 
 export default CheckPhoto;

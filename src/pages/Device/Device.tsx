@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
-import { iRootReducers } from '../../types/reduxTypes';
-import { tRoutePropDevice, tNavigationProp } from '../../types/navigationTypes';
+
+import { ElementDevice } from '../../types/elementType';
+import { RootReducers } from '../../types/reduxTypes';
+import { RoutePropDevice, NavigationProp } from '../../types/navigationTypes';
 import { setDeviceKey } from '../../redux/actions/actions';
 import { getDevices, setQuery, setParams } from '../../lib/devicesHelper';
 import { modeWork } from '../../types/modeWork';
@@ -14,23 +16,13 @@ import { styles } from './styles';
 import { colors, base } from '../../styles';
 import { colorPress, titlePage } from '../../styles/constants';
 
-interface iProps{
-  readonly orderKey: number,
-  readonly serialNumberDevice: string,
-  readonly typeWork: string,
-  readonly stepKey: number,
-  readonly route: tRoutePropDevice,
-  readonly navigation: tNavigationProp,
-  readonly setDiviceId: Function,
-}
-
-const mapDispatchToProps = (dispatch: ThunkDispatch<iRootReducers, unknown, Action<Object>>) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
     setDiviceId: (id: number) => dispatch(setDeviceKey(id))
   };
 };
 
-const mapStateToProps = (state: iRootReducers) => {
+const mapStateToProps = (state: RootReducers) => {
   return{
     orderKey: selectorOrderKey(state),
     stepKey: selectorStepKey(state),
@@ -39,7 +31,7 @@ const mapStateToProps = (state: iRootReducers) => {
   };
 };
 
-const Device: React.FC<iProps> = (props) => {
+const Device: React.FC<DeviceProps> = (props) => {
   const {
     navigation,
     orderKey,
@@ -50,7 +42,7 @@ const Device: React.FC<iProps> = (props) => {
     stepKey
   } = props;
 
-  const [devices, setDevices] = useState([]);
+  const [devices, setDevices] = useState<ElementDevice[]>([]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -64,13 +56,13 @@ const Device: React.FC<iProps> = (props) => {
   return(
     <View style={base.container}>
       <FlatList
-        data={devices.filter((item: any) => {
-          const itemSerialNumb = item.serialNumber.toUpperCase()
+        data={devices.filter((device: ElementDevice) => {
+          const deviceSerialNumb = device.serialNumber.toUpperCase()
           const serialNumbSerch = serialNumberDevice.toUpperCase();
-          const result = itemSerialNumb.indexOf(serialNumbSerch);
+          const result = deviceSerialNumb.indexOf(serialNumbSerch);
           return result > -1
         })}
-        keyExtractor={(item: any) => (item.id).toString()}
+        keyExtractor={(item) => (item.id).toString()}
         renderItem={({ item }) => (
           <Pressable
             style={({ pressed }) => [colorPress(pressed), base.containerData]}
@@ -116,5 +108,15 @@ const Device: React.FC<iProps> = (props) => {
     </View>
   );
 };
+
+interface DeviceProps{
+  orderKey: number,
+  serialNumberDevice: string,
+  typeWork: string,
+  stepKey: number,
+  route: RoutePropDevice,
+  navigation: NavigationProp,
+  setDiviceId: Function,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Device);

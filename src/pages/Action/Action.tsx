@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
-import { iRootReducers } from '../../types/reduxTypes';
-import { tNavigationProp,tRoutePropAction } from '../../types/navigationTypes';
+
+import { RootReducers } from '../../types/reduxTypes';
+import { NavigationProp, RoutePropAction } from '../../types/navigationTypes';
 import { iconSize } from '../../styles/constants';
 import { colors, base } from '../../styles';
 import { ActionContext, getExtraFiles, getExtraParams } from '../../lib/actionHelper';
@@ -11,26 +12,19 @@ import { SwipperPanel, ActionType, SaveResultAction } from '../../components'
 import { selectorDeviceKey, selectorActionKey } from '../../redux/selectors/holderKeysSelectors';
 import { styles } from './styles';
 
-interface iProps{
-  readonly deviceKey: number,
-  readonly actionKey: number,
-  readonly route: tRoutePropAction,
-  readonly navigation: tNavigationProp,
+const mapStateToProps = (state: RootReducers) => {
+  return{
+    deviceKey: selectorDeviceKey(state),
+    actionKey: selectorActionKey(state),
+  }
 };
 
-const mapStateToProps = (state: iRootReducers) => {
-    return{
-      deviceKey: selectorDeviceKey(state),
-      actionKey: selectorActionKey(state),
-    }
-};
-
-const Action: React.FC<iProps> = (props) => {
+const Action: React.FC<ActionProps> = (props) => {
   const { navigation, actionKey, deviceKey } = props;
 
   const [extraFiles, setExtraFile] = useState([]);
   const [extraParams, setExtraParams] = useState([]);
-  const [statePanel, setStatePanel] = useState(false);
+  const [statePanel, setStatePanel] = useState<boolean>(false);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -76,6 +70,13 @@ const Action: React.FC<iProps> = (props) => {
       </View>
     </ActionContext.Provider>
   );
+};
+
+interface ActionProps{
+  deviceKey: number,
+  actionKey: number,
+  route: RoutePropAction,
+  navigation: NavigationProp,
 };
 
 export default connect(mapStateToProps, null)(Action);

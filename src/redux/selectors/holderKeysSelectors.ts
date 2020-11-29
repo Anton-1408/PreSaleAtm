@@ -1,11 +1,11 @@
-import { iRootReducers } from '../../types/reduxTypes';
+import { RootReducers } from '../../types/reduxTypes';
 import { createSelector } from 'reselect';
 
-const stateDeviceKey = (state: iRootReducers) => state.holderKeysReducer.deviceKey;
-const stateActionKey = (state: iRootReducers) => state.holderKeysReducer.actionKey;
-const stateStepKey = (state: iRootReducers) => state.holderKeysReducer.stepKey;
-const stateOrderKey = (state: iRootReducers) => state.holderKeysReducer.orderKey;
-const stateTodoKey = (state: iRootReducers) => state.holderKeysReducer.todoKey;
+const stateDeviceKey = (state: RootReducers) => state.holderKeysReducer.deviceKey;
+const stateActionKey = (state: RootReducers) => state.holderKeysReducer.actionKey;
+const stateStepKey = (state: RootReducers) => state.holderKeysReducer.stepKey;
+const stateOrderKey = (state: RootReducers) => state.holderKeysReducer.orderKey;
+const stateTodoKey = (state: RootReducers) => state.holderKeysReducer.todoKey;
 
 export const selectorOrderKey = createSelector(
   stateOrderKey,

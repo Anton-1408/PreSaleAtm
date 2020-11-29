@@ -1,5 +1,7 @@
 import { typeDbParams } from "../types/dbTypes";
 import SQLite from 'react-native-sqlite-storage';
+
+import { ElementTodo } from '../types/elementType';
 import { filterByInWork, filterByDone, filterByAll, calculationPercent } from './filterListDataPage';
 import { dbHelper } from './dbHelper';
 import { modeWork } from '../types/modeWork';
@@ -60,10 +62,10 @@ export const getTodos = (query: string, params: typeDbParams, setTodos: Function
   const callBack: SQLite.StatementCallback = (transaction, result) => {
     const len: number = result.rows.length;
     const listRow: SQLite.ResultSetRowList = result.rows;
-    const listTodos: Array<Object> = [];
+    const listTodos: Array<ElementTodo> = [];
     for(let i = 0; i < len; i++){
-      const row: any = listRow.item(i);
-      const item: Object = {
+      const row = listRow.item(i);
+      const item: ElementTodo = {
         id: row.id,
         name: row.name,
         comment: row.comment,
@@ -76,7 +78,7 @@ export const getTodos = (query: string, params: typeDbParams, setTodos: Function
   dbHelper(query, params, callBack);
 };
 
-const todosFilter = (listTodo: Array<Object>, namePage: string): Array<Object> => {
+const todosFilter = (listTodo: Array<ElementTodo>, namePage: string): Array<Object> => {
   switch(namePage){
     case 'TodoAll':
       return filterByAll(listTodo);

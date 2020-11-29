@@ -1,28 +1,27 @@
 import React, { Fragment, useContext } from 'react';
 import { Text } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { ActionContext, iContext } from '../../lib/actionHelper';
+
+import { ActionContext, ContextParams } from '../../lib/actionHelper';
 import { styles } from './styles';
 import { typeAction } from '../../types/typeAction';
-import { tRoutePropAction } from '../../types/navigationTypes';
+import { RoutePropAction } from '../../types/navigationTypes';
 
-interface iProps{
-
-};
-
-const ExtraParamsPhoto: React.FC<iProps> = ({}) => {
-  const route: tRoutePropAction = useRoute();
-  const context: iContext = useContext(ActionContext);
+const ExtraParamsPhoto: React.FC<ExtraParamsPhotoProps> = ({}) => {
+  const route = useRoute<RoutePropAction>();
+  const context = useContext<ContextParams>(ActionContext);
 
   if(typeAction.photo === route.params.type){
     return(
-      context.extraParams.map((item: any) => {
-        return(
-          <Text key={item.id} style={styles.comment}>
-            {item.title}
-          </Text>
-        );
-      })
+      <Fragment>
+        {context.extraParams.map((param) => {
+          return(
+            <Text key={param.id} style={styles.comment}>
+              {param.title}
+            </Text>
+          );
+        })}
+      </Fragment>
     )
   }
   else{
@@ -32,5 +31,7 @@ const ExtraParamsPhoto: React.FC<iProps> = ({}) => {
     );
   }
 };
+
+interface ExtraParamsPhotoProps{ };
 
 export default ExtraParamsPhoto;
