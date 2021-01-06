@@ -161,7 +161,7 @@ export function setOrders(): ThunkAction<Promise<void>, RootReducers, unknown, A
     })
     .then((res: AxiosResponse) => {
       if('projects' in res.data){
-        const orders: Array<JSON> = res.data.projects;
+        const orders = res.data.projects;
         setOrdersToDB(orders);
       }
     })
