@@ -20,7 +20,7 @@ function *sagaWorker(): SagaIterator{
 
 function* sendFiles(): SagaIterator{
   const state: RootReducers = yield select();
-  const params: FormData = selectorFilesAction(state);
+  const params = selectorFilesAction(state);
   return axios.post(urlServer + 'mobile/api001.php', params)
   .then((res: AxiosResponse) => { })
   .catch((err: AxiosError) => { })

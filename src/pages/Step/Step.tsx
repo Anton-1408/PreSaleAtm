@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { routes } from 'navigation/routes';
 import { ElementStep } from 'types/elementType';
 import { RoutePropStep, NavigationProp } from 'types/navigationTypes';
 import { colorPress, bcolorDone, colorDone, iconSizeBar } from 'styles/constants';
@@ -62,10 +63,10 @@ const Step: React.FC<StepProps> = (props) => {
             onPress={() => {
               setStepId(item.id)
               if(typeWork === modeWork.todo){
-                navigation.navigate('Device')
+                navigation.navigate(routes.Device)
               }
               else{
-                navigation.navigate('ListActions', {
+                navigation.navigate(routes.ListActions, {
                   title: item.name
                 })
               }

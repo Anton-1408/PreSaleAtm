@@ -6,6 +6,7 @@ import { Dispatch } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
+import { routes } from 'navigation/routes'
 import { styles } from './styles';
 import { RootReducers } from 'types/reduxTypes';
 import { colors } from 'styles';
@@ -36,7 +37,7 @@ const SearchInput: React.FC<SearchInputProps> = ({}) => {
       <Pressable
         style={({ pressed }) => [colorPress(pressed)]}
         onPress={() => {
-          navigation.navigate('ScanBarCode');
+          navigation.navigate(routes.ScanBarCode);
         }}
       >
         <IconM name='barcode-scan' color={colors.color9} size={22}/>

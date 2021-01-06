@@ -4,6 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
 
+import { routes } from 'navigation/routes';
 import { ElementDevice } from 'types/elementType';
 import { RootReducers } from 'types/reduxTypes';
 import { RoutePropDevice, NavigationProp } from 'types/navigationTypes';
@@ -69,12 +70,12 @@ const Device: React.FC<DeviceProps> = (props) => {
             onPress={() => {
               setDiviceId(item.id)
               if(typeWork === modeWork.device){
-                navigation.navigate('Todo', {
+                navigation.navigate(routes.Todo, {
                   title: titlePage(item.serialNumber)
                 });
               }
               else{
-                navigation.navigate('ListActions', {
+                navigation.navigate(routes.ListActions, {
                   title: titlePage(item.serialNumber)
                 });
               }

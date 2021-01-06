@@ -5,6 +5,7 @@ import { Order } from 'pages';
 import { rootParamsOrder } from "types/navigationTypes";
 import { colors } from 'styles';
 import { barLabelFontFamily, barLabelSize } from 'styles/constants';
+import { routes } from './routes';
 
 const Tab = createMaterialTopTabNavigator<rootParamsOrder>();
 
@@ -27,24 +28,24 @@ const ContainerOrder: React.FC = () => {
           fontSize: barLabelSize,
         }
       }}
-      initialRouteName="OrderInWork"
+      initialRouteName={routes.OrderInWork}
     >
       <Tab.Screen
-        name="OrderAll"
+        name={routes.OrderAll}
         component={Order}
         options={{
           title: "Все"
         }}
       />
       <Tab.Screen
-        name="OrderInWork"
+        name={routes.OrderInWork}
         component={Order}
         options={{
           title: "В работе"
         }}
       />
       <Tab.Screen
-        name="OrderDone"
+        name={routes.OrderDone}
         component={Order}
         options={{
           title: "Завершены"

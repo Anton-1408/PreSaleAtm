@@ -1,88 +1,86 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-
+import { routes } from 'navigation/routes';
 import { ElementGalleryPhoto } from 'types/elementType';
 
 export type rootStackParams={
-  Setting: undefined,
-  Order: undefined,
-  ModeWork: undefined,
-  ScanBarCode: undefined,
-  Gallery: undefined,
-  Camera: undefined,
-  Step: {
+  [routes.Setting]: undefined,
+  [routes.Order]: undefined,
+  [routes.ModeWork]: undefined,
+  [routes.ScanBarCode]: undefined,
+  [routes.Gallery]: undefined,
+  [routes.Camera]: undefined,
+  [routes.Step]: {
     title: string,
   },
-  Todo: {
+  [routes.Todo]: {
     title: 'Чек-Листы'
   },
-  Device: undefined,
-  ListActions: {
-        title: string,
+  [routes.Device]: undefined,
+  [routes.ListActions]: {
+    title: string,
   },
-  Action:{
+  [routes.Action]:{
     title: string,
     comment: string,
     type: string,
     stoped: number
   }
-  ViewPhoto:{
+  [routes.ViewPhoto]:{
     name: string,
     array: Array<ElementGalleryPhoto>,
   }
 };
 
 export type rootParamsOrder={
-  OrderAll: undefined,
-  OrderInWork: undefined,
-  OrderDone: undefined,
+  [routes.OrderAll]: undefined,
+  [routes.OrderInWork]: undefined,
+  [routes.OrderDone]: undefined,
 };
 
 export type rootParamsDevice={
-  DevicesInWork: undefined,
-  DevicesStop: undefined,
-  DevicesDone: undefined,
+  [routes.DevicesInWork]: undefined,
+  [routes.DevicesStop]: undefined,
+  [routes.DevicesDone]: undefined,
 };
 
 export type rootParamsTodo={
-  TodoAll: undefined,
-  TodoInWork: undefined,
-  TodoDone: undefined,
+  [routes.TodoAll]: undefined,
+  [routes.TodoInWork]: undefined,
+  [routes.TodoDone]: undefined,
 };
 
 export type rootParamsModeWork={
-    DeviceMode: undefined,
-    TodoMode: undefined,
+  [routes.DeviceMode]: undefined,
+  [routes.TodoMode]: undefined,
 };
 
-export type RoutePropOrder = RouteProp<rootParamsOrder, 'OrderAll'>
-                                | RouteProp<rootParamsOrder, 'OrderInWork'>
-                                | RouteProp<rootParamsOrder, 'OrderDone'>;
+export type RoutePropOrder =  | RouteProp<rootParamsOrder, routes.OrderAll>
+                              | RouteProp<rootParamsOrder, routes.OrderInWork>
+                              | RouteProp<rootParamsOrder, routes.OrderDone>;
 
-export type RoutePropDevice = RouteProp<rootParamsDevice, 'DevicesInWork'>
-                                | RouteProp<rootParamsDevice, 'DevicesStop'>
-                                | RouteProp<rootParamsDevice, 'DevicesDone'>;
+export type RoutePropDevice = | RouteProp<rootParamsDevice, routes.DevicesInWork>
+                              | RouteProp<rootParamsDevice, routes.DevicesStop>
+                              | RouteProp<rootParamsDevice, routes.DevicesDone>;
 
-export type RoutePropTodo = RouteProp<rootParamsTodo, 'TodoAll'>
-                                | RouteProp<rootParamsTodo, 'TodoInWork'>
-                                | RouteProp<rootParamsTodo, 'TodoDone'>;
+export type RoutePropTodo = | RouteProp<rootParamsTodo, routes.TodoAll>
+                            | RouteProp<rootParamsTodo, routes.TodoInWork>
+                            | RouteProp<rootParamsTodo, routes.TodoDone>;
 
-export type RoutePropSetting = RouteProp<rootStackParams, 'Setting'>;
+export type RoutePropSetting = RouteProp<rootStackParams, routes.Setting>;
 
 export type NavigationProp = StackNavigationProp<rootStackParams>;
 
-export type RoutePropScanBarCode = RouteProp<rootStackParams, 'ScanBarCode'>;
+export type RoutePropScanBarCode = RouteProp<rootStackParams, routes.ScanBarCode>;
 
-export type RoutePropStep = RouteProp<rootStackParams, 'Step'>;
+export type RoutePropStep = RouteProp<rootStackParams, routes.Step>;
 
-export type RoutePropListActions = RouteProp<rootStackParams, 'ListActions'>;
+export type RoutePropListActions = RouteProp<rootStackParams, routes.ListActions>;
 
-export type RoutePropAction = RouteProp<rootStackParams, 'Action'>;
+export type RoutePropAction = RouteProp<rootStackParams, routes.Action>;
 
-export type RoutePropGallery = RouteProp<rootStackParams, 'Gallery'>;
+export type RoutePropGallery = RouteProp<rootStackParams, routes.Gallery>;
 
-export type RoutePropCamera = RouteProp<rootStackParams, 'Camera'>;
+export type RoutePropCamera = RouteProp<rootStackParams, routes.Camera>;
 
-export type RoutePropViewPhoto = RouteProp<rootStackParams, 'ViewPhoto'>;
-
-
+export type RoutePropViewPhoto = RouteProp<rootStackParams, routes.ViewPhoto>;

@@ -36,7 +36,8 @@ const Setting: React.FC<SettingProps> = ({navigation}) => {
       <Pressable
           style={base.button}
           onPress={() => {
-            saveSetting(userId).then(() => {
+            saveSetting(userId)
+            .then(() => {
               navigation.goBack()
             })
           }}

@@ -14,6 +14,7 @@ import ContainerModeWork from './ContainerModeWork';
 import ContainerTodo from './ContainerTodo';
 import ContainerDevice from './ContainerDevice';
 import { rootStackParams } from 'types/navigationTypes';
+import { routes } from './routes';
 import {
   Setting,
   ScanBarCode,
@@ -33,7 +34,7 @@ const ContainerNavigation: React.FC = () => {
       <NavigationContainer>
         <StatusBar backgroundColor={colors.color17} barStyle="light-content"/>
         <Stack.Navigator
-          initialRouteName='Order'
+          initialRouteName={routes.Order}
           screenOptions={{
             headerTintColor: colors.color0,
             headerStyle:{
@@ -47,14 +48,14 @@ const ContainerNavigation: React.FC = () => {
           }}
         >
           <Stack.Screen
-            name='Setting'
+            name={routes.Setting}
             component={Setting}
             options={{
               title: 'Настройки',
             }}
           />
           <Stack.Screen
-            name='Order'
+            name={routes.Order}
             component={ContainerOrder}
             options={({navigation, route}) => ({
               title: 'Заявки',
@@ -66,7 +67,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='ModeWork'
+            name={routes.ModeWork}
             component={ContainerModeWork}
             options={({navigation, route}) => ({
               headerRight: () => {
@@ -82,7 +83,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='Step'
+            name={routes.Step}
             component={Step}
             options={({navigation, route}) => ({
               title: route.params.title,
@@ -94,7 +95,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='Todo'
+            name={routes.Todo}
             component={ContainerTodo}
             options={({navigation, route}) => ({
               title: route.params.title,
@@ -106,7 +107,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='Device'
+            name={routes.Device}
             component={ContainerDevice}
             options={({navigation, route}) => ({
               title: 'Режим работы',
@@ -123,7 +124,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='ListActions'
+            name={routes.ListActions}
             component={ListActions}
             options={({navigation, route}) => ({
               title: route.params.title,
@@ -135,7 +136,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='Action'
+            name={routes.Action}
             component={Action}
             options={({navigation, route}) => ({
               title: route.params.title,
@@ -149,7 +150,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='ScanBarCode'
+            name={routes.ScanBarCode}
             component={ScanBarCode}
             options={({navigation, route}) => ({
               title: '',
@@ -159,7 +160,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='Gallery'
+            name={routes.Gallery}
             component={Gallery}
             options={({navigation, route}) => ({
               title: 'Галерея',
@@ -169,7 +170,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='Camera'
+            name={routes.Camera}
             component={Camera}
             options={({navigation, route}) => ({
               title: '',
@@ -179,7 +180,7 @@ const ContainerNavigation: React.FC = () => {
             })}
           />
           <Stack.Screen
-            name='ViewPhoto'
+            name={routes.ViewPhoto}
             component={ViewPhoto}
             options={({navigation, route}) => ({
               title: '',

@@ -12,6 +12,7 @@ import { setSerialNumberDevice } from 'redux/actions/actions';
 import { modeWork } from 'types/modeWork';
 import { colors } from 'styles';
 import { barLabelSize, iconSizeBar, barLabelFontFamily } from 'styles/constants';
+import { routes } from './routes';
 
 const Tab = createBottomTabNavigator<rootParamsModeWork>();
 
@@ -19,7 +20,7 @@ const ContainerModeWork: React.FC = () => {
   const dispatch: Dispatch = useDispatch();
   return (
     <Tab.Navigator
-      initialRouteName="TodoMode"
+      initialRouteName={routes.TodoMode}
       tabBarOptions={{
         activeTintColor: colors.color0,
         inactiveTintColor: colors.color6,
@@ -33,7 +34,7 @@ const ContainerModeWork: React.FC = () => {
       }}
     >
       <Tab.Screen
-        name='TodoMode'
+        name={routes.TodoMode}
         component={ContainerTodo}
         options={{
           tabBarIcon: ({color, size}) => (
@@ -53,7 +54,7 @@ const ContainerModeWork: React.FC = () => {
         })}
       />
       <Tab.Screen
-        name='DeviceMode'
+        name={routes.DeviceMode}
         component={ContainerDevice}
         options={{
           tabBarIcon: ({color, size}) => (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+import { routes } from 'navigation/routes';
 import { Todo } from 'pages';
 import { rootParamsTodo } from "types/navigationTypes";
 import { colors } from 'styles';
@@ -23,28 +24,28 @@ const ContainerTodo: React.FC = () => {
           backgroundColor: colors.color17,
         },
         labelStyle:{
-                    fontFamily: barLabelFontFamily,
-                    fontSize: barLabelSize,
+          fontFamily: barLabelFontFamily,
+          fontSize: barLabelSize,
         }
       }}
-      initialRouteName='TodoInWork'
+      initialRouteName={routes.TodoInWork}
     >
       <Tab.Screen
-        name='TodoAll'
+        name={routes.TodoAll}
         component={Todo}
         options={{
           title: 'Все'
         }}
       />
       <Tab.Screen
-        name='TodoInWork'
+        name={routes.TodoInWork}
         component={Todo}
         options={{
           title: 'В работе'
         }}
       />
       <Tab.Screen
-        name='TodoDone'
+        name={routes.TodoDone}
         component={Todo}
         options={{
           title: 'Завершены'

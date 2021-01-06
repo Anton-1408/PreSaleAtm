@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 
+import { routes } from 'navigation/routes';
 import { ElementAction } from 'types/elementType';
 import { RootReducers } from 'types/reduxTypes';
 import { NavigationProp, RoutePropListActions } from 'types/navigationTypes';
@@ -53,7 +54,7 @@ const ListActions: React.FC<ListActionsProps> = (props) => {
             ]}
             onPress={() => {
               setActionId(item.id);
-              navigation.navigate('Action', {
+              navigation.navigate(routes.Action, {
                 title: item.name,
                 comment: item.comment,
                 type: item.type,

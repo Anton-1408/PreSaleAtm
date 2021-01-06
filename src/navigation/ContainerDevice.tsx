@@ -4,6 +4,7 @@ import { Device } from 'pages';
 import { rootParamsDevice } from "types/navigationTypes";
 import { colors } from 'styles';
 import { barLabelSize, barLabelFontFamily } from 'styles/constants';
+import { routes } from './routes';
 
 const Tab = createMaterialTopTabNavigator<rootParamsDevice>();
 
@@ -26,24 +27,24 @@ const ContainerDevice: React.FC = () => {
           fontSize: barLabelSize,
         }
       }}
-      initialRouteName='DevicesInWork'
+      initialRouteName={routes.DevicesInWork}
     >
       <Tab.Screen
-        name='DevicesInWork'
+        name={routes.DevicesInWork}
         component={Device}
         options={{
           title: 'В работе'
         }}
       />
       <Tab.Screen
-        name="DevicesStop"
+        name={routes.DevicesStop}
         component={Device}
         options={{
           title: 'Остановлены'
         }}
       />
       <Tab.Screen
-        name="DevicesDone"
+        name={routes.DevicesDone}
         component={Device}
         options={{
           title: 'Завершены'

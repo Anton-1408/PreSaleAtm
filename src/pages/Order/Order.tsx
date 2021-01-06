@@ -18,6 +18,7 @@ import {
   setOrderKey,
   setActionFiles
 } from 'redux/actions/actions';
+import { routes } from 'navigation/routes';
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<RootReducers, unknown, Action<Object>>) => {
   return{
@@ -45,7 +46,7 @@ const Order: React.FC<OrderProps> = (props) => {
   const [orders, setOrders] = useState<ElementOrder[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
 
-  const getDataFromServer = (): void => {
+  const getDataFromServer = () => {
     setRefresh(true);
     Promise.all([
       getIdUser(),
@@ -97,7 +98,7 @@ const Order: React.FC<OrderProps> = (props) => {
             style={({ pressed }) => [colorPress(pressed), base.containerData]}
             onPress={() => {
               setOrderId(item.id)
-              navigation.navigate('ModeWork')
+              navigation.navigate(routes.ModeWork)
             }}
           >
             <View style={base.containerText}>

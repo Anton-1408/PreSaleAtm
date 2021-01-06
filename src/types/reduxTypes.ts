@@ -111,7 +111,7 @@ export type SyncDataReducer = HashcodeProjects | ResultCheckList | UserId | SetS
 export type AppStateReducer = SetSerialNumberDevice | ModeWork | SetResultAction | SetPhotosAction;
 
 export interface RootReducers{
-    holderKeysReducer: HolderKeysReducerState,
-    syncDataReducer: SyncDataReducerState,
-    appStateReducer: AppStateReducerState
+  holderKeysReducer: HolderKeysReducerState,
+  syncDataReducer: SyncDataReducerState,
+  appStateReducer: AppStateReducerState
 };

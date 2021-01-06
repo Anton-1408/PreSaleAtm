@@ -5,6 +5,7 @@ import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { connect } from 'react-redux';
 
+import { routes } from 'navigation/routes';
 import { styles } from './styles';
 import { RoutePropScanBarCode, NavigationProp } from 'types/navigationTypes';
 import { RootReducers } from 'types/reduxTypes';
@@ -59,17 +60,17 @@ const ScanBarCode: React.FC<ScanBarCodeProps> = (props) => {
             setDeviceId(device.id);
             setSerialNumber(device.serialNumber);
             if(typeWork === modeWork.device){
-              navigation.navigate('Todo', {
+              navigation.navigate(routes.Todo, {
                 title: titlePage(serialNumb)
               });
             }
             else{
-              navigation.navigate('ListActions', {
+              navigation.navigate(routes.ListActions, {
                 title: titlePage(serialNumb)
               });
             }
           }
-          navigation.navigate('ModeWork');
+          navigation.navigate(routes.ModeWork);
         })}
         hideControls={false}
         showFrame={true}

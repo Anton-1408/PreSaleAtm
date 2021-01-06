@@ -4,6 +4,7 @@ import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
+import { routes } from 'navigation/routes';
 import { ElementTodo } from 'types/elementType';
 import { RootReducers } from 'types/reduxTypes';
 import { RoutePropTodo, NavigationProp } from 'types/navigationTypes'
@@ -51,7 +52,7 @@ const Todo: React.FC<TodoProps> = (props) => {
 						style={({ pressed }) => [colorPress(pressed), base.containerData]}
 						onPress={() => {
 							setTodoId(item.id)
-							navigation.navigate('Step', {
+							navigation.navigate(routes.Step, {
 								title: item.name
 							});
 						}}

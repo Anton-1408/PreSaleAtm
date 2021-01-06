@@ -6,6 +6,7 @@ import { Pressable } from 'react-native';
 import { NavigationProp } from 'types/navigationTypes';
 import { iconSizeBar } from 'styles/constants';
 import { colors, base } from 'styles';
+import { routes } from 'navigation/routes';
 
 const ButtonSetting: React.FC<ButtonSettingProps> = ({}) => {
   const navigation = useNavigation<NavigationProp>();
@@ -14,7 +15,7 @@ const ButtonSetting: React.FC<ButtonSettingProps> = ({}) => {
     <Pressable
       style={base.buttonBarContainer}
       onPress={() => {
-        navigation.navigate("Setting");
+        navigation.navigate(routes.Setting);
       }}
     >
       <Icon name="md-settings-sharp" color={colors.color0} size={iconSizeBar}/>

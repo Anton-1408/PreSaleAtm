@@ -8,7 +8,7 @@ import { iconSize } from 'styles/constants';
 import { colors, base } from 'styles';
 import { RootReducers } from 'types/reduxTypes';
 import { useSelector, useDispatch } from 'react-redux';
-import { Dispatch } from 'redux';
+import { routes } from 'navigation/routes';
 import { styles } from './styles';
 import { countImageRow } from 'lib/galleryHelper';
 import { NavigationProp } from 'types/navigationTypes';
@@ -72,7 +72,7 @@ const Photo: React.FC<PhotoProps> = ({ initialState, setResult }) => {
           <Pressable
             style={base.imageContainer}
             onPress={() => {
-              navigation.navigate('ViewPhoto', {
+              navigation.navigate(routes.ViewPhoto, {
                 name: item.name!,
                 array: images,
               })
@@ -88,7 +88,7 @@ const Photo: React.FC<PhotoProps> = ({ initialState, setResult }) => {
       <View style={[base.button, styles.buttonCamera]}>
         <Pressable
           onPress={() => {
-            navigation.navigate('Camera')
+            navigation.navigate(routes.Camera)
           }}
         >
           <Icon name='camera-enhance' size={iconSize} color={colors.color0}/>
@@ -97,7 +97,7 @@ const Photo: React.FC<PhotoProps> = ({ initialState, setResult }) => {
       <Pressable
         style={[base.button, styles.buttonGallery]}
         onPress={() => {
-          navigation.navigate('Gallery')
+          navigation.navigate(routes.Gallery)
         }}
       >
         <Icon name='folder-image' size={iconSize} color={colors.color0}/>
