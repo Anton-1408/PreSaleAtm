@@ -6,7 +6,7 @@ import { colors } from 'styles';
 const CheckPhoto: React.FC<CheckPhotoProps> = ({ check }) => {
   if(check){
     return(
-      <Icon name='check' size={iconSize} color={colors.color3}/>
+      <Icon name='check' size={iconSize} color={colors.color0}/>
     )
   }
   else{

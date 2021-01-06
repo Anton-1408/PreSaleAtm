@@ -6,9 +6,12 @@ export const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Light',
     marginHorizontal: 10
   },
-  containerFiles:{
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    width: '100%',
+  image:{
+    height: 150,
+    width: 250,
+    borderRadius: 15,
   },
+  containerFiles:{
+    alignItems: 'center',
+  }
 });

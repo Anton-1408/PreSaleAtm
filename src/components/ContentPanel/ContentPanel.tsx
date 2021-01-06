@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Pressable, Image } from 'react-native';
+import { View, Text, Pressable, Image, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 import { ActionContext, ContextParams } from 'lib/actionHelper';
@@ -15,19 +15,21 @@ const ContentPanel: React.FC<ContentPanelProps> = ({}) => {
   return(
     <View>
       <Text style={styles.comment}>{route.params.comment}</Text>
-      <ExtraParamsPhoto/>
+      <ExtraParamsPhoto />
       <View style={styles.containerFiles}>
-        {context.files.map((file) => (
-          <Pressable
-            key={file.id}
-            style={base.imageContainer}
-          >
-            <Image
-              source={{uri: file.path}}
-              style={base.imageStyle}
-            />
-          </Pressable>
-        ))}
+        <ScrollView horizontal={true}>
+          {context.files.map((file) => (
+            <Pressable
+              key={file.id}
+              style={base.imageContainer}
+            >
+              <Image
+                source={{ uri: file.path }}
+                style={styles.image}
+              />
+            </Pressable>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
