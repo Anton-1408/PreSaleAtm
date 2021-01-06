@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import {View, Text, FlatList, Pressable, RefreshControl} from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, Text, FlatList, Pressable, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { ElementOrder } from 'types/elementType';
 import { NavigationProp, RoutePropOrder } from 'types/navigationTypes';
@@ -66,17 +67,16 @@ const Order: React.FC<OrderProps> = (props) => {
     });
   };
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+  useFocusEffect(
+    useCallback(() => {
       if(route.name === 'OrderInWork'){
         getDataFromServer();
       }
       else{
         getOrders(setOrders, route.name);
       }
-    });
-    return unsubscribe;
-  }, [navigation]);
+    }, [])
+  );
 
   return(
     <View style={base.container}>

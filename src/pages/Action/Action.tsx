@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { RootReducers } from 'types/reduxTypes';
 import { NavigationProp, RoutePropAction } from 'types/navigationTypes';
@@ -20,19 +21,18 @@ const mapStateToProps = (state: RootReducers) => {
 };
 
 const Action: React.FC<ActionProps> = (props) => {
-  const { navigation, actionKey, deviceKey } = props;
+  const { actionKey, deviceKey } = props;
 
   const [extraFiles, setExtraFile] = useState([]);
   const [extraParams, setExtraParams] = useState([]);
   const [statePanel, setStatePanel] = useState<boolean>(false);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+  useFocusEffect(
+    useCallback(() => {
       getExtraParams(actionKey, setExtraParams);
-      getExtraFiles(actionKey, setExtraFile)
-    });
-    return unsubscribe;
-  }, [navigation]);
+      getExtraFiles(actionKey, setExtraFile);
+    }, [])
+  );
 
   return(
     <ActionContext.Provider

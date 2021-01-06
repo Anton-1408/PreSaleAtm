@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import { View, Pressable, FlatList, Text } from 'react-native';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { routes } from 'navigation/routes';
 import { ElementTodo } from 'types/elementType';
@@ -33,14 +34,13 @@ const Todo: React.FC<TodoProps> = (props) => {
 	const { navigation, setTodoId, orderKey, deviceKey, typeWork, route } = props;
 	const [ todos, useTodos ] = useState<ElementTodo[]>([]);
 
-	useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-			const query = setQuery(typeWork);
+  useFocusEffect(
+    useCallback(() => {
+      const query = setQuery(typeWork);
 			const params = setParams(typeWork, orderKey, deviceKey);
 			getTodos(query, params, useTodos, route.name);
-		});
-		return unsubscribe;
-  }, [navigation]);
+    }, [])
+  );
 
   return(
     <View style={base.container}>

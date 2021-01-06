@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FlatList, Pressable, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { routes } from 'navigation/routes';
 import { ElementStep } from 'types/elementType';
@@ -38,14 +39,13 @@ const Step: React.FC<StepProps> = (props) => {
   const { navigation, todoKey, orderKey, typeWork,  deviceKey, setStepId } = props;
   const [steps, setSteps] = useState<ElementStep[]>([]);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+  useFocusEffect(
+    useCallback(() => {
       const query = setQuery(typeWork);
       const params = setParams(typeWork, orderKey, deviceKey, todoKey);
       getSteps(query, params, setSteps);
-    });
-    return unsubscribe;
-  }, [navigation]);
+    }, [])
+  );
 
   return(
     <View style={base.container}>

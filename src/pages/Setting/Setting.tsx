@@ -34,13 +34,13 @@ const Setting: React.FC<SettingProps> = ({navigation}) => {
         <Text style={styles.settingText}>{getVersion()}</Text>
       </View>
       <Pressable
-          style={base.button}
-          onPress={() => {
-            saveSetting(userId)
-            .then(() => {
-              navigation.goBack()
-            })
-          }}
+        style={base.button}
+        onPress={() => {
+          saveSetting(userId)
+          .then(() => {
+            navigation.goBack()
+          })
+        }}
       >
         <Icon name="content-save-cog-outline" size={iconSize} color={colors.color0}/>
       </Pressable>

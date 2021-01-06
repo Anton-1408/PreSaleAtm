@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { routes } from 'navigation/routes';
 import { ElementDevice } from 'types/elementType';
@@ -45,14 +46,13 @@ const Device: React.FC<DeviceProps> = (props) => {
 
   const [devices, setDevices] = useState<ElementDevice[]>([]);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+  useFocusEffect(
+    useCallback(() => {
       const query = setQuery(typeWork);
       const params = setParams(typeWork, orderKey, stepKey);
       getDevices(query, params, route.name, setDevices)
-    });
-    return unsubscribe;
-  }, [navigation]);
+    }, [])
+  );
 
   return(
     <View style={base.container}>

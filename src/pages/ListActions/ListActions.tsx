@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, FlatList, Pressable, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { routes } from 'navigation/routes';
 import { ElementAction } from 'types/elementType';
@@ -32,12 +33,11 @@ const ListActions: React.FC<ListActionsProps> = (props) => {
   const { navigation, stepKey, deviceKey, setActionId } = props;
   const [listActions, setListActions] = useState<ElementAction[]>([]);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+  useFocusEffect(
+    useCallback(() => {
       getListActions(deviceKey, stepKey, setListActions)
-    });
-    return unsubscribe;
-  }, [navigation]);
+    }, [])
+  );
 
   return(
     <View style={base.container}>

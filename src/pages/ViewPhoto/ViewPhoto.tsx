@@ -25,8 +25,8 @@ const ViewPhoto: React.FC<ViewPhotoProps> = ({navigation, route, setPhoto}) => {
   const [initialIndex, setInitialIndex] = useState<number>(0);
 
   useEffect(() => {
-    const imgs: ElementGalleryPhoto[] = route.params.array;
-    const index: number = route.params.array.findIndex((img) => {
+    const imgs = route.params.array;
+    const index = route.params.array.findIndex((img) => {
       return img.name === route.params.name
     });
     setInitialIndex(index);
