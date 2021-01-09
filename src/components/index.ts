@@ -21,3 +21,4 @@ export { default as NoAction } from './NoAction';
 export { default as Photo } from './Photo';
 export { default as RadioBoxGroup } from './RadioBoxGroup';
 export { default as Input } from './Input';
+export { default as ClearInput } from './ClearInput';

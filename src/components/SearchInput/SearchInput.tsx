@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, TextInput, Pressable } from 'react-native';
 import IconF from 'react-native-vector-icons/FontAwesome5';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,10 +14,12 @@ import { NavigationProp } from 'types/navigationTypes';
 import { colorPress } from 'styles/constants';
 import { setSerialNumberDevice } from 'redux/actions/actions';
 import { selectorSerialNumbDevice } from 'redux/selectors/appStateSelectors';
+import { ClearInput } from 'components';
 
 const SearchInput: React.FC<SearchInputProps> = ({}) => {
   const navigation: NavigationProp = useNavigation();
-  const dispatch: Dispatch = useDispatch();
+  const refInput = useRef<TextInput>(null);
+  const dispatch = useDispatch();
   const serialNumber: string = useSelector(
     (state: RootReducers) => selectorSerialNumbDevice(state)
   );
@@ -26,6 +28,7 @@ const SearchInput: React.FC<SearchInputProps> = ({}) => {
     <View style={styles.container}>
       <IconF name='search' color={colors.color9} size={20}/>
       <TextInput
+        ref={refInput}
         value={serialNumber}
         placeholder='Серийный номер'
         keyboardType={'numeric'}
@@ -33,6 +36,13 @@ const SearchInput: React.FC<SearchInputProps> = ({}) => {
           dispatch(setSerialNumberDevice(text))
         }}
         style={styles.inputStyle}
+      />
+      <ClearInput
+        focus={refInput.current?.isFocused()}
+        serialNumber={serialNumber}
+        onClear={() => {
+          dispatch(setSerialNumberDevice(''))
+        }}
       />
       <Pressable
         style={({ pressed }) => [colorPress(pressed)]}

@@ -75,7 +75,7 @@ export const getDevices = (query: string, params: typeDbParams, namePage: string
     const deviceList: Array<ElementDevice> = [];
     for(let i = 0; i < len; i++){
       const row = listRow.item(i);
-      const item: ElementDevice = {
+      const item = {
         id: row.id,
         serialNumber: row.serial_number,
         model: row.model,

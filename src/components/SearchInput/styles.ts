@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   inputStyle:{
     fontSize: 15,
-    width: '80%',
+    width: '63%',
     fontFamily: 'OpenSans-BoldItalic',
   },
 });

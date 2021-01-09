@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import { View, Text, FlatList, Pressable } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import Fuse from 'fuse.js'
 
 import { routes } from 'navigation/routes';
 import { ElementDevice } from 'types/elementType';
@@ -54,15 +55,34 @@ const Device: React.FC<DeviceProps> = (props) => {
     }, [])
   );
 
+  const searchDevice = () => {
+    const listDevice: ElementDevice[] = [];
+    const options = {
+      shouldSort: true,
+      threshold: 0.3,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "serialNumber"
+      ]
+    };
+
+    const fuse = new Fuse(devices, options);
+    const result = fuse.search(serialNumberDevice);
+
+    result.forEach((device) => {
+      listDevice.push(device.item);
+    });
+
+    return serialNumberDevice ? listDevice : devices;
+  };
+
   return(
     <View style={base.container}>
       <FlatList
-        data={devices.filter((device: ElementDevice) => {
-          const deviceSerialNumb = device.serialNumber.toUpperCase()
-          const serialNumbSerch = serialNumberDevice.toUpperCase();
-          const result = deviceSerialNumb.indexOf(serialNumbSerch);
-          return result > -1
-        })}
+        data={searchDevice()}
         keyExtractor={(item) => (item.id).toString()}
         renderItem={({ item }) => (
           <Pressable
@@ -83,9 +103,9 @@ const Device: React.FC<DeviceProps> = (props) => {
           >
             <View
               style={[styles.containerId, {
-                  backgroundColor: item.isStoped ? colors.color3 : (
-                    item.percent < 100 ? colors.color5 : colors.color2
-                  )}
+                backgroundColor: item.isStoped ? colors.color3 : (
+                  item.percent < 100 ? colors.color5 : colors.color2
+                )}
               ]}
             >
               <Text style={styles.deviceId} >{item.id}</Text>
